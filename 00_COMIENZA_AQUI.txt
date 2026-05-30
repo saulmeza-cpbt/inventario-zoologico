@@ -50,7 +50,6 @@ CAMBIO PRINCIPAL:
    → Especificación técnica detallada
    → Estructura de datos
    → Validaciones por tipo
-   → Validaciones por tipo
    → Plan de implementación
 
 3️⃣ RESUMEN_EJECUTIVO_V3.0.md
