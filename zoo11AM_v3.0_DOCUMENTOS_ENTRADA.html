@@ -466,6 +466,7 @@
   <div class="tab" onclick="APP.ui.showSec('salidas')">📤 Salidas</div>
   <div class="tab" onclick="APP.ui.showSec('stock')">📦 Stock</div>
   <div class="tab" onclick="APP.ui.showSec('reportes')">📈 Reportes</div>
+  <div class="tab" onclick="APP.ui.showSec('bitacora'); APP.renderBitacora();">📋 Bitácora</div>
 </div>
 
 <!-- CONTENT -->
@@ -588,6 +589,21 @@
     </div>
   </div>
 
+  <!-- BITÁCORA -->
+  <div id="bitacora" class="sec">
+    <h2 style="margin-bottom:4px; font-size:16px;">📋 Bitácora Institucional</h2>
+    <p style="font-size:12px; color:#718096; margin-bottom:12px;">Registro auditado de acciones realizadas en el sistema — quién hizo qué y cuándo.</p>
+    <div class="panel" style="padding:0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid #e2e8f0;">
+        <span style="font-size:13px; font-weight:600; color:#2d3748;">Eventos registrados</span>
+        <button class="btn btn-s" style="font-size:11px; padding:4px 10px;" onclick="APP.limpiarBitacora()">🗑 Limpiar bitácora</button>
+      </div>
+      <div id="bitacora-container" style="max-height:480px; overflow-y:auto;">
+        <div class="empty" style="padding:24px;">📭 Sin eventos registrados aún</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- TOAST BOX -->
@@ -607,27 +623,27 @@ const APP = (() => {
       factura: {
         nombre: 'Factura de Proveedor',
         icono: '📋',
-        campos: ['numeroFactura', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'areaDestino', 'responsable']
+        campos: ['numeroFactura', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'areaDestino', 'responsable', 'motivo']
       },
       acta_entrega: {
         nombre: 'Acta de Entrega',
         icono: '📑',
-        campos: ['numeroActa', 'mes', 'nombreProveedor', 'fechaEntrega', 'areaDestino', 'responsable']
+        campos: ['numeroActa', 'mes', 'nombreProveedor', 'fechaEntrega', 'areaDestino', 'responsable', 'motivo']
       },
       caja_chica: {
         nombre: 'Factura Caja Chica',
         icono: '💰',
-        campos: ['mes', 'areaDestino', 'responsable']
+        campos: ['mes', 'areaDestino', 'responsable', 'motivo']
       },
       solicitud: {
         nombre: 'Solicitud de Pedido',
         icono: '🛒',
-        campos: ['numeroSolicitud', 'areaRequirente', 'nombreProveedor', 'fechaSolicitud', 'responsable']
+        campos: ['numeroSolicitud', 'areaRequirente', 'nombreProveedor', 'fechaSolicitud', 'responsable', 'motivo']
       },
       fallo: {
         nombre: 'Acta de Fallo',
         icono: '📦',
-        campos: ['numeroFallo', 'numeroContrato', 'numeroEntrega', 'areaDestino', 'responsable']
+        campos: ['numeroFallo', 'numeroContrato', 'numeroEntrega', 'areaDestino', 'responsable', 'motivo']
       }
     }
   };
@@ -668,28 +684,40 @@ const APP = (() => {
     }, CONFIG.SAVE_DEBOUNCE);
   };
 
-  // Logger
+  // Logger institucional
   const logger = (() => {
-    const logs = [];
-    const MAX_LOGS = 100;
+    const KEY_BITACORA = 'zoo_tamatán_bitacora_v3';
+    const MAX_LOGS = 200;
+
+    const cargarLogs = () => {
+      try { return JSON.parse(localStorage.getItem(KEY_BITACORA) || '[]'); } catch { return []; }
+    };
+    const guardarLogs = (logs) => {
+      try { localStorage.setItem(KEY_BITACORA, JSON.stringify(logs)); } catch {}
+    };
+
+    const registrar = (nivel, msg, entidad = '', accion = '') => {
+      const logs = cargarLogs();
+      const entrada = {
+        nivel,
+        msg,
+        entidad,
+        accion,
+        ts: new Date().toLocaleString('es-MX'),
+        tsISO: new Date().toISOString()
+      };
+      logs.unshift(entrada); // más reciente primero
+      if (logs.length > MAX_LOGS) logs.pop();
+      guardarLogs(logs);
+      console[nivel === 'ERROR' ? 'error' : nivel === 'WARN' ? 'warn' : 'log'](`[${nivel}]`, msg);
+    };
 
     return {
-      info: (msg) => {
-        logs.push({ nivel: 'INFO', msg, ts: new Date().toLocaleTimeString() });
-        if (logs.length > MAX_LOGS) logs.shift();
-        console.log('[INFO]', msg);
-      },
-      warn: (msg) => {
-        logs.push({ nivel: 'WARN', msg, ts: new Date().toLocaleTimeString() });
-        if (logs.length > MAX_LOGS) logs.shift();
-        console.warn('[WARN]', msg);
-      },
-      error: (msg) => {
-        logs.push({ nivel: 'ERROR', msg, ts: new Date().toLocaleTimeString() });
-        if (logs.length > MAX_LOGS) logs.shift();
-        console.error('[ERROR]', msg);
-      },
-      getLogs: () => logs
+      info:  (msg, entidad = '', accion = '') => registrar('INFO',  msg, entidad, accion),
+      warn:  (msg, entidad = '', accion = '') => registrar('WARN',  msg, entidad, accion),
+      error: (msg, entidad = '', accion = '') => registrar('ERROR', msg, entidad, accion),
+      getLogs: () => cargarLogs(),
+      limpiar: () => { guardarLogs([]); }
     };
   })();
 
@@ -782,7 +810,8 @@ const APP = (() => {
           numeroEntrega: 'Número Entrega (ej: 3/12)',
           areaDestino: 'Área Destino',
           areaRequirente: 'Área Requirente',
-          responsable: 'Responsable'
+          responsable: 'Responsable',
+          motivo: 'Motivo / Justificación'
         };
 
         config.campos.forEach(campo => {
@@ -797,6 +826,12 @@ const APP = (() => {
               <select id="f-${campo}" style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px;">
                 ${opts}
               </select>
+            </label>`;
+          } else if (campo === 'motivo') {
+            html += `<label style="flex:100%; width:100%;">
+              ${labels[campo]} <span style="color:#e53e3e; font-size:11px;">* obligatorio</span>
+              <textarea id="f-${campo}" placeholder="Describe el motivo o justificación de esta entrada..." rows="2"
+                style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; font-size:13px; resize:vertical; font-family:inherit;"></textarea>
             </label>`;
           } else {
             html += `<label>${labels[campo] || campo}
@@ -967,7 +1002,7 @@ const APP = (() => {
 
         modEntradas.renderArticulos();
         modEntradas.renderResumen();
-        logger.info(`Artículo agregado: ${nombre} (${codigo || 'sin código'})`);
+        logger.info(`Artículo "${nombre}" agregado al documento en curso`, codigo || 'sin código', 'Agregar artículo');
       },
 
       removeArticulo: (idx) => {
@@ -1000,6 +1035,12 @@ const APP = (() => {
               return area ? `<p><strong>Área:</strong> <span style="color:#2b6cb0;font-weight:600;">📍 ${area}</span></p>` : '';
             })()}
             <p><strong>Artículos:</strong> ${doc.articulos.length}</p>
+            ${(() => {
+              const m = doc.datos.motivo || document.getElementById('f-motivo')?.value?.trim();
+              return m
+                ? `<p style="background:#fffbeb;border-left:3px solid #f6ad55;padding:6px 10px;border-radius:0 4px 4px 0;font-size:12px;color:#744210;margin:6px 0;"><strong>Motivo:</strong> ${m}</p>`
+                : `<p style="background:#fff5f5;border-left:3px solid #fc8181;padding:6px 10px;border-radius:0 4px 4px 0;font-size:12px;color:#9b2c2c;">⚠️ <strong>Motivo obligatorio</strong> — completa el campo antes de guardar</p>`;
+            })()}
             <p><strong>Total s/IVA:</strong> <span class="mono">$${totalSiva.toFixed(2)}</span></p>
             <p><strong>IVA (16%):</strong> <span class="mono">$${iva.toFixed(2)}</span></p>
             <p><strong>Total c/IVA:</strong> <span class="mono" style="font-size: 14px; color: var(--ok);">$${totalCiva.toFixed(2)}</span></p>
@@ -1016,6 +1057,13 @@ const APP = (() => {
           ui.toast('❌ Completa todos los pasos', 'err');
           return;
         }
+
+        const motivo = document.getElementById('f-motivo')?.value?.trim();
+        if (!motivo) {
+          ui.toast('❌ El campo Motivo / Justificación es obligatorio', 'err');
+          document.getElementById('f-motivo')?.focus();
+          return;
+        }
         
         // Recopilar datos de campos
         const campos = CONFIG.TIPOS_DOC[doc.tipo].campos;
@@ -1030,7 +1078,12 @@ const APP = (() => {
         guardar();
         
         ui.toast(`✓ Documento ${doc.folio} guardado correctamente`, 'ok');
-        logger.info(`Documento guardado: ${doc.folio}`);
+        const areaLog = doc.datos.areaDestino || doc.datos.areaRequirente || '—';
+        logger.info(
+          `Documento ${doc.folio} guardado — ${doc.articulos.length} artículo(s) — Área: ${areaLog} — Motivo: ${doc.datos.motivo || '—'}`,
+          doc.folio,
+          'Guardar documento'
+        );
         
         modEntradas.limpiarFormulario();
         renderHistorialEntradas();
@@ -1187,7 +1240,37 @@ const APP = (() => {
     updateDashboard();
     renderHistorialEntradas();
     
-    logger.info('Sistema inicializado - Zoo Tamatán V3.0');
+    logger.info('Sistema iniciado — Zoo Tamatán Inventario V3.0', '', 'Inicio de sesión');
+  };
+
+  const NIVEL_ESTILOS = {
+    INFO:  { bg: '#f0fff4', border: '#68d391', color: '#276749', icono: 'ℹ️' },
+    WARN:  { bg: '#fffbeb', border: '#f6ad55', color: '#92400e', icono: '⚠️' },
+    ERROR: { bg: '#fff5f5', border: '#fc8181', color: '#9b2c2c', icono: '❌' }
+  };
+
+  const renderBitacora = () => {
+    const container = document.getElementById('bitacora-container');
+    if (!container) return;
+    const logs = logger.getLogs();
+    if (!logs.length) {
+      container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin eventos registrados aún</div>';
+      return;
+    }
+    container.innerHTML = logs.map(log => {
+      const est = NIVEL_ESTILOS[log.nivel] || NIVEL_ESTILOS.INFO;
+      return `<div style="display:flex; gap:12px; padding:10px 16px; border-bottom:1px solid #f0f4f8; background:${est.bg}; border-left:3px solid ${est.border};">
+        <span style="font-size:16px; flex-shrink:0;">${est.icono}</span>
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px;">
+            <span style="font-size:13px; color:${est.color}; font-weight:600;">${log.accion || log.nivel}</span>
+            <span style="font-size:11px; color:#a0aec0; white-space:nowrap;">${log.ts}</span>
+          </div>
+          <div style="font-size:12px; color:#4a5568; margin-top:2px;">${log.msg}</div>
+          ${log.entidad ? `<div style="font-size:11px; color:#718096; margin-top:2px; font-family:monospace;">${log.entidad}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
   };
 
   // Public API
@@ -1199,12 +1282,21 @@ const APP = (() => {
     logger,
     cargar,
     guardar,
+    renderBitacora,
+    limpiarBitacora: () => {
+      if (confirm('⚠️ ¿Limpiar toda la bitácora? Esta acción no se puede deshacer.')) {
+        logger.limpiar();
+        renderBitacora();
+        ui.toast('✓ Bitácora limpiada', 'ok');
+      }
+    },
     limpiarDatos: () => {
       if (confirm('⚠️ ¿Eliminar TODOS los datos? Esta acción no se puede deshacer.')) {
         estado.documentos = [];
         guardar();
         updateDashboard();
         renderHistorialEntradas();
+        logger.info('Datos del inventario eliminados por el usuario', '', 'Limpiar datos');
         ui.toast('✓ Datos limpiados', 'ok');
       }
     },
