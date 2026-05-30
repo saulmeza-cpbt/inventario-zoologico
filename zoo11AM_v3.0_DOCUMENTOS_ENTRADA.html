@@ -1215,7 +1215,15 @@ const APP = (() => {
 // Iniciar
 document.addEventListener('DOMContentLoaded', () => {
   APP.init();
-  
+
+  // Cerrar dropdown de sugerencias al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    const box = document.getElementById('art-sugerencias');
+    if (box && !box.contains(e.target) && e.target.id !== 'inp-art-nombre') {
+      box.style.display = 'none';
+    }
+  });
+
   // Trigger initial render
   APP.modEntradas.renderArticulos();
 });

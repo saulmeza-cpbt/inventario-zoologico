@@ -363,7 +363,7 @@ Reviso historial: 1 línea clara
 - De historial plano → Historial agrupado
 - De validaciones básicas → Validaciones específicas por tipo
 
-**Resultado:** Sistema profesional, auditorio, escalable.
+**Resultado:** Sistema profesional, auditable, escalable.
 
 **Impacto inmediato:** 4-5× más rápido registrar entradas + mayor claridad en auditoría.
 
