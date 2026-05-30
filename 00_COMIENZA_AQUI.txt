@@ -1,0 +1,228 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                 🦁 ZOO TAMATÁN - INVENTARIO V3.0 🦁                        ║
+║              Sistema de Documentos de Entrada Multi-tipo                    ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📌 BIENVENIDO A V3.0
+
+¡Has actualizado a una versión completamente nueva!
+
+CAMBIO PRINCIPAL:
+  De entradas simples (1 artículo por documento)
+  A documentos multi-tipo (múltiples artículos por documento)
+
+
+🚀 CÓMO EMPEZAR EN 5 PASOS:
+
+1. ABRE EL ARCHIVO
+   ➜ zoo11AM_v3.0_DOCUMENTOS_ENTRADA.html
+
+2. VE A LA SECCIÓN "ENTRADAS"
+   ➜ Haz clic en tab "📥 Entradas"
+
+3. ELIGE UN TIPO DE DOCUMENTO
+   ➜ 📋 Factura (compra normal)
+   ➜ 📑 Acta Entrega (material calendarizado)
+   ➜ 💰 Caja Chica (gastos menores)
+   ➜ 🛒 Solicitud Pedido (órdenes)
+   ➜ 📦 Acta Fallo (entregas parciales)
+
+4. COMPLETA LOS DATOS
+   ➜ Folio (auto-generado)
+   ➜ Números, fechas, responsable
+   ➜ Agrega múltiples artículos en la tabla
+
+5. GUARDA EL DOCUMENTO
+   ➜ Sistema calcula automáticamente IVA
+   ➜ Datos se guardan en tu navegador
+   ➜ Mira el Dashboard para ver resumen
+
+
+📚 DOCUMENTACIÓN INCLUIDA:
+
+1️⃣ GUIA_USO_DOCUMENTOS_ENTRADA_V3.md
+   → Manual completo para usuarios
+   → Cómo usar cada tipo de documento
+   → Mejores prácticas
+   → Solución de problemas
+
+2️⃣ ESPECIFICACION_DOCUMENTOS_ENTRADA_V3.md
+   → Especificación técnica detallada
+   → Estructura de datos
+   → Validaciones por tipo
+   → Validaciones por tipo
+   → Plan de implementación
+
+3️⃣ RESUMEN_EJECUTIVO_V3.0.md
+   → Comparativa V2.1 vs V3.0
+   → Cambios técnicos
+   → Recomendaciones de implementación
+   → Plan de capacitación
+
+4️⃣ Este archivo
+   → Quick start
+
+
+⚡ LO QUE ES NUEVO EN V3.0:
+
+✅ 5 TIPOS DE DOCUMENTO (antes solo 1)
+   • Factura → Compras normales
+   • Acta Entrega → Material calendarizado (cloro, limpieza)
+   • Caja Chica → Gastos < $1,000
+   • Solicitud → Órdenes de compra pendientes
+   • Acta Fallo → Entregas parciales anuales
+
+✅ MÚLTIPLES ARTÍCULOS POR DOCUMENTO
+   Antes: 1 artículo = 1 documento tedioso
+   Ahora: 1 documento = 5 artículos eficiente
+
+✅ HISTORIAL AGRUPADO
+   Antes: 30 líneas iguales sin categoría
+   Ahora: Organizado por tipo (5 categorías)
+
+✅ AUTOMATIZACIÓN
+   • Folio auto-generado (FAC-26-0001, ACT-26-04, etc.)
+   • IVA calculado automáticamente
+   • Totales en tiempo real
+   • Logger para debugging
+
+✅ VALIDACIONES ESPECÍFICAS
+   Cada tipo tiene sus propias validaciones
+
+
+⏱️ ESTIMADO DE TIEMPO:
+
+→ Leer guía de uso:        20 minutos
+→ Crear primer documento:  5 minutos
+→ Crear 10 documentos:     30 minutos
+→ Dominar el sistema:      1-2 horas
+
+
+💻 REQUERIMIENTOS:
+
+✓ Navegador moderno (Chrome, Firefox, Safari, Edge)
+✓ JavaScript habilitado
+✓ Almacenamiento local (funciona sin internet)
+✓ Espacio en navegador (máx. 5 MB por 1,000 documentos)
+
+
+🔐 SEGURIDAD DE DATOS:
+
+✓ Los datos se guardan SOLO EN TU COMPUTADORA
+✓ No se envían a internet
+✓ Almacenamiento local del navegador
+✓ Backup automático cada 2 segundos
+✓ Recuperación automática al recargar
+
+
+❓ PREGUNTAS FRECUENTES:
+
+P: ¿Qué pasa si cierro la página sin guardar?
+R: Los datos se guardan automáticamente cada 2 segundos.
+
+P: ¿Puedo eliminar documentos?
+R: Sí, en el historial (función en V3.1). Ahora solo desde
+   Dashboard → [🗑️ Limpiar datos] para empezar desde cero.
+
+P: ¿Qué tipos de documento uso?
+R: Ve a GUIA_USO_DOCUMENTOS_ENTRADA_V3.md para ejemplos detallados.
+
+P: ¿Se puede editar un documento guardado?
+R: Próximamente en V3.1. Por ahora, elimina y recrea.
+
+P: ¿Exportar a Excel?
+R: Disponible en V3.2 (próximas 3 semanas).
+
+
+📞 SOPORTE:
+
+Si encuentras un problema:
+
+1. Abre la Consola (F12 → Consola)
+2. Busca mensajes de error
+3. Copia el error completo
+4. En Consola, escribe: APP.logger.getLogs()
+5. Copia el resultado
+
+Eso te ayudará a debuggear rápidamente.
+
+
+🎯 ROADMAP FUTURO:
+
+V3.1 (próximas 2 semanas):
+  • Editar documentos guardados
+  • Eliminar documentos individuales
+  • Búsqueda y filtros
+  • Dark mode
+
+V3.2 (próximas 3 semanas):
+  • Exportar a Excel/CSV
+  • Gráficos de tendencias
+  • Reportes por proveedor
+  • Integración con Stock
+
+V4.0 (este mes):
+  • Backend con Node.js + Express
+  • Base de datos MySQL
+  • Multi-usuario con autenticación
+  • API REST
+  • Sincronización en tiempo real
+
+
+✨ TIPS PROFESIONALES:
+
+💡 Tip 1: Agrupa artículos por documento
+   No crees 1 documento por artículo.
+   Crea 1 documento con TODOS los artículos de esa factura.
+
+💡 Tip 2: Usa el tipo correcto
+   Una Acta de Entrega no es una Factura.
+   Una Solicitud no es una Caja Chica.
+   Elige siempre el tipo más apropiado.
+
+💡 Tip 3: Completa datos con exactitud
+   • RFC: 18 caracteres
+   • Fecha: formato consistente
+   • Responsable: completo y legible
+
+💡 Tip 4: Verifica totales antes de guardar
+   Subtotal s/IVA + IVA 16% = Total c/IVA
+   No guardes si no cuadran los números.
+
+💡 Tip 5: Revisa el historial regularmente
+   Dashboard → Historial agrupado por tipo
+   Ayuda a detectar duplicados o errores.
+
+
+🎓 CAPACITACIÓN RECOMENDADA:
+
+Para USUARIOS (Personal de almacén):
+  ⏱️ 30-45 minutos
+  📚 Incluye demostración en vivo
+  🎯 Cubre los 5 tipos de documento
+  📋 Incluye ejercicios prácticos
+
+Para ADMINISTRADORES:
+  ⏱️ 60-90 minutos
+  🔧 Incluye aspectos técnicos
+  📊 Logger y debugging
+  🗺️ Roadmap futuro
+
+
+🚀 PRÓXIMO PASO:
+
+1. Lee "GUIA_USO_DOCUMENTOS_ENTRADA_V3.md" (20 min)
+2. Abre "zoo11AM_v3.0_DOCUMENTOS_ENTRADA.html"
+3. Crea tu primer documento de prueba
+4. Revisa Dashboard y Historial
+5. ¡Listo para producción!
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+Sistema: Zoo Tamatán - Tamaúlipas, México
+Versión: 3.0 - Documentos de Entrada Multi-tipo
+Fecha: 30 de mayo de 2026
+Estado: ✅ Listo para usar
+
+═════════════════════════════════════════════════════════════════════════════

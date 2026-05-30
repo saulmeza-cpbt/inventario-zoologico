@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoo Tamatán - Inventario V3.0 (Documentos de Entrada)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      font-size: 13px;
+      background: #f0f4f8;
+      color: #1a202c;
+      line-height: 1.5;
+    }
+
+    :root {
+      --nav: #1a3a5c;
+      --acc: #2b6cb0;
+      --brd: #cbd5e0;
+      --gray: #4a5568;
+      --rad: 8px;
+      --ok: #276749;
+      --err: #9b2c2c;
+      --warn: #b7791f;
+    }
+
+    /* TOPBAR */
+    .topbar {
+      background: var(--nav);
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .topbar h1 { 
+      font-size: 15px; 
+      font-weight: 700;
+    }
+
+    .topbar-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #86efac;
+    }
+
+    .status-dot.err {
+      background: #ff6b6b;
+    }
+
+    .topbar .spacer { flex: 1; }
+
+    .topbar .fecha {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+
+    .btn-clear {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      padding: 5px 11px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-clear:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      background: #fff;
+      border-bottom: 1px solid var(--brd);
+      overflow-x: auto;
+      gap: 0;
+    }
+
+    .tab {
+      padding: 11px 15px;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s, border-color 0.15s;
+      background: #fff;
+    }
+
+    .tab.active {
+      border-bottom-color: var(--acc);
+      color: var(--acc);
+      font-weight: 700;
+    }
+
+    .tab:hover:not(.active) {
+      background: #f7fafc;
+      color: #2d3748;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 14px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .sec {
+      display: none;
+    }
+
+    .sec.active {
+      display: block;
+    }
+
+    /* PANELS */
+    .panel {
+      background: #fff;
+      border: 1px solid var(--brd);
+      border-radius: var(--rad);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .panel h3 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 11px;
+      color: #2d3748;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--brd);
+      border-radius: var(--rad);
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .card .num {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--acc);
+      font-family: 'Courier New', monospace;
+    }
+
+    .card .lbl {
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .card.grn .num { color: var(--ok); }
+    .card.red .num { color: var(--err); }
+    .card.amb .num { color: var(--warn); }
+
+    /* FORMS */
+    .flex {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      align-items: flex-end;
+    }
+
+    .flex label {
+      font-size: 11px;
+      color: var(--gray);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .flex input,
+    .flex select {
+      border: 1px solid var(--brd);
+      border-radius: 5px;
+      padding: 7px 9px;
+      font-size: 12px;
+      background: #fff;
+      color: #1a202c;
+      width: 100%;
+      transition: border-color 0.15s;
+    }
+
+    .flex input:focus,
+    .flex select:focus {
+      outline: none;
+      border-color: var(--acc);
+      box-shadow: 0 0 0 2px rgba(43, 108, 176, 0.1);
+    }
+
+    .field-err {
+      font-size: 10px;
+      color: var(--err);
+      margin-top: 2px;
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity 0.15s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .btn:active {
+      opacity: 0.95;
+    }
+
+    .btn-p { background: var(--acc); color: #fff; }
+    .btn-g { background: var(--ok); color: #fff; }
+    .btn-r { background: var(--err); color: #fff; }
+    .btn-s { background: #edf2f7; color: var(--gray); }
+    .btn-sm { padding: 4px 9px; font-size: 11px; }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    th {
+      background: #edf2f7;
+      text-align: left;
+      padding: 8px 10px;
+      font-weight: 700;
+      font-size: 11px;
+      color: #4a5568;
+      border-bottom: 1px solid var(--brd);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: #f7fafc;
+    }
+
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .b-ok { background: #c6f6d5; color: var(--ok); }
+    .b-err { background: #fed7d7; color: var(--err); }
+    .b-warn { background: #fef3c7; color: var(--warn); }
+    .b-info { background: #bee3f8; color: #2c5282; }
+
+    /* DOCUMENTO SELECTOR */
+    .doc-selector {
+      background: #ebf4ff;
+      border: 1px solid #bee3f8;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .doc-selector h4 {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #2c5282;
+    }
+
+    .doc-type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .doc-type-btn {
+      padding: 10px 12px;
+      border: 2px solid #bee3f8;
+      background: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: #2c5282;
+      transition: all 0.15s;
+    }
+
+    .doc-type-btn:hover {
+      border-color: var(--acc);
+      background: #ebf4ff;
+    }
+
+    .doc-type-btn.active {
+      background: var(--acc);
+      color: #fff;
+      border-color: var(--acc);
+    }
+
+    /* ARTÍCULOS TABLE */
+    .art-table {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .art-row {
+      display: grid;
+      grid-template-columns: 1fr 80px 100px 80px 80px;
+      gap: 8px;
+      padding: 8px;
+      background: #f7fafc;
+      border: 1px solid var(--brd);
+      border-radius: 5px;
+      margin-bottom: 6px;
+      align-items: end;
+    }
+
+    .art-row label {
+      font-size: 11px;
+      color: var(--gray);
+      margin-bottom: 2px;
+    }
+
+    .art-row input,
+    .art-row select {
+      border: 1px solid var(--brd);
+      border-radius: 4px;
+      padding: 5px 7px;
+      font-size: 11px;
+    }
+
+    /* TOAST */
+    #toast-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .toast-item {
+      padding: 11px 15px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      animation: toast-in 0.3s ease-out;
+    }
+
+    .toast-item.ok { background: var(--ok); color: #fff; }
+    .toast-item.err { background: var(--err); color: #fff; }
+    .toast-item.info { background: var(--acc); color: #fff; }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateX(400px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .flex { flex-direction: column; }
+      .flex label { min-width: 100%; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .doc-type-grid { grid-template-columns: 1fr; }
+      .art-row { grid-template-columns: 1fr; }
+    }
+
+    /* UTILITY */
+    .mono {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 24px;
+      color: #a0aec0;
+      font-size: 12px;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--brd);
+      margin: 14px 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <h1>🦁 Zoo Tamatán - Inventario V3.0</h1>
+  <div class="spacer"></div>
+  <div class="topbar-status">
+    <div class="status-dot" id="status-dot"></div>
+    <span id="status-text">Sistema OK</span>
+  </div>
+  <div class="fecha" id="fecha"></div>
+  <button class="btn-clear" onclick="APP.limpiarDatos()">🗑️ Limpiar datos</button>
+</div>
+
+<!-- TABS -->
+<div class="tabs" id="tabs-container">
+  <div class="tab active" onclick="APP.ui.showSec('dashboard')">📊 Dashboard</div>
+  <div class="tab" onclick="APP.ui.showSec('entradas')">📥 Entradas</div>
+  <div class="tab" onclick="APP.ui.showSec('salidas')">📤 Salidas</div>
+  <div class="tab" onclick="APP.ui.showSec('stock')">📦 Stock</div>
+  <div class="tab" onclick="APP.ui.showSec('reportes')">📈 Reportes</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="sec active">
+    <h2 style="margin-bottom: 12px; font-size: 16px;">Dashboard</h2>
+    
+    <div class="cards">
+      <div class="card">
+        <div class="num" id="card-entradas">0</div>
+        <div class="lbl">Entradas registradas</div>
+      </div>
+      <div class="card">
+        <div class="num" id="card-articulos">0</div>
+        <div class="lbl">Artículos</div>
+      </div>
+      <div class="card grn">
+        <div class="num" id="card-valor">$0</div>
+        <div class="lbl">Valor total</div>
+      </div>
+      <div class="card amb">
+        <div class="num" id="card-docs">0</div>
+        <div class="lbl">Documentos</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>📄 Documentos de Entrada por Tipo</h3>
+      <div id="dashboard-docs-summary"></div>
+    </div>
+
+    <div class="panel">
+      <h3>⚠️ Alertas</h3>
+      <div id="dashboard-alerts"></div>
+    </div>
+  </div>
+
+  <!-- ENTRADAS -->
+  <div id="entradas" class="sec">
+    <h2 style="margin-bottom: 12px; font-size: 16px;">📥 Gestión de Entradas</h2>
+
+    <!-- SELECTOR DE TIPO DOCUMENTO -->
+    <div class="doc-selector">
+      <h4>Paso 1: Selecciona el tipo de documento</h4>
+      <div class="doc-type-grid">
+        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('factura')">
+          📋 Factura
+        </button>
+        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('acta_entrega')">
+          📑 Acta Entrega
+        </button>
+        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('caja_chica')">
+          💰 Caja Chica
+        </button>
+        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('solicitud')">
+          🛒 Solicitud Pedido
+        </button>
+        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('fallo')">
+          📦 Acta de Fallo
+        </button>
+      </div>
+    </div>
+
+    <!-- DATOS DEL DOCUMENTO -->
+    <div class="panel">
+      <h3>Paso 2: Datos del Documento</h3>
+      <div id="doc-fields-container"></div>
+    </div>
+
+    <!-- ARTÍCULOS -->
+    <div class="panel">
+      <h3>Paso 3: Artículos del Documento</h3>
+      <div id="articulos-container"></div>
+    </div>
+
+    <!-- RESUMEN Y ACCIONES -->
+    <div class="panel">
+      <h3>Paso 4: Resumen</h3>
+      <div id="resumen-doc"></div>
+      <button class="btn btn-g" onclick="APP.modEntradas.guardarDocumento()">
+        ✓ Guardar Documento
+      </button>
+      <button class="btn btn-s" onclick="APP.modEntradas.limpiarFormulario()">
+        ⟲ Limpiar
+      </button>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- HISTORIAL DE ENTRADAS -->
+    <div class="panel">
+      <h3>Historial de Entradas</h3>
+      <div id="historial-entradas"></div>
+    </div>
+  </div>
+
+  <!-- SALIDAS -->
+  <div id="salidas" class="sec">
+    <h2 style="margin-bottom: 12px; font-size: 16px;">📤 Salidas de Inventario</h2>
+    <div class="panel">
+      <p style="color: var(--gray);">📝 Módulo de Salidas - En desarrollo</p>
+    </div>
+  </div>
+
+  <!-- STOCK -->
+  <div id="stock" class="sec">
+    <h2 style="margin-bottom: 12px; font-size: 16px;">📦 Estado de Stock</h2>
+    <div class="panel">
+      <p style="color: var(--gray);">📝 Módulo de Stock - En desarrollo</p>
+    </div>
+  </div>
+
+  <!-- REPORTES -->
+  <div id="reportes" class="sec">
+    <h2 style="margin-bottom: 12px; font-size: 16px;">📈 Reportes</h2>
+    <div class="panel">
+      <p style="color: var(--gray);">📝 Módulo de Reportes - En desarrollo</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOAST BOX -->
+<div id="toast-box"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// APP PRINCIPAL
+// ═══════════════════════════════════════════════════════════════
+
+const APP = (() => {
+  
+  const CONFIG = {
+    KEY_STORAGE: 'zoo_tamatán_entradas_v3',
+    SAVE_DEBOUNCE: 2000,
+    TIPOS_DOC: {
+      factura: {
+        nombre: 'Factura de Proveedor',
+        icono: '📋',
+        campos: ['numeroFactura', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'responsable']
+      },
+      acta_entrega: {
+        nombre: 'Acta de Entrega',
+        icono: '📑',
+        campos: ['numeroActa', 'mes', 'nombreProveedor', 'fechaEntrega', 'responsable']
+      },
+      caja_chica: {
+        nombre: 'Factura Caja Chica',
+        icono: '💰',
+        campos: ['mes', 'responsable']
+      },
+      solicitud: {
+        nombre: 'Solicitud de Pedido',
+        icono: '🛒',
+        campos: ['numeroSolicitud', 'nombreProveedor', 'fechaSolicitud', 'responsable']
+      },
+      fallo: {
+        nombre: 'Acta de Fallo',
+        icono: '📦',
+        campos: ['numeroFallo', 'numeroContrato', 'numeroEntrega', 'responsable']
+      }
+    }
+  };
+
+  // Estado
+  let estado = {
+    documentos: [],
+    tipoDocSeleccionado: null,
+    docActual: null
+  };
+
+  // Cargar datos
+  const cargar = () => {
+    try {
+      const datos = localStorage.getItem(CONFIG.KEY_STORAGE);
+      if (datos) {
+        estado.documentos = JSON.parse(datos);
+        logger.info(`Cargados ${estado.documentos.length} documentos`);
+      }
+    } catch (e) {
+      logger.error('Error al cargar datos: ' + e.message);
+    }
+  };
+
+  // Guardar datos (con debounce)
+  let saveTimeout;
+  const guardar = () => {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      try {
+        localStorage.setItem(CONFIG.KEY_STORAGE, JSON.stringify(estado.documentos));
+        updateStatus(true);
+        logger.info('Datos guardados correctamente');
+      } catch (e) {
+        logger.error('Error al guardar: ' + e.message);
+        updateStatus(false);
+      }
+    }, CONFIG.SAVE_DEBOUNCE);
+  };
+
+  // Logger
+  const logger = (() => {
+    const logs = [];
+    const MAX_LOGS = 100;
+
+    return {
+      info: (msg) => {
+        logs.push({ nivel: 'INFO', msg, ts: new Date().toLocaleTimeString() });
+        if (logs.length > MAX_LOGS) logs.shift();
+        console.log('[INFO]', msg);
+      },
+      warn: (msg) => {
+        logs.push({ nivel: 'WARN', msg, ts: new Date().toLocaleTimeString() });
+        if (logs.length > MAX_LOGS) logs.shift();
+        console.warn('[WARN]', msg);
+      },
+      error: (msg) => {
+        logs.push({ nivel: 'ERROR', msg, ts: new Date().toLocaleTimeString() });
+        if (logs.length > MAX_LOGS) logs.shift();
+        console.error('[ERROR]', msg);
+      },
+      getLogs: () => logs
+    };
+  })();
+
+  // UI
+  const ui = (() => {
+    return {
+      showSec: (secId) => {
+        document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        
+        const sec = document.getElementById(secId);
+        if (sec) {
+          sec.classList.add('active');
+          const tabBtn = document.querySelector(`[onclick="APP.ui.showSec('${secId}')"]`);
+          if (tabBtn) tabBtn.classList.add('active');
+        }
+      },
+      toast: (msg, type = 'info') => {
+        const box = document.getElementById('toast-box');
+        const item = document.createElement('div');
+        item.className = `toast-item ${type}`;
+        item.textContent = msg;
+        box.appendChild(item);
+        setTimeout(() => item.remove(), 4000);
+      }
+    };
+  })();
+
+  // Módulo de Entradas
+  const modEntradas = (() => {
+    return {
+      setTipoDoc: (tipo) => {
+        estado.tipoDocSeleccionado = tipo;
+        estado.docActual = {
+          id: 'ent-' + Date.now(),
+          folio: generarFolio(tipo),
+          tipo: tipo,
+          articulos: [],
+          datos: {},
+          ts: Date.now()
+        };
+        modEntradas.renderForm();
+        logger.info(`Tipo documento seleccionado: ${tipo}`);
+      },
+
+      renderForm: () => {
+        const tipo = estado.tipoDocSeleccionado;
+        if (!tipo) return;
+
+        const config = CONFIG.TIPOS_DOC[tipo];
+        const container = document.getElementById('doc-fields-container');
+        
+        let html = `<div class="flex">`;
+        html += `<label>Folio<input type="text" value="${estado.docActual.folio}" disabled></label>`;
+        
+        config.campos.forEach(campo => {
+          const labels = {
+            numeroFactura: 'Número Factura',
+            rfcProveedor: 'RFC Proveedor',
+            nombreProveedor: 'Nombre Proveedor',
+            fechaFactura: 'Fecha Factura',
+            numeroActa: 'Número Acta',
+            mes: 'Mes',
+            fechaEntrega: 'Fecha Entrega',
+            fechaSolicitud: 'Fecha Solicitud',
+            numeroSolicitud: 'Número Solicitud',
+            numeroFallo: 'Número Fallo',
+            numeroContrato: 'Número Contrato',
+            numeroEntrega: 'Número Entrega (ej: 3/12)',
+            responsable: 'Responsable'
+          };
+          
+          html += `<label>${labels[campo] || campo}
+            <input type="text" id="f-${campo}" placeholder="${labels[campo] || campo}">
+          </label>`;
+        });
+        
+        html += `</div>`;
+        container.innerHTML = html;
+      },
+
+      renderArticulos: () => {
+        const container = document.getElementById('articulos-container');
+        const doc = estado.docActual;
+        
+        let html = `<div>`;
+        
+        // Tabla de artículos
+        html += `<table>
+          <thead>
+            <tr>
+              <th>Artículo</th>
+              <th>Cantidad</th>
+              <th>Unitario</th>
+              <th>Total</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="art-tbody">`;
+        
+        doc.articulos.forEach((art, idx) => {
+          html += `<tr>
+            <td>${art.nombre}</td>
+            <td class="mono">${art.cantidad}</td>
+            <td class="mono">$${art.unitario.toFixed(2)}</td>
+            <td class="mono">$${(art.cantidad * art.unitario).toFixed(2)}</td>
+            <td>
+              <button class="btn btn-r btn-sm" onclick="APP.modEntradas.removeArticulo(${idx})">
+                ✕ Quitar
+              </button>
+            </td>
+          </tr>`;
+        });
+        
+        html += `</tbody></table>`;
+        
+        // Formulario agregar artículo
+        html += `<div class="flex" style="margin-top: 12px;">
+          <label>Artículo
+            <input type="text" id="inp-art-nombre" placeholder="Nombre del artículo">
+          </label>
+          <label>Cantidad
+            <input type="number" id="inp-art-cant" value="1" min="1">
+          </label>
+          <label>Unitario
+            <input type="number" id="inp-art-precio" value="0" step="0.01" min="0">
+          </label>
+          <button class="btn btn-p" onclick="APP.modEntradas.addArticulo()">
+            + Agregar
+          </button>
+        </div>`;
+        
+        html += `</div>`;
+        container.innerHTML = html;
+      },
+
+      addArticulo: () => {
+        const nombre = document.getElementById('inp-art-nombre')?.value;
+        const cantidad = parseFloat(document.getElementById('inp-art-cant')?.value || 0);
+        const unitario = parseFloat(document.getElementById('inp-art-precio')?.value || 0);
+        
+        if (!nombre || cantidad <= 0 || unitario < 0) {
+          ui.toast('❌ Completa todos los campos correctamente', 'err');
+          return;
+        }
+        
+        estado.docActual.articulos.push({
+          nombre,
+          cantidad,
+          unitario
+        });
+        
+        document.getElementById('inp-art-nombre').value = '';
+        document.getElementById('inp-art-cant').value = '1';
+        document.getElementById('inp-art-precio').value = '0';
+        
+        modEntradas.renderArticulos();
+        modEntradas.renderResumen();
+        logger.info(`Artículo agregado: ${nombre}`);
+      },
+
+      removeArticulo: (idx) => {
+        estado.docActual.articulos.splice(idx, 1);
+        modEntradas.renderArticulos();
+        modEntradas.renderResumen();
+      },
+
+      renderResumen: () => {
+        const container = document.getElementById('resumen-doc');
+        const doc = estado.docActual;
+        const config = CONFIG.TIPOS_DOC[doc.tipo];
+        
+        let totalSiva = 0;
+        doc.articulos.forEach(art => {
+          totalSiva += art.cantidad * art.unitario;
+        });
+        const iva = totalSiva * 0.16;
+        const totalCiva = totalSiva + iva;
+        
+        let html = `
+          <div class="panel" style="background: #f7fafc;">
+            <h3>${config.icono} ${config.nombre}</h3>
+            <p><strong>Folio:</strong> <span class="mono">${doc.folio}</span></p>
+            <p><strong>Artículos:</strong> ${doc.articulos.length}</p>
+            <p><strong>Total s/IVA:</strong> <span class="mono">$${totalSiva.toFixed(2)}</span></p>
+            <p><strong>IVA (16%):</strong> <span class="mono">$${iva.toFixed(2)}</span></p>
+            <p><strong>Total c/IVA:</strong> <span class="mono" style="font-size: 14px; color: var(--ok);">$${totalCiva.toFixed(2)}</span></p>
+          </div>
+        `;
+        
+        container.innerHTML = html;
+      },
+
+      guardarDocumento: () => {
+        const doc = estado.docActual;
+        
+        if (!doc.tipo || doc.articulos.length === 0) {
+          ui.toast('❌ Completa todos los pasos', 'err');
+          return;
+        }
+        
+        // Recopilar datos de campos
+        const campos = CONFIG.TIPOS_DOC[doc.tipo].campos;
+        campos.forEach(campo => {
+          const input = document.getElementById(`f-${campo}`);
+          if (input) {
+            doc.datos[campo] = input.value;
+          }
+        });
+        
+        estado.documentos.push(doc);
+        guardar();
+        
+        ui.toast(`✓ Documento ${doc.folio} guardado correctamente`, 'ok');
+        logger.info(`Documento guardado: ${doc.folio}`);
+        
+        modEntradas.limpiarFormulario();
+        renderHistorialEntradas();
+        updateDashboard();
+      },
+
+      limpiarFormulario: () => {
+        estado.tipoDocSeleccionado = null;
+        estado.docActual = null;
+        document.getElementById('doc-fields-container').innerHTML = '';
+        document.getElementById('articulos-container').innerHTML = '';
+        document.getElementById('resumen-doc').innerHTML = '';
+        
+        // Desseleccionar botones
+        document.querySelectorAll('.doc-type-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+      }
+    };
+  })();
+
+  // Funciones auxiliares
+  const generarFolio = (tipo) => {
+    const prefijos = {
+      factura: 'FAC',
+      acta_entrega: 'ACT',
+      caja_chica: 'CAJA',
+      solicitud: 'SOL',
+      fallo: 'FALLO'
+    };
+    
+    const año = new Date().getFullYear().toString().slice(-2);
+    const contador = (estado.documentos.filter(d => d.tipo === tipo).length + 1).toString().padStart(4, '0');
+    
+    return `${prefijos[tipo]}-${año}-${contador}`;
+  };
+
+  const updateStatus = (ok) => {
+    const dot = document.getElementById('status-dot');
+    const text = document.getElementById('status-text');
+    
+    if (ok) {
+      dot.classList.remove('err');
+      text.textContent = '● Sistema OK';
+    } else {
+      dot.classList.add('err');
+      text.textContent = '● Error guardando';
+    }
+  };
+
+  // Render del historial
+  const renderHistorialEntradas = () => {
+    const container = document.getElementById('historial-entradas');
+    
+    if (estado.documentos.length === 0) {
+      container.innerHTML = '<div class="empty">📭 No hay entradas registradas</div>';
+      return;
+    }
+    
+    // Agrupar por tipo
+    const porTipo = {};
+    estado.documentos.forEach(doc => {
+      if (!porTipo[doc.tipo]) porTipo[doc.tipo] = [];
+      porTipo[doc.tipo].push(doc);
+    });
+    
+    let html = '';
+    
+    Object.keys(porTipo).forEach(tipo => {
+      const config = CONFIG.TIPOS_DOC[tipo];
+      const docs = porTipo[tipo];
+      
+      html += `<h4 style="margin-top: 12px; margin-bottom: 8px;">${config.icono} ${config.nombre}</h4>`;
+      html += `<table>
+        <tr>
+          <th>Folio</th>
+          <th>Artículos</th>
+          <th>Monto Total</th>
+          <th>Fecha</th>
+        </tr>`;
+      
+      docs.forEach(doc => {
+        let total = 0;
+        doc.articulos.forEach(art => {
+          total += art.cantidad * art.unitario;
+        });
+        
+        const fecha = new Date(doc.ts).toLocaleDateString('es-MX');
+        
+        html += `<tr>
+          <td class="mono">${doc.folio}</td>
+          <td>${doc.articulos.length}</td>
+          <td class="mono">$${total.toFixed(2)}</td>
+          <td>${fecha}</td>
+        </tr>`;
+      });
+      
+      html += `</table>`;
+    });
+    
+    container.innerHTML = html;
+  };
+
+  // Update dashboard
+  const updateDashboard = () => {
+    document.getElementById('card-entradas').textContent = estado.documentos.length;
+    
+    let totalArticulos = 0;
+    let totalValor = 0;
+    
+    estado.documentos.forEach(doc => {
+      totalArticulos += doc.articulos.length;
+      doc.articulos.forEach(art => {
+        totalValor += art.cantidad * art.unitario * 1.16; // con IVA
+      });
+    });
+    
+    document.getElementById('card-articulos').textContent = totalArticulos;
+    document.getElementById('card-valor').textContent = '$' + totalValor.toFixed(0);
+    document.getElementById('card-docs').textContent = Object.keys(CONFIG.TIPOS_DOC).length;
+
+    // Resumen por tipo
+    const porTipo = {};
+    estado.documentos.forEach(doc => {
+      if (!porTipo[doc.tipo]) porTipo[doc.tipo] = 0;
+      porTipo[doc.tipo]++;
+    });
+    
+    let resumen = '<ul style="list-style: none; padding: 0;">';
+    Object.keys(porTipo).forEach(tipo => {
+      const config = CONFIG.TIPOS_DOC[tipo];
+      resumen += `<li style="padding: 6px 0;">${config.icono} <strong>${config.nombre}:</strong> ${porTipo[tipo]} documento${porTipo[tipo] !== 1 ? 's' : ''}</li>`;
+    });
+    resumen += '</ul>';
+    
+    document.getElementById('dashboard-docs-summary').innerHTML = resumen;
+    
+    // Alertas
+    let alertas = '<div class="empty">✓ Sin alertas</div>';
+    if (estado.documentos.length === 0) {
+      alertas = '<div style="padding: 12px; background: #e0e7ff; border-left: 3px solid var(--acc); color: #3730a3;">📝 Comienza registrando tu primer documento de entrada.</div>';
+    }
+    
+    document.getElementById('dashboard-alerts').innerHTML = alertas;
+  };
+
+  // Inicializar
+  const init = () => {
+    document.getElementById('fecha').textContent = new Date().toLocaleDateString('es-MX');
+    cargar();
+    updateDashboard();
+    renderHistorialEntradas();
+    
+    logger.info('Sistema inicializado - Zoo Tamatán V3.0');
+  };
+
+  // Public API
+  return {
+    config: CONFIG,
+    estado,
+    ui,
+    modEntradas,
+    logger,
+    cargar,
+    guardar,
+    limpiarDatos: () => {
+      if (confirm('⚠️ ¿Eliminar TODOS los datos? Esta acción no se puede deshacer.')) {
+        estado.documentos = [];
+        guardar();
+        updateDashboard();
+        renderHistorialEntradas();
+        ui.toast('✓ Datos limpiados', 'ok');
+      }
+    },
+    init
+  };
+})();
+
+// Iniciar
+document.addEventListener('DOMContentLoaded', () => {
+  APP.init();
+  
+  // Trigger initial render
+  APP.modEntradas.renderArticulos();
+});
+</script>
+
+</body>
+</html>
