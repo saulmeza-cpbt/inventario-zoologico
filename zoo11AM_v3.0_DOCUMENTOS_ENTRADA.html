@@ -607,27 +607,27 @@ const APP = (() => {
       factura: {
         nombre: 'Factura de Proveedor',
         icono: '📋',
-        campos: ['numeroFactura', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'responsable']
+        campos: ['numeroFactura', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'areaDestino', 'responsable']
       },
       acta_entrega: {
         nombre: 'Acta de Entrega',
         icono: '📑',
-        campos: ['numeroActa', 'mes', 'nombreProveedor', 'fechaEntrega', 'responsable']
+        campos: ['numeroActa', 'mes', 'nombreProveedor', 'fechaEntrega', 'areaDestino', 'responsable']
       },
       caja_chica: {
         nombre: 'Factura Caja Chica',
         icono: '💰',
-        campos: ['mes', 'responsable']
+        campos: ['mes', 'areaDestino', 'responsable']
       },
       solicitud: {
         nombre: 'Solicitud de Pedido',
         icono: '🛒',
-        campos: ['numeroSolicitud', 'nombreProveedor', 'fechaSolicitud', 'responsable']
+        campos: ['numeroSolicitud', 'areaRequirente', 'nombreProveedor', 'fechaSolicitud', 'responsable']
       },
       fallo: {
         nombre: 'Acta de Fallo',
         icono: '📦',
-        campos: ['numeroFallo', 'numeroContrato', 'numeroEntrega', 'responsable']
+        campos: ['numeroFallo', 'numeroContrato', 'numeroEntrega', 'areaDestino', 'responsable']
       }
     }
   };
@@ -732,6 +732,8 @@ const APP = (() => {
           ts: Date.now()
         };
         modEntradas.renderForm();
+        modEntradas.renderArticulos();
+        modEntradas.renderResumen();
         logger.info(`Tipo documento seleccionado: ${tipo}`);
       },
 
@@ -745,26 +747,62 @@ const APP = (() => {
         let html = `<div class="flex">`;
         html += `<label>Folio<input type="text" value="${estado.docActual.folio}" disabled></label>`;
         
+        const AREAS_ZOO = [
+          '— Seleccionar área —',
+          'Administración',
+          'Africam / Grandes Felinos',
+          'Aves',
+          'Botánica y Jardinería',
+          'Enfermería / Veterinaria',
+          'Herpetario',
+          'Intendencia y Limpieza',
+          'Mamíferos Mayores',
+          'Mamíferos Menores',
+          'Mantenimiento',
+          'Nutrición y Dietas',
+          'Primates',
+          'Reptiles',
+          'Seguridad',
+          'Taquilla / Atención al Público',
+          'Otra'
+        ];
+
+        const labels = {
+          numeroFactura: 'Número Factura',
+          rfcProveedor: 'RFC Proveedor',
+          nombreProveedor: 'Nombre Proveedor',
+          fechaFactura: 'Fecha Factura',
+          numeroActa: 'Número Acta',
+          mes: 'Mes',
+          fechaEntrega: 'Fecha Entrega',
+          fechaSolicitud: 'Fecha Solicitud',
+          numeroSolicitud: 'Número Solicitud',
+          numeroFallo: 'Número Fallo',
+          numeroContrato: 'Número Contrato',
+          numeroEntrega: 'Número Entrega (ej: 3/12)',
+          areaDestino: 'Área Destino',
+          areaRequirente: 'Área Requirente',
+          responsable: 'Responsable'
+        };
+
         config.campos.forEach(campo => {
-          const labels = {
-            numeroFactura: 'Número Factura',
-            rfcProveedor: 'RFC Proveedor',
-            nombreProveedor: 'Nombre Proveedor',
-            fechaFactura: 'Fecha Factura',
-            numeroActa: 'Número Acta',
-            mes: 'Mes',
-            fechaEntrega: 'Fecha Entrega',
-            fechaSolicitud: 'Fecha Solicitud',
-            numeroSolicitud: 'Número Solicitud',
-            numeroFallo: 'Número Fallo',
-            numeroContrato: 'Número Contrato',
-            numeroEntrega: 'Número Entrega (ej: 3/12)',
-            responsable: 'Responsable'
-          };
-          
-          html += `<label>${labels[campo] || campo}
-            <input type="text" id="f-${campo}" placeholder="${labels[campo] || campo}">
-          </label>`;
+          const onInput = campo === 'nombreProveedor' ? ' oninput="APP.modEntradas.renderResumen()"' : '';
+
+          if (campo === 'areaDestino' || campo === 'areaRequirente') {
+            const opts = AREAS_ZOO.map((a, i) =>
+              `<option value="${i === 0 ? '' : a}">${a}</option>`
+            ).join('');
+            html += `<label style="min-width:160px;">
+              ${labels[campo]}
+              <select id="f-${campo}" style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px;">
+                ${opts}
+              </select>
+            </label>`;
+          } else {
+            html += `<label>${labels[campo] || campo}
+              <input type="text" id="f-${campo}" placeholder="${labels[campo] || campo}"${onInput}>
+            </label>`;
+          }
         });
         
         html += `</div>`;
@@ -774,13 +812,19 @@ const APP = (() => {
       renderArticulos: () => {
         const container = document.getElementById('articulos-container');
         const doc = estado.docActual;
-        
+
+        if (!doc) {
+          container.innerHTML = '';
+          return;
+        }
+
         let html = `<div>`;
         
         // Tabla de artículos
         html += `<table>
           <thead>
             <tr>
+              <th>Cód.</th>
               <th>Artículo</th>
               <th>Cantidad</th>
               <th>Unitario</th>
@@ -789,9 +833,10 @@ const APP = (() => {
             </tr>
           </thead>
           <tbody id="art-tbody">`;
-        
+
         doc.articulos.forEach((art, idx) => {
           html += `<tr>
+            <td class="mono" style="color:#718096;font-size:11px;">${art.codigo || '—'}</td>
             <td>${art.nombre}</td>
             <td class="mono">${art.cantidad}</td>
             <td class="mono">$${art.unitario.toFixed(2)}</td>
@@ -803,52 +848,126 @@ const APP = (() => {
             </td>
           </tr>`;
         });
-        
+
         html += `</tbody></table>`;
-        
-        // Formulario agregar artículo
-        html += `<div class="flex" style="margin-top: 12px;">
-          <label>Artículo
-            <input type="text" id="inp-art-nombre" placeholder="Nombre del artículo">
-          </label>
-          <label>Cantidad
-            <input type="number" id="inp-art-cant" value="1" min="1">
-          </label>
-          <label>Unitario
-            <input type="number" id="inp-art-precio" value="0" step="0.01" min="0">
-          </label>
-          <button class="btn btn-p" onclick="APP.modEntradas.addArticulo()">
-            + Agregar
-          </button>
+
+        // Formulario agregar artículo con autocomplete
+        html += `<div style="margin-top:12px;">
+          <div class="flex" style="align-items:flex-end; gap:8px; flex-wrap:wrap;">
+            <label style="flex:2; min-width:160px; position:relative;">Artículo
+              <input type="text" id="inp-art-nombre" placeholder="Escribe para buscar o agregar nuevo..."
+                autocomplete="off"
+                oninput="APP.modEntradas.filtrarCatalogo(this.value)"
+                onkeydown="if(event.key==='Enter'){event.preventDefault();APP.modEntradas.addArticulo();}">
+              <div id="art-sugerencias" style="display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #bee3f8; border-radius:0 0 6px 6px; max-height:180px; overflow-y:auto; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.1);"></div>
+            </label>
+            <label style="width:90px;">Código
+              <input type="text" id="inp-art-codigo" placeholder="INV-001" style="font-family:monospace; font-size:12px;">
+            </label>
+            <label style="width:70px;">Cantidad
+              <input type="number" id="inp-art-cant" value="1" min="1">
+            </label>
+            <label style="width:100px;">Unitario
+              <input type="number" id="inp-art-precio" value="0" step="0.01" min="0">
+            </label>
+            <button class="btn btn-p" style="align-self:flex-end; margin-bottom:0;" onclick="APP.modEntradas.addArticulo()">
+              + Agregar
+            </button>
+          </div>
+          <p style="font-size:11px; color:#a0aec0; margin-top:4px;">
+            💡 Escribe el nombre — si el artículo ya existe en el inventario aparecerá como sugerencia con su código y precio.
+          </p>
         </div>`;
-        
+
         html += `</div>`;
         container.innerHTML = html;
       },
 
+      getCatalogo: () => {
+        const mapa = {};
+        estado.documentos.forEach(doc => {
+          (doc.articulos || []).forEach(art => {
+            const key = art.nombre.toLowerCase().trim();
+            if (!mapa[key]) {
+              mapa[key] = { nombre: art.nombre, codigo: art.codigo || '', unitario: art.unitario, veces: 1 };
+            } else {
+              mapa[key].veces++;
+              // conservar el precio más reciente
+              mapa[key].unitario = art.unitario;
+              if (art.codigo) mapa[key].codigo = art.codigo;
+            }
+          });
+        });
+        return Object.values(mapa).sort((a, b) => b.veces - a.veces);
+      },
+
+      filtrarCatalogo: (texto) => {
+        const box = document.getElementById('art-sugerencias');
+        if (!box) return;
+        const q = texto.trim().toLowerCase();
+        if (!q) { box.style.display = 'none'; return; }
+
+        const coincidencias = modEntradas.getCatalogo().filter(a =>
+          a.nombre.toLowerCase().includes(q) || (a.codigo && a.codigo.toLowerCase().includes(q))
+        );
+
+        if (!coincidencias.length) { box.style.display = 'none'; return; }
+
+        box.innerHTML = coincidencias.map((a, i) => `
+          <div onclick="APP.modEntradas.seleccionarSugerencia(${i})"
+               data-idx="${i}"
+               style="padding:8px 12px; cursor:pointer; border-bottom:1px solid #f0f4f8; display:flex; justify-content:space-between; align-items:center;"
+               onmouseover="this.style.background='#ebf4ff'" onmouseout="this.style.background=''">
+            <span>
+              ${a.codigo ? `<span style="font-family:monospace;font-size:11px;color:#718096;margin-right:8px;">${a.codigo}</span>` : ''}
+              <strong>${a.nombre}</strong>
+            </span>
+            <span style="font-size:12px;color:#38a169;margin-left:12px;">$${a.unitario.toFixed(2)}</span>
+          </div>`).join('');
+
+        // guardar en atributo para recuperar al seleccionar
+        box.dataset.catalogo = JSON.stringify(coincidencias);
+        box.style.display = 'block';
+      },
+
+      seleccionarSugerencia: (idx) => {
+        const box = document.getElementById('art-sugerencias');
+        if (!box) return;
+        const catalogo = JSON.parse(box.dataset.catalogo || '[]');
+        const art = catalogo[idx];
+        if (!art) return;
+        document.getElementById('inp-art-nombre').value = art.nombre;
+        document.getElementById('inp-art-codigo').value = art.codigo || '';
+        document.getElementById('inp-art-precio').value = art.unitario.toFixed(2);
+        document.getElementById('inp-art-cant').focus();
+        box.style.display = 'none';
+      },
+
       addArticulo: () => {
-        const nombre = document.getElementById('inp-art-nombre')?.value;
+        const nombre = document.getElementById('inp-art-nombre')?.value?.trim();
+        const codigo = document.getElementById('inp-art-codigo')?.value?.trim() || '';
         const cantidad = parseFloat(document.getElementById('inp-art-cant')?.value || 0);
         const unitario = parseFloat(document.getElementById('inp-art-precio')?.value || 0);
-        
+
+        // cerrar sugerencias si quedaron abiertas
+        const box = document.getElementById('art-sugerencias');
+        if (box) box.style.display = 'none';
+
         if (!nombre || cantidad <= 0 || unitario < 0) {
           ui.toast('❌ Completa todos los campos correctamente', 'err');
           return;
         }
-        
-        estado.docActual.articulos.push({
-          nombre,
-          cantidad,
-          unitario
-        });
-        
+
+        estado.docActual.articulos.push({ nombre, codigo, cantidad, unitario });
+
         document.getElementById('inp-art-nombre').value = '';
+        document.getElementById('inp-art-codigo').value = '';
         document.getElementById('inp-art-cant').value = '1';
         document.getElementById('inp-art-precio').value = '0';
-        
+
         modEntradas.renderArticulos();
         modEntradas.renderResumen();
-        logger.info(`Artículo agregado: ${nombre}`);
+        logger.info(`Artículo agregado: ${nombre} (${codigo || 'sin código'})`);
       },
 
       removeArticulo: (idx) => {
@@ -872,7 +991,14 @@ const APP = (() => {
         let html = `
           <div class="panel" style="background: #f7fafc;">
             <h3>${config.icono} ${config.nombre}</h3>
+            ${(() => { const v = doc.datos.nombreProveedor || document.getElementById('f-nombreProveedor')?.value; return v ? `<p style="color: #4a5568; margin-top: -6px; margin-bottom: 6px;">${v}</p>` : ''; })()}
             <p><strong>Folio:</strong> <span class="mono">${doc.folio}</span></p>
+            ${(() => {
+              const area = doc.datos.areaDestino || doc.datos.areaRequirente
+                || document.getElementById('f-areaDestino')?.value
+                || document.getElementById('f-areaRequirente')?.value;
+              return area ? `<p><strong>Área:</strong> <span style="color:#2b6cb0;font-weight:600;">📍 ${area}</span></p>` : '';
+            })()}
             <p><strong>Artículos:</strong> ${doc.articulos.length}</p>
             <p><strong>Total s/IVA:</strong> <span class="mono">$${totalSiva.toFixed(2)}</span></p>
             <p><strong>IVA (16%):</strong> <span class="mono">$${iva.toFixed(2)}</span></p>
@@ -981,21 +1107,24 @@ const APP = (() => {
       html += `<table>
         <tr>
           <th>Folio</th>
+          <th>Área</th>
           <th>Artículos</th>
           <th>Monto Total</th>
           <th>Fecha</th>
         </tr>`;
-      
+
       docs.forEach(doc => {
         let total = 0;
         doc.articulos.forEach(art => {
           total += art.cantidad * art.unitario;
         });
-        
+
         const fecha = new Date(doc.ts).toLocaleDateString('es-MX');
-        
+        const area = doc.datos.areaDestino || doc.datos.areaRequirente || '—';
+
         html += `<tr>
           <td class="mono">${doc.folio}</td>
+          <td style="color:#2b6cb0; font-size:12px;">📍 ${area}</td>
           <td>${doc.articulos.length}</td>
           <td class="mono">$${total.toFixed(2)}</td>
           <td>${fecha}</td>
