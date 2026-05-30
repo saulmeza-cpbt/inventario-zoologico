@@ -633,7 +633,7 @@ const APP = (() => {
       caja_chica: {
         nombre: 'Factura Caja Chica',
         icono: '💰',
-        campos: ['mes', 'areaDestino', 'responsable', 'motivo']
+        campos: ['folioDocumento', 'mes', 'areaDestino', 'responsable', 'motivo']
       },
       solicitud: {
         nombre: 'Solicitud de Pedido',
@@ -773,26 +773,15 @@ const APP = (() => {
         const container = document.getElementById('doc-fields-container');
         
         let html = `<div class="flex">`;
-        html += `<label>Folio<input type="text" value="${estado.docActual.folio}" disabled></label>`;
+        html += `<label>Folio<input type="text" value="${estado.docActual.folio}" disabled readonly tabindex="-1" style="background:#edf2f7; color:#4a5568; cursor:not-allowed; font-family:monospace; font-weight:600; pointer-events:none;"></label>`;
         
         const AREAS_ZOO = [
           '— Seleccionar área —',
-          'Administración',
-          'Africam / Grandes Felinos',
-          'Aves',
-          'Botánica y Jardinería',
-          'Enfermería / Veterinaria',
-          'Herpetario',
-          'Intendencia y Limpieza',
-          'Mamíferos Mayores',
-          'Mamíferos Menores',
-          'Mantenimiento',
-          'Nutrición y Dietas',
-          'Primates',
-          'Reptiles',
-          'Seguridad',
-          'Taquilla / Atención al Público',
-          'Otra'
+          'Snack',
+          'Tienda',
+          'Farmacia',
+          'Nutrición',
+          'Mantenimiento'
         ];
 
         const labels = {
@@ -811,8 +800,16 @@ const APP = (() => {
           areaDestino: 'Área Destino',
           areaRequirente: 'Área Requirente',
           responsable: 'Responsable',
-          motivo: 'Motivo / Justificación'
+          motivo: 'Motivo / Justificación',
+          folioDocumento: 'Folio del Documento',
+          numeroFactura: 'Folio Factura',
+          numeroActa: 'Folio Acta',
+          numeroSolicitud: 'Folio Solicitud de Pedido',
+          numeroFallo: 'Folio Acta de Fallo'
         };
+
+        // Campos que representan el folio físico del documento — obligatorios y resaltados
+        const CAMPOS_FOLIO = new Set(['folioDocumento','numeroFactura','numeroActa','numeroSolicitud','numeroFallo']);
 
         config.campos.forEach(campo => {
           const onInput = campo === 'nombreProveedor' ? ' oninput="APP.modEntradas.renderResumen()"' : '';
@@ -823,7 +820,7 @@ const APP = (() => {
             ).join('');
             html += `<label style="min-width:160px;">
               ${labels[campo]}
-              <select id="f-${campo}" style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px;">
+              <select id="f-${campo}" onchange="document.getElementById('inp-art-nombre')&&(document.getElementById('inp-art-nombre').value=''); const b=document.getElementById('art-sugerencias'); if(b) b.style.display='none';" style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px;">
                 ${opts}
               </select>
             </label>`;
@@ -832,6 +829,16 @@ const APP = (() => {
               ${labels[campo]} <span style="color:#e53e3e; font-size:11px;">* obligatorio</span>
               <textarea id="f-${campo}" placeholder="Describe el motivo o justificación de esta entrada..." rows="2"
                 style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; font-size:13px; resize:vertical; font-family:inherit;"></textarea>
+            </label>`;
+          } else if (CAMPOS_FOLIO.has(campo)) {
+            html += `<label style="min-width:160px;">
+              <span style="font-weight:700; color:#2b6cb0;">${labels[campo] || campo}</span>
+              <span style="color:#e53e3e; font-size:11px; margin-left:4px;">* obligatorio</span>
+              <input type="text" id="f-${campo}" placeholder="Ej: ${campo === 'numeroFactura' ? 'FAC-2026-0001' : campo === 'numeroActa' ? 'ACTA-001' : campo === 'numeroSolicitud' ? 'SP-2026-001' : campo === 'numeroFallo' ? 'FALLO-001' : 'FOLIO-001'}"
+                style="border:2px solid #bee3f8; font-family:monospace; font-size:13px; font-weight:600; letter-spacing:0.5px;"
+                oninput="this.style.borderColor=this.value.trim()?'#68d391':'#fc8181';"
+                onfocus="this.style.borderColor='#4299e1';"
+                onblur="this.style.borderColor=this.value.trim()?'#68d391':'#fc8181';">
             </label>`;
           } else {
             html += `<label>${labels[campo] || campo}
@@ -894,7 +901,7 @@ const APP = (() => {
                 autocomplete="off"
                 oninput="APP.modEntradas.filtrarCatalogo(this.value)"
                 onkeydown="if(event.key==='Enter'){event.preventDefault();APP.modEntradas.addArticulo();}">
-              <div id="art-sugerencias" style="display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #bee3f8; border-radius:0 0 6px 6px; max-height:180px; overflow-y:auto; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.1);"></div>
+              <div id="art-sugerencias" style="display:none; position:fixed; background:#fff; border:1px solid #bee3f8; border-radius:0 0 6px 6px; max-height:180px; overflow-y:auto; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,.15);"></div>
             </label>
             <label style="width:90px;">Código
               <input type="text" id="inp-art-codigo" placeholder="INV-001" style="font-family:monospace; font-size:12px;">
@@ -910,7 +917,7 @@ const APP = (() => {
             </button>
           </div>
           <p style="font-size:11px; color:#a0aec0; margin-top:4px;">
-            💡 Escribe el nombre — si el artículo ya existe en el inventario aparecerá como sugerencia con su código y precio.
+            💡 Escribe el nombre — las sugerencias muestran artículos con historial en el área seleccionada.
           </p>
         </div>`;
 
@@ -919,15 +926,24 @@ const APP = (() => {
       },
 
       getCatalogo: () => {
+        // Leer el área actualmente seleccionada
+        const areaActual = (
+          document.getElementById('f-areaDestino') ||
+          document.getElementById('f-areaRequirente')
+        )?.value || '';
+
         const mapa = {};
         estado.documentos.forEach(doc => {
+          // Si hay área seleccionada, solo incluir artículos de documentos de esa área
+          const areaDoc = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
+          if (areaActual && areaDoc !== areaActual) return;
+
           (doc.articulos || []).forEach(art => {
             const key = art.nombre.toLowerCase().trim();
             if (!mapa[key]) {
               mapa[key] = { nombre: art.nombre, codigo: art.codigo || '', unitario: art.unitario, veces: 1 };
             } else {
               mapa[key].veces++;
-              // conservar el precio más reciente
               mapa[key].unitario = art.unitario;
               if (art.codigo) mapa[key].codigo = art.codigo;
             }
@@ -938,9 +954,23 @@ const APP = (() => {
 
       filtrarCatalogo: (texto) => {
         const box = document.getElementById('art-sugerencias');
-        if (!box) return;
+        const inp = document.getElementById('inp-art-nombre');
+        if (!box || !inp) return;
         const q = texto.trim().toLowerCase();
         if (!q) { box.style.display = 'none'; return; }
+        // Posicionar fixed: abajo del input si hay espacio, arriba si no
+        const r = inp.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - r.bottom;
+        const dropH = Math.min(180, 40 * 5); // max estimado
+        if (spaceBelow < dropH && r.top > dropH) {
+          box.style.top    = '';
+          box.style.bottom = (window.innerHeight - r.top + 2) + 'px';
+        } else {
+          box.style.bottom = '';
+          box.style.top    = (r.bottom + 2) + 'px';
+        }
+        box.style.left   = r.left + 'px';
+        box.style.width  = r.width + 'px';
 
         const coincidencias = modEntradas.getCatalogo().filter(a =>
           a.nombre.toLowerCase().includes(q) || (a.codigo && a.codigo.toLowerCase().includes(q))
@@ -1055,6 +1085,18 @@ const APP = (() => {
         
         if (!doc.tipo || doc.articulos.length === 0) {
           ui.toast('❌ Completa todos los pasos', 'err');
+          return;
+        }
+
+        // Validar folio del documento físico
+        const camposFolio = ['folioDocumento','numeroFactura','numeroActa','numeroSolicitud','numeroFallo'];
+        const campoFolioActivo = camposFolio.find(c => document.getElementById(`f-${c}`));
+        const valorFolio = campoFolioActivo ? document.getElementById(`f-${campoFolioActivo}`)?.value?.trim() : null;
+        if (campoFolioActivo && !valorFolio) {
+          const labelFolio = { folioDocumento:'Folio del Documento', numeroFactura:'Folio Factura',
+            numeroActa:'Folio Acta', numeroSolicitud:'Folio Solicitud', numeroFallo:'Folio Acta de Fallo' };
+          ui.toast(`❌ El campo "${labelFolio[campoFolioActivo]}" es obligatorio`, 'err');
+          document.getElementById(`f-${campoFolioActivo}`)?.focus();
           return;
         }
 
