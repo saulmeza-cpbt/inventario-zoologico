@@ -465,6 +465,8 @@
   <div class="tab" onclick="APP.ui.showSec('entradas')">📥 Entradas</div>
   <div class="tab" onclick="APP.ui.showSec('salidas')">📤 Salidas</div>
   <div class="tab" onclick="APP.ui.showSec('stock')">📦 Stock</div>
+  <div class="tab" onclick="APP.ui.showSec('solicitudes'); APP.modSolicitudes.render();">📝 Solicitudes</div>
+  <div class="tab" onclick="APP.ui.showSec('levantamientos'); APP.modLevantamientos.render();">📦 Levantamientos</div>
   <div class="tab" onclick="APP.ui.showSec('reportes')">📈 Reportes</div>
   <div class="tab" onclick="APP.ui.showSec('bitacora'); APP.renderBitacora();">📋 Bitácora</div>
 </div>
@@ -513,21 +515,15 @@
     <!-- SELECTOR DE TIPO DOCUMENTO -->
     <div class="doc-selector">
       <h4>Paso 1: Selecciona el tipo de documento</h4>
-      <div class="doc-type-grid">
+      <div class="doc-type-grid" style="grid-template-columns: repeat(3, 1fr);">
         <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('factura')">
-          📋 Factura
-        </button>
-        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('acta_entrega')">
-          📑 Acta Entrega
+          📋 Factura Proveedor
         </button>
         <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('caja_chica')">
-          💰 Caja Chica
+          💰 Factura Caja Chica
         </button>
-        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('solicitud')">
-          🛒 Solicitud Pedido
-        </button>
-        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('fallo')">
-          📦 Acta de Fallo
+        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('acta_entrega')">
+          📑 Acta de Entrega
         </button>
       </div>
     </div>
@@ -581,6 +577,180 @@
     </div>
   </div>
 
+  <!-- SOLICITUDES DE PEDIDO -->
+  <div id="solicitudes" class="sec">
+    <h2 style="margin-bottom:4px;font-size:16px;">📝 Solicitudes de Pedido</h2>
+    <p style="font-size:12px;color:#718096;margin-bottom:12px;">Concentrado de solicitudes enviadas a la Dirección Administrativa — Comisión de Parques y Biodiversidad de Tamaulipas.</p>
+
+    <div class="panel">
+      <h3>Nueva Solicitud de Pedido</h3>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;">
+        <label style="width:110px;">Folio SP <span style="color:#e53e3e;font-size:10px;">*</span>
+          <input type="text" id="sp-folio" placeholder="1249" style="font-family:monospace;font-weight:700;">
+        </label>
+        <label style="width:90px;">Día
+          <input type="number" id="sp-dia" placeholder="18" min="1" max="31">
+        </label>
+        <label style="width:90px;">Mes
+          <input type="number" id="sp-mes" placeholder="09" min="1" max="12">
+        </label>
+        <label style="width:90px;">Año
+          <input type="number" id="sp-anio" placeholder="2025">
+        </label>
+        <label style="min-width:160px;flex:1;">Área Requirente <span style="color:#e53e3e;font-size:10px;">*</span>
+          <select id="sp-area" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+            <option value="">— Seleccionar —</option>
+            <option>Snack</option>
+            <option>Tienda</option>
+            <option>Farmacia</option>
+            <option>Nutrición</option>
+            <option>Mantenimiento</option>
+          </select>
+        </label>
+        <label style="flex:2;min-width:180px;">Proyecto
+          <input type="text" id="sp-proyecto" placeholder="Alimentación de Ejemplares CPBT">
+        </label>
+        <label style="flex:2;min-width:180px;">Partida Presupuestal
+          <input type="text" id="sp-presupuestal" placeholder="222.- Productos Alimenticios para Animales">
+        </label>
+        <label style="flex:1;min-width:140px;">Solicitante
+          <input type="text" id="sp-solicitante" placeholder="Lic. Eder García Padilla">
+        </label>
+        <label style="width:130px;">Estado
+          <select id="sp-estado" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+            <option value="Pendiente">⏳ Pendiente</option>
+            <option value="Autorizada">✅ Autorizada</option>
+            <option value="Recibida">📦 Recibida</option>
+            <option value="Cancelada">❌ Cancelada</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Tabla artículos SP -->
+      <h4 style="margin:12px 0 6px;font-size:12px;color:#4a5568;">Artículos solicitados</h4>
+      <table id="sp-tabla-arts" style="margin-bottom:8px;">
+        <thead><tr><th>#</th><th>Cantidad</th><th>Unidad</th><th>Descripción</th><th>Acción</th></tr></thead>
+        <tbody id="sp-arts-body"><tr><td colspan="5" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr></tbody>
+      </table>
+      <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+        <label style="width:80px;">Cantidad<input type="number" id="sp-art-cant" value="1" min="0.01" step="0.01"></label>
+        <label style="width:80px;">Unidad<input type="text" id="sp-art-unidad" placeholder="KILO"></label>
+        <label style="flex:1;min-width:200px;">Descripción<input type="text" id="sp-art-desc" placeholder="CANAL DE RES"></label>
+        <button class="btn btn-p" onclick="APP.modSolicitudes.addArt()">+ Agregar</button>
+      </div>
+
+      <!-- Justificación colapsable -->
+      <div style="margin-top:10px;">
+        <button onclick="const j=document.getElementById('sp-just-body');j.style.display=j.style.display==='none'?'block':'none';"
+          style="background:none;border:none;cursor:pointer;color:#4a5568;font-size:12px;padding:0;">
+          ▶ Justificación / Observaciones (click para expandir)
+        </button>
+        <div id="sp-just-body" style="display:none;margin-top:6px;">
+          <textarea id="sp-justificacion" rows="3" placeholder="ALIMENTACION PARA EJEMPLARES ALOJADOS EN ZOOLOGICO TAMATAN, ENTREGA EL DIA VIERNES 03 DE OCTUBRE DEL 2025"
+            style="width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;resize:vertical;font-family:inherit;"></textarea>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button class="btn btn-g" onclick="APP.modSolicitudes.guardar()">✓ Registrar Solicitud</button>
+        <button class="btn btn-s" onclick="APP.modSolicitudes.limpiar()">⟲ Limpiar</button>
+      </div>
+    </div>
+
+    <!-- Concentrado -->
+    <div class="panel" style="padding:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid #e2e8f0;">
+        <span style="font-weight:600;font-size:13px;">Concentrado de Solicitudes</span>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <select id="sp-filtro-area" onchange="APP.modSolicitudes.render()" style="padding:4px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;">
+            <option value="">Todas las áreas</option>
+            <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+            <option>Nutrición</option><option>Mantenimiento</option>
+          </select>
+          <select id="sp-filtro-estado" onchange="APP.modSolicitudes.render()" style="padding:4px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;">
+            <option value="">Todos los estados</option>
+            <option>Pendiente</option><option>Autorizada</option><option>Recibida</option><option>Cancelada</option>
+          </select>
+        </div>
+      </div>
+      <div id="sp-concentrado" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+
+  <!-- LEVANTAMIENTOS FÍSICOS SEMANALES -->
+  <div id="levantamientos" class="sec">
+    <h2 style="margin-bottom:4px;font-size:16px;">📦 Levantamientos Físicos Semanales</h2>
+    <p style="font-size:12px;color:#718096;margin-bottom:12px;">Conteo físico semanal por área — permite detectar diferencias entre existencia teórica y real. Estándar profesional de inventarios.</p>
+
+    <div class="panel">
+      <h3>Nuevo Levantamiento</h3>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;">
+        <label style="min-width:160px;">Semana <span style="color:#e53e3e;font-size:10px;">*</span>
+          <input type="week" id="lev-semana" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+        </label>
+        <label style="width:130px;">Fecha de conteo
+          <input type="date" id="lev-fecha">
+        </label>
+        <label style="min-width:160px;flex:1;">Área <span style="color:#e53e3e;font-size:10px;">*</span>
+          <select id="lev-area" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+            <option value="">— Seleccionar —</option>
+            <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+            <option>Nutrición</option><option>Mantenimiento</option>
+          </select>
+        </label>
+        <label style="flex:1;min-width:150px;">Responsable del conteo
+          <input type="text" id="lev-responsable" placeholder="Nombre completo">
+        </label>
+      </div>
+
+      <!-- Artículos del levantamiento -->
+      <h4 style="margin:12px 0 6px;font-size:12px;color:#4a5568;">Artículos contados</h4>
+      <div style="overflow-x:auto;">
+        <table id="lev-tabla" style="margin-bottom:8px;min-width:700px;">
+          <thead>
+            <tr>
+              <th>Código</th><th>Descripción</th><th>Unidad</th>
+              <th style="color:#2b6cb0;">Exist. Teórica</th>
+              <th style="color:#276749;">Exist. Física</th>
+              <th style="color:#c05621;">Diferencia</th>
+              <th>Estado</th><th>Obs.</th><th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="lev-arts-body">
+            <tr><td colspan="9" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:4px;">
+        <label style="width:90px;">Código INV<input type="text" id="lev-art-codigo" placeholder="INV-001" style="font-family:monospace;font-size:12px;"></label>
+        <label style="flex:2;min-width:160px;">Descripción<input type="text" id="lev-art-desc" placeholder="Nombre del artículo"></label>
+        <label style="width:70px;">Unidad<input type="text" id="lev-art-unidad" placeholder="KG"></label>
+        <label style="width:90px;">Exist. Teórica<input type="number" id="lev-art-teorica" value="0" min="0" step="0.01"></label>
+        <label style="width:90px;">Exist. Física<input type="number" id="lev-art-fisica" value="0" min="0" step="0.01"></label>
+        <label style="width:160px;">Observación<input type="text" id="lev-art-obs" placeholder="Opcional"></label>
+        <button class="btn btn-p" onclick="APP.modLevantamientos.addArt()">+ Agregar</button>
+      </div>
+      <p style="font-size:11px;color:#a0aec0;margin-top:4px;">💡 La diferencia (Física − Teórica) se calcula automáticamente. Negativo = faltante. Positivo = sobrante.</p>
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button class="btn btn-g" onclick="APP.modLevantamientos.guardar()">✓ Registrar Levantamiento</button>
+        <button class="btn btn-s" onclick="APP.modLevantamientos.limpiar()">⟲ Limpiar</button>
+      </div>
+    </div>
+
+    <!-- Historial de levantamientos -->
+    <div class="panel" style="padding:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid #e2e8f0;">
+        <span style="font-weight:600;font-size:13px;">Historial de Levantamientos</span>
+        <select id="lev-filtro-area" onchange="APP.modLevantamientos.render()" style="padding:4px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;">
+          <option value="">Todas las áreas</option>
+          <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+          <option>Nutrición</option><option>Mantenimiento</option>
+        </select>
+      </div>
+      <div id="lev-historial" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+
   <!-- REPORTES -->
   <div id="reportes" class="sec">
     <h2 style="margin-bottom: 12px; font-size: 16px;">📈 Reportes</h2>
@@ -623,27 +793,17 @@ const APP = (() => {
       factura: {
         nombre: 'Factura de Proveedor',
         icono: '📋',
-        campos: ['numeroFactura', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'areaDestino', 'responsable', 'motivo']
-      },
-      acta_entrega: {
-        nombre: 'Acta de Entrega',
-        icono: '📑',
-        campos: ['numeroActa', 'mes', 'nombreProveedor', 'fechaEntrega', 'areaDestino', 'responsable', 'motivo']
+        campos: ['folioDocumento', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'areaDestino', 'responsable', 'motivo']
       },
       caja_chica: {
         nombre: 'Factura Caja Chica',
         icono: '💰',
         campos: ['folioDocumento', 'mes', 'areaDestino', 'responsable', 'motivo']
       },
-      solicitud: {
-        nombre: 'Solicitud de Pedido',
-        icono: '🛒',
-        campos: ['numeroSolicitud', 'areaRequirente', 'nombreProveedor', 'fechaSolicitud', 'responsable', 'motivo']
-      },
-      fallo: {
-        nombre: 'Acta de Fallo',
-        icono: '📦',
-        campos: ['numeroFallo', 'numeroContrato', 'numeroEntrega', 'areaDestino', 'responsable', 'motivo']
+      acta_entrega: {
+        nombre: 'Acta de Entrega (Contrato/Fallo)',
+        icono: '📑',
+        campos: ['folioDocumento', 'nombreProveedor', 'fechaEntrega', 'numeroContrato', 'areaDestino', 'responsable', 'motivo']
       }
     }
   };
@@ -773,7 +933,6 @@ const APP = (() => {
         const container = document.getElementById('doc-fields-container');
         
         let html = `<div class="flex">`;
-        html += `<label>Folio<input type="text" value="${estado.docActual.folio}" disabled readonly tabindex="-1" style="background:#edf2f7; color:#4a5568; cursor:not-allowed; font-family:monospace; font-weight:600; pointer-events:none;"></label>`;
         
         const AREAS_ZOO = [
           '— Seleccionar área —',
@@ -798,18 +957,16 @@ const APP = (() => {
           numeroContrato: 'Número Contrato',
           numeroEntrega: 'Número Entrega (ej: 3/12)',
           areaDestino: 'Área Destino',
-          areaRequirente: 'Área Requirente',
           responsable: 'Responsable',
           motivo: 'Motivo / Justificación',
           folioDocumento: 'Folio del Documento',
-          numeroFactura: 'Folio Factura',
-          numeroActa: 'Folio Acta',
-          numeroSolicitud: 'Folio Solicitud de Pedido',
-          numeroFallo: 'Folio Acta de Fallo'
+          numeroContrato: 'Número de Contrato',
+          fechaEntrega: 'Fecha de Entrega',
+          mes: 'Mes'
         };
 
         // Campos que representan el folio físico del documento — obligatorios y resaltados
-        const CAMPOS_FOLIO = new Set(['folioDocumento','numeroFactura','numeroActa','numeroSolicitud','numeroFallo']);
+        const CAMPOS_FOLIO = new Set(['folioDocumento']);
 
         config.campos.forEach(campo => {
           const onInput = campo === 'nombreProveedor' ? ' oninput="APP.modEntradas.renderResumen()"' : '';
@@ -1291,6 +1448,251 @@ const APP = (() => {
     ERROR: { bg: '#fff5f5', border: '#fc8181', color: '#9b2c2c', icono: '❌' }
   };
 
+  // ── MÓDULO SOLICITUDES DE PEDIDO ─────────────────────────────────────────
+  const modSolicitudes = (() => {
+    const KEY = 'zoo_tamatán_solicitudes_v1';
+    let artsTemp = [];
+
+    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
+    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
+
+    const ESTADO_ESTILOS = {
+      'Pendiente':  { bg:'#fffbeb', color:'#92400e', icono:'⏳' },
+      'Autorizada': { bg:'#f0fff4', color:'#276749', icono:'✅' },
+      'Recibida':   { bg:'#ebf4ff', color:'#2b6cb0', icono:'📦' },
+      'Cancelada':  { bg:'#fff5f5', color:'#9b2c2c', icono:'❌' },
+    };
+
+    const renderArts = () => {
+      const tbody = document.getElementById('sp-arts-body');
+      if (!tbody) return;
+      if (!artsTemp.length) { tbody.innerHTML = '<tr><td colspan="5" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr>'; return; }
+      tbody.innerHTML = artsTemp.map((a,i) => `<tr>
+        <td class="mono">${i+1}</td>
+        <td class="mono">${a.cantidad} ${a.unidad}</td>
+        <td>${a.unidad}</td>
+        <td>${a.descripcion}</td>
+        <td><button class="btn btn-r btn-sm" onclick="APP.modSolicitudes.removeArt(${i})">✕</button></td>
+      </tr>`).join('');
+    };
+
+    return {
+      addArt: () => {
+        const cant = parseFloat(document.getElementById('sp-art-cant')?.value || 0);
+        const unidad = document.getElementById('sp-art-unidad')?.value?.trim();
+        const desc = document.getElementById('sp-art-desc')?.value?.trim();
+        if (!desc || cant <= 0) { return; }
+        artsTemp.push({ cantidad: cant, unidad: unidad || 'PZA', descripcion: desc });
+        document.getElementById('sp-art-cant').value = '1';
+        document.getElementById('sp-art-unidad').value = '';
+        document.getElementById('sp-art-desc').value = '';
+        renderArts();
+      },
+      removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
+      guardar: () => {
+        const folio = document.getElementById('sp-folio')?.value?.trim();
+        const area  = document.getElementById('sp-area')?.value;
+        if (!folio || !area) { ui.toast('❌ Folio y Área son obligatorios', 'err'); return; }
+        const dia  = document.getElementById('sp-dia')?.value;
+        const mes  = document.getElementById('sp-mes')?.value;
+        const anio = document.getElementById('sp-anio')?.value;
+        const datos = {
+          id: 'sp-' + Date.now(), folio, area,
+          fecha: `${dia?.padStart?.(2,'0')||dia}/${mes?.padStart?.(2,'0')||mes}/${anio}`,
+          proyecto: document.getElementById('sp-proyecto')?.value?.trim(),
+          presupuestal: document.getElementById('sp-presupuestal')?.value?.trim(),
+          solicitante: document.getElementById('sp-solicitante')?.value?.trim(),
+          estado: document.getElementById('sp-estado')?.value || 'Pendiente',
+          justificacion: document.getElementById('sp-justificacion')?.value?.trim(),
+          articulos: [...artsTemp],
+          ts: Date.now()
+        };
+        const lista = cargar();
+        lista.unshift(datos);
+        guardarLS(lista);
+        artsTemp = [];
+        modSolicitudes.limpiar();
+        modSolicitudes.render();
+        logger.info(`Solicitud SP-${folio} registrada — Área: ${area}`, `SP-${folio}`, 'Registrar solicitud');
+        ui.toast(`✓ Solicitud ${folio} registrada`, 'ok');
+      },
+      limpiar: () => {
+        ['sp-folio','sp-dia','sp-mes','sp-anio','sp-proyecto','sp-presupuestal','sp-solicitante','sp-justificacion']
+          .forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+        document.getElementById('sp-area').value = '';
+        document.getElementById('sp-estado').value = 'Pendiente';
+        artsTemp = [];
+        renderArts();
+      },
+      cambiarEstado: (id, nuevoEstado) => {
+        const lista = cargar();
+        const sp = lista.find(s => s.id === id);
+        if (sp) { sp.estado = nuevoEstado; guardarLS(lista); modSolicitudes.render(); }
+      },
+      render: () => {
+        const container = document.getElementById('sp-concentrado');
+        if (!container) return;
+        const filtroArea = document.getElementById('sp-filtro-area')?.value || '';
+        const filtroEst  = document.getElementById('sp-filtro-estado')?.value || '';
+        let lista = cargar();
+        if (filtroArea) lista = lista.filter(s => s.area === filtroArea);
+        if (filtroEst)  lista = lista.filter(s => s.estado === filtroEst);
+        if (!lista.length) { container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin solicitudes registradas</div>'; return; }
+        container.innerHTML = lista.map(s => {
+          const est = ESTADO_ESTILOS[s.estado] || ESTADO_ESTILOS['Pendiente'];
+          const artsHTML = s.articulos?.map(a => `<span style="font-size:11px;background:#f7fafc;border:1px solid #e2e8f0;border-radius:3px;padding:1px 6px;margin:1px;">${a.cantidad} ${a.unidad} — ${a.descripcion}</span>`).join(' ') || '—';
+          const justHTML = s.justificacion ? `<details style="margin-top:4px;"><summary style="font-size:11px;color:#718096;cursor:pointer;">Ver justificación</summary><p style="font-size:11px;color:#4a5568;margin-top:4px;padding:6px;background:#f7fafc;border-radius:4px;">${s.justificacion}</p></details>` : '';
+          return `<div style="padding:12px 16px;border-bottom:1px solid #f0f4f8;background:${est.bg};">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;">
+              <div>
+                <span style="font-family:monospace;font-weight:700;font-size:14px;color:#2d3748;">SP-${s.folio}</span>
+                <span style="margin-left:8px;font-size:12px;color:#718096;">${s.fecha || '—'}</span>
+                <span style="margin-left:8px;font-size:12px;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:10px;">${s.area}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span style="font-size:12px;color:${est.color};font-weight:600;">${est.icono} ${s.estado}</span>
+                <select onchange="APP.modSolicitudes.cambiarEstado('${s.id}', this.value)"
+                  style="font-size:11px;padding:2px 4px;border:1px solid #cbd5e0;border-radius:4px;">
+                  ${['Pendiente','Autorizada','Recibida','Cancelada'].map(e => `<option${e===s.estado?' selected':''}>${e}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+            ${s.proyecto ? `<div style="font-size:11px;color:#4a5568;margin-top:4px;"><b>Proyecto:</b> ${s.proyecto} ${s.presupuestal?'| <b>Presupuestal:</b> '+s.presupuestal:''}</div>` : ''}
+            <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:2px;">${artsHTML}</div>
+            ${justHTML}
+            ${s.solicitante ? `<div style="font-size:10px;color:#a0aec0;margin-top:4px;">Solicitante: ${s.solicitante}</div>` : ''}
+          </div>`;
+        }).join('');
+      }
+    };
+  })();
+
+  // ── MÓDULO LEVANTAMIENTOS FÍSICOS ─────────────────────────────────────────
+  const modLevantamientos = (() => {
+    const KEY = 'zoo_tamatán_levantamientos_v1';
+    let artsTemp = [];
+
+    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
+    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
+
+    const renderArts = () => {
+      const tbody = document.getElementById('lev-arts-body');
+      if (!tbody) return;
+      if (!artsTemp.length) { tbody.innerHTML = '<tr><td colspan="9" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr>'; return; }
+      tbody.innerHTML = artsTemp.map((a, i) => {
+        const diff = (a.fisica - a.teorica);
+        const diffColor = diff < 0 ? '#e53e3e' : diff > 0 ? '#38a169' : '#718096';
+        const estadoLev = diff < 0 ? '🔴 Faltante' : diff > 0 ? '🟢 Sobrante' : '✅ OK';
+        return `<tr>
+          <td class="mono" style="font-size:11px;">${a.codigo||'—'}</td>
+          <td>${a.descripcion}</td>
+          <td>${a.unidad}</td>
+          <td class="mono" style="color:#2b6cb0;">${a.teorica.toFixed(2)}</td>
+          <td class="mono" style="color:#276749;">${a.fisica.toFixed(2)}</td>
+          <td class="mono" style="color:${diffColor};font-weight:700;">${diff >= 0 ? '+' : ''}${diff.toFixed(2)}</td>
+          <td style="font-size:11px;">${estadoLev}</td>
+          <td style="font-size:11px;color:#718096;">${a.obs||'—'}</td>
+          <td><button class="btn btn-r btn-sm" onclick="APP.modLevantamientos.removeArt(${i})">✕</button></td>
+        </tr>`;
+      }).join('');
+    };
+
+    return {
+      addArt: () => {
+        const desc    = document.getElementById('lev-art-desc')?.value?.trim();
+        const fisica  = parseFloat(document.getElementById('lev-art-fisica')?.value || 0);
+        const teorica = parseFloat(document.getElementById('lev-art-teorica')?.value || 0);
+        if (!desc) { ui.toast('❌ La descripción del artículo es obligatoria', 'err'); return; }
+        artsTemp.push({
+          codigo:   document.getElementById('lev-art-codigo')?.value?.trim(),
+          descripcion: desc,
+          unidad:   document.getElementById('lev-art-unidad')?.value?.trim() || 'PZA',
+          teorica, fisica,
+          obs:      document.getElementById('lev-art-obs')?.value?.trim()
+        });
+        ['lev-art-codigo','lev-art-desc','lev-art-unidad','lev-art-obs'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+        document.getElementById('lev-art-teorica').value = '0';
+        document.getElementById('lev-art-fisica').value  = '0';
+        renderArts();
+      },
+      removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
+      guardar: () => {
+        const semana = document.getElementById('lev-semana')?.value;
+        const area   = document.getElementById('lev-area')?.value;
+        if (!semana || !area) { ui.toast('❌ Semana y Área son obligatorias', 'err'); return; }
+        if (!artsTemp.length) { ui.toast('❌ Agrega al menos un artículo contado', 'err'); return; }
+        const faltantes = artsTemp.filter(a => a.fisica < a.teorica).length;
+        const sobrantes = artsTemp.filter(a => a.fisica > a.teorica).length;
+        const datos = {
+          id: 'lev-' + Date.now(), semana, area,
+          fecha: document.getElementById('lev-fecha')?.value,
+          responsable: document.getElementById('lev-responsable')?.value?.trim(),
+          articulos: [...artsTemp],
+          resumen: { total: artsTemp.length, faltantes, sobrantes, ok: artsTemp.length - faltantes - sobrantes },
+          ts: Date.now()
+        };
+        const lista = cargar();
+        lista.unshift(datos);
+        guardarLS(lista);
+        artsTemp = [];
+        modLevantamientos.limpiar();
+        modLevantamientos.render();
+        logger.info(`Levantamiento ${semana} — ${area} — ${datos.resumen.faltantes} faltante(s)`, semana, 'Levantamiento físico');
+        ui.toast(`✓ Levantamiento ${semana} registrado`, 'ok');
+      },
+      limpiar: () => {
+        ['lev-semana','lev-fecha','lev-responsable'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+        document.getElementById('lev-area').value = '';
+        artsTemp = [];
+        renderArts();
+      },
+      render: () => {
+        const container = document.getElementById('lev-historial');
+        if (!container) return;
+        const filtroArea = document.getElementById('lev-filtro-area')?.value || '';
+        let lista = cargar();
+        if (filtroArea) lista = lista.filter(l => l.area === filtroArea);
+        if (!lista.length) { container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin levantamientos registrados</div>'; return; }
+        container.innerHTML = lista.map(lev => {
+          const r = lev.resumen || {};
+          const rowsHTML = (lev.articulos||[]).map(a => {
+            const diff = a.fisica - a.teorica;
+            const dc = diff < 0 ? '#e53e3e' : diff > 0 ? '#38a169' : '#718096';
+            return `<tr>
+              <td class="mono" style="font-size:11px;">${a.codigo||'—'}</td>
+              <td style="font-size:12px;">${a.descripcion}</td>
+              <td>${a.unidad}</td>
+              <td class="mono" style="color:#2b6cb0;">${a.teorica.toFixed(2)}</td>
+              <td class="mono" style="color:#276749;">${a.fisica.toFixed(2)}</td>
+              <td class="mono" style="color:${dc};font-weight:700;">${diff>=0?'+':''}${diff.toFixed(2)}</td>
+              <td style="font-size:11px;">${a.obs||'—'}</td>
+            </tr>`;
+          }).join('');
+          return `<details style="border-bottom:1px solid #e2e8f0;">
+            <summary style="padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;background:#f7fafc;">
+              <div>
+                <span style="font-weight:700;color:#2d3748;">Semana ${lev.semana}</span>
+                <span style="margin-left:8px;font-size:12px;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:10px;">${lev.area}</span>
+                <span style="margin-left:8px;font-size:11px;color:#718096;">${lev.fecha||''} — ${lev.responsable||''}</span>
+              </div>
+              <div style="display:flex;gap:8px;font-size:11px;">
+                <span style="color:#276749;">✅ ${r.ok||0} OK</span>
+                <span style="color:#e53e3e;">🔴 ${r.faltantes||0} faltante(s)</span>
+                <span style="color:#38a169;">🟢 ${r.sobrantes||0} sobrante(s)</span>
+              </div>
+            </summary>
+            <div style="overflow-x:auto;padding:8px 16px;">
+              <table style="min-width:600px;">
+                <tr><th>Código</th><th>Artículo</th><th>Unidad</th><th style="color:#2b6cb0;">Teórica</th><th style="color:#276749;">Física</th><th style="color:#c05621;">Diferencia</th><th>Obs.</th></tr>
+                ${rowsHTML}
+              </table>
+            </div>
+          </details>`;
+        }).join('');
+      }
+    };
+  })();
+
   const renderBitacora = () => {
     const container = document.getElementById('bitacora-container');
     if (!container) return;
@@ -1324,6 +1726,8 @@ const APP = (() => {
     logger,
     cargar,
     guardar,
+    modSolicitudes,
+    modLevantamientos,
     renderBitacora,
     limpiarBitacora: () => {
       if (confirm('⚠️ ¿Limpiar toda la bitácora? Esta acción no se puede deshacer.')) {
