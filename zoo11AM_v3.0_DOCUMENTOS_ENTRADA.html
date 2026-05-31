@@ -497,6 +497,16 @@
       </div>
     </div>
 
+    <!-- INVENTARIOS POR ÁREA -->
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
+        <h3 style="margin:0;">📦 Inventarios por Área</h3>
+        <span id="inv-origen" style="font-size:11px;color:#a0aec0;"></span>
+      </div>
+      <div id="dashboard-inventarios" style="margin-top:10px;"></div>
+      <div id="dashboard-inv-detalle" style="margin-top:12px;"></div>
+    </div>
+
     <div class="panel">
       <h3>📄 Documentos de Entrada por Tipo</h3>
       <div id="dashboard-docs-summary"></div>
@@ -1458,6 +1468,123 @@ const APP = (() => {
     }
     
     document.getElementById('dashboard-alerts').innerHTML = alertas;
+
+    renderInventariosArea();
+  };
+
+  // ── INVENTARIOS POR ÁREA (Dashboard) ──────────────────────────────────────
+  const AREAS_INV = {
+    'Snack':         { icono: '🍿', color: '#dd6b20', bg: '#fffaf0' },
+    'Tienda':        { icono: '🎁', color: '#805ad5', bg: '#faf5ff' },
+    'Farmacia':      { icono: '💊', color: '#3182ce', bg: '#ebf8ff' },
+    'Nutrición':     { icono: '🥩', color: '#38a169', bg: '#f0fff4' },
+    'Mantenimiento': { icono: '🔧', color: '#718096', bg: '#f7fafc' },
+  };
+
+  const calcularInvArea = (area) => {
+    const arts = (window.CATALOGO_INVENTARIO || {})[area] || [];
+    let valor = 0, conExistencia = 0;
+    arts.forEach(a => {
+      const e = a.e || 0, p = a.p || 0;
+      valor += e * p;
+      if (e > 0) conExistencia++;
+    });
+    return { total: arts.length, conExistencia, valor };
+  };
+
+  const renderInventariosArea = () => {
+    const cont = document.getElementById('dashboard-inventarios');
+    if (!cont) return;
+    const cat = window.CATALOGO_INVENTARIO;
+    const origen = document.getElementById('inv-origen');
+
+    if (!cat) {
+      cont.innerHTML = '<div class="empty" style="padding:16px;">📭 Catálogo de inventario no disponible</div>';
+      if (origen) origen.textContent = '';
+      return;
+    }
+    if (origen) origen.textContent = 'Base: Inventario oficial Abril 2026 (corte 30/04/2026)';
+
+    const cards = Object.keys(AREAS_INV).map(area => {
+      const a = AREAS_INV[area];
+      const r = calcularInvArea(area);
+      return `<div onclick="APP.verInventarioArea('${area}')"
+        style="cursor:pointer;border:1px solid #e2e8f0;border-left:4px solid ${a.color};border-radius:8px;padding:12px;background:${a.bg};transition:transform .1s;"
+        onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+        <div style="font-size:13px;font-weight:700;color:${a.color};margin-bottom:6px;">${a.icono} ${area}</div>
+        <div style="font-size:22px;font-weight:700;color:#2d3748;line-height:1;">${r.total}</div>
+        <div style="font-size:11px;color:#718096;margin-bottom:6px;">artículos en catálogo</div>
+        <div style="font-size:12px;color:#276749;"><strong>$${r.valor.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>
+        <div style="font-size:10px;color:#a0aec0;">${r.conExistencia} con existencia · click para ver</div>
+      </div>`;
+    }).join('');
+
+    cont.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">${cards}</div>`;
+  };
+
+  const verInventarioArea = (area) => {
+    const cont = document.getElementById('dashboard-inv-detalle');
+    if (!cont) return;
+    const arts = (window.CATALOGO_INVENTARIO || {})[area] || [];
+    const a = AREAS_INV[area] || { icono:'📦', color:'#2b6cb0' };
+    const r = calcularInvArea(area);
+
+    cont.innerHTML = `
+      <div style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:${a.color};color:#fff;flex-wrap:wrap;gap:6px;">
+          <span style="font-weight:700;">${a.icono} Inventario ${area} — ${r.total} artículos · $${r.valor.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</span>
+          <input type="text" id="inv-buscar-${area}" placeholder="🔍 Buscar artículo o código..."
+            oninput="APP.filtrarInventarioArea('${area}', this.value)"
+            style="padding:4px 10px;border:none;border-radius:4px;font-size:12px;width:220px;max-width:50vw;">
+        </div>
+        <div style="max-height:420px;overflow:auto;">
+          <table style="min-width:560px;font-size:12px;">
+            <thead style="position:sticky;top:0;background:#f7fafc;z-index:1;">
+              <tr>
+                <th>Código</th><th>Artículo</th><th>Unidad</th>
+                <th style="text-align:right;">Costo</th>
+                <th style="text-align:right;">Existencia</th>
+                <th style="text-align:right;">Valor</th>
+              </tr>
+            </thead>
+            <tbody id="inv-tbody-${area}"></tbody>
+          </table>
+        </div>
+      </div>`;
+    modInventario.pintarFilas(area, arts);
+    cont.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  };
+
+  const modInventario = {
+    pintarFilas: (area, arts) => {
+      const tbody = document.getElementById(`inv-tbody-${area}`);
+      if (!tbody) return;
+      if (!arts.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#a0aec0;padding:12px;">Sin coincidencias</td></tr>';
+        return;
+      }
+      tbody.innerHTML = arts.map(a => {
+        const e = a.e || 0, p = a.p || 0, val = e * p;
+        const exColor = e > 0 ? '#276749' : '#cbd5e0';
+        return `<tr>
+          <td class="mono" style="font-size:11px;color:#718096;">${a.c||'—'}</td>
+          <td>${a.n}</td>
+          <td style="color:#718096;">${a.u||'PZA'}</td>
+          <td class="mono" style="text-align:right;">$${p.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+          <td class="mono" style="text-align:right;color:${exColor};font-weight:600;">${e}</td>
+          <td class="mono" style="text-align:right;">$${val.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+        </tr>`;
+      }).join('');
+    }
+  };
+
+  const filtrarInventarioArea = (area, texto) => {
+    const arts = (window.CATALOGO_INVENTARIO || {})[area] || [];
+    const q = texto.trim().toLowerCase();
+    const filtrados = q
+      ? arts.filter(a => a.n.toLowerCase().includes(q) || (a.c||'').toLowerCase().includes(q))
+      : arts;
+    modInventario.pintarFilas(area, filtrados);
   };
 
   // Inicializar
@@ -1791,6 +1918,8 @@ const APP = (() => {
     guardar,
     modSolicitudes,
     modLevantamientos,
+    verInventarioArea,
+    filtrarInventarioArea,
     renderBitacora,
     limpiarBitacora: () => {
       if (confirm('⚠️ ¿Limpiar toda la bitácora? Esta acción no se puede deshacer.')) {
