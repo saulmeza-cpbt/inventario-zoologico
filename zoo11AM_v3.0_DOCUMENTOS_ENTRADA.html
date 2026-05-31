@@ -465,7 +465,10 @@
   <div class="tab" onclick="APP.ui.showSec('entradas')">📥 Entradas</div>
   <div class="tab" onclick="APP.ui.showSec('salidas')">📤 Salidas</div>
   <div class="tab" onclick="APP.ui.showSec('stock')">📦 Stock</div>
+  <div class="tab" onclick="APP.ui.showSec('solicitudes'); APP.modSolicitudes.render();">📝 Solicitudes</div>
+  <div class="tab" onclick="APP.ui.showSec('levantamientos'); APP.modLevantamientos.render();">📦 Levantamientos</div>
   <div class="tab" onclick="APP.ui.showSec('reportes')">📈 Reportes</div>
+  <div class="tab" onclick="APP.ui.showSec('bitacora'); APP.renderBitacora();">📋 Bitácora</div>
 </div>
 
 <!-- CONTENT -->
@@ -494,6 +497,16 @@
       </div>
     </div>
 
+    <!-- INVENTARIOS POR ÁREA -->
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">
+        <h3 style="margin:0;">📦 Inventarios por Área</h3>
+        <span id="inv-origen" style="font-size:11px;color:#a0aec0;"></span>
+      </div>
+      <div id="dashboard-inventarios" style="margin-top:10px;"></div>
+      <div id="dashboard-inv-detalle" style="margin-top:12px;"></div>
+    </div>
+
     <div class="panel">
       <h3>📄 Documentos de Entrada por Tipo</h3>
       <div id="dashboard-docs-summary"></div>
@@ -512,21 +525,15 @@
     <!-- SELECTOR DE TIPO DOCUMENTO -->
     <div class="doc-selector">
       <h4>Paso 1: Selecciona el tipo de documento</h4>
-      <div class="doc-type-grid">
+      <div class="doc-type-grid" style="grid-template-columns: repeat(3, 1fr);">
         <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('factura')">
-          📋 Factura
-        </button>
-        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('acta_entrega')">
-          📑 Acta Entrega
+          📋 Factura Proveedor
         </button>
         <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('caja_chica')">
-          💰 Caja Chica
+          💰 Factura Caja Chica
         </button>
-        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('solicitud')">
-          🛒 Solicitud Pedido
-        </button>
-        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('fallo')">
-          📦 Acta de Fallo
+        <button class="doc-type-btn" onclick="APP.modEntradas.setTipoDoc('acta_entrega')">
+          📑 Acta de Entrega
         </button>
       </div>
     </div>
@@ -580,6 +587,190 @@
     </div>
   </div>
 
+  <!-- SOLICITUDES DE PEDIDO -->
+  <div id="solicitudes" class="sec">
+    <h2 style="margin-bottom:4px;font-size:16px;">📝 Solicitudes de Pedido</h2>
+    <p style="font-size:12px;color:#718096;margin-bottom:12px;">Concentrado de solicitudes enviadas a la Dirección Administrativa — Comisión de Parques y Biodiversidad de Tamaulipas.</p>
+
+    <div class="panel">
+      <h3>Nueva Solicitud de Pedido</h3>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;">
+        <label style="width:110px;">Folio SP <span style="color:#e53e3e;font-size:10px;">*</span>
+          <input type="text" id="sp-folio" placeholder="1249" style="font-family:monospace;font-weight:700;">
+        </label>
+        <label style="width:90px;">Día
+          <input type="number" id="sp-dia" placeholder="18" min="1" max="31">
+        </label>
+        <label style="width:90px;">Mes
+          <input type="number" id="sp-mes" placeholder="09" min="1" max="12">
+        </label>
+        <label style="width:90px;">Año
+          <input type="number" id="sp-anio" placeholder="2025">
+        </label>
+        <label style="min-width:160px;flex:1;">Área Requirente <span style="color:#e53e3e;font-size:10px;">*</span>
+          <select id="sp-area" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+            <option value="">— Seleccionar —</option>
+            <option>Snack</option>
+            <option>Tienda</option>
+            <option>Farmacia</option>
+            <option>Nutrición</option>
+            <option>Mantenimiento</option>
+          </select>
+        </label>
+        <label style="flex:2;min-width:180px;">Proyecto
+          <input type="text" id="sp-proyecto" placeholder="Alimentación de Ejemplares CPBT">
+        </label>
+        <label style="flex:2;min-width:180px;">Partida Presupuestal
+          <input type="text" id="sp-presupuestal" placeholder="222.- Productos Alimenticios para Animales">
+        </label>
+        <label style="flex:1;min-width:140px;">Solicitante
+          <input type="text" id="sp-solicitante" placeholder="Lic. Eder García Padilla">
+        </label>
+        <label style="width:130px;">Estado
+          <select id="sp-estado" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+            <option value="Pendiente">⏳ Pendiente</option>
+            <option value="Autorizada">✅ Autorizada</option>
+            <option value="Recibida">📦 Recibida</option>
+            <option value="Cancelada">❌ Cancelada</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Tabla artículos SP -->
+      <h4 style="margin:12px 0 6px;font-size:12px;color:#4a5568;">Artículos solicitados</h4>
+      <table id="sp-tabla-arts" style="margin-bottom:8px;">
+        <thead><tr><th>#</th><th>Cantidad</th><th>Unidad</th><th>Descripción</th><th>Acción</th></tr></thead>
+        <tbody id="sp-arts-body"><tr><td colspan="5" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr></tbody>
+      </table>
+      <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
+        <label style="width:80px;">Cantidad<input type="number" id="sp-art-cant" value="1" min="0.01" step="0.01"></label>
+        <label style="width:80px;">Unidad<input type="text" id="sp-art-unidad" placeholder="KILO"></label>
+        <label style="flex:1;min-width:200px;">Descripción<input type="text" id="sp-art-desc" placeholder="CANAL DE RES"></label>
+        <button class="btn btn-p" onclick="APP.modSolicitudes.addArt()">+ Agregar</button>
+      </div>
+
+      <!-- Justificación colapsable -->
+      <div style="margin-top:10px;">
+        <button onclick="const j=document.getElementById('sp-just-body');j.style.display=j.style.display==='none'?'block':'none';"
+          style="background:none;border:none;cursor:pointer;color:#4a5568;font-size:12px;padding:0;">
+          ▶ Justificación / Observaciones (click para expandir)
+        </button>
+        <div id="sp-just-body" style="display:none;margin-top:6px;">
+          <textarea id="sp-justificacion" rows="3" placeholder="ALIMENTACION PARA EJEMPLARES ALOJADOS EN ZOOLOGICO TAMATAN, ENTREGA EL DIA VIERNES 03 DE OCTUBRE DEL 2025"
+            style="width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;resize:vertical;font-family:inherit;"></textarea>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <button class="btn btn-g" onclick="APP.modSolicitudes.guardar()">✓ Registrar Solicitud</button>
+        <button class="btn btn-s" onclick="APP.modSolicitudes.limpiar()">⟲ Limpiar</button>
+      </div>
+    </div>
+
+    <!-- Concentrado -->
+    <div class="panel" style="padding:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid #e2e8f0;">
+        <span style="font-weight:600;font-size:13px;">Concentrado de Solicitudes</span>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <select id="sp-filtro-area" onchange="APP.modSolicitudes.render()" style="padding:4px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;">
+            <option value="">Todas las áreas</option>
+            <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+            <option>Nutrición</option><option>Mantenimiento</option>
+          </select>
+          <select id="sp-filtro-estado" onchange="APP.modSolicitudes.render()" style="padding:4px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;">
+            <option value="">Todos los estados</option>
+            <option>Pendiente</option><option>Autorizada</option><option>Recibida</option><option>Cancelada</option>
+          </select>
+        </div>
+      </div>
+      <div id="sp-concentrado" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+
+  <!-- LEVANTAMIENTOS FÍSICOS SEMANALES -->
+  <div id="levantamientos" class="sec">
+    <h2 style="margin-bottom:4px;font-size:16px;">📦 Levantamientos Físicos Semanales</h2>
+    <p style="font-size:12px;color:#718096;margin-bottom:12px;">Conteo físico por área — el operador registra lo que ve. La confronta contra el inventario teórico (entradas − salidas) se genera automáticamente.</p>
+
+    <div class="panel">
+      <h3>Paso 1 — Selecciona el Área y la Semana</h3>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;align-items:flex-end;">
+        <label style="min-width:180px;flex:1;">Área a levantar <span style="color:#e53e3e;font-size:10px;">*</span>
+          <select id="lev-area" onchange="APP.modLevantamientos.cargarArticulosArea()"
+            style="width:100%;padding:6px 8px;border:2px solid #bee3f8;border-radius:4px;font-size:13px;font-weight:600;color:#2b6cb0;">
+            <option value="">— Seleccionar área —</option>
+            <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+            <option>Nutrición</option><option>Mantenimiento</option>
+          </select>
+        </label>
+        <label style="min-width:160px;">Semana <span style="color:#e53e3e;font-size:10px;">*</span>
+          <input type="week" id="lev-semana" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+        </label>
+        <label style="width:140px;">Fecha de conteo
+          <input type="date" id="lev-fecha">
+        </label>
+        <label style="flex:1;min-width:150px;">Responsable del conteo
+          <input type="text" id="lev-responsable" placeholder="Nombre completo">
+        </label>
+      </div>
+    </div>
+
+    <div class="panel" id="lev-panel-articulos" style="display:none;">
+      <h3>Paso 2 — Conteo Físico</h3>
+      <p style="font-size:11px;color:#718096;margin-bottom:8px;">
+        Los artículos se pre-cargan del historial de entradas del área seleccionada. Solo escribe la cantidad física encontrada. Agrega artículos nuevos si los hubiera.
+      </p>
+      <div style="overflow-x:auto;">
+        <table style="min-width:500px;">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Artículo</th>
+              <th>Unidad</th>
+              <th style="color:#276749;">Exist. Física</th>
+              <th>Observación</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="lev-arts-body">
+            <tr><td colspan="6" style="color:#a0aec0;text-align:center;padding:12px;">Selecciona un área para cargar los artículos</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Agregar artículo no registrado -->
+      <details style="margin-top:10px;">
+        <summary style="font-size:12px;color:#718096;cursor:pointer;">+ Agregar artículo que no aparece en la lista</summary>
+        <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:8px;padding:10px;background:#f7fafc;border-radius:6px;">
+          <label style="width:90px;">Código<input type="text" id="lev-art-codigo" placeholder="INV-001" style="font-family:monospace;font-size:12px;"></label>
+          <label style="flex:2;min-width:160px;">Descripción<input type="text" id="lev-art-desc" placeholder="Nombre del artículo"></label>
+          <label style="width:70px;">Unidad<input type="text" id="lev-art-unidad" placeholder="KG"></label>
+          <label style="width:100px;">Exist. Física<input type="number" id="lev-art-fisica" value="0" min="0" step="0.01"></label>
+          <label style="width:150px;">Observación<input type="text" id="lev-art-obs" placeholder="Opcional"></label>
+          <button class="btn btn-p" onclick="APP.modLevantamientos.addArt()">+ Agregar</button>
+        </div>
+      </details>
+
+      <div style="margin-top:14px;display:flex;gap:8px;">
+        <button class="btn btn-g" onclick="APP.modLevantamientos.guardar()">✓ Registrar Levantamiento</button>
+        <button class="btn btn-s" onclick="APP.modLevantamientos.limpiar()">⟲ Limpiar</button>
+      </div>
+    </div>
+
+    <!-- Historial de levantamientos -->
+    <div class="panel" style="padding:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid #e2e8f0;">
+        <span style="font-weight:600;font-size:13px;">Historial de Levantamientos</span>
+        <select id="lev-filtro-area" onchange="APP.modLevantamientos.render()" style="padding:4px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;">
+          <option value="">Todas las áreas</option>
+          <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+          <option>Nutrición</option><option>Mantenimiento</option>
+        </select>
+      </div>
+      <div id="lev-historial" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+
   <!-- REPORTES -->
   <div id="reportes" class="sec">
     <h2 style="margin-bottom: 12px; font-size: 16px;">📈 Reportes</h2>
@@ -588,10 +779,28 @@
     </div>
   </div>
 
+  <!-- BITÁCORA -->
+  <div id="bitacora" class="sec">
+    <h2 style="margin-bottom:4px; font-size:16px;">📋 Bitácora Institucional</h2>
+    <p style="font-size:12px; color:#718096; margin-bottom:12px;">Registro auditado de acciones realizadas en el sistema — quién hizo qué y cuándo.</p>
+    <div class="panel" style="padding:0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid #e2e8f0;">
+        <span style="font-size:13px; font-weight:600; color:#2d3748;">Eventos registrados</span>
+        <button class="btn btn-s" style="font-size:11px; padding:4px 10px;" onclick="APP.limpiarBitacora()">🗑 Limpiar bitácora</button>
+      </div>
+      <div id="bitacora-container" style="max-height:480px; overflow-y:auto;">
+        <div class="empty" style="padding:24px;">📭 Sin eventos registrados aún</div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- TOAST BOX -->
 <div id="toast-box"></div>
+
+<!-- CATÁLOGO DE INVENTARIO BASE (Abril 2026) -->
+<script src="inventarios/catalogo_articulos.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -607,27 +816,17 @@ const APP = (() => {
       factura: {
         nombre: 'Factura de Proveedor',
         icono: '📋',
-        campos: ['numeroFactura', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'areaDestino', 'responsable']
-      },
-      acta_entrega: {
-        nombre: 'Acta de Entrega',
-        icono: '📑',
-        campos: ['numeroActa', 'mes', 'nombreProveedor', 'fechaEntrega', 'areaDestino', 'responsable']
+        campos: ['folioDocumento', 'rfcProveedor', 'nombreProveedor', 'fechaFactura', 'areaDestino', 'responsable', 'motivo']
       },
       caja_chica: {
         nombre: 'Factura Caja Chica',
         icono: '💰',
-        campos: ['mes', 'areaDestino', 'responsable']
+        campos: ['folioDocumento', 'mes', 'areaDestino', 'responsable', 'motivo']
       },
-      solicitud: {
-        nombre: 'Solicitud de Pedido',
-        icono: '🛒',
-        campos: ['numeroSolicitud', 'areaRequirente', 'nombreProveedor', 'fechaSolicitud', 'responsable']
-      },
-      fallo: {
-        nombre: 'Acta de Fallo',
-        icono: '📦',
-        campos: ['numeroFallo', 'numeroContrato', 'numeroEntrega', 'areaDestino', 'responsable']
+      acta_entrega: {
+        nombre: 'Acta de Entrega (Contrato/Fallo)',
+        icono: '📑',
+        campos: ['folioDocumento', 'nombreProveedor', 'fechaEntrega', 'numeroContrato', 'areaDestino', 'responsable', 'motivo']
       }
     }
   };
@@ -668,28 +867,40 @@ const APP = (() => {
     }, CONFIG.SAVE_DEBOUNCE);
   };
 
-  // Logger
+  // Logger institucional
   const logger = (() => {
-    const logs = [];
-    const MAX_LOGS = 100;
+    const KEY_BITACORA = 'zoo_tamatán_bitacora_v3';
+    const MAX_LOGS = 200;
+
+    const cargarLogs = () => {
+      try { return JSON.parse(localStorage.getItem(KEY_BITACORA) || '[]'); } catch { return []; }
+    };
+    const guardarLogs = (logs) => {
+      try { localStorage.setItem(KEY_BITACORA, JSON.stringify(logs)); } catch {}
+    };
+
+    const registrar = (nivel, msg, entidad = '', accion = '') => {
+      const logs = cargarLogs();
+      const entrada = {
+        nivel,
+        msg,
+        entidad,
+        accion,
+        ts: new Date().toLocaleString('es-MX'),
+        tsISO: new Date().toISOString()
+      };
+      logs.unshift(entrada); // más reciente primero
+      if (logs.length > MAX_LOGS) logs.pop();
+      guardarLogs(logs);
+      console[nivel === 'ERROR' ? 'error' : nivel === 'WARN' ? 'warn' : 'log'](`[${nivel}]`, msg);
+    };
 
     return {
-      info: (msg) => {
-        logs.push({ nivel: 'INFO', msg, ts: new Date().toLocaleTimeString() });
-        if (logs.length > MAX_LOGS) logs.shift();
-        console.log('[INFO]', msg);
-      },
-      warn: (msg) => {
-        logs.push({ nivel: 'WARN', msg, ts: new Date().toLocaleTimeString() });
-        if (logs.length > MAX_LOGS) logs.shift();
-        console.warn('[WARN]', msg);
-      },
-      error: (msg) => {
-        logs.push({ nivel: 'ERROR', msg, ts: new Date().toLocaleTimeString() });
-        if (logs.length > MAX_LOGS) logs.shift();
-        console.error('[ERROR]', msg);
-      },
-      getLogs: () => logs
+      info:  (msg, entidad = '', accion = '') => registrar('INFO',  msg, entidad, accion),
+      warn:  (msg, entidad = '', accion = '') => registrar('WARN',  msg, entidad, accion),
+      error: (msg, entidad = '', accion = '') => registrar('ERROR', msg, entidad, accion),
+      getLogs: () => cargarLogs(),
+      limpiar: () => { guardarLogs([]); }
     };
   })();
 
@@ -745,26 +956,14 @@ const APP = (() => {
         const container = document.getElementById('doc-fields-container');
         
         let html = `<div class="flex">`;
-        html += `<label>Folio<input type="text" value="${estado.docActual.folio}" disabled></label>`;
         
         const AREAS_ZOO = [
           '— Seleccionar área —',
-          'Administración',
-          'Africam / Grandes Felinos',
-          'Aves',
-          'Botánica y Jardinería',
-          'Enfermería / Veterinaria',
-          'Herpetario',
-          'Intendencia y Limpieza',
-          'Mamíferos Mayores',
-          'Mamíferos Menores',
-          'Mantenimiento',
-          'Nutrición y Dietas',
-          'Primates',
-          'Reptiles',
-          'Seguridad',
-          'Taquilla / Atención al Público',
-          'Otra'
+          'Snack',
+          'Tienda',
+          'Farmacia',
+          'Nutrición',
+          'Mantenimiento'
         ];
 
         const labels = {
@@ -781,9 +980,16 @@ const APP = (() => {
           numeroContrato: 'Número Contrato',
           numeroEntrega: 'Número Entrega (ej: 3/12)',
           areaDestino: 'Área Destino',
-          areaRequirente: 'Área Requirente',
-          responsable: 'Responsable'
+          responsable: 'Responsable',
+          motivo: 'Motivo / Justificación',
+          folioDocumento: 'Folio del Documento',
+          numeroContrato: 'Número de Contrato',
+          fechaEntrega: 'Fecha de Entrega',
+          mes: 'Mes'
         };
+
+        // Campos que representan el folio físico del documento — obligatorios y resaltados
+        const CAMPOS_FOLIO = new Set(['folioDocumento']);
 
         config.campos.forEach(campo => {
           const onInput = campo === 'nombreProveedor' ? ' oninput="APP.modEntradas.renderResumen()"' : '';
@@ -794,9 +1000,25 @@ const APP = (() => {
             ).join('');
             html += `<label style="min-width:160px;">
               ${labels[campo]}
-              <select id="f-${campo}" style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px;">
+              <select id="f-${campo}" onchange="document.getElementById('inp-art-nombre')&&(document.getElementById('inp-art-nombre').value=''); const b=document.getElementById('art-sugerencias'); if(b) b.style.display='none';" style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px;">
                 ${opts}
               </select>
+            </label>`;
+          } else if (campo === 'motivo') {
+            html += `<label style="flex:100%; width:100%;">
+              ${labels[campo]} <span style="color:#e53e3e; font-size:11px;">* obligatorio</span>
+              <textarea id="f-${campo}" placeholder="Describe el motivo o justificación de esta entrada..." rows="2"
+                style="width:100%; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; font-size:13px; resize:vertical; font-family:inherit;"></textarea>
+            </label>`;
+          } else if (CAMPOS_FOLIO.has(campo)) {
+            html += `<label style="min-width:160px;">
+              <span style="font-weight:700; color:#2b6cb0;">${labels[campo] || campo}</span>
+              <span style="color:#e53e3e; font-size:11px; margin-left:4px;">* obligatorio</span>
+              <input type="text" id="f-${campo}" placeholder="Ej: ${campo === 'numeroFactura' ? 'FAC-2026-0001' : campo === 'numeroActa' ? 'ACTA-001' : campo === 'numeroSolicitud' ? 'SP-2026-001' : campo === 'numeroFallo' ? 'FALLO-001' : 'FOLIO-001'}"
+                style="border:2px solid #bee3f8; font-family:monospace; font-size:13px; font-weight:600; letter-spacing:0.5px;"
+                oninput="this.style.borderColor=this.value.trim()?'#68d391':'#fc8181';"
+                onfocus="this.style.borderColor='#4299e1';"
+                onblur="this.style.borderColor=this.value.trim()?'#68d391':'#fc8181';">
             </label>`;
           } else {
             html += `<label>${labels[campo] || campo}
@@ -859,7 +1081,7 @@ const APP = (() => {
                 autocomplete="off"
                 oninput="APP.modEntradas.filtrarCatalogo(this.value)"
                 onkeydown="if(event.key==='Enter'){event.preventDefault();APP.modEntradas.addArticulo();}">
-              <div id="art-sugerencias" style="display:none; position:absolute; top:100%; left:0; right:0; background:#fff; border:1px solid #bee3f8; border-radius:0 0 6px 6px; max-height:180px; overflow-y:auto; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.1);"></div>
+              <div id="art-sugerencias" style="display:none; position:fixed; background:#fff; border:1px solid #bee3f8; border-radius:0 0 6px 6px; max-height:180px; overflow-y:auto; z-index:9999; box-shadow:0 4px 12px rgba(0,0,0,.15);"></div>
             </label>
             <label style="width:90px;">Código
               <input type="text" id="inp-art-codigo" placeholder="INV-001" style="font-family:monospace; font-size:12px;">
@@ -875,7 +1097,7 @@ const APP = (() => {
             </button>
           </div>
           <p style="font-size:11px; color:#a0aec0; margin-top:4px;">
-            💡 Escribe el nombre — si el artículo ya existe en el inventario aparecerá como sugerencia con su código y precio.
+            💡 Escribe el nombre — las sugerencias muestran artículos con historial en el área seleccionada.
           </p>
         </div>`;
 
@@ -884,28 +1106,66 @@ const APP = (() => {
       },
 
       getCatalogo: () => {
+        // Leer el área actualmente seleccionada
+        const areaActual = (
+          document.getElementById('f-areaDestino') ||
+          document.getElementById('f-areaRequirente')
+        )?.value || '';
+
         const mapa = {};
+
+        // 1) Catálogo base oficial del inventario (Abril 2026), filtrado por área
+        const catBase = window.CATALOGO_INVENTARIO || {};
+        const areasBase = areaActual ? [areaActual] : Object.keys(catBase);
+        areasBase.forEach(area => {
+          (catBase[area] || []).forEach(art => {
+            const key = art.n.toLowerCase().trim();
+            if (!mapa[key]) {
+              mapa[key] = { nombre: art.n, codigo: art.c || '', unitario: art.p || 0, unidad: art.u || 'PZA', veces: 0, base: true };
+            }
+          });
+        });
+
+        // 2) Artículos de documentos ya capturados (suman frecuencia de uso)
         estado.documentos.forEach(doc => {
+          const areaDoc = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
+          if (areaActual && areaDoc !== areaActual) return;
+
           (doc.articulos || []).forEach(art => {
             const key = art.nombre.toLowerCase().trim();
             if (!mapa[key]) {
-              mapa[key] = { nombre: art.nombre, codigo: art.codigo || '', unitario: art.unitario, veces: 1 };
+              mapa[key] = { nombre: art.nombre, codigo: art.codigo || '', unitario: art.unitario, unidad: art.unidad || 'PZA', veces: 1, base: false };
             } else {
               mapa[key].veces++;
-              // conservar el precio más reciente
-              mapa[key].unitario = art.unitario;
+              if (art.unitario) mapa[key].unitario = art.unitario;
               if (art.codigo) mapa[key].codigo = art.codigo;
             }
           });
         });
-        return Object.values(mapa).sort((a, b) => b.veces - a.veces);
+
+        // Orden: primero los más usados, luego alfabético
+        return Object.values(mapa).sort((a, b) => (b.veces - a.veces) || a.nombre.localeCompare(b.nombre));
       },
 
       filtrarCatalogo: (texto) => {
         const box = document.getElementById('art-sugerencias');
-        if (!box) return;
+        const inp = document.getElementById('inp-art-nombre');
+        if (!box || !inp) return;
         const q = texto.trim().toLowerCase();
         if (!q) { box.style.display = 'none'; return; }
+        // Posicionar fixed: abajo del input si hay espacio, arriba si no
+        const r = inp.getBoundingClientRect();
+        const spaceBelow = window.innerHeight - r.bottom;
+        const dropH = Math.min(180, 40 * 5); // max estimado
+        if (spaceBelow < dropH && r.top > dropH) {
+          box.style.top    = '';
+          box.style.bottom = (window.innerHeight - r.top + 2) + 'px';
+        } else {
+          box.style.bottom = '';
+          box.style.top    = (r.bottom + 2) + 'px';
+        }
+        box.style.left   = r.left + 'px';
+        box.style.width  = r.width + 'px';
 
         const coincidencias = modEntradas.getCatalogo().filter(a =>
           a.nombre.toLowerCase().includes(q) || (a.codigo && a.codigo.toLowerCase().includes(q))
@@ -967,7 +1227,7 @@ const APP = (() => {
 
         modEntradas.renderArticulos();
         modEntradas.renderResumen();
-        logger.info(`Artículo agregado: ${nombre} (${codigo || 'sin código'})`);
+        logger.info(`Artículo "${nombre}" agregado al documento en curso`, codigo || 'sin código', 'Agregar artículo');
       },
 
       removeArticulo: (idx) => {
@@ -1000,6 +1260,12 @@ const APP = (() => {
               return area ? `<p><strong>Área:</strong> <span style="color:#2b6cb0;font-weight:600;">📍 ${area}</span></p>` : '';
             })()}
             <p><strong>Artículos:</strong> ${doc.articulos.length}</p>
+            ${(() => {
+              const m = doc.datos.motivo || document.getElementById('f-motivo')?.value?.trim();
+              return m
+                ? `<p style="background:#fffbeb;border-left:3px solid #f6ad55;padding:6px 10px;border-radius:0 4px 4px 0;font-size:12px;color:#744210;margin:6px 0;"><strong>Motivo:</strong> ${m}</p>`
+                : `<p style="background:#fff5f5;border-left:3px solid #fc8181;padding:6px 10px;border-radius:0 4px 4px 0;font-size:12px;color:#9b2c2c;">⚠️ <strong>Motivo obligatorio</strong> — completa el campo antes de guardar</p>`;
+            })()}
             <p><strong>Total s/IVA:</strong> <span class="mono">$${totalSiva.toFixed(2)}</span></p>
             <p><strong>IVA (16%):</strong> <span class="mono">$${iva.toFixed(2)}</span></p>
             <p><strong>Total c/IVA:</strong> <span class="mono" style="font-size: 14px; color: var(--ok);">$${totalCiva.toFixed(2)}</span></p>
@@ -1016,6 +1282,25 @@ const APP = (() => {
           ui.toast('❌ Completa todos los pasos', 'err');
           return;
         }
+
+        // Validar folio del documento físico
+        const camposFolio = ['folioDocumento','numeroFactura','numeroActa','numeroSolicitud','numeroFallo'];
+        const campoFolioActivo = camposFolio.find(c => document.getElementById(`f-${c}`));
+        const valorFolio = campoFolioActivo ? document.getElementById(`f-${campoFolioActivo}`)?.value?.trim() : null;
+        if (campoFolioActivo && !valorFolio) {
+          const labelFolio = { folioDocumento:'Folio del Documento', numeroFactura:'Folio Factura',
+            numeroActa:'Folio Acta', numeroSolicitud:'Folio Solicitud', numeroFallo:'Folio Acta de Fallo' };
+          ui.toast(`❌ El campo "${labelFolio[campoFolioActivo]}" es obligatorio`, 'err');
+          document.getElementById(`f-${campoFolioActivo}`)?.focus();
+          return;
+        }
+
+        const motivo = document.getElementById('f-motivo')?.value?.trim();
+        if (!motivo) {
+          ui.toast('❌ El campo Motivo / Justificación es obligatorio', 'err');
+          document.getElementById('f-motivo')?.focus();
+          return;
+        }
         
         // Recopilar datos de campos
         const campos = CONFIG.TIPOS_DOC[doc.tipo].campos;
@@ -1030,7 +1315,12 @@ const APP = (() => {
         guardar();
         
         ui.toast(`✓ Documento ${doc.folio} guardado correctamente`, 'ok');
-        logger.info(`Documento guardado: ${doc.folio}`);
+        const areaLog = doc.datos.areaDestino || doc.datos.areaRequirente || '—';
+        logger.info(
+          `Documento ${doc.folio} guardado — ${doc.articulos.length} artículo(s) — Área: ${areaLog} — Motivo: ${doc.datos.motivo || '—'}`,
+          doc.folio,
+          'Guardar documento'
+        );
         
         modEntradas.limpiarFormulario();
         renderHistorialEntradas();
@@ -1178,6 +1468,123 @@ const APP = (() => {
     }
     
     document.getElementById('dashboard-alerts').innerHTML = alertas;
+
+    renderInventariosArea();
+  };
+
+  // ── INVENTARIOS POR ÁREA (Dashboard) ──────────────────────────────────────
+  const AREAS_INV = {
+    'Snack':         { icono: '🍿', color: '#dd6b20', bg: '#fffaf0' },
+    'Tienda':        { icono: '🎁', color: '#805ad5', bg: '#faf5ff' },
+    'Farmacia':      { icono: '💊', color: '#3182ce', bg: '#ebf8ff' },
+    'Nutrición':     { icono: '🥩', color: '#38a169', bg: '#f0fff4' },
+    'Mantenimiento': { icono: '🔧', color: '#718096', bg: '#f7fafc' },
+  };
+
+  const calcularInvArea = (area) => {
+    const arts = (window.CATALOGO_INVENTARIO || {})[area] || [];
+    let valor = 0, conExistencia = 0;
+    arts.forEach(a => {
+      const e = a.e || 0, p = a.p || 0;
+      valor += e * p;
+      if (e > 0) conExistencia++;
+    });
+    return { total: arts.length, conExistencia, valor };
+  };
+
+  const renderInventariosArea = () => {
+    const cont = document.getElementById('dashboard-inventarios');
+    if (!cont) return;
+    const cat = window.CATALOGO_INVENTARIO;
+    const origen = document.getElementById('inv-origen');
+
+    if (!cat) {
+      cont.innerHTML = '<div class="empty" style="padding:16px;">📭 Catálogo de inventario no disponible</div>';
+      if (origen) origen.textContent = '';
+      return;
+    }
+    if (origen) origen.textContent = 'Base: Inventario oficial Abril 2026 (corte 30/04/2026)';
+
+    const cards = Object.keys(AREAS_INV).map(area => {
+      const a = AREAS_INV[area];
+      const r = calcularInvArea(area);
+      return `<div onclick="APP.verInventarioArea('${area}')"
+        style="cursor:pointer;border:1px solid #e2e8f0;border-left:4px solid ${a.color};border-radius:8px;padding:12px;background:${a.bg};transition:transform .1s;"
+        onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+        <div style="font-size:13px;font-weight:700;color:${a.color};margin-bottom:6px;">${a.icono} ${area}</div>
+        <div style="font-size:22px;font-weight:700;color:#2d3748;line-height:1;">${r.total}</div>
+        <div style="font-size:11px;color:#718096;margin-bottom:6px;">artículos en catálogo</div>
+        <div style="font-size:12px;color:#276749;"><strong>$${r.valor.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong></div>
+        <div style="font-size:10px;color:#a0aec0;">${r.conExistencia} con existencia · click para ver</div>
+      </div>`;
+    }).join('');
+
+    cont.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">${cards}</div>`;
+  };
+
+  const verInventarioArea = (area) => {
+    const cont = document.getElementById('dashboard-inv-detalle');
+    if (!cont) return;
+    const arts = (window.CATALOGO_INVENTARIO || {})[area] || [];
+    const a = AREAS_INV[area] || { icono:'📦', color:'#2b6cb0' };
+    const r = calcularInvArea(area);
+
+    cont.innerHTML = `
+      <div style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:${a.color};color:#fff;flex-wrap:wrap;gap:6px;">
+          <span style="font-weight:700;">${a.icono} Inventario ${area} — ${r.total} artículos · $${r.valor.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</span>
+          <input type="text" id="inv-buscar-${area}" placeholder="🔍 Buscar artículo o código..."
+            oninput="APP.filtrarInventarioArea('${area}', this.value)"
+            style="padding:4px 10px;border:none;border-radius:4px;font-size:12px;width:220px;max-width:50vw;">
+        </div>
+        <div style="max-height:420px;overflow:auto;">
+          <table style="min-width:560px;font-size:12px;">
+            <thead style="position:sticky;top:0;background:#f7fafc;z-index:1;">
+              <tr>
+                <th>Código</th><th>Artículo</th><th>Unidad</th>
+                <th style="text-align:right;">Costo</th>
+                <th style="text-align:right;">Existencia</th>
+                <th style="text-align:right;">Valor</th>
+              </tr>
+            </thead>
+            <tbody id="inv-tbody-${area}"></tbody>
+          </table>
+        </div>
+      </div>`;
+    modInventario.pintarFilas(area, arts);
+    cont.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  };
+
+  const modInventario = {
+    pintarFilas: (area, arts) => {
+      const tbody = document.getElementById(`inv-tbody-${area}`);
+      if (!tbody) return;
+      if (!arts.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#a0aec0;padding:12px;">Sin coincidencias</td></tr>';
+        return;
+      }
+      tbody.innerHTML = arts.map(a => {
+        const e = a.e || 0, p = a.p || 0, val = e * p;
+        const exColor = e > 0 ? '#276749' : '#cbd5e0';
+        return `<tr>
+          <td class="mono" style="font-size:11px;color:#718096;">${a.c||'—'}</td>
+          <td>${a.n}</td>
+          <td style="color:#718096;">${a.u||'PZA'}</td>
+          <td class="mono" style="text-align:right;">$${p.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+          <td class="mono" style="text-align:right;color:${exColor};font-weight:600;">${e}</td>
+          <td class="mono" style="text-align:right;">$${val.toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+        </tr>`;
+      }).join('');
+    }
+  };
+
+  const filtrarInventarioArea = (area, texto) => {
+    const arts = (window.CATALOGO_INVENTARIO || {})[area] || [];
+    const q = texto.trim().toLowerCase();
+    const filtrados = q
+      ? arts.filter(a => a.n.toLowerCase().includes(q) || (a.c||'').toLowerCase().includes(q))
+      : arts;
+    modInventario.pintarFilas(area, filtrados);
   };
 
   // Inicializar
@@ -1187,7 +1594,317 @@ const APP = (() => {
     updateDashboard();
     renderHistorialEntradas();
     
-    logger.info('Sistema inicializado - Zoo Tamatán V3.0');
+    logger.info('Sistema iniciado — Zoo Tamatán Inventario V3.0', '', 'Inicio de sesión');
+  };
+
+  const NIVEL_ESTILOS = {
+    INFO:  { bg: '#f0fff4', border: '#68d391', color: '#276749', icono: 'ℹ️' },
+    WARN:  { bg: '#fffbeb', border: '#f6ad55', color: '#92400e', icono: '⚠️' },
+    ERROR: { bg: '#fff5f5', border: '#fc8181', color: '#9b2c2c', icono: '❌' }
+  };
+
+  // ── MÓDULO SOLICITUDES DE PEDIDO ─────────────────────────────────────────
+  const modSolicitudes = (() => {
+    const KEY = 'zoo_tamatán_solicitudes_v1';
+    let artsTemp = [];
+
+    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
+    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
+
+    const ESTADO_ESTILOS = {
+      'Pendiente':  { bg:'#fffbeb', color:'#92400e', icono:'⏳' },
+      'Autorizada': { bg:'#f0fff4', color:'#276749', icono:'✅' },
+      'Recibida':   { bg:'#ebf4ff', color:'#2b6cb0', icono:'📦' },
+      'Cancelada':  { bg:'#fff5f5', color:'#9b2c2c', icono:'❌' },
+    };
+
+    const renderArts = () => {
+      const tbody = document.getElementById('sp-arts-body');
+      if (!tbody) return;
+      if (!artsTemp.length) { tbody.innerHTML = '<tr><td colspan="5" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr>'; return; }
+      tbody.innerHTML = artsTemp.map((a,i) => `<tr>
+        <td class="mono">${i+1}</td>
+        <td class="mono">${a.cantidad} ${a.unidad}</td>
+        <td>${a.unidad}</td>
+        <td>${a.descripcion}</td>
+        <td><button class="btn btn-r btn-sm" onclick="APP.modSolicitudes.removeArt(${i})">✕</button></td>
+      </tr>`).join('');
+    };
+
+    return {
+      addArt: () => {
+        const cant = parseFloat(document.getElementById('sp-art-cant')?.value || 0);
+        const unidad = document.getElementById('sp-art-unidad')?.value?.trim();
+        const desc = document.getElementById('sp-art-desc')?.value?.trim();
+        if (!desc || cant <= 0) { return; }
+        artsTemp.push({ cantidad: cant, unidad: unidad || 'PZA', descripcion: desc });
+        document.getElementById('sp-art-cant').value = '1';
+        document.getElementById('sp-art-unidad').value = '';
+        document.getElementById('sp-art-desc').value = '';
+        renderArts();
+      },
+      removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
+      guardar: () => {
+        const folio = document.getElementById('sp-folio')?.value?.trim();
+        const area  = document.getElementById('sp-area')?.value;
+        if (!folio || !area) { ui.toast('❌ Folio y Área son obligatorios', 'err'); return; }
+        const dia  = document.getElementById('sp-dia')?.value;
+        const mes  = document.getElementById('sp-mes')?.value;
+        const anio = document.getElementById('sp-anio')?.value;
+        const datos = {
+          id: 'sp-' + Date.now(), folio, area,
+          fecha: `${dia?.padStart?.(2,'0')||dia}/${mes?.padStart?.(2,'0')||mes}/${anio}`,
+          proyecto: document.getElementById('sp-proyecto')?.value?.trim(),
+          presupuestal: document.getElementById('sp-presupuestal')?.value?.trim(),
+          solicitante: document.getElementById('sp-solicitante')?.value?.trim(),
+          estado: document.getElementById('sp-estado')?.value || 'Pendiente',
+          justificacion: document.getElementById('sp-justificacion')?.value?.trim(),
+          articulos: [...artsTemp],
+          ts: Date.now()
+        };
+        const lista = cargar();
+        lista.unshift(datos);
+        guardarLS(lista);
+        artsTemp = [];
+        modSolicitudes.limpiar();
+        modSolicitudes.render();
+        logger.info(`Solicitud SP-${folio} registrada — Área: ${area}`, `SP-${folio}`, 'Registrar solicitud');
+        ui.toast(`✓ Solicitud ${folio} registrada`, 'ok');
+      },
+      limpiar: () => {
+        ['sp-folio','sp-dia','sp-mes','sp-anio','sp-proyecto','sp-presupuestal','sp-solicitante','sp-justificacion']
+          .forEach(id => { const el = document.getElementById(id); if(el) el.value=''; });
+        document.getElementById('sp-area').value = '';
+        document.getElementById('sp-estado').value = 'Pendiente';
+        artsTemp = [];
+        renderArts();
+      },
+      cambiarEstado: (id, nuevoEstado) => {
+        const lista = cargar();
+        const sp = lista.find(s => s.id === id);
+        if (sp) { sp.estado = nuevoEstado; guardarLS(lista); modSolicitudes.render(); }
+      },
+      render: () => {
+        const container = document.getElementById('sp-concentrado');
+        if (!container) return;
+        const filtroArea = document.getElementById('sp-filtro-area')?.value || '';
+        const filtroEst  = document.getElementById('sp-filtro-estado')?.value || '';
+        let lista = cargar();
+        if (filtroArea) lista = lista.filter(s => s.area === filtroArea);
+        if (filtroEst)  lista = lista.filter(s => s.estado === filtroEst);
+        if (!lista.length) { container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin solicitudes registradas</div>'; return; }
+        container.innerHTML = lista.map(s => {
+          const est = ESTADO_ESTILOS[s.estado] || ESTADO_ESTILOS['Pendiente'];
+          const artsHTML = s.articulos?.map(a => `<span style="font-size:11px;background:#f7fafc;border:1px solid #e2e8f0;border-radius:3px;padding:1px 6px;margin:1px;">${a.cantidad} ${a.unidad} — ${a.descripcion}</span>`).join(' ') || '—';
+          const justHTML = s.justificacion ? `<details style="margin-top:4px;"><summary style="font-size:11px;color:#718096;cursor:pointer;">Ver justificación</summary><p style="font-size:11px;color:#4a5568;margin-top:4px;padding:6px;background:#f7fafc;border-radius:4px;">${s.justificacion}</p></details>` : '';
+          return `<div style="padding:12px 16px;border-bottom:1px solid #f0f4f8;background:${est.bg};">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;">
+              <div>
+                <span style="font-family:monospace;font-weight:700;font-size:14px;color:#2d3748;">SP-${s.folio}</span>
+                <span style="margin-left:8px;font-size:12px;color:#718096;">${s.fecha || '—'}</span>
+                <span style="margin-left:8px;font-size:12px;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:10px;">${s.area}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <span style="font-size:12px;color:${est.color};font-weight:600;">${est.icono} ${s.estado}</span>
+                <select onchange="APP.modSolicitudes.cambiarEstado('${s.id}', this.value)"
+                  style="font-size:11px;padding:2px 4px;border:1px solid #cbd5e0;border-radius:4px;">
+                  ${['Pendiente','Autorizada','Recibida','Cancelada'].map(e => `<option${e===s.estado?' selected':''}>${e}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+            ${s.proyecto ? `<div style="font-size:11px;color:#4a5568;margin-top:4px;"><b>Proyecto:</b> ${s.proyecto} ${s.presupuestal?'| <b>Presupuestal:</b> '+s.presupuestal:''}</div>` : ''}
+            <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:2px;">${artsHTML}</div>
+            ${justHTML}
+            ${s.solicitante ? `<div style="font-size:10px;color:#a0aec0;margin-top:4px;">Solicitante: ${s.solicitante}</div>` : ''}
+          </div>`;
+        }).join('');
+      }
+    };
+  })();
+
+  // ── MÓDULO LEVANTAMIENTOS FÍSICOS ─────────────────────────────────────────
+  const modLevantamientos = (() => {
+    const KEY = 'zoo_tamatán_levantamientos_v1';
+    let artsTemp = [];
+
+    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
+    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
+
+    const renderArts = () => {
+      const tbody = document.getElementById('lev-arts-body');
+      if (!tbody) return;
+      if (!artsTemp.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="color:#a0aec0;text-align:center;padding:12px;">Sin artículos cargados</td></tr>';
+        return;
+      }
+      tbody.innerHTML = artsTemp.map((a, i) => `<tr>
+        <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
+        <td style="font-size:13px;">${a.descripcion}</td>
+        <td style="font-size:12px;color:#718096;">${a.unidad}</td>
+        <td style="padding:4px 8px;">
+          <input type="number" value="${a.fisica}" min="0" step="0.01"
+            onchange="APP.modLevantamientos.updateFisica(${i}, this.value)"
+            style="width:90px;padding:4px 6px;border:1px solid #cbd5e0;border-radius:4px;font-family:monospace;font-size:13px;font-weight:600;color:#276749;text-align:right;">
+        </td>
+        <td style="padding:4px 8px;">
+          <input type="text" value="${a.obs||''}" placeholder="—"
+            onchange="APP.modLevantamientos.updateObs(${i}, this.value)"
+            style="width:140px;padding:4px 6px;border:1px solid #e2e8f0;border-radius:4px;font-size:12px;">
+        </td>
+        <td><button class="btn btn-r btn-sm" onclick="APP.modLevantamientos.removeArt(${i})">✕</button></td>
+      </tr>`).join('');
+    };
+
+    return {
+      cargarArticulosArea: () => {
+        const area = document.getElementById('lev-area')?.value;
+        const panel = document.getElementById('lev-panel-articulos');
+        if (!area) { if (panel) panel.style.display = 'none'; return; }
+        if (panel) panel.style.display = 'block';
+
+        const mapa = {};
+
+        // 1) Catálogo base oficial del inventario (Abril 2026) para el área
+        const catBase = window.CATALOGO_INVENTARIO || {};
+        (catBase[area] || []).forEach(art => {
+          const key = art.n.toLowerCase().trim();
+          if (!mapa[key]) {
+            mapa[key] = { codigo: art.c || '', descripcion: art.n, unidad: art.u || 'PZA', fisica: 0, obs: '' };
+          }
+        });
+
+        // 2) Artículos adicionales del historial de entradas del área
+        estado.documentos.forEach(doc => {
+          const areaDoc = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
+          if (areaDoc !== area) return;
+          (doc.articulos || []).forEach(art => {
+            const key = art.nombre.toLowerCase().trim();
+            if (!mapa[key]) {
+              mapa[key] = { codigo: art.codigo||'', descripcion: art.nombre, unidad: art.unidad||'PZA', fisica: 0, obs: '' };
+            }
+          });
+        });
+
+        artsTemp = Object.values(mapa).sort((a,b) => a.descripcion.localeCompare(b.descripcion));
+        renderArts();
+        ui.toast(`✓ ${artsTemp.length} artículo(s) cargados del área ${area}`, 'ok');
+      },
+
+      updateFisica: (i, val) => { if (artsTemp[i]) artsTemp[i].fisica = parseFloat(val) || 0; },
+      updateObs:    (i, val) => { if (artsTemp[i]) artsTemp[i].obs = val; },
+
+      addArt: () => {
+        const desc   = document.getElementById('lev-art-desc')?.value?.trim();
+        const fisica = parseFloat(document.getElementById('lev-art-fisica')?.value || 0);
+        if (!desc) { ui.toast('❌ La descripción es obligatoria', 'err'); return; }
+        artsTemp.push({
+          codigo:      document.getElementById('lev-art-codigo')?.value?.trim() || '',
+          descripcion: desc,
+          unidad:      document.getElementById('lev-art-unidad')?.value?.trim() || 'PZA',
+          fisica,
+          obs:         document.getElementById('lev-art-obs')?.value?.trim() || ''
+        });
+        ['lev-art-codigo','lev-art-desc','lev-art-unidad','lev-art-obs'].forEach(id => {
+          const el = document.getElementById(id); if (el) el.value = '';
+        });
+        document.getElementById('lev-art-fisica').value = '0';
+        renderArts();
+      },
+
+      removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
+
+      guardar: () => {
+        const semana = document.getElementById('lev-semana')?.value;
+        const area   = document.getElementById('lev-area')?.value;
+        if (!semana || !area) { ui.toast('❌ Semana y Área son obligatorias', 'err'); return; }
+        if (!artsTemp.length) { ui.toast('❌ No hay artículos en el conteo', 'err'); return; }
+        const datos = {
+          id: 'lev-' + Date.now(), semana, area,
+          fecha:       document.getElementById('lev-fecha')?.value,
+          responsable: document.getElementById('lev-responsable')?.value?.trim(),
+          articulos:   artsTemp.map(a => ({ ...a, fisica: parseFloat(a.fisica) || 0 })),
+          resumen:     { total: artsTemp.length },
+          ts: Date.now()
+        };
+        const lista = cargar();
+        lista.unshift(datos);
+        guardarLS(lista);
+        artsTemp = [];
+        modLevantamientos.limpiar();
+        modLevantamientos.render();
+        logger.info(`Levantamiento físico ${semana} — ${area} — ${datos.articulos.length} artículos`, semana, 'Levantamiento físico');
+        ui.toast(`✓ Levantamiento ${semana} registrado`, 'ok');
+      },
+
+      limpiar: () => {
+        ['lev-semana','lev-fecha','lev-responsable'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
+        const sel = document.getElementById('lev-area'); if (sel) sel.value = '';
+        const panel = document.getElementById('lev-panel-articulos'); if (panel) panel.style.display = 'none';
+        artsTemp = [];
+        renderArts();
+      },
+
+      render: () => {
+        const container = document.getElementById('lev-historial');
+        if (!container) return;
+        const filtroArea = document.getElementById('lev-filtro-area')?.value || '';
+        let lista = cargar();
+        if (filtroArea) lista = lista.filter(l => l.area === filtroArea);
+        if (!lista.length) {
+          container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin levantamientos registrados</div>';
+          return;
+        }
+        container.innerHTML = lista.map(lev => {
+          const rowsHTML = (lev.articulos||[]).map(a => `<tr>
+            <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
+            <td style="font-size:12px;">${a.descripcion}</td>
+            <td style="font-size:12px;color:#718096;">${a.unidad}</td>
+            <td class="mono" style="color:#276749;font-weight:600;">${(parseFloat(a.fisica)||0).toFixed(2)}</td>
+            <td style="font-size:11px;color:#718096;">${a.obs||'—'}</td>
+          </tr>`).join('');
+          return `<details style="border-bottom:1px solid #e2e8f0;">
+            <summary style="padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;background:#f7fafc;">
+              <div>
+                <span style="font-weight:700;color:#2d3748;">Semana ${lev.semana}</span>
+                <span style="margin-left:8px;font-size:12px;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:10px;">${lev.area}</span>
+                <span style="margin-left:8px;font-size:11px;color:#718096;">${lev.fecha||''} ${lev.responsable?'— '+lev.responsable:''}</span>
+              </div>
+              <span style="font-size:11px;color:#718096;">${(lev.resumen?.total||0)} artículo(s) contados</span>
+            </summary>
+            <div style="overflow-x:auto;padding:8px 16px;">
+              <table style="min-width:450px;">
+                <tr><th>Código</th><th>Artículo</th><th>Unidad</th><th style="color:#276749;">Exist. Física</th><th>Observación</th></tr>
+                ${rowsHTML}
+              </table>
+            </div>
+          </details>`;
+        }).join('');
+      }
+    };
+  })();
+
+  const renderBitacora = () => {
+    const container = document.getElementById('bitacora-container');
+    if (!container) return;
+    const logs = logger.getLogs();
+    if (!logs.length) {
+      container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin eventos registrados aún</div>';
+      return;
+    }
+    container.innerHTML = logs.map(log => {
+      const est = NIVEL_ESTILOS[log.nivel] || NIVEL_ESTILOS.INFO;
+      return `<div style="display:flex; gap:12px; padding:10px 16px; border-bottom:1px solid #f0f4f8; background:${est.bg}; border-left:3px solid ${est.border};">
+        <span style="font-size:16px; flex-shrink:0;">${est.icono}</span>
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; gap:8px;">
+            <span style="font-size:13px; color:${est.color}; font-weight:600;">${log.accion || log.nivel}</span>
+            <span style="font-size:11px; color:#a0aec0; white-space:nowrap;">${log.ts}</span>
+          </div>
+          <div style="font-size:12px; color:#4a5568; margin-top:2px;">${log.msg}</div>
+          ${log.entidad ? `<div style="font-size:11px; color:#718096; margin-top:2px; font-family:monospace;">${log.entidad}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
   };
 
   // Public API
@@ -1199,12 +1916,25 @@ const APP = (() => {
     logger,
     cargar,
     guardar,
+    modSolicitudes,
+    modLevantamientos,
+    verInventarioArea,
+    filtrarInventarioArea,
+    renderBitacora,
+    limpiarBitacora: () => {
+      if (confirm('⚠️ ¿Limpiar toda la bitácora? Esta acción no se puede deshacer.')) {
+        logger.limpiar();
+        renderBitacora();
+        ui.toast('✓ Bitácora limpiada', 'ok');
+      }
+    },
     limpiarDatos: () => {
       if (confirm('⚠️ ¿Eliminar TODOS los datos? Esta acción no se puede deshacer.')) {
         estado.documentos = [];
         guardar();
         updateDashboard();
         renderHistorialEntradas();
+        logger.info('Datos del inventario eliminados por el usuario', '', 'Limpiar datos');
         ui.toast('✓ Datos limpiados', 'ok');
       }
     },
