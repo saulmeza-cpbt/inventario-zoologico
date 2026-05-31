@@ -680,58 +680,68 @@
   <!-- LEVANTAMIENTOS FÍSICOS SEMANALES -->
   <div id="levantamientos" class="sec">
     <h2 style="margin-bottom:4px;font-size:16px;">📦 Levantamientos Físicos Semanales</h2>
-    <p style="font-size:12px;color:#718096;margin-bottom:12px;">Conteo físico semanal por área — permite detectar diferencias entre existencia teórica y real. Estándar profesional de inventarios.</p>
+    <p style="font-size:12px;color:#718096;margin-bottom:12px;">Conteo físico por área — el operador registra lo que ve. La confronta contra el inventario teórico (entradas − salidas) se genera automáticamente.</p>
 
     <div class="panel">
-      <h3>Nuevo Levantamiento</h3>
-      <div class="flex" style="flex-wrap:wrap;gap:8px;">
-        <label style="min-width:160px;">Semana <span style="color:#e53e3e;font-size:10px;">*</span>
-          <input type="week" id="lev-semana" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
-        </label>
-        <label style="width:130px;">Fecha de conteo
-          <input type="date" id="lev-fecha">
-        </label>
-        <label style="min-width:160px;flex:1;">Área <span style="color:#e53e3e;font-size:10px;">*</span>
-          <select id="lev-area" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
-            <option value="">— Seleccionar —</option>
+      <h3>Paso 1 — Selecciona el Área y la Semana</h3>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;align-items:flex-end;">
+        <label style="min-width:180px;flex:1;">Área a levantar <span style="color:#e53e3e;font-size:10px;">*</span>
+          <select id="lev-area" onchange="APP.modLevantamientos.cargarArticulosArea()"
+            style="width:100%;padding:6px 8px;border:2px solid #bee3f8;border-radius:4px;font-size:13px;font-weight:600;color:#2b6cb0;">
+            <option value="">— Seleccionar área —</option>
             <option>Snack</option><option>Tienda</option><option>Farmacia</option>
             <option>Nutrición</option><option>Mantenimiento</option>
           </select>
+        </label>
+        <label style="min-width:160px;">Semana <span style="color:#e53e3e;font-size:10px;">*</span>
+          <input type="week" id="lev-semana" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+        </label>
+        <label style="width:140px;">Fecha de conteo
+          <input type="date" id="lev-fecha">
         </label>
         <label style="flex:1;min-width:150px;">Responsable del conteo
           <input type="text" id="lev-responsable" placeholder="Nombre completo">
         </label>
       </div>
+    </div>
 
-      <!-- Artículos del levantamiento -->
-      <h4 style="margin:12px 0 6px;font-size:12px;color:#4a5568;">Artículos contados</h4>
+    <div class="panel" id="lev-panel-articulos" style="display:none;">
+      <h3>Paso 2 — Conteo Físico</h3>
+      <p style="font-size:11px;color:#718096;margin-bottom:8px;">
+        Los artículos se pre-cargan del historial de entradas del área seleccionada. Solo escribe la cantidad física encontrada. Agrega artículos nuevos si los hubiera.
+      </p>
       <div style="overflow-x:auto;">
-        <table id="lev-tabla" style="margin-bottom:8px;min-width:700px;">
+        <table style="min-width:500px;">
           <thead>
             <tr>
-              <th>Código</th><th>Descripción</th><th>Unidad</th>
-              <th style="color:#2b6cb0;">Exist. Teórica</th>
+              <th>Código</th>
+              <th>Artículo</th>
+              <th>Unidad</th>
               <th style="color:#276749;">Exist. Física</th>
-              <th style="color:#c05621;">Diferencia</th>
-              <th>Estado</th><th>Obs.</th><th>Acción</th>
+              <th>Observación</th>
+              <th>Acción</th>
             </tr>
           </thead>
           <tbody id="lev-arts-body">
-            <tr><td colspan="9" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr>
+            <tr><td colspan="6" style="color:#a0aec0;text-align:center;padding:12px;">Selecciona un área para cargar los artículos</td></tr>
           </tbody>
         </table>
       </div>
-      <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:4px;">
-        <label style="width:90px;">Código INV<input type="text" id="lev-art-codigo" placeholder="INV-001" style="font-family:monospace;font-size:12px;"></label>
-        <label style="flex:2;min-width:160px;">Descripción<input type="text" id="lev-art-desc" placeholder="Nombre del artículo"></label>
-        <label style="width:70px;">Unidad<input type="text" id="lev-art-unidad" placeholder="KG"></label>
-        <label style="width:90px;">Exist. Teórica<input type="number" id="lev-art-teorica" value="0" min="0" step="0.01"></label>
-        <label style="width:90px;">Exist. Física<input type="number" id="lev-art-fisica" value="0" min="0" step="0.01"></label>
-        <label style="width:160px;">Observación<input type="text" id="lev-art-obs" placeholder="Opcional"></label>
-        <button class="btn btn-p" onclick="APP.modLevantamientos.addArt()">+ Agregar</button>
-      </div>
-      <p style="font-size:11px;color:#a0aec0;margin-top:4px;">💡 La diferencia (Física − Teórica) se calcula automáticamente. Negativo = faltante. Positivo = sobrante.</p>
-      <div style="margin-top:12px;display:flex;gap:8px;">
+
+      <!-- Agregar artículo no registrado -->
+      <details style="margin-top:10px;">
+        <summary style="font-size:12px;color:#718096;cursor:pointer;">+ Agregar artículo que no aparece en la lista</summary>
+        <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;margin-top:8px;padding:10px;background:#f7fafc;border-radius:6px;">
+          <label style="width:90px;">Código<input type="text" id="lev-art-codigo" placeholder="INV-001" style="font-family:monospace;font-size:12px;"></label>
+          <label style="flex:2;min-width:160px;">Descripción<input type="text" id="lev-art-desc" placeholder="Nombre del artículo"></label>
+          <label style="width:70px;">Unidad<input type="text" id="lev-art-unidad" placeholder="KG"></label>
+          <label style="width:100px;">Exist. Física<input type="number" id="lev-art-fisica" value="0" min="0" step="0.01"></label>
+          <label style="width:150px;">Observación<input type="text" id="lev-art-obs" placeholder="Opcional"></label>
+          <button class="btn btn-p" onclick="APP.modLevantamientos.addArt()">+ Agregar</button>
+        </div>
+      </details>
+
+      <div style="margin-top:14px;display:flex;gap:8px;">
         <button class="btn btn-g" onclick="APP.modLevantamientos.guardar()">✓ Registrar Levantamiento</button>
         <button class="btn btn-s" onclick="APP.modLevantamientos.limpiar()">⟲ Limpiar</button>
       </div>
@@ -1578,57 +1588,87 @@ const APP = (() => {
     const renderArts = () => {
       const tbody = document.getElementById('lev-arts-body');
       if (!tbody) return;
-      if (!artsTemp.length) { tbody.innerHTML = '<tr><td colspan="9" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr>'; return; }
-      tbody.innerHTML = artsTemp.map((a, i) => {
-        const diff = (a.fisica - a.teorica);
-        const diffColor = diff < 0 ? '#e53e3e' : diff > 0 ? '#38a169' : '#718096';
-        const estadoLev = diff < 0 ? '🔴 Faltante' : diff > 0 ? '🟢 Sobrante' : '✅ OK';
-        return `<tr>
-          <td class="mono" style="font-size:11px;">${a.codigo||'—'}</td>
-          <td>${a.descripcion}</td>
-          <td>${a.unidad}</td>
-          <td class="mono" style="color:#2b6cb0;">${a.teorica.toFixed(2)}</td>
-          <td class="mono" style="color:#276749;">${a.fisica.toFixed(2)}</td>
-          <td class="mono" style="color:${diffColor};font-weight:700;">${diff >= 0 ? '+' : ''}${diff.toFixed(2)}</td>
-          <td style="font-size:11px;">${estadoLev}</td>
-          <td style="font-size:11px;color:#718096;">${a.obs||'—'}</td>
-          <td><button class="btn btn-r btn-sm" onclick="APP.modLevantamientos.removeArt(${i})">✕</button></td>
-        </tr>`;
-      }).join('');
+      if (!artsTemp.length) {
+        tbody.innerHTML = '<tr><td colspan="6" style="color:#a0aec0;text-align:center;padding:12px;">Sin artículos cargados</td></tr>';
+        return;
+      }
+      tbody.innerHTML = artsTemp.map((a, i) => `<tr>
+        <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
+        <td style="font-size:13px;">${a.descripcion}</td>
+        <td style="font-size:12px;color:#718096;">${a.unidad}</td>
+        <td style="padding:4px 8px;">
+          <input type="number" value="${a.fisica}" min="0" step="0.01"
+            onchange="APP.modLevantamientos.updateFisica(${i}, this.value)"
+            style="width:90px;padding:4px 6px;border:1px solid #cbd5e0;border-radius:4px;font-family:monospace;font-size:13px;font-weight:600;color:#276749;text-align:right;">
+        </td>
+        <td style="padding:4px 8px;">
+          <input type="text" value="${a.obs||''}" placeholder="—"
+            onchange="APP.modLevantamientos.updateObs(${i}, this.value)"
+            style="width:140px;padding:4px 6px;border:1px solid #e2e8f0;border-radius:4px;font-size:12px;">
+        </td>
+        <td><button class="btn btn-r btn-sm" onclick="APP.modLevantamientos.removeArt(${i})">✕</button></td>
+      </tr>`).join('');
     };
 
     return {
-      addArt: () => {
-        const desc    = document.getElementById('lev-art-desc')?.value?.trim();
-        const fisica  = parseFloat(document.getElementById('lev-art-fisica')?.value || 0);
-        const teorica = parseFloat(document.getElementById('lev-art-teorica')?.value || 0);
-        if (!desc) { ui.toast('❌ La descripción del artículo es obligatoria', 'err'); return; }
-        artsTemp.push({
-          codigo:   document.getElementById('lev-art-codigo')?.value?.trim(),
-          descripcion: desc,
-          unidad:   document.getElementById('lev-art-unidad')?.value?.trim() || 'PZA',
-          teorica, fisica,
-          obs:      document.getElementById('lev-art-obs')?.value?.trim()
+      cargarArticulosArea: () => {
+        const area = document.getElementById('lev-area')?.value;
+        const panel = document.getElementById('lev-panel-articulos');
+        if (!area) { if (panel) panel.style.display = 'none'; return; }
+        if (panel) panel.style.display = 'block';
+
+        // Extraer artículos únicos del historial de entradas del área
+        const mapa = {};
+        estado.documentos.forEach(doc => {
+          const areaDoc = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
+          if (areaDoc !== area) return;
+          (doc.articulos || []).forEach(art => {
+            const key = art.nombre.toLowerCase().trim();
+            if (!mapa[key]) {
+              mapa[key] = { codigo: art.codigo||'', descripcion: art.nombre, unidad: 'PZA', fisica: 0, obs: '' };
+            }
+          });
         });
-        ['lev-art-codigo','lev-art-desc','lev-art-unidad','lev-art-obs'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-        document.getElementById('lev-art-teorica').value = '0';
-        document.getElementById('lev-art-fisica').value  = '0';
+
+        artsTemp = Object.values(mapa);
+        renderArts();
+        ui.toast(`✓ ${artsTemp.length} artículo(s) cargados del área ${area}`, 'ok');
+      },
+
+      updateFisica: (i, val) => { if (artsTemp[i]) artsTemp[i].fisica = parseFloat(val) || 0; },
+      updateObs:    (i, val) => { if (artsTemp[i]) artsTemp[i].obs = val; },
+
+      addArt: () => {
+        const desc   = document.getElementById('lev-art-desc')?.value?.trim();
+        const fisica = parseFloat(document.getElementById('lev-art-fisica')?.value || 0);
+        if (!desc) { ui.toast('❌ La descripción es obligatoria', 'err'); return; }
+        artsTemp.push({
+          codigo:      document.getElementById('lev-art-codigo')?.value?.trim() || '',
+          descripcion: desc,
+          unidad:      document.getElementById('lev-art-unidad')?.value?.trim() || 'PZA',
+          fisica,
+          obs:         document.getElementById('lev-art-obs')?.value?.trim() || ''
+        });
+        ['lev-art-codigo','lev-art-desc','lev-art-unidad','lev-art-obs'].forEach(id => {
+          const el = document.getElementById(id); if (el) el.value = '';
+        });
+        document.getElementById('lev-art-fisica').value = '0';
         renderArts();
       },
+
       removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
+
       guardar: () => {
         const semana = document.getElementById('lev-semana')?.value;
         const area   = document.getElementById('lev-area')?.value;
         if (!semana || !area) { ui.toast('❌ Semana y Área son obligatorias', 'err'); return; }
-        if (!artsTemp.length) { ui.toast('❌ Agrega al menos un artículo contado', 'err'); return; }
-        const faltantes = artsTemp.filter(a => a.fisica < a.teorica).length;
-        const sobrantes = artsTemp.filter(a => a.fisica > a.teorica).length;
+        if (!artsTemp.length) { ui.toast('❌ No hay artículos en el conteo', 'err'); return; }
         const datos = {
           id: 'lev-' + Date.now(), semana, area,
-          fecha: document.getElementById('lev-fecha')?.value,
+          fecha:       document.getElementById('lev-fecha')?.value,
           responsable: document.getElementById('lev-responsable')?.value?.trim(),
-          articulos: [...artsTemp],
-          resumen: { total: artsTemp.length, faltantes, sobrantes, ok: artsTemp.length - faltantes - sobrantes },
+          articulos:   artsTemp.map(a => ({ ...a, fisica: parseFloat(a.fisica) || 0 })),
+          resumen:     { total: artsTemp.length },
           ts: Date.now()
         };
         const lista = cargar();
@@ -1637,53 +1677,48 @@ const APP = (() => {
         artsTemp = [];
         modLevantamientos.limpiar();
         modLevantamientos.render();
-        logger.info(`Levantamiento ${semana} — ${area} — ${datos.resumen.faltantes} faltante(s)`, semana, 'Levantamiento físico');
+        logger.info(`Levantamiento físico ${semana} — ${area} — ${datos.articulos.length} artículos`, semana, 'Levantamiento físico');
         ui.toast(`✓ Levantamiento ${semana} registrado`, 'ok');
       },
+
       limpiar: () => {
         ['lev-semana','lev-fecha','lev-responsable'].forEach(id => { const el=document.getElementById(id); if(el) el.value=''; });
-        document.getElementById('lev-area').value = '';
+        const sel = document.getElementById('lev-area'); if (sel) sel.value = '';
+        const panel = document.getElementById('lev-panel-articulos'); if (panel) panel.style.display = 'none';
         artsTemp = [];
         renderArts();
       },
+
       render: () => {
         const container = document.getElementById('lev-historial');
         if (!container) return;
         const filtroArea = document.getElementById('lev-filtro-area')?.value || '';
         let lista = cargar();
         if (filtroArea) lista = lista.filter(l => l.area === filtroArea);
-        if (!lista.length) { container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin levantamientos registrados</div>'; return; }
+        if (!lista.length) {
+          container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin levantamientos registrados</div>';
+          return;
+        }
         container.innerHTML = lista.map(lev => {
-          const r = lev.resumen || {};
-          const rowsHTML = (lev.articulos||[]).map(a => {
-            const diff = a.fisica - a.teorica;
-            const dc = diff < 0 ? '#e53e3e' : diff > 0 ? '#38a169' : '#718096';
-            return `<tr>
-              <td class="mono" style="font-size:11px;">${a.codigo||'—'}</td>
-              <td style="font-size:12px;">${a.descripcion}</td>
-              <td>${a.unidad}</td>
-              <td class="mono" style="color:#2b6cb0;">${a.teorica.toFixed(2)}</td>
-              <td class="mono" style="color:#276749;">${a.fisica.toFixed(2)}</td>
-              <td class="mono" style="color:${dc};font-weight:700;">${diff>=0?'+':''}${diff.toFixed(2)}</td>
-              <td style="font-size:11px;">${a.obs||'—'}</td>
-            </tr>`;
-          }).join('');
+          const rowsHTML = (lev.articulos||[]).map(a => `<tr>
+            <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
+            <td style="font-size:12px;">${a.descripcion}</td>
+            <td style="font-size:12px;color:#718096;">${a.unidad}</td>
+            <td class="mono" style="color:#276749;font-weight:600;">${(parseFloat(a.fisica)||0).toFixed(2)}</td>
+            <td style="font-size:11px;color:#718096;">${a.obs||'—'}</td>
+          </tr>`).join('');
           return `<details style="border-bottom:1px solid #e2e8f0;">
             <summary style="padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;background:#f7fafc;">
               <div>
                 <span style="font-weight:700;color:#2d3748;">Semana ${lev.semana}</span>
                 <span style="margin-left:8px;font-size:12px;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:10px;">${lev.area}</span>
-                <span style="margin-left:8px;font-size:11px;color:#718096;">${lev.fecha||''} — ${lev.responsable||''}</span>
+                <span style="margin-left:8px;font-size:11px;color:#718096;">${lev.fecha||''} ${lev.responsable?'— '+lev.responsable:''}</span>
               </div>
-              <div style="display:flex;gap:8px;font-size:11px;">
-                <span style="color:#276749;">✅ ${r.ok||0} OK</span>
-                <span style="color:#e53e3e;">🔴 ${r.faltantes||0} faltante(s)</span>
-                <span style="color:#38a169;">🟢 ${r.sobrantes||0} sobrante(s)</span>
-              </div>
+              <span style="font-size:11px;color:#718096;">${(lev.resumen?.total||0)} artículo(s) contados</span>
             </summary>
             <div style="overflow-x:auto;padding:8px 16px;">
-              <table style="min-width:600px;">
-                <tr><th>Código</th><th>Artículo</th><th>Unidad</th><th style="color:#2b6cb0;">Teórica</th><th style="color:#276749;">Física</th><th style="color:#c05621;">Diferencia</th><th>Obs.</th></tr>
+              <table style="min-width:450px;">
+                <tr><th>Código</th><th>Artículo</th><th>Unidad</th><th style="color:#276749;">Exist. Física</th><th>Observación</th></tr>
                 ${rowsHTML}
               </table>
             </div>
