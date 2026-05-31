@@ -463,7 +463,7 @@
 <div class="tabs" id="tabs-container">
   <div class="tab active" onclick="APP.ui.showSec('dashboard')">📊 Dashboard</div>
   <div class="tab" onclick="APP.ui.showSec('entradas')">📥 Entradas</div>
-  <div class="tab" onclick="APP.ui.showSec('salidas')">📤 Salidas</div>
+  <div class="tab" onclick="APP.ui.showSec('salidas'); APP.modSalidas.render();">📤 Salidas</div>
   <div class="tab" onclick="APP.ui.showSec('stock')">📦 Stock</div>
   <div class="tab" onclick="APP.ui.showSec('solicitudes'); APP.modSolicitudes.render();">📝 Solicitudes</div>
   <div class="tab" onclick="APP.ui.showSec('levantamientos'); APP.modLevantamientos.render();">📦 Levantamientos</div>
@@ -573,9 +573,69 @@
 
   <!-- SALIDAS -->
   <div id="salidas" class="sec">
-    <h2 style="margin-bottom: 12px; font-size: 16px;">📤 Salidas de Inventario</h2>
+    <h2 style="margin-bottom:4px;font-size:16px;">📤 Salidas de Inventario</h2>
+    <p style="font-size:12px;color:#718096;margin-bottom:12px;">Registro de artículos que salen del inventario de cada área.</p>
+
     <div class="panel">
-      <p style="color: var(--gray);">📝 Módulo de Salidas - En desarrollo</p>
+      <h3>Nueva Salida</h3>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;align-items:flex-end;margin-bottom:10px;">
+        <label style="min-width:160px;flex:1;">Área Origen <span style="color:#e53e3e;font-size:10px;">*</span>
+          <select id="sal-area" onchange="APP.modSalidas.onAreaChange()"
+            style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+            <option value="">— Seleccionar —</option>
+            <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+            <option>Nutrición</option><option>Mantenimiento</option>
+          </select>
+        </label>
+        <label style="flex:1;min-width:150px;">Responsable
+          <input type="text" id="sal-responsable" placeholder="Nombre completo">
+        </label>
+      </div>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;align-items:flex-end;">
+        <label style="flex:2;min-width:200px;position:relative;">Artículo <span style="color:#e53e3e;font-size:10px;">*</span>
+          <input type="text" id="sal-art-nombre" autocomplete="off" placeholder="Escribe para buscar en el catálogo del área..."
+            oninput="APP.modSalidas.filtrarCatalogo(this.value)"
+            style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
+          <div id="sal-art-sugerencias" style="display:none;position:fixed;background:#fff;border:1px solid #cbd5e0;border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:1000;max-height:180px;overflow-y:auto;"></div>
+        </label>
+        <label style="width:90px;">Código
+          <input type="text" id="sal-art-codigo" placeholder="—" style="font-family:monospace;font-size:12px;" readonly>
+        </label>
+        <label style="width:80px;">Cantidad <span style="color:#e53e3e;font-size:10px;">*</span>
+          <input type="number" id="sal-art-cant" value="1" min="0.01" step="0.01">
+        </label>
+        <label style="width:70px;">Unidad
+          <input type="text" id="sal-art-unidad" placeholder="PZA">
+        </label>
+        <button class="btn btn-p" style="align-self:flex-end;" onclick="APP.modSalidas.addArt()">+ Agregar</button>
+      </div>
+
+      <table style="margin:10px 0 6px;">
+        <thead><tr><th>Código</th><th>Artículo</th><th>Cantidad</th><th>Unidad</th><th>Acción</th></tr></thead>
+        <tbody id="sal-arts-body"><tr><td colspan="5" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr></tbody>
+      </table>
+
+      <label style="display:block;margin-top:8px;">Motivo <span style="color:#e53e3e;font-size:10px;">* obligatorio</span>
+        <textarea id="sal-motivo" rows="2" placeholder="Describe el motivo de esta salida..."
+          style="width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;resize:vertical;font-family:inherit;margin-top:3px;"></textarea>
+      </label>
+
+      <div style="margin-top:10px;display:flex;gap:8px;">
+        <button class="btn btn-g" onclick="APP.modSalidas.guardar()">✓ Registrar Salida</button>
+        <button class="btn btn-s" onclick="APP.modSalidas.limpiar()">⟲ Limpiar</button>
+      </div>
+    </div>
+
+    <div class="panel" style="padding:0;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid #e2e8f0;">
+        <span style="font-weight:600;font-size:13px;">Historial de Salidas</span>
+        <select id="sal-filtro-area" onchange="APP.modSalidas.render()" style="padding:4px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;">
+          <option value="">Todas las áreas</option>
+          <option>Snack</option><option>Tienda</option><option>Farmacia</option>
+          <option>Nutrición</option><option>Mantenimiento</option>
+        </select>
+      </div>
+      <div id="sal-historial" style="overflow-x:auto;"></div>
     </div>
   </div>
 
@@ -596,16 +656,16 @@
       <h3>Nueva Solicitud de Pedido</h3>
       <div class="flex" style="flex-wrap:wrap;gap:8px;">
         <label style="width:110px;">Folio SP <span style="color:#e53e3e;font-size:10px;">*</span>
-          <input type="text" id="sp-folio" placeholder="1249" style="font-family:monospace;font-weight:700;">
+          <input type="text" id="sp-folio" placeholder="SP-001" style="font-family:monospace;font-weight:700;">
         </label>
         <label style="width:90px;">Día
-          <input type="number" id="sp-dia" placeholder="18" min="1" max="31">
+          <input type="number" id="sp-dia" placeholder="DD" min="1" max="31">
         </label>
         <label style="width:90px;">Mes
-          <input type="number" id="sp-mes" placeholder="09" min="1" max="12">
+          <input type="number" id="sp-mes" placeholder="MM" min="1" max="12">
         </label>
         <label style="width:90px;">Año
-          <input type="number" id="sp-anio" placeholder="2025">
+          <input type="number" id="sp-anio" placeholder="AAAA">
         </label>
         <label style="min-width:160px;flex:1;">Área Requirente <span style="color:#e53e3e;font-size:10px;">*</span>
           <select id="sp-area" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
@@ -618,13 +678,13 @@
           </select>
         </label>
         <label style="flex:2;min-width:180px;">Proyecto
-          <input type="text" id="sp-proyecto" placeholder="Alimentación de Ejemplares CPBT">
+          <input type="text" id="sp-proyecto" placeholder="Nombre del proyecto">
         </label>
         <label style="flex:2;min-width:180px;">Partida Presupuestal
-          <input type="text" id="sp-presupuestal" placeholder="222.- Productos Alimenticios para Animales">
+          <input type="text" id="sp-presupuestal" placeholder="Clave presupuestal">
         </label>
         <label style="flex:1;min-width:140px;">Solicitante
-          <input type="text" id="sp-solicitante" placeholder="Lic. Eder García Padilla">
+          <input type="text" id="sp-solicitante" placeholder="Nombre completo">
         </label>
         <label style="width:130px;">Estado
           <select id="sp-estado" style="width:100%;padding:6px 8px;border:1px solid #cbd5e0;border-radius:4px;font-size:13px;">
@@ -644,8 +704,8 @@
       </table>
       <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;">
         <label style="width:80px;">Cantidad<input type="number" id="sp-art-cant" value="1" min="0.01" step="0.01"></label>
-        <label style="width:80px;">Unidad<input type="text" id="sp-art-unidad" placeholder="KILO"></label>
-        <label style="flex:1;min-width:200px;">Descripción<input type="text" id="sp-art-desc" placeholder="CANAL DE RES"></label>
+        <label style="width:80px;">Unidad<input type="text" id="sp-art-unidad" placeholder="PZA"></label>
+        <label style="flex:1;min-width:200px;">Descripción<input type="text" id="sp-art-desc" placeholder="Descripción del artículo"></label>
         <button class="btn btn-p" onclick="APP.modSolicitudes.addArt()">+ Agregar</button>
       </div>
 
@@ -656,7 +716,7 @@
           ▶ Justificación / Observaciones (click para expandir)
         </button>
         <div id="sp-just-body" style="display:none;margin-top:6px;">
-          <textarea id="sp-justificacion" rows="3" placeholder="ALIMENTACION PARA EJEMPLARES ALOJADOS EN ZOOLOGICO TAMATAN, ENTREGA EL DIA VIERNES 03 DE OCTUBRE DEL 2025"
+          <textarea id="sp-justificacion" rows="3" placeholder="Justificación u observaciones adicionales..."
             style="width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:4px;font-size:12px;resize:vertical;font-family:inherit;"></textarea>
         </div>
       </div>
@@ -727,7 +787,9 @@
               <th>Código</th>
               <th>Artículo</th>
               <th>Unidad</th>
+              <th style="color:#2b6cb0;">Exist. Teórica</th>
               <th style="color:#276749;">Exist. Física</th>
+              <th style="color:#6b46c1;">Diferencia</th>
               <th>Observación</th>
               <th>Acción</th>
             </tr>
@@ -1603,6 +1665,198 @@ const APP = (() => {
     ERROR: { bg: '#fff5f5', border: '#fc8181', color: '#9b2c2c', icono: '❌' }
   };
 
+  // ── HELPER: STOCK TEÓRICO POR ÁREA ────────────────────────────────────────
+  const calcularStockTeorico = (area) => {
+    const mapa = {};
+    estado.documentos.forEach(doc => {
+      if ((doc.datos?.areaDestino || doc.datos?.areaRequirente || '') !== area) return;
+      (doc.articulos || []).forEach(art => {
+        const key = art.nombre.toLowerCase().trim();
+        if (!mapa[key]) mapa[key] = { codigo: art.codigo||'', descripcion: art.nombre, unidad: art.unidad||'PZA', entradas: 0, salidas: 0 };
+        mapa[key].entradas += parseFloat(art.cantidad) || 0;
+      });
+    });
+    try {
+      const salidas = JSON.parse(localStorage.getItem('zoo_tamatán_salidas_v1') || '[]');
+      salidas.forEach(sal => {
+        if (sal.area !== area) return;
+        (sal.articulos || []).forEach(art => {
+          const key = art.descripcion.toLowerCase().trim();
+          if (!mapa[key]) mapa[key] = { codigo: art.codigo||'', descripcion: art.descripcion, unidad: art.unidad||'PZA', entradas: 0, salidas: 0 };
+          mapa[key].salidas += parseFloat(art.cantidad) || 0;
+        });
+      });
+    } catch {}
+    return mapa;
+  };
+
+  // ── MÓDULO SALIDAS ────────────────────────────────────────────────────────
+  const modSalidas = (() => {
+    const KEY = 'zoo_tamatán_salidas_v1';
+    let artsTemp = [];
+
+    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
+    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
+
+    const renderArts = () => {
+      const tbody = document.getElementById('sal-arts-body');
+      if (!tbody) return;
+      if (!artsTemp.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="color:#a0aec0;text-align:center;padding:8px;">Sin artículos</td></tr>';
+        return;
+      }
+      tbody.innerHTML = artsTemp.map((a, i) => `<tr>
+        <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
+        <td>${a.descripcion}</td>
+        <td class="mono">${a.cantidad}</td>
+        <td style="font-size:12px;color:#718096;">${a.unidad}</td>
+        <td><button class="btn btn-r btn-sm" onclick="APP.modSalidas.removeArt(${i})">✕</button></td>
+      </tr>`).join('');
+    };
+
+    return {
+      onAreaChange: () => {
+        document.getElementById('sal-art-nombre').value = '';
+        document.getElementById('sal-art-codigo').value = '';
+        const box = document.getElementById('sal-art-sugerencias');
+        if (box) box.style.display = 'none';
+      },
+
+      filtrarCatalogo: (texto) => {
+        const box = document.getElementById('sal-art-sugerencias');
+        const inp = document.getElementById('sal-art-nombre');
+        if (!box || !inp) return;
+        const q = texto.trim().toLowerCase();
+        if (!q) { box.style.display = 'none'; return; }
+
+        const area = document.getElementById('sal-area')?.value || '';
+        const catBase = window.CATALOGO_INVENTARIO || {};
+        const mapa = {};
+        const areasBase = area ? [area] : Object.keys(catBase);
+        areasBase.forEach(a => {
+          (catBase[a] || []).forEach(art => {
+            const key = art.n.toLowerCase().trim();
+            if (!mapa[key]) mapa[key] = { nombre: art.n, codigo: art.c||'', unidad: art.u||'PZA' };
+          });
+        });
+        const coincidencias = Object.values(mapa).filter(a =>
+          a.nombre.toLowerCase().includes(q) || (a.codigo && a.codigo.toLowerCase().includes(q))
+        ).slice(0, 8);
+
+        if (!coincidencias.length) { box.style.display = 'none'; return; }
+
+        const r = inp.getBoundingClientRect();
+        box.style.top   = (r.bottom + 2) + 'px';
+        box.style.left  = r.left + 'px';
+        box.style.width = r.width + 'px';
+        box.dataset.catalogo = JSON.stringify(coincidencias);
+        box.innerHTML = coincidencias.map((a, i) => `
+          <div onclick="APP.modSalidas.seleccionarSugerencia(${i})"
+            style="padding:8px 12px;cursor:pointer;border-bottom:1px solid #f0f4f8;display:flex;justify-content:space-between;"
+            onmouseover="this.style.background='#ebf4ff'" onmouseout="this.style.background=''">
+            <span>${a.codigo ? `<span style="font-family:monospace;font-size:11px;color:#718096;margin-right:6px;">${a.codigo}</span>` : ''}<strong>${a.nombre}</strong></span>
+            <span style="font-size:11px;color:#718096;">${a.unidad}</span>
+          </div>`).join('');
+        box.style.display = 'block';
+      },
+
+      seleccionarSugerencia: (idx) => {
+        const box = document.getElementById('sal-art-sugerencias');
+        if (!box) return;
+        const cat = JSON.parse(box.dataset.catalogo || '[]');
+        const art = cat[idx];
+        if (!art) return;
+        document.getElementById('sal-art-nombre').value  = art.nombre;
+        document.getElementById('sal-art-codigo').value  = art.codigo || '';
+        document.getElementById('sal-art-unidad').value  = art.unidad || 'PZA';
+        document.getElementById('sal-art-cant').focus();
+        box.style.display = 'none';
+      },
+
+      addArt: () => {
+        const nombre = document.getElementById('sal-art-nombre')?.value?.trim();
+        const cantidad = parseFloat(document.getElementById('sal-art-cant')?.value || 0);
+        if (!nombre || cantidad <= 0) { ui.toast('❌ Artículo y cantidad son obligatorios', 'err'); return; }
+        artsTemp.push({
+          descripcion: nombre,
+          codigo:   document.getElementById('sal-art-codigo')?.value?.trim() || '',
+          unidad:   document.getElementById('sal-art-unidad')?.value?.trim() || 'PZA',
+          cantidad
+        });
+        document.getElementById('sal-art-nombre').value = '';
+        document.getElementById('sal-art-codigo').value = '';
+        document.getElementById('sal-art-cant').value   = '1';
+        document.getElementById('sal-art-unidad').value = '';
+        renderArts();
+      },
+
+      removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
+
+      guardar: () => {
+        const area    = document.getElementById('sal-area')?.value;
+        const motivo  = document.getElementById('sal-motivo')?.value?.trim();
+        if (!area)   { ui.toast('❌ Selecciona el área origen', 'err'); return; }
+        if (!motivo) { ui.toast('❌ El motivo es obligatorio', 'err'); return; }
+        if (!artsTemp.length) { ui.toast('❌ Agrega al menos un artículo', 'err'); return; }
+        const datos = {
+          id: 'sal-' + Date.now(), area, motivo,
+          responsable: document.getElementById('sal-responsable')?.value?.trim() || '',
+          articulos:   [...artsTemp],
+          fecha:       new Date().toLocaleDateString('es-MX'),
+          ts:          Date.now()
+        };
+        const lista = cargar();
+        lista.unshift(datos);
+        guardarLS(lista);
+        artsTemp = [];
+        modSalidas.limpiar();
+        modSalidas.render();
+        logger.info(`Salida registrada — Área: ${area} — ${datos.articulos.length} artículo(s)`, area, 'Registrar salida');
+        ui.toast(`✓ Salida registrada correctamente`, 'ok');
+      },
+
+      limpiar: () => {
+        document.getElementById('sal-area').value        = '';
+        document.getElementById('sal-responsable').value = '';
+        document.getElementById('sal-art-nombre').value  = '';
+        document.getElementById('sal-art-codigo').value  = '';
+        document.getElementById('sal-art-cant').value    = '1';
+        document.getElementById('sal-art-unidad').value  = '';
+        document.getElementById('sal-motivo').value      = '';
+        artsTemp = [];
+        renderArts();
+      },
+
+      render: () => {
+        const container = document.getElementById('sal-historial');
+        if (!container) return;
+        const filtroArea = document.getElementById('sal-filtro-area')?.value || '';
+        let lista = cargar();
+        if (filtroArea) lista = lista.filter(s => s.area === filtroArea);
+        if (!lista.length) {
+          container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin salidas registradas</div>';
+          return;
+        }
+        container.innerHTML = lista.map(s => {
+          const artsHTML = (s.articulos || []).map(a =>
+            `<span style="font-size:11px;background:#fff5f5;border:1px solid #fed7d7;border-radius:3px;padding:1px 6px;margin:1px;font-family:monospace;">${a.cantidad} ${a.unidad} — ${a.descripcion}</span>`
+          ).join(' ');
+          return `<div style="padding:12px 16px;border-bottom:1px solid #f0f4f8;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;flex-wrap:wrap;">
+              <div>
+                <span style="font-size:12px;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:10px;">${s.area}</span>
+                <span style="margin-left:8px;font-size:12px;color:#718096;">${s.fecha}</span>
+                ${s.responsable ? `<span style="margin-left:8px;font-size:11px;color:#a0aec0;">— ${s.responsable}</span>` : ''}
+              </div>
+            </div>
+            <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:2px;">${artsHTML}</div>
+            <div style="font-size:11px;color:#718096;margin-top:4px;"><b>Motivo:</b> ${s.motivo}</div>
+          </div>`;
+        }).join('');
+      }
+    };
+  })();
+
   // ── MÓDULO SOLICITUDES DE PEDIDO ─────────────────────────────────────────
   const modSolicitudes = (() => {
     const KEY = 'zoo_tamatán_solicitudes_v1';
@@ -1734,25 +1988,34 @@ const APP = (() => {
       const tbody = document.getElementById('lev-arts-body');
       if (!tbody) return;
       if (!artsTemp.length) {
-        tbody.innerHTML = '<tr><td colspan="6" style="color:#a0aec0;text-align:center;padding:12px;">Sin artículos cargados</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="color:#a0aec0;text-align:center;padding:12px;">Sin artículos cargados</td></tr>';
         return;
       }
-      tbody.innerHTML = artsTemp.map((a, i) => `<tr>
-        <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
-        <td style="font-size:13px;">${a.descripcion}</td>
-        <td style="font-size:12px;color:#718096;">${a.unidad}</td>
-        <td style="padding:4px 8px;">
-          <input type="number" value="${a.fisica}" min="0" step="0.01"
-            onchange="APP.modLevantamientos.updateFisica(${i}, this.value)"
-            style="width:90px;padding:4px 6px;border:1px solid #cbd5e0;border-radius:4px;font-family:monospace;font-size:13px;font-weight:600;color:#276749;text-align:right;">
-        </td>
-        <td style="padding:4px 8px;">
-          <input type="text" value="${a.obs||''}" placeholder="—"
-            onchange="APP.modLevantamientos.updateObs(${i}, this.value)"
-            style="width:140px;padding:4px 6px;border:1px solid #e2e8f0;border-radius:4px;font-size:12px;">
-        </td>
-        <td><button class="btn btn-r btn-sm" onclick="APP.modLevantamientos.removeArt(${i})">✕</button></td>
-      </tr>`).join('');
+      tbody.innerHTML = artsTemp.map((a, i) => {
+        const teorica = parseFloat(a.teorica) || 0;
+        const fisica  = parseFloat(a.fisica)  || 0;
+        const diff    = fisica - teorica;
+        const diffColor = diff > 0 ? '#276749' : diff < 0 ? '#9b2c2c' : '#718096';
+        const diffLabel = diff > 0 ? `+${diff.toFixed(2)}` : diff.toFixed(2);
+        return `<tr>
+          <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
+          <td style="font-size:13px;">${a.descripcion}</td>
+          <td style="font-size:12px;color:#718096;">${a.unidad}</td>
+          <td class="mono" style="color:#2b6cb0;font-weight:600;text-align:right;">${teorica.toFixed(2)}</td>
+          <td style="padding:4px 8px;">
+            <input type="number" value="${fisica}" min="0" step="0.01"
+              onchange="APP.modLevantamientos.updateFisica(${i}, this.value)"
+              style="width:90px;padding:4px 6px;border:1px solid #cbd5e0;border-radius:4px;font-family:monospace;font-size:13px;font-weight:600;color:#276749;text-align:right;">
+          </td>
+          <td class="mono" style="font-weight:700;color:${diffColor};text-align:right;">${diff === 0 && teorica === 0 ? '—' : diffLabel}</td>
+          <td style="padding:4px 8px;">
+            <input type="text" value="${a.obs||''}" placeholder="—"
+              onchange="APP.modLevantamientos.updateObs(${i}, this.value)"
+              style="width:130px;padding:4px 6px;border:1px solid #e2e8f0;border-radius:4px;font-size:12px;">
+          </td>
+          <td><button class="btn btn-r btn-sm" onclick="APP.modLevantamientos.removeArt(${i})">✕</button></td>
+        </tr>`;
+      }).join('');
     };
 
     return {
@@ -1762,27 +2025,30 @@ const APP = (() => {
         if (!area) { if (panel) panel.style.display = 'none'; return; }
         if (panel) panel.style.display = 'block';
 
+        // Stock teórico: entradas - salidas por artículo
+        const stockTeorico = calcularStockTeorico(area);
+
         const mapa = {};
 
-        // 1) Catálogo base oficial del inventario (Abril 2026) para el área
+        // 1) Catálogo base oficial (Abril 2026) para el área
         const catBase = window.CATALOGO_INVENTARIO || {};
         (catBase[area] || []).forEach(art => {
           const key = art.n.toLowerCase().trim();
+          const st  = stockTeorico[key];
+          const teorica = st ? (st.entradas - st.salidas) : 0;
           if (!mapa[key]) {
-            mapa[key] = { codigo: art.c || '', descripcion: art.n, unidad: art.u || 'PZA', fisica: 0, obs: '' };
+            mapa[key] = { codigo: art.c||'', descripcion: art.n, unidad: art.u||'PZA', teorica, fisica: 0, obs: '' };
           }
         });
 
-        // 2) Artículos adicionales del historial de entradas del área
-        estado.documentos.forEach(doc => {
-          const areaDoc = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
-          if (areaDoc !== area) return;
-          (doc.articulos || []).forEach(art => {
-            const key = art.nombre.toLowerCase().trim();
-            if (!mapa[key]) {
-              mapa[key] = { codigo: art.codigo||'', descripcion: art.nombre, unidad: art.unidad||'PZA', fisica: 0, obs: '' };
-            }
-          });
+        // 2) Artículos del historial de entradas que no estén en el catálogo
+        Object.entries(stockTeorico).forEach(([key, st]) => {
+          if (!mapa[key]) {
+            mapa[key] = {
+              codigo: st.codigo||'', descripcion: st.descripcion, unidad: st.unidad||'PZA',
+              teorica: st.entradas - st.salidas, fisica: 0, obs: ''
+            };
+          }
         });
 
         artsTemp = Object.values(mapa).sort((a,b) => a.descripcion.localeCompare(b.descripcion));
@@ -1822,8 +2088,17 @@ const APP = (() => {
           id: 'lev-' + Date.now(), semana, area,
           fecha:       document.getElementById('lev-fecha')?.value,
           responsable: document.getElementById('lev-responsable')?.value?.trim(),
-          articulos:   artsTemp.map(a => ({ ...a, fisica: parseFloat(a.fisica) || 0 })),
-          resumen:     { total: artsTemp.length },
+          articulos:   artsTemp.map(a => ({
+            ...a,
+            fisica:   parseFloat(a.fisica)  || 0,
+            teorica:  parseFloat(a.teorica) || 0,
+            diferencia: (parseFloat(a.fisica) || 0) - (parseFloat(a.teorica) || 0)
+          })),
+          resumen: {
+            total: artsTemp.length,
+            faltantes:  artsTemp.filter(a => (parseFloat(a.fisica)||0) < (parseFloat(a.teorica)||0)).length,
+            sobrantes:  artsTemp.filter(a => (parseFloat(a.fisica)||0) > (parseFloat(a.teorica)||0)).length
+          },
           ts: Date.now()
         };
         const lista = cargar();
@@ -1855,13 +2130,20 @@ const APP = (() => {
           return;
         }
         container.innerHTML = lista.map(lev => {
-          const rowsHTML = (lev.articulos||[]).map(a => `<tr>
-            <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
-            <td style="font-size:12px;">${a.descripcion}</td>
-            <td style="font-size:12px;color:#718096;">${a.unidad}</td>
-            <td class="mono" style="color:#276749;font-weight:600;">${(parseFloat(a.fisica)||0).toFixed(2)}</td>
-            <td style="font-size:11px;color:#718096;">${a.obs||'—'}</td>
-          </tr>`).join('');
+          const rowsHTML = (lev.articulos||[]).map(a => {
+            const diff = parseFloat(a.diferencia) ?? ((parseFloat(a.fisica)||0)-(parseFloat(a.teorica)||0));
+            const dc = diff > 0 ? '#276749' : diff < 0 ? '#9b2c2c' : '#718096';
+            const dl = diff > 0 ? `+${diff.toFixed(2)}` : diff.toFixed(2);
+            return `<tr>
+              <td class="mono" style="font-size:11px;color:#718096;">${a.codigo||'—'}</td>
+              <td style="font-size:12px;">${a.descripcion}</td>
+              <td style="font-size:12px;color:#718096;">${a.unidad}</td>
+              <td class="mono" style="color:#2b6cb0;font-weight:600;">${(parseFloat(a.teorica)||0).toFixed(2)}</td>
+              <td class="mono" style="color:#276749;font-weight:600;">${(parseFloat(a.fisica)||0).toFixed(2)}</td>
+              <td class="mono" style="font-weight:700;color:${dc};">${dl}</td>
+              <td style="font-size:11px;color:#718096;">${a.obs||'—'}</td>
+            </tr>`;
+          }).join('');
           return `<details style="border-bottom:1px solid #e2e8f0;">
             <summary style="padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;background:#f7fafc;">
               <div>
@@ -1869,11 +2151,15 @@ const APP = (() => {
                 <span style="margin-left:8px;font-size:12px;background:#ebf4ff;color:#2b6cb0;padding:1px 8px;border-radius:10px;">${lev.area}</span>
                 <span style="margin-left:8px;font-size:11px;color:#718096;">${lev.fecha||''} ${lev.responsable?'— '+lev.responsable:''}</span>
               </div>
-              <span style="font-size:11px;color:#718096;">${(lev.resumen?.total||0)} artículo(s) contados</span>
+              <div style="display:flex;gap:8px;font-size:11px;">
+                <span style="color:#718096;">${lev.resumen?.total||0} artículos</span>
+                ${(lev.resumen?.faltantes||0) > 0 ? `<span style="color:#9b2c2c;font-weight:600;">▼ ${lev.resumen.faltantes} faltante(s)</span>` : ''}
+                ${(lev.resumen?.sobrantes||0) > 0 ? `<span style="color:#276749;font-weight:600;">▲ ${lev.resumen.sobrantes} sobrante(s)</span>` : ''}
+              </div>
             </summary>
             <div style="overflow-x:auto;padding:8px 16px;">
               <table style="min-width:450px;">
-                <tr><th>Código</th><th>Artículo</th><th>Unidad</th><th style="color:#276749;">Exist. Física</th><th>Observación</th></tr>
+                <tr><th>Código</th><th>Artículo</th><th>Unidad</th><th style="color:#2b6cb0;">Exist. Teórica</th><th style="color:#276749;">Exist. Física</th><th style="color:#6b46c1;">Diferencia</th><th>Observación</th></tr>
                 ${rowsHTML}
               </table>
             </div>
@@ -1916,6 +2202,7 @@ const APP = (() => {
     logger,
     cargar,
     guardar,
+    modSalidas,
     modSolicitudes,
     modLevantamientos,
     verInventarioArea,
@@ -1946,12 +2233,15 @@ const APP = (() => {
 document.addEventListener('DOMContentLoaded', () => {
   APP.init();
 
-  // Cerrar dropdown de sugerencias al hacer clic fuera
+  // Cerrar dropdowns de sugerencias al hacer clic fuera
   document.addEventListener('click', (e) => {
-    const box = document.getElementById('art-sugerencias');
-    if (box && !box.contains(e.target) && e.target.id !== 'inp-art-nombre') {
-      box.style.display = 'none';
-    }
+    ['art-sugerencias', 'sal-art-sugerencias'].forEach(id => {
+      const box = document.getElementById(id);
+      const inp = id === 'art-sugerencias' ? 'inp-art-nombre' : 'sal-art-nombre';
+      if (box && !box.contains(e.target) && e.target.id !== inp) {
+        box.style.display = 'none';
+      }
+    });
   });
 
   // Trigger initial render
