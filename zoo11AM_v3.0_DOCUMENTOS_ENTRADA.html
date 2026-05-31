@@ -789,6 +789,9 @@
 <!-- TOAST BOX -->
 <div id="toast-box"></div>
 
+<!-- CATÁLOGO DE INVENTARIO BASE (Abril 2026) -->
+<script src="inventarios/catalogo_articulos.js"></script>
+
 <script>
 // ═══════════════════════════════════════════════════════════════
 // APP PRINCIPAL
@@ -1100,23 +1103,38 @@ const APP = (() => {
         )?.value || '';
 
         const mapa = {};
+
+        // 1) Catálogo base oficial del inventario (Abril 2026), filtrado por área
+        const catBase = window.CATALOGO_INVENTARIO || {};
+        const areasBase = areaActual ? [areaActual] : Object.keys(catBase);
+        areasBase.forEach(area => {
+          (catBase[area] || []).forEach(art => {
+            const key = art.n.toLowerCase().trim();
+            if (!mapa[key]) {
+              mapa[key] = { nombre: art.n, codigo: art.c || '', unitario: art.p || 0, unidad: art.u || 'PZA', veces: 0, base: true };
+            }
+          });
+        });
+
+        // 2) Artículos de documentos ya capturados (suman frecuencia de uso)
         estado.documentos.forEach(doc => {
-          // Si hay área seleccionada, solo incluir artículos de documentos de esa área
           const areaDoc = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
           if (areaActual && areaDoc !== areaActual) return;
 
           (doc.articulos || []).forEach(art => {
             const key = art.nombre.toLowerCase().trim();
             if (!mapa[key]) {
-              mapa[key] = { nombre: art.nombre, codigo: art.codigo || '', unitario: art.unitario, veces: 1 };
+              mapa[key] = { nombre: art.nombre, codigo: art.codigo || '', unitario: art.unitario, unidad: art.unidad || 'PZA', veces: 1, base: false };
             } else {
               mapa[key].veces++;
-              mapa[key].unitario = art.unitario;
+              if (art.unitario) mapa[key].unitario = art.unitario;
               if (art.codigo) mapa[key].codigo = art.codigo;
             }
           });
         });
-        return Object.values(mapa).sort((a, b) => b.veces - a.veces);
+
+        // Orden: primero los más usados, luego alfabético
+        return Object.values(mapa).sort((a, b) => (b.veces - a.veces) || a.nombre.localeCompare(b.nombre));
       },
 
       filtrarCatalogo: (texto) => {
@@ -1617,20 +1635,30 @@ const APP = (() => {
         if (!area) { if (panel) panel.style.display = 'none'; return; }
         if (panel) panel.style.display = 'block';
 
-        // Extraer artículos únicos del historial de entradas del área
         const mapa = {};
+
+        // 1) Catálogo base oficial del inventario (Abril 2026) para el área
+        const catBase = window.CATALOGO_INVENTARIO || {};
+        (catBase[area] || []).forEach(art => {
+          const key = art.n.toLowerCase().trim();
+          if (!mapa[key]) {
+            mapa[key] = { codigo: art.c || '', descripcion: art.n, unidad: art.u || 'PZA', fisica: 0, obs: '' };
+          }
+        });
+
+        // 2) Artículos adicionales del historial de entradas del área
         estado.documentos.forEach(doc => {
           const areaDoc = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
           if (areaDoc !== area) return;
           (doc.articulos || []).forEach(art => {
             const key = art.nombre.toLowerCase().trim();
             if (!mapa[key]) {
-              mapa[key] = { codigo: art.codigo||'', descripcion: art.nombre, unidad: 'PZA', fisica: 0, obs: '' };
+              mapa[key] = { codigo: art.codigo||'', descripcion: art.nombre, unidad: art.unidad||'PZA', fisica: 0, obs: '' };
             }
           });
         });
 
-        artsTemp = Object.values(mapa);
+        artsTemp = Object.values(mapa).sort((a,b) => a.descripcion.localeCompare(b.descripcion));
         renderArts();
         ui.toast(`✓ ${artsTemp.length} artículo(s) cargados del área ${area}`, 'ok');
       },
