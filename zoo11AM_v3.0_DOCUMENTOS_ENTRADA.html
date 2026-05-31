@@ -976,7 +976,7 @@ const APP = (() => {
         const sec = document.getElementById(secId);
         if (sec) {
           sec.classList.add('active');
-          const tabBtn = document.querySelector(`[onclick="APP.ui.showSec('${secId}')"]`);
+          const tabBtn = document.querySelector(`[onclick*="showSec('${secId}')"]`);
           if (tabBtn) tabBtn.classList.add('active');
         }
       },
