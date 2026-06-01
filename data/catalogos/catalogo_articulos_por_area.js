@@ -1,0 +1,7054 @@
+// Catalogo maestro Enero-Abril 2026 - solo codigo y nombre por area
+// Nombre canonico = Abril 2026. Generado automaticamente - no editar a mano.
+window.CATALOGO_ARTICULOS_POR_AREA = {
+  "Snack": [
+    {
+      "codigo": "S-2160001",
+      "nombre": "BACTERICIDA"
+    },
+    {
+      "codigo": "S-2160002",
+      "nombre": "FIBRA METALICA"
+    },
+    {
+      "codigo": "S-2160003",
+      "nombre": "GUANTES DE PLASTICO"
+    },
+    {
+      "codigo": "S-2160004",
+      "nombre": "TOALLAS MAGITEL"
+    },
+    {
+      "codigo": "S-2230005",
+      "nombre": "ENCENDEDOR"
+    },
+    {
+      "codigo": "S-2380001",
+      "nombre": "ACEITE LT"
+    },
+    {
+      "codigo": "S-2380002",
+      "nombre": "AGUA CIEL 600"
+    },
+    {
+      "codigo": "S-2380003",
+      "nombre": "AGUA DE 1 LTO"
+    },
+    {
+      "codigo": "S-2380004",
+      "nombre": "AGUA DE 1.5 LTS"
+    },
+    {
+      "codigo": "S-2380005",
+      "nombre": "AGUACATE"
+    },
+    {
+      "codigo": "S-2380006",
+      "nombre": "AJO"
+    },
+    {
+      "codigo": "S-2380007",
+      "nombre": "ALUMINIO EN ROLLO"
+    },
+    {
+      "codigo": "S-2380008",
+      "nombre": "ATUN"
+    },
+    {
+      "codigo": "S-2380009",
+      "nombre": "AZUCAR 1KG"
+    },
+    {
+      "codigo": "S-2380010",
+      "nombre": "BARRITAS FRESA"
+    },
+    {
+      "codigo": "S-2380011",
+      "nombre": "BIGOTE"
+    },
+    {
+      "codigo": "S-2380012",
+      "nombre": "BIMBOLLO 480GR BIMBO"
+    },
+    {
+      "codigo": "S-2380013",
+      "nombre": "CANELITAS"
+    },
+    {
+      "codigo": "S-2380014",
+      "nombre": "CARNE DE POLLO"
+    },
+    {
+      "codigo": "S-2380015",
+      "nombre": "CARNE DE RES"
+    },
+    {
+      "codigo": "S-2380017",
+      "nombre": "CATSUP(3.8KG)"
+    },
+    {
+      "codigo": "S-2380018",
+      "nombre": "CEBOLLA"
+    },
+    {
+      "codigo": "S-2380019",
+      "nombre": "CHAROLA CHICA THERMICA #066"
+    },
+    {
+      "codigo": "S-2380020",
+      "nombre": "CHEETOS"
+    },
+    {
+      "codigo": "S-2380021",
+      "nombre": "CHICHARRON DE CERDO"
+    },
+    {
+      "codigo": "S-2380022",
+      "nombre": "CHILE"
+    },
+    {
+      "codigo": "S-2380023",
+      "nombre": "CHILE JALAPEÑO(3.8KG) EN RODAJAS"
+    },
+    {
+      "codigo": "S-2380024",
+      "nombre": "CHOCORROLES"
+    },
+    {
+      "codigo": "S-2380025",
+      "nombre": "CHURRUMAIZ"
+    },
+    {
+      "codigo": "S-2380026",
+      "nombre": "COCA COLA LATA 355 ML"
+    },
+    {
+      "codigo": "S-2380027",
+      "nombre": "COCA COLA LATA VARIOS SABORES"
+    },
+    {
+      "codigo": "S-2380028",
+      "nombre": "COCA COLA LIGHT 355ML"
+    },
+    {
+      "codigo": "S-2380029",
+      "nombre": "CONSOME DE POLLO"
+    },
+    {
+      "codigo": "S-2380030",
+      "nombre": "CONTENEDOR TERMICO BISAGRA #7"
+    },
+    {
+      "codigo": "S-2380031",
+      "nombre": "CONTENEDOR TERMICO CON TAPA RECTANGULAR"
+    },
+    {
+      "codigo": "S-2380032",
+      "nombre": "CONTENEDOR TRANSPARENTE CHICO BISAGRA PARA NACHOS"
+    },
+    {
+      "codigo": "S-2380034",
+      "nombre": "CREMA NORTEÑITA BOTE"
+    },
+    {
+      "codigo": "S-2380035",
+      "nombre": "CRUJITOS"
+    },
+    {
+      "codigo": "S-2380036",
+      "nombre": "DELAWARE 600"
+    },
+    {
+      "codigo": "S-2380037",
+      "nombre": "DONITAS"
+    },
+    {
+      "codigo": "S-2380038",
+      "nombre": "DORITOS NACHOS"
+    },
+    {
+      "codigo": "S-2380039",
+      "nombre": "DORITOS INCOGNITAS"
+    },
+    {
+      "codigo": "S-2380040",
+      "nombre": "FLAUTAS DE POLLO EL CAZO 720 GR"
+    },
+    {
+      "codigo": "S-2380041",
+      "nombre": "FLAUTAS DE RES EL CAZO 720 GR"
+    },
+    {
+      "codigo": "S-2380042",
+      "nombre": "FRIJOL"
+    },
+    {
+      "codigo": "S-2380043",
+      "nombre": "FRITOS"
+    },
+    {
+      "codigo": "S-2380044",
+      "nombre": "FRUTSI"
+    },
+    {
+      "codigo": "S-2380045",
+      "nombre": "GALLETA EMPERADOR"
+    },
+    {
+      "codigo": "S-2380046",
+      "nombre": "GALLETA SALADA"
+    },
+    {
+      "codigo": "S-2380047",
+      "nombre": "GANSITO"
+    },
+    {
+      "codigo": "S-2380048",
+      "nombre": "JAMON AMERICANO PAVO KIR"
+    },
+    {
+      "codigo": "S-2380050",
+      "nombre": "JUGO DEL VALLE 600ML"
+    },
+    {
+      "codigo": "S-2380051",
+      "nombre": "JUGO DEL VALLE LATA"
+    },
+    {
+      "codigo": "S-2380052",
+      "nombre": "LAUREL"
+    },
+    {
+      "codigo": "S-2380053",
+      "nombre": "LECHUGA"
+    },
+    {
+      "codigo": "S-2380054",
+      "nombre": "LIMON AGRIO"
+    },
+    {
+      "codigo": "S-2380055",
+      "nombre": "MANTECA"
+    },
+    {
+      "codigo": "S-2380056",
+      "nombre": "MAYONESA (3.8KG)"
+    },
+    {
+      "codigo": "S-2380057",
+      "nombre": "MOSTAZA"
+    },
+    {
+      "codigo": "S-2380058",
+      "nombre": "NAPOLITANO"
+    },
+    {
+      "codigo": "S-2380059",
+      "nombre": "NESTEA 600ML"
+    },
+    {
+      "codigo": "S-2380060",
+      "nombre": "NITO"
+    },
+    {
+      "codigo": "S-2380061",
+      "nombre": "NUGGETS"
+    },
+    {
+      "codigo": "S-2380062",
+      "nombre": "PALOMITAS"
+    },
+    {
+      "codigo": "S-2380063",
+      "nombre": "PAN (HOT-DOG) 8 PACK 340GR BIMBO"
+    },
+    {
+      "codigo": "S-2380064",
+      "nombre": "PAN BIMBO BARRA BLANCO 460 GR"
+    },
+    {
+      "codigo": "S-2380065",
+      "nombre": "PAN BIMBO BARRA INTEGRAL 480 GR"
+    },
+    {
+      "codigo": "S-2380066",
+      "nombre": "PAPA BOLA"
+    },
+    {
+      "codigo": "S-2380067",
+      "nombre": "PAPA FRANCESA PORCION"
+    },
+    {
+      "codigo": "S-2380068",
+      "nombre": "SABRITAS DE LIMON"
+    },
+    {
+      "codigo": "S-2380069",
+      "nombre": "PAPEL ALUMINIO HOJA"
+    },
+    {
+      "codigo": "S-2380070",
+      "nombre": "PAY MINI"
+    },
+    {
+      "codigo": "S-2380071",
+      "nombre": "PECHUGA CORTE MARIPOSA (PARA COCER)"
+    },
+    {
+      "codigo": "S-2380072",
+      "nombre": "PECHUGA MESQUITE (PARA PLANCHA)"
+    },
+    {
+      "codigo": "S-2380073",
+      "nombre": "PINGUINOS"
+    },
+    {
+      "codigo": "S-2380074",
+      "nombre": "PLATIVORO"
+    },
+    {
+      "codigo": "S-2380075",
+      "nombre": "PLATO TERMICO RECTANGULAR #855 (LA GRANDE)"
+    },
+    {
+      "codigo": "S-2380076",
+      "nombre": "PLATO TERMICO REDONDO"
+    },
+    {
+      "codigo": "S-2380077",
+      "nombre": "POLVORONES"
+    },
+    {
+      "codigo": "S-2380078",
+      "nombre": "POWERADE"
+    },
+    {
+      "codigo": "S-2380079",
+      "nombre": "PRINCIPE"
+    },
+    {
+      "codigo": "S-2380080",
+      "nombre": "QUESO AMARILLO PORCION"
+    },
+    {
+      "codigo": "S-2380081",
+      "nombre": "QUESO FRESCO"
+    },
+    {
+      "codigo": "S-2380082",
+      "nombre": "QUESO FRESCO 500GR"
+    },
+    {
+      "codigo": "S-2380083",
+      "nombre": "QUESO FRESCO 800 GR"
+    },
+    {
+      "codigo": "S-2380084",
+      "nombre": "QUESO NACHO"
+    },
+    {
+      "codigo": "S-2380085",
+      "nombre": "QUESO REBANADA"
+    },
+    {
+      "codigo": "S-2380086",
+      "nombre": "RANCHERITOS"
+    },
+    {
+      "codigo": "S-2380087",
+      "nombre": "REBANADAS"
+    },
+    {
+      "codigo": "S-2380088",
+      "nombre": "REFRESCO COCA COLA 600 ML"
+    },
+    {
+      "codigo": "S-2380089",
+      "nombre": "REFRESCO ESCUIS DE VARIOS SABORES DE 600"
+    },
+    {
+      "codigo": "S-2380090",
+      "nombre": "REFRESCO LIGHT 600ML"
+    },
+    {
+      "codigo": "S-2380091",
+      "nombre": "SABRITON"
+    },
+    {
+      "codigo": "S-2380092",
+      "nombre": "SAL (BOTE)"
+    },
+    {
+      "codigo": "S-2380095",
+      "nombre": "SALCHICHA P/ASAR BAFAR 800G PZ"
+    },
+    {
+      "codigo": "S-2380096",
+      "nombre": "SALCHICHA P/HOT-DOG ALPINO PZ.500GR"
+    },
+    {
+      "codigo": "S-2380097",
+      "nombre": "SALSA BOTANERA"
+    },
+    {
+      "codigo": "S-2380098",
+      "nombre": "SERVILLETA EN ROLLO"
+    },
+    {
+      "codigo": "S-2380099",
+      "nombre": "SERVILLETAS"
+    },
+    {
+      "codigo": "S-2380100",
+      "nombre": "SOBRE CATSUP"
+    },
+    {
+      "codigo": "S-2380101",
+      "nombre": "SOPA NISSIN"
+    },
+    {
+      "codigo": "S-2380102",
+      "nombre": "SPONCH"
+    },
+    {
+      "codigo": "S-2380103",
+      "nombre": "SUBMARINOS"
+    },
+    {
+      "codigo": "S-2380104",
+      "nombre": "TAPA PRIMO CUEVAS C/50"
+    },
+    {
+      "codigo": "S-2380105",
+      "nombre": "TENEDORES"
+    },
+    {
+      "codigo": "S-2380106",
+      "nombre": "TOMATE"
+    },
+    {
+      "codigo": "S-2380107",
+      "nombre": "TORTILLA (TOSTADAS SAGITARIO BOLSA 25 PZA)"
+    },
+    {
+      "codigo": "S-2380108",
+      "nombre": "TORTILLA P/NACHOS"
+    },
+    {
+      "codigo": "S-2380109",
+      "nombre": "TOSTITOS"
+    },
+    {
+      "codigo": "S-2380110",
+      "nombre": "TRIKI TRAKES"
+    },
+    {
+      "codigo": "S-2380111",
+      "nombre": "VASO PCO.#0 PRIMO CUEVASC/100"
+    },
+    {
+      "codigo": "S-2380112",
+      "nombre": "VERDURA LATA"
+    },
+    {
+      "codigo": "S-2380113",
+      "nombre": "ZANAHORIA"
+    },
+    {
+      "codigo": "S-2380114",
+      "nombre": "TAKIS FAJITA"
+    },
+    {
+      "codigo": "S-2380115",
+      "nombre": "TAKIS BLUE HEAT"
+    },
+    {
+      "codigo": "S-2380116",
+      "nombre": "TAKIS DRAGON SWEET CHILI"
+    },
+    {
+      "codigo": "S-2380117",
+      "nombre": "TAKIS FUEGO"
+    },
+    {
+      "codigo": "S-2380118",
+      "nombre": "TAKIS HEXAS QUESO"
+    },
+    {
+      "codigo": "S-2380119",
+      "nombre": "TAKIS HUACAMOLES"
+    },
+    {
+      "codigo": "S-2380120",
+      "nombre": "TAKIS SALSA BRAVA"
+    },
+    {
+      "codigo": "S-2380121",
+      "nombre": "BIG MIX QUESO"
+    },
+    {
+      "codigo": "S-2380122",
+      "nombre": "BIG MIX FUEGO"
+    },
+    {
+      "codigo": "S-2380123",
+      "nombre": "CHIPOTLES"
+    },
+    {
+      "codigo": "S-2380124",
+      "nombre": "CHIPS JALAPEÑO"
+    },
+    {
+      "codigo": "S-2380125",
+      "nombre": "CHIPS FUEGO"
+    },
+    {
+      "codigo": "S-2380126",
+      "nombre": "CHIPS SAL"
+    },
+    {
+      "codigo": "S-2380127",
+      "nombre": "RUNNERS ORIGINAL"
+    },
+    {
+      "codigo": "S-2380128",
+      "nombre": "RUNNERS FUEGO"
+    },
+    {
+      "codigo": "S-2380129",
+      "nombre": "CREMA LIQUIDAS BOLSA"
+    },
+    {
+      "codigo": "S-2380130",
+      "nombre": "QUESO NACHO BOLSA 4 KG"
+    },
+    {
+      "codigo": "S-2380131",
+      "nombre": "CHIPS CHIPOTLES"
+    },
+    {
+      "codigo": "S-2380132",
+      "nombre": "PAPAS BARCEL LIMON"
+    },
+    {
+      "codigo": "S-2380133",
+      "nombre": "KARAMELADAS POP 1P"
+    },
+    {
+      "codigo": "S-2380134",
+      "nombre": "BIG MIX INGLESA LIMON"
+    },
+    {
+      "codigo": "S-2380136",
+      "nombre": "RUNNERS WATZ QUESO"
+    },
+    {
+      "codigo": "S-2380137",
+      "nombre": "CHIPS HABANERO"
+    },
+    {
+      "codigo": "S-2380138",
+      "nombre": "CATSUP (4)"
+    },
+    {
+      "codigo": "S-2380139",
+      "nombre": "HOT NUTS ORIGINAL"
+    },
+    {
+      "codigo": "S-2380140",
+      "nombre": "MAYONESA REAL HELLMAN 1.9 L"
+    },
+    {
+      "codigo": "S-2380141",
+      "nombre": "FIZZ NARANJA 600 ML"
+    },
+    {
+      "codigo": "S-2380142",
+      "nombre": "COCA COLA LATA 355 ML SIN AZUCAR"
+    },
+    {
+      "codigo": "S-2380143",
+      "nombre": "DORITOS DINAMITA CHILE Y LIMON"
+    },
+    {
+      "codigo": "S-2380144",
+      "nombre": "DORITOS DINAMITAS FLAMIN-HOT"
+    },
+    {
+      "codigo": "S-2380145",
+      "nombre": "DORITOS PIZZEROLAS"
+    },
+    {
+      "codigo": "S-2380146",
+      "nombre": "MAYONESA (3.4 KG)"
+    },
+    {
+      "codigo": "S-2380147",
+      "nombre": "RUFLES DE SAL"
+    },
+    {
+      "codigo": "S-2380148",
+      "nombre": "RUFLES QUESO"
+    },
+    {
+      "codigo": "S-2380149",
+      "nombre": "SABRITAS ADOBADAS"
+    },
+    {
+      "codigo": "S-2380150",
+      "nombre": "SABRITAS ESPECIAS"
+    },
+    {
+      "codigo": "S-2380151",
+      "nombre": "SABRITAS FLAMIN"
+    },
+    {
+      "codigo": "S-2380152",
+      "nombre": "SABRITAS SAL"
+    },
+    {
+      "codigo": "S-2380153",
+      "nombre": "QUESO FRESCO 340 GR"
+    },
+    {
+      "codigo": "S-2380154",
+      "nombre": "BOLSA POLIPAPEL ALTA FUELLE 24X40"
+    },
+    {
+      "codigo": "S-2380155",
+      "nombre": "RUNNERS LIMON SAL"
+    },
+    {
+      "codigo": "S-2380156",
+      "nombre": "QUESO BOLSA NACHO DE 2 KG"
+    },
+    {
+      "codigo": "S-2380157",
+      "nombre": "QUESO BOLSA NACHO DE 3 KG"
+    },
+    {
+      "codigo": "S-2380158",
+      "nombre": "PAPAS BARCEL ADOBADAS"
+    },
+    {
+      "codigo": "S-2380159",
+      "nombre": "PAPAS BARCEL TOREADAS"
+    },
+    {
+      "codigo": "S-2380160",
+      "nombre": "SABRITAS HABANERAS"
+    },
+    {
+      "codigo": "S-2560001",
+      "nombre": "BOLSA BOLLO 10X20 (PAQ 100)"
+    },
+    {
+      "codigo": "S-2560002",
+      "nombre": "BOLSA BOLLO 10X26 (PAQ 100)"
+    },
+    {
+      "codigo": "S-2560003",
+      "nombre": "BOLSA ROLLO"
+    },
+    {
+      "codigo": "S-2720001",
+      "nombre": "CUBRE PELO"
+    }
+  ],
+  "Tienda": [
+    {
+      "codigo": "T-2380001",
+      "nombre": "ALCANCIA PUERQUITO"
+    },
+    {
+      "codigo": "T-2380002",
+      "nombre": "ANIMAL JUNGLA GDE."
+    },
+    {
+      "codigo": "T-2380003",
+      "nombre": "ANIMAL MINI"
+    },
+    {
+      "codigo": "T-2380004",
+      "nombre": "ANIMALITO KEYDA OSO"
+    },
+    {
+      "codigo": "T-2380005",
+      "nombre": "ATRAPASUEÑOS"
+    },
+    {
+      "codigo": "T-2380006",
+      "nombre": "BINOCULARES"
+    },
+    {
+      "codigo": "T-2380007",
+      "nombre": "BOA DE PELUCHE"
+    },
+    {
+      "codigo": "T-2380008",
+      "nombre": "BOLSA FELINO"
+    },
+    {
+      "codigo": "T-2380009",
+      "nombre": "BOLSA LEON-TIGRE"
+    },
+    {
+      "codigo": "T-2380010",
+      "nombre": "MOCHILA DIVERSOS MODELOS"
+    },
+    {
+      "codigo": "T-2380011",
+      "nombre": "CALCA PARA CARRO"
+    },
+    {
+      "codigo": "T-2380012",
+      "nombre": "CANGURERA"
+    },
+    {
+      "codigo": "T-2380013",
+      "nombre": "CANGURO BB"
+    },
+    {
+      "codigo": "T-2380014",
+      "nombre": "CEBRA DE PELUCHE"
+    },
+    {
+      "codigo": "T-2380015",
+      "nombre": "CHANGO CAFE"
+    },
+    {
+      "codigo": "T-2380016",
+      "nombre": "COCO CH"
+    },
+    {
+      "codigo": "T-2380017",
+      "nombre": "ENCENDEDOR COLOR"
+    },
+    {
+      "codigo": "T-2380018",
+      "nombre": "GORRA DIV.MODELOS"
+    },
+    {
+      "codigo": "T-2380019",
+      "nombre": "JIRAFA HECHADA"
+    },
+    {
+      "codigo": "T-2380020",
+      "nombre": "JIRAFA MINI"
+    },
+    {
+      "codigo": "T-2380021",
+      "nombre": "JIRAFA PARADA"
+    },
+    {
+      "codigo": "T-2380022",
+      "nombre": "LAPICERA"
+    },
+    {
+      "codigo": "T-2380023",
+      "nombre": "LAPIZ IMPRESO"
+    },
+    {
+      "codigo": "T-2380024",
+      "nombre": "LENTES"
+    },
+    {
+      "codigo": "T-2380025",
+      "nombre": "LIBRETA COLOREAR"
+    },
+    {
+      "codigo": "T-2380026",
+      "nombre": "LIBRETA ECOSALVAJE"
+    },
+    {
+      "codigo": "T-2380027",
+      "nombre": "LLAVERO CALADO (COLOR)"
+    },
+    {
+      "codigo": "T-2380028",
+      "nombre": "LLAVERO CARICATURA METAL"
+    },
+    {
+      "codigo": "T-2380029",
+      "nombre": "LLAVERO PELUCHE CON SONIDO"
+    },
+    {
+      "codigo": "T-2380030",
+      "nombre": "LLAVERO PLASTISOL"
+    },
+    {
+      "codigo": "T-2380031",
+      "nombre": "LLAVERO ZOO"
+    },
+    {
+      "codigo": "T-2380032",
+      "nombre": "BOLSA OSO NEGRO"
+    },
+    {
+      "codigo": "T-2380033",
+      "nombre": "OSO NEGRO GD"
+    },
+    {
+      "codigo": "T-2380034",
+      "nombre": "PELUCHE ARENA"
+    },
+    {
+      "codigo": "T-2380035",
+      "nombre": "PELUCHE ARENA CON SONIDO"
+    },
+    {
+      "codigo": "T-2380036",
+      "nombre": "PELUCHE SONAJA"
+    },
+    {
+      "codigo": "T-2380037",
+      "nombre": "PLAYERA ALGODÓN ADULTO MANGA CORTA"
+    },
+    {
+      "codigo": "T-2380038",
+      "nombre": "PLAYERA ALGODÓN NIÑO MANGA CORTA DIF COLOR"
+    },
+    {
+      "codigo": "T-2380039",
+      "nombre": "PLUMA ANIMALITOS"
+    },
+    {
+      "codigo": "T-2380040",
+      "nombre": "PORTA VISERA"
+    },
+    {
+      "codigo": "T-2380041",
+      "nombre": "ROMPECABEZAS FOMI"
+    },
+    {
+      "codigo": "T-2380042",
+      "nombre": "SET DE REGLA"
+    },
+    {
+      "codigo": "T-2380043",
+      "nombre": "SOMBRERO CAZADOR"
+    },
+    {
+      "codigo": "T-2380044",
+      "nombre": "TARRO PELTRE"
+    },
+    {
+      "codigo": "T-2380045",
+      "nombre": "TAZA BLANCA"
+    },
+    {
+      "codigo": "T-2380046",
+      "nombre": "TAZA CEBRA.JIRAFA"
+    },
+    {
+      "codigo": "T-2380047",
+      "nombre": "TAZA COLOR"
+    },
+    {
+      "codigo": "T-2380048",
+      "nombre": "TAZA CONICA IMPRESA"
+    },
+    {
+      "codigo": "T-2380049",
+      "nombre": "TAZA KUBO"
+    },
+    {
+      "codigo": "T-2380050",
+      "nombre": "TAZA NORIA"
+    },
+    {
+      "codigo": "T-2380051",
+      "nombre": "TAZA RUSTICA"
+    },
+    {
+      "codigo": "T-2380052",
+      "nombre": "TEQUILERO IMPRESO"
+    },
+    {
+      "codigo": "T-2380053",
+      "nombre": "TEQUILERO SAN BLAS"
+    },
+    {
+      "codigo": "T-2380054",
+      "nombre": "TEQUILERO ANIMALITOS"
+    },
+    {
+      "codigo": "T-2380055",
+      "nombre": "THERMO ZOO"
+    },
+    {
+      "codigo": "T-2380056",
+      "nombre": "VIBORA DE MADERA"
+    },
+    {
+      "codigo": "T-2380057",
+      "nombre": "ZOOFANTASTICA"
+    },
+    {
+      "codigo": "T-2380058",
+      "nombre": "IMAN"
+    },
+    {
+      "codigo": "T-2380059",
+      "nombre": "PARAGUAS MANGO DE PLASTICO 98 CM DIF COLOR"
+    },
+    {
+      "codigo": "T-2380060",
+      "nombre": "PLAYERA ADULTO MANGA LARGA"
+    },
+    {
+      "codigo": "T-2380061",
+      "nombre": "AUTO SAFARI"
+    },
+    {
+      "codigo": "T-2380062",
+      "nombre": "FELINO DE PELUCHE"
+    },
+    {
+      "codigo": "T-2380063",
+      "nombre": "VASO TERMICO DE ACERO INOXIDABLE"
+    },
+    {
+      "codigo": "T-2380064",
+      "nombre": "GORRA DE NIÑO"
+    },
+    {
+      "codigo": "T-2380065",
+      "nombre": "GORRA DE BEBE"
+    },
+    {
+      "codigo": "T-2380066",
+      "nombre": "LAPICERA PELUCHE (VARIOS MODELOS)"
+    },
+    {
+      "codigo": "T-2380067",
+      "nombre": "LLAVERO PELUCHE (VARIOS MODELOS)"
+    },
+    {
+      "codigo": "T-2380068",
+      "nombre": "LLAVERO METAL"
+    },
+    {
+      "codigo": "T-2380069",
+      "nombre": "PELUCHE ESTÁNDAR (VARIOS MODELOS)"
+    },
+    {
+      "codigo": "T-2380070",
+      "nombre": "CHANGO COLGANTE COLORES (CAFÉ,AZUL Y ROSA)"
+    },
+    {
+      "codigo": "T-2380071",
+      "nombre": "TAZA GLITTER"
+    },
+    {
+      "codigo": "T-2380072",
+      "nombre": "TAZA MAGICA"
+    },
+    {
+      "codigo": "T-2380073",
+      "nombre": "VASO POPOTE"
+    },
+    {
+      "codigo": "T-2380074",
+      "nombre": "PLUMA ZOO"
+    },
+    {
+      "codigo": "T-2380075",
+      "nombre": "IMAN MADERA /DIFERENTE MODELOS)"
+    },
+    {
+      "codigo": "T-2380076",
+      "nombre": "LLAVERO DESTAPADOR"
+    },
+    {
+      "codigo": "T-2380077",
+      "nombre": "PORTA GAFET"
+    },
+    {
+      "codigo": "T-2380078",
+      "nombre": "PORTA LLAVES"
+    },
+    {
+      "codigo": "T-2380079",
+      "nombre": "PLAYERA FULL PRINT MANGA LARGA ADULTO"
+    },
+    {
+      "codigo": "T-2380080",
+      "nombre": "PLAYERA DULL PRINT MANGA LARGA NIÑO"
+    },
+    {
+      "codigo": "T-2380081",
+      "nombre": "PLAYERA FULL PRINT MANGA CORTA ADULTO"
+    },
+    {
+      "codigo": "T-2380082",
+      "nombre": "PLAYERA DULL PRINT MANGA CORTA NIÑO"
+    },
+    {
+      "codigo": "T-2380083",
+      "nombre": "BOLSA ECOLOGICA"
+    },
+    {
+      "codigo": "T-2380084",
+      "nombre": "LLAVERO MADERA"
+    },
+    {
+      "codigo": "T-2380085",
+      "nombre": "VIBORA DE PELUCHE"
+    }
+  ],
+  "Farmacia": [
+    {
+      "codigo": "F-2350038",
+      "nombre": "MONIXEL PLUS 250ML"
+    },
+    {
+      "codigo": "F-2520001",
+      "nombre": "ASUNTOL LIQUIDO"
+    },
+    {
+      "codigo": "F-2520002",
+      "nombre": "BAITICOL DIP 3%"
+    },
+    {
+      "codigo": "F-2520003",
+      "nombre": "BIOTHRINE FLOW 1 LTO."
+    },
+    {
+      "codigo": "F-2520004",
+      "nombre": "MAXFORCE GEL 30gr"
+    },
+    {
+      "codigo": "F-2520005",
+      "nombre": "SULFATO DE COBRE"
+    },
+    {
+      "codigo": "F-2530001",
+      "nombre": "ALUSPRAY"
+    },
+    {
+      "codigo": "F-2530002",
+      "nombre": "BOVITRAZ LITRO AL 12.5%"
+    },
+    {
+      "codigo": "F-2530003",
+      "nombre": "YODO SOL 3.5 LTS."
+    },
+    {
+      "codigo": "F-2530004",
+      "nombre": "TICOFF 1LT"
+    },
+    {
+      "codigo": "F-2530005",
+      "nombre": "SNAP TRIPLE FELINO"
+    },
+    {
+      "codigo": "F-2530006",
+      "nombre": "ALIN-DEPOT 50ML"
+    },
+    {
+      "codigo": "F-2530007",
+      "nombre": "ANESKET (KETAMINA-PET) 10 ML"
+    },
+    {
+      "codigo": "F-2530008",
+      "nombre": "AMINO LITE 500ML SOL INY."
+    },
+    {
+      "codigo": "F-2530009",
+      "nombre": "ARGENTAFIL 1% TUBO CREMA 30G"
+    },
+    {
+      "codigo": "F-2530010",
+      "nombre": "ALBAN"
+    },
+    {
+      "codigo": "F-2530011",
+      "nombre": "BAYTRIL 10%"
+    },
+    {
+      "codigo": "F-2530012",
+      "nombre": "BICARNAT 10 ML."
+    },
+    {
+      "codigo": "F-2530013",
+      "nombre": "ATIPAMEDOL DE 5 ML (ATIMIL)"
+    },
+    {
+      "codigo": "F-2530014",
+      "nombre": "BIOTRINE C.E."
+    },
+    {
+      "codigo": "F-2530015",
+      "nombre": "BIOPAR 10ML"
+    },
+    {
+      "codigo": "F-2530016",
+      "nombre": "BUTONIL X30 5ML"
+    },
+    {
+      "codigo": "F-2530017",
+      "nombre": "CLORKETAM 1000 ML SOL.INY."
+    },
+    {
+      "codigo": "F-2530018",
+      "nombre": "CLORAN OFTALMICO"
+    },
+    {
+      "codigo": "F-2530019",
+      "nombre": "COMPOL ADE 100 ML"
+    },
+    {
+      "codigo": "F-2530020",
+      "nombre": "COMPOL B 100 ML SOL INYECTABLEC (VITAMINA B12)"
+    },
+    {
+      "codigo": "F-2530021",
+      "nombre": "DAMAX INY 100ML (CLINDAMICINA)"
+    },
+    {
+      "codigo": "F-2530022",
+      "nombre": "DANEZONA POLVO"
+    },
+    {
+      "codigo": "F-2530023",
+      "nombre": "ERITROMICINA SOBRE DE 10 G (ERICLOR AVICOLA 10 GRS)"
+    },
+    {
+      "codigo": "F-2530024",
+      "nombre": "DEBRISAN 60GR"
+    },
+    {
+      "codigo": "F-2530025",
+      "nombre": "VITAMINAS C/TETRACILCINA BOTE 500 G (DELTAMICIN)"
+    },
+    {
+      "codigo": "F-2530026",
+      "nombre": "FERRANINA"
+    },
+    {
+      "codigo": "F-2530027",
+      "nombre": "DIRAMOX L.A"
+    },
+    {
+      "codigo": "F-2530028",
+      "nombre": "DMSO GEL 454 GR."
+    },
+    {
+      "codigo": "F-2530029",
+      "nombre": "FELIGEN C.R.P. VACUNA"
+    },
+    {
+      "codigo": "F-2530030",
+      "nombre": "FINADYNE DE 250 ML."
+    },
+    {
+      "codigo": "F-2530031",
+      "nombre": "FURACIN"
+    },
+    {
+      "codigo": "F-2530032",
+      "nombre": "HIDROCORTISONA"
+    },
+    {
+      "codigo": "F-2530033",
+      "nombre": "ISOFLORANE FRASCO C/100ML"
+    },
+    {
+      "codigo": "F-2530034",
+      "nombre": "FRONT LINE, SPRAY 500ML"
+    },
+    {
+      "codigo": "F-2530035",
+      "nombre": "KORTEBA LIPICOR 50 ML dexametazona)"
+    },
+    {
+      "codigo": "F-2530036",
+      "nombre": "KORYTEBA"
+    },
+    {
+      "codigo": "F-2530037",
+      "nombre": "METACAM SOL.INYEC. 10 ML"
+    },
+    {
+      "codigo": "F-2530039",
+      "nombre": "NOBIVAC PUPPY DP"
+    },
+    {
+      "codigo": "F-2530040",
+      "nombre": "METICEL OFTENO GOTERO 10ML"
+    },
+    {
+      "codigo": "F-2530041",
+      "nombre": "NEGASUT POLVO"
+    },
+    {
+      "codigo": "F-2530042",
+      "nombre": "PANACUR GRANULADO 22% PZAS"
+    },
+    {
+      "codigo": "F-2530043",
+      "nombre": "PENTOBARBITAL INY. 100ML"
+    },
+    {
+      "codigo": "F-2530044",
+      "nombre": "RANULIN VET FCO 50ML SOL.INYECTABLE"
+    },
+    {
+      "codigo": "F-2530045",
+      "nombre": "REVECTUR 5%"
+    },
+    {
+      "codigo": "F-2530046",
+      "nombre": "RYMADIL MASTICABLE 100MG"
+    },
+    {
+      "codigo": "F-2530047",
+      "nombre": "PROCIN EQUUS"
+    },
+    {
+      "codigo": "F-2530048",
+      "nombre": "TREXONIL"
+    },
+    {
+      "codigo": "F-2530049",
+      "nombre": "RHEOMACRODEX CS LTO"
+    },
+    {
+      "codigo": "F-2530050",
+      "nombre": "RHEOMACRODEX DX LTO"
+    },
+    {
+      "codigo": "F-2530051",
+      "nombre": "XILACINA FRASCO DE 50 ML (REVERZE)"
+    },
+    {
+      "codigo": "F-2530052",
+      "nombre": "RYMADIL TAB 10MG"
+    },
+    {
+      "codigo": "F-2530053",
+      "nombre": "SE-VE"
+    },
+    {
+      "codigo": "F-2530054",
+      "nombre": "SUFREXAL"
+    },
+    {
+      "codigo": "F-2530055",
+      "nombre": "SYNALAR OFTALMICO 0,015% SOLUCION 15 ML"
+    },
+    {
+      "codigo": "F-2530056",
+      "nombre": "BAYTRIL MAX 250ML"
+    },
+    {
+      "codigo": "F-2530057",
+      "nombre": "PLANTAGO"
+    },
+    {
+      "codigo": "F-2530058",
+      "nombre": "ULCODERMA 15 GR."
+    },
+    {
+      "codigo": "F-2530059",
+      "nombre": "ZOLETIL 100 FRASCO 5ML"
+    },
+    {
+      "codigo": "F-2530060",
+      "nombre": "BAYTRIL TAB. 150 MG C/10 TABS"
+    },
+    {
+      "codigo": "F-2530061",
+      "nombre": "DECTIVER PASTA ORAL"
+    },
+    {
+      "codigo": "F-2530062",
+      "nombre": "FLAGYL SUSP."
+    },
+    {
+      "codigo": "F-2530063",
+      "nombre": "FRONT LINE PIPETA"
+    },
+    {
+      "codigo": "F-2530064",
+      "nombre": "LAPIGEN 100"
+    },
+    {
+      "codigo": "F-2530065",
+      "nombre": "LAPIMICINA (250 ML)"
+    },
+    {
+      "codigo": "F-2530066",
+      "nombre": "NIC-TON SOL. 950 ML."
+    },
+    {
+      "codigo": "F-2530067",
+      "nombre": "PANACUR GRANULADO 22%"
+    },
+    {
+      "codigo": "F-2530068",
+      "nombre": "PANACUR POLVO 4%"
+    },
+    {
+      "codigo": "F-2530069",
+      "nombre": "MUTIVITAMINICO A,D,B12 SOBRE DE 10 GR (VITAFORT A)"
+    },
+    {
+      "codigo": "F-2530071",
+      "nombre": "ENDOGARD TAB 10"
+    },
+    {
+      "codigo": "F-2530072",
+      "nombre": "ENDOGARD TAB 30"
+    },
+    {
+      "codigo": "F-2530073",
+      "nombre": "TIMPAKAPS"
+    },
+    {
+      "codigo": "F-2530074",
+      "nombre": "SULFATO FERROSO"
+    },
+    {
+      "codigo": "F-2530075",
+      "nombre": "METIL PREDNISOLONA (DEPOMEDROL) ACETATO DE METILPREDNISOLONA de 2 ml."
+    },
+    {
+      "codigo": "F-2530076",
+      "nombre": "COLLAR PREVENTEF, P/PERRO GRANDE"
+    },
+    {
+      "codigo": "F-2530077",
+      "nombre": "VACUNA CANIGEN MHA2 ppi /LR VIRBAC"
+    },
+    {
+      "codigo": "F-2530078",
+      "nombre": "INSECTICIDA QUICK BAYT"
+    },
+    {
+      "codigo": "F-2530079",
+      "nombre": "LIDOCAINA CON EPINEFRINA"
+    },
+    {
+      "codigo": "F-2530080",
+      "nombre": "COLLAR PREVENTEF, P/PERRO CHICO"
+    },
+    {
+      "codigo": "F-2530081",
+      "nombre": "FRONT LINE SPRAY 250 ML"
+    },
+    {
+      "codigo": "F-2530082",
+      "nombre": "AVAPENA /CLOROPIRAMINA 5 AMP"
+    },
+    {
+      "codigo": "F-2530083",
+      "nombre": "GLUCOSAMINA FRASCO C/60ML"
+    },
+    {
+      "codigo": "F-2530084",
+      "nombre": "CLORANFENICOL OFTALMICO GOTAS 15 ML"
+    },
+    {
+      "codigo": "F-2530085",
+      "nombre": "DARAPRIME 25 MG 30 COMPRIMIDOS"
+    },
+    {
+      "codigo": "F-2530086",
+      "nombre": "FHRESHMIN MICONAZOL 2% CREMA TUBO 20 G"
+    },
+    {
+      "codigo": "F-2530087",
+      "nombre": "COMBANTRIM FRASCO 30 ML"
+    },
+    {
+      "codigo": "F-2530088",
+      "nombre": "FENILBUTAZONA (BUTAFENIL POLVO ORAL) DE3 GR."
+    },
+    {
+      "codigo": "F-2530089",
+      "nombre": "SULFATO ATROPINA 60 ML"
+    },
+    {
+      "codigo": "F-2530090",
+      "nombre": "KENTANIL"
+    },
+    {
+      "codigo": "F-2530091",
+      "nombre": "XILACINA DE 10 ML (DEXAN-2)"
+    },
+    {
+      "codigo": "F-2530092",
+      "nombre": "TOLAZONIL"
+    },
+    {
+      "codigo": "F-2530093",
+      "nombre": "DEXAMETASONA FRASCO 6 ML (ALIN-DEPOT 6ML)"
+    },
+    {
+      "codigo": "F-2530094",
+      "nombre": "BAYTRIL 50 MG CAJA C/30 PZA"
+    },
+    {
+      "codigo": "F-2530095",
+      "nombre": "ALBENDAGORT 1 LITRO"
+    },
+    {
+      "codigo": "F-2530096",
+      "nombre": "ATROPISA 10 ML."
+    },
+    {
+      "codigo": "F-2530097",
+      "nombre": "CERVICINE 10 ML"
+    },
+    {
+      "codigo": "F-2530098",
+      "nombre": "SULFATOPRIM PLUS 5 KG.(LAPIGEN) CUBETA"
+    },
+    {
+      "codigo": "F-2530099",
+      "nombre": "BAYTRIL 5%"
+    },
+    {
+      "codigo": "F-2530100",
+      "nombre": "DECTIVER 50 INY 500 ML"
+    },
+    {
+      "codigo": "F-2530101",
+      "nombre": "PANCUR SUSP. 10% 1 LTRO"
+    },
+    {
+      "codigo": "F-2530102",
+      "nombre": "PHARMOTIL SOL INY 50 ML. (METOCLOPRAMIDA)"
+    },
+    {
+      "codigo": "F-2530103",
+      "nombre": "SULFATOPRIM 50 INY 250 ML"
+    },
+    {
+      "codigo": "F-2530104",
+      "nombre": "XILOCAINA SPRAY 115 ML"
+    },
+    {
+      "codigo": "F-2530105",
+      "nombre": "BUTAFENIL INY. 100 ML"
+    },
+    {
+      "codigo": "F-2530106",
+      "nombre": "DIRAMOX 100 ML."
+    },
+    {
+      "codigo": "F-2530108",
+      "nombre": "BAYTRIL 10 % ORAL 1 LT"
+    },
+    {
+      "codigo": "F-2530109",
+      "nombre": "GERMICIN SOLUCION 3.5 LTS"
+    },
+    {
+      "codigo": "F-2530110",
+      "nombre": "NEXTGARD 15-30 KG."
+    },
+    {
+      "codigo": "F-2530111",
+      "nombre": "KOAGUSAN 100 ML. VITAMINA K"
+    },
+    {
+      "codigo": "F-2530112",
+      "nombre": "MEDISED"
+    },
+    {
+      "codigo": "F-2530115",
+      "nombre": "LAPICMICINA (100ML)"
+    },
+    {
+      "codigo": "F-2530116",
+      "nombre": "REPELENTE MOSCAS"
+    },
+    {
+      "codigo": "F-2530117",
+      "nombre": "ZYLEXIS"
+    },
+    {
+      "codigo": "F-2530118",
+      "nombre": "BRAVECTO 400 MG 20-40 KG."
+    },
+    {
+      "codigo": "F-2530119",
+      "nombre": "AMOXIPET PLUS 500"
+    },
+    {
+      "codigo": "F-2530120",
+      "nombre": "BAYTRIL TABS C/10 TAB. 150 MG."
+    },
+    {
+      "codigo": "F-2530121",
+      "nombre": "BAYTRIL TABS C/10 TAB. 50 MG."
+    },
+    {
+      "codigo": "F-2530122",
+      "nombre": "DELTAMICIN 500MG"
+    },
+    {
+      "codigo": "F-2530123",
+      "nombre": "CEFTIOFUR 100ML AL 5%"
+    },
+    {
+      "codigo": "F-2530124",
+      "nombre": "MINOXEL PLUS 100ML"
+    },
+    {
+      "codigo": "F-2530125",
+      "nombre": "PRIMECIN SOLUBLE 1L"
+    },
+    {
+      "codigo": "F-2530126",
+      "nombre": "PRIMECIN INY. DE 20ML"
+    },
+    {
+      "codigo": "F-2530127",
+      "nombre": "AMOBAY 75ML"
+    },
+    {
+      "codigo": "F-2530128",
+      "nombre": "DIXIN ORAL"
+    },
+    {
+      "codigo": "F-2530129",
+      "nombre": "GARAMICINA 10ML"
+    },
+    {
+      "codigo": "F-2530130",
+      "nombre": "MICONAZOL CREMA 20 gr."
+    },
+    {
+      "codigo": "F-2530131",
+      "nombre": "ITRACONAZOL 125 MG."
+    },
+    {
+      "codigo": "F-2530132",
+      "nombre": "LAMISIL 30ML"
+    },
+    {
+      "codigo": "F-2530133",
+      "nombre": "ARGENTAFIL 160GR"
+    },
+    {
+      "codigo": "F-2530134",
+      "nombre": "DERMOCLEAN 4 LITROS"
+    },
+    {
+      "codigo": "F-2530135",
+      "nombre": "DERMOCLEAN CBD JABON DE 4 LITROS"
+    },
+    {
+      "codigo": "F-2530136",
+      "nombre": "PIPERAZINA 1KG"
+    },
+    {
+      "codigo": "F-2530137",
+      "nombre": "NEXGARD 100MG"
+    },
+    {
+      "codigo": "F-2530138",
+      "nombre": "DEPOMEDROL 2ML"
+    },
+    {
+      "codigo": "F-2530139",
+      "nombre": "DIRONIL INY. 50ML"
+    },
+    {
+      "codigo": "F-2530140",
+      "nombre": "HAESMACCEL"
+    },
+    {
+      "codigo": "F-2530141",
+      "nombre": "EPINEFRINA 50ML"
+    },
+    {
+      "codigo": "F-2530142",
+      "nombre": "HEPACOM B12 100ML"
+    },
+    {
+      "codigo": "F-2530143",
+      "nombre": "INHEPAR AMPULA 10ML"
+    },
+    {
+      "codigo": "F-2530144",
+      "nombre": "MICROLAX CAJA"
+    },
+    {
+      "codigo": "F-2530145",
+      "nombre": "SOLUTINA OFTALMICA 15ML"
+    },
+    {
+      "codigo": "F-2530146",
+      "nombre": "YATREN 100ML"
+    },
+    {
+      "codigo": "F-2530147",
+      "nombre": "PET TAB"
+    },
+    {
+      "codigo": "F-2530148",
+      "nombre": "CALECTAMIN 250ML"
+    },
+    {
+      "codigo": "F-2530149",
+      "nombre": "HEPACOM 100ML"
+    },
+    {
+      "codigo": "F-2530150",
+      "nombre": "CALMIVET FRASCO 50ML"
+    },
+    {
+      "codigo": "F-2530151",
+      "nombre": "RELAZEPAM VET FRASCO 10ML"
+    },
+    {
+      "codigo": "F-2530152",
+      "nombre": "REVERZE FRASCO 10ML"
+    },
+    {
+      "codigo": "F-2530153",
+      "nombre": "PROCINA 40MG/ML FRASCO 50ML"
+    },
+    {
+      "codigo": "F-2530154",
+      "nombre": "CAPTIVON FRASCO 5ML"
+    },
+    {
+      "codigo": "F-2530155",
+      "nombre": "BUTONIL X10 DE 5ML"
+    },
+    {
+      "codigo": "F-2530156",
+      "nombre": "DOXAPRAM FRASCO DE 20 ML (DOXOPRAM 20 ML)"
+    },
+    {
+      "codigo": "F-2540001",
+      "nombre": "BOLSA AUTOSELLABLE"
+    },
+    {
+      "codigo": "F-2540002",
+      "nombre": "CINTA TESTIGO TUK"
+    },
+    {
+      "codigo": "F-2540003",
+      "nombre": "TERMOMETRO RECTAL"
+    },
+    {
+      "codigo": "F-2540004",
+      "nombre": "ESTETOSCOPIO"
+    },
+    {
+      "codigo": "F-2540005",
+      "nombre": "FIBRA DE VIDRIO"
+    },
+    {
+      "codigo": "F-2540006",
+      "nombre": "VENDA ELASTICA 10CM"
+    },
+    {
+      "codigo": "F-2540007",
+      "nombre": "MARIPOSA 23G"
+    },
+    {
+      "codigo": "F-2540008",
+      "nombre": "AGUJA 18*1 TERUMO"
+    },
+    {
+      "codigo": "F-2540009",
+      "nombre": "BATA CIRUJANO ESTERIL"
+    },
+    {
+      "codigo": "F-2540010",
+      "nombre": "AGUA OXIGENADA SOL. 500ML"
+    },
+    {
+      "codigo": "F-2540011",
+      "nombre": "AGUJA PARA DARDO"
+    },
+    {
+      "codigo": "F-2540012",
+      "nombre": "AGUJA 21*1 TERUMO"
+    },
+    {
+      "codigo": "F-2540013",
+      "nombre": "ALCOHOL ETILICO GALON"
+    },
+    {
+      "codigo": "F-2540014",
+      "nombre": "ALGODON ABSORBENTE 100GR"
+    },
+    {
+      "codigo": "F-2540015",
+      "nombre": "SUTURA POLIGLIACTINA 910 AG TIPO AHUSADA GRUESA DE 70 CM C/12 #0"
+    },
+    {
+      "codigo": "F-2540016",
+      "nombre": "SUTURA POLIGLIACTINA 910 AG TIPO AHUSADA GRUESA DE 70 CM C/12 #1"
+    },
+    {
+      "codigo": "F-2540017",
+      "nombre": "SUTURA POLIGLIACTINA 910 AG TIPO AHUSADA GRUESA DE 70 CM C/12 #2"
+    },
+    {
+      "codigo": "F-2540018",
+      "nombre": "SUTURA POLIGLIACTINA 910 AG TIPO AHUSADA GRUESA DE 70 CM C/12 #3"
+    },
+    {
+      "codigo": "F-2540019",
+      "nombre": "AZUFRE JABON"
+    },
+    {
+      "codigo": "F-2540020",
+      "nombre": "BATA PARA CIRUJANO NO ESTERIL"
+    },
+    {
+      "codigo": "F-2540021",
+      "nombre": "BOLFO SHAMPOO"
+    },
+    {
+      "codigo": "F-2540022",
+      "nombre": "BOLFO TALCO 100 GR."
+    },
+    {
+      "codigo": "F-2540023",
+      "nombre": "DARDO 3CC 1"
+    },
+    {
+      "codigo": "F-2540024",
+      "nombre": "DARDO 3CC 3/4"
+    },
+    {
+      "codigo": "F-2540025",
+      "nombre": "DARDO TELINJECT 5ML"
+    },
+    {
+      "codigo": "F-2540026",
+      "nombre": "DERMO CLEAN"
+    },
+    {
+      "codigo": "F-2540027",
+      "nombre": "DERMOCLEAN CBD JABON"
+    },
+    {
+      "codigo": "F-2540028",
+      "nombre": "FORMOL 37% 935 ML."
+    },
+    {
+      "codigo": "F-2540029",
+      "nombre": "GASA ABS. NO ESTERIL"
+    },
+    {
+      "codigo": "F-2540030",
+      "nombre": "GASA NO EST. 10X10"
+    },
+    {
+      "codigo": "F-2540031",
+      "nombre": "GEL ULTRASONIDO"
+    },
+    {
+      "codigo": "F-2540032",
+      "nombre": "GERMICIN ESPUMA 3.5 LTS"
+    },
+    {
+      "codigo": "F-2540033",
+      "nombre": "GUANTE EXP. EST. MED"
+    },
+    {
+      "codigo": "F-2540034",
+      "nombre": "GUANTE EXP. NO EST. M"
+    },
+    {
+      "codigo": "F-2540035",
+      "nombre": "HOJA P/BISTURI NO. 24 10 ML."
+    },
+    {
+      "codigo": "F-2540036",
+      "nombre": "HISOPO ESTERIL"
+    },
+    {
+      "codigo": "F-2540037",
+      "nombre": "HISOPO NO ESTERIL"
+    },
+    {
+      "codigo": "F-2540038",
+      "nombre": "JERINGA 10ML VERDE"
+    },
+    {
+      "codigo": "F-2540039",
+      "nombre": "JERINGA 5ML VERDE"
+    },
+    {
+      "codigo": "F-2540040",
+      "nombre": "JERINGA 20ML"
+    },
+    {
+      "codigo": "F-2540041",
+      "nombre": "JERINGA 3ML VERDE"
+    },
+    {
+      "codigo": "F-2540042",
+      "nombre": "JERINGA 50ML"
+    },
+    {
+      "codigo": "F-2540043",
+      "nombre": "JERINGA TUBERCULINA AGUJA CAMB."
+    },
+    {
+      "codigo": "F-2540044",
+      "nombre": "MEDIO DE CULTIVO STUARTT"
+    },
+    {
+      "codigo": "F-2540045",
+      "nombre": "NOLVASAN SOL."
+    },
+    {
+      "codigo": "F-2540046",
+      "nombre": "PELICULA RX 35X35CM"
+    },
+    {
+      "codigo": "F-2540047",
+      "nombre": "PELICULA RX 35X43CM"
+    },
+    {
+      "codigo": "F-2540048",
+      "nombre": "PUNZOCAT 14"
+    },
+    {
+      "codigo": "F-2540049",
+      "nombre": "PUNZOCAT 16"
+    },
+    {
+      "codigo": "F-2540050",
+      "nombre": "PUNZOCAT 18"
+    },
+    {
+      "codigo": "F-2540051",
+      "nombre": "PUNZOCAT 20"
+    },
+    {
+      "codigo": "F-2540052",
+      "nombre": "PUNZOCAT 22"
+    },
+    {
+      "codigo": "F-2540053",
+      "nombre": "PUNZOCAT 24"
+    },
+    {
+      "codigo": "F-2540057",
+      "nombre": "SEDASIVA 5CM"
+    },
+    {
+      "codigo": "F-2540058",
+      "nombre": "SEDASIVA 7.5CM"
+    },
+    {
+      "codigo": "F-2540059",
+      "nombre": "SILICON P/AGUJA NO.30"
+    },
+    {
+      "codigo": "F-2540060",
+      "nombre": "SILICON P/AGUJA NO.34"
+    },
+    {
+      "codigo": "F-2540061",
+      "nombre": "SOLUCION DX 500ML"
+    },
+    {
+      "codigo": "F-2540062",
+      "nombre": "SOLUCION CS 1LT"
+    },
+    {
+      "codigo": "F-2540063",
+      "nombre": "SOLUCION CS 500ML"
+    },
+    {
+      "codigo": "F-2540064",
+      "nombre": "SOLUCION HT 500ML"
+    },
+    {
+      "codigo": "F-2540065",
+      "nombre": "TANQUE CO2"
+    },
+    {
+      "codigo": "F-2540066",
+      "nombre": "TINCION DIFFQUICK"
+    },
+    {
+      "codigo": "F-2540067",
+      "nombre": "VASELINA LIQUIDA"
+    },
+    {
+      "codigo": "F-2540068",
+      "nombre": "VET-RAP"
+    },
+    {
+      "codigo": "F-2540069",
+      "nombre": "VENDA ELASTICA 15X5CM"
+    },
+    {
+      "codigo": "F-2540070",
+      "nombre": "VENDA HUATA 7CM"
+    },
+    {
+      "codigo": "F-2540071",
+      "nombre": "VENOCLISIS NORMOGOTEO"
+    },
+    {
+      "codigo": "F-2540072",
+      "nombre": "CUBREBOCAS"
+    },
+    {
+      "codigo": "F-2540073",
+      "nombre": "PELICULA RX 20X25"
+    },
+    {
+      "codigo": "F-2540074",
+      "nombre": "PELICULA RX 24X30"
+    },
+    {
+      "codigo": "F-2540075",
+      "nombre": "PELICULA RX 30X35"
+    },
+    {
+      "codigo": "F-2540076",
+      "nombre": "PELICULA RX 18X24 MAMOGR"
+    },
+    {
+      "codigo": "F-2540077",
+      "nombre": "MICROPORE 5CM"
+    },
+    {
+      "codigo": "F-2540078",
+      "nombre": "CUBREOBJETOS"
+    },
+    {
+      "codigo": "F-2540079",
+      "nombre": "PORTA OBJETOS"
+    },
+    {
+      "codigo": "F-2540080",
+      "nombre": "REVELADOR AUTOMATICO"
+    },
+    {
+      "codigo": "F-2540081",
+      "nombre": "TUBO RECOLECTOR LILA"
+    },
+    {
+      "codigo": "F-2540082",
+      "nombre": "TUBO RECOLECTOR ROJO"
+    },
+    {
+      "codigo": "F-2540083",
+      "nombre": "SHAMPOO ALPHA WHITE 1GAL"
+    },
+    {
+      "codigo": "F-2540084",
+      "nombre": "CEPILLO CIRUJANO"
+    },
+    {
+      "codigo": "F-2540085",
+      "nombre": "CAMISA TIPO VACUTAINER"
+    },
+    {
+      "codigo": "F-2540086",
+      "nombre": "LIGADURA"
+    },
+    {
+      "codigo": "F-2540087",
+      "nombre": "UNIFORME QX"
+    },
+    {
+      "codigo": "F-2540088",
+      "nombre": "BATA QX"
+    },
+    {
+      "codigo": "F-2540089",
+      "nombre": "DARDO 5cc 3/4"
+    },
+    {
+      "codigo": "F-2540090",
+      "nombre": "DARDO 8CC 3/4"
+    },
+    {
+      "codigo": "F-2540091",
+      "nombre": "DARDO 2CC 3/4"
+    },
+    {
+      "codigo": "F-2540092",
+      "nombre": "GUANTE DE NITRILO NO ESTERIL MEDIANO."
+    },
+    {
+      "codigo": "F-2540093",
+      "nombre": "JERINGA PERA DE HULE LE ROY #2"
+    },
+    {
+      "codigo": "F-2540094",
+      "nombre": "JERINGA PERA DE HULE LE ROY #3"
+    },
+    {
+      "codigo": "F-2540095",
+      "nombre": "JABON AZUFRE GRISI 100 G"
+    },
+    {
+      "codigo": "F-2540096",
+      "nombre": "JERINGA DE 3 ML CON AGUJA DE 21 G"
+    },
+    {
+      "codigo": "F-2540097",
+      "nombre": "JERINGA DE 10 ML CON AGUJA DE 21 G"
+    },
+    {
+      "codigo": "F-2540098",
+      "nombre": "AGUJA 18G X 32 C/100"
+    },
+    {
+      "codigo": "F-2540099",
+      "nombre": "AGUJA 21 G X 32 C/100"
+    },
+    {
+      "codigo": "F-2540100",
+      "nombre": "VENDA ELASTICA 7.5 * 4.5 CM"
+    },
+    {
+      "codigo": "F-2540101",
+      "nombre": "ALCOHOL ETILICO LITRO"
+    },
+    {
+      "codigo": "F-2540102",
+      "nombre": "KIT DE MASCARILLA PARA ANESTESIA"
+    },
+    {
+      "codigo": "F-2540103",
+      "nombre": "BOLSA DE RESPIRACION 0.5 LTS"
+    },
+    {
+      "codigo": "F-2540104",
+      "nombre": "BOLSA DE RESPIRACION 1 LTS"
+    },
+    {
+      "codigo": "F-2540105",
+      "nombre": "BOLSA DE RESPIRACION 2.0 LTS"
+    },
+    {
+      "codigo": "F-2540106",
+      "nombre": "BOLSA DE RESPIRACION 3.0 LTS"
+    },
+    {
+      "codigo": "F-2540107",
+      "nombre": "SONDA ENDOTRAQUEAL SIN GLOBO 16 FR"
+    },
+    {
+      "codigo": "F-2540108",
+      "nombre": "SONDA ENDOTRAQUEAL SIN GLOBO 18 FR"
+    },
+    {
+      "codigo": "F-2540109",
+      "nombre": "SONDA ENDOTRAQUEAL SIN GLOBO 20 FR"
+    },
+    {
+      "codigo": "F-2540110",
+      "nombre": "SONDA ENDOTRAQUEAL SIN GLOBO 26 FR"
+    },
+    {
+      "codigo": "F-2540111",
+      "nombre": "SONDA ENDOTRAQUEAL CON GLOBO 30 FR"
+    },
+    {
+      "codigo": "F-2540112",
+      "nombre": "OXIMENTRO DE PULSO"
+    },
+    {
+      "codigo": "F-2540113",
+      "nombre": "CONVENIA"
+    },
+    {
+      "codigo": "F-2540114",
+      "nombre": "COMBANTRIM FRASCO 50 ML"
+    },
+    {
+      "codigo": "F-2540115",
+      "nombre": "MICROCHIPS AVID CON APLICADOR Y NUMERO UNICO DE IDENTIFICACION DE 15 DIGITOS"
+    },
+    {
+      "codigo": "F-2540116",
+      "nombre": "LLAVE 4 VIAS GIRATEK C/TUBO EXT 80"
+    },
+    {
+      "codigo": "F-2540117",
+      "nombre": "JERINGA 3ML 22 X 32 NIPRO PIEZA"
+    },
+    {
+      "codigo": "F-2540118",
+      "nombre": "TORUNDA 500G PROTEC PAQ."
+    },
+    {
+      "codigo": "F-2540119",
+      "nombre": "ESPONJA GASA 10 X 10 C/200 PROTEC"
+    },
+    {
+      "codigo": "F-2540120",
+      "nombre": "BALMEN 456ML"
+    },
+    {
+      "codigo": "F-2540121",
+      "nombre": "EPI-OTIC 120ML"
+    },
+    {
+      "codigo": "F-2540122",
+      "nombre": "SUTURA ABSORBIBLE ATRAMAT 0"
+    },
+    {
+      "codigo": "F-2540123",
+      "nombre": "SUTURA ABSORBIBLE ATRAMAT 1"
+    },
+    {
+      "codigo": "F-2540124",
+      "nombre": "SUTURA ABSORBIBLE ATRAMAT 2"
+    },
+    {
+      "codigo": "F-2540125",
+      "nombre": "SUTURA ABSORBIBLE ATRAMAT 2-0"
+    },
+    {
+      "codigo": "F-2540126",
+      "nombre": "GEL PARA ULTRASONIDO 4KG"
+    },
+    {
+      "codigo": "F-2540127",
+      "nombre": "GUANTE DE NITRILO MEDIANO PIEZA"
+    },
+    {
+      "codigo": "F-2540128",
+      "nombre": "JERINGA 1ML C/AGUJA INT. PIEZA"
+    },
+    {
+      "codigo": "F-2540129",
+      "nombre": "JERINGA 20ML VERDE S/AGUJA PIEZA"
+    },
+    {
+      "codigo": "F-2540130",
+      "nombre": "JERINGA 50ML VERDE S/AGUJA PIEZA"
+    },
+    {
+      "codigo": "F-2540131",
+      "nombre": "MARIPOSA P/EXTRACCION SANGRE 18G."
+    },
+    {
+      "codigo": "F-2540132",
+      "nombre": "MARIPOSA P/EXTRACCION SANGRE 20G."
+    },
+    {
+      "codigo": "F-2540133",
+      "nombre": "MARIPOSA P/EXTRACCION SANGRE 22G."
+    },
+    {
+      "codigo": "F-2540134",
+      "nombre": "ROLLO GASA ABSORBENTE NO EST. 90X90"
+    },
+    {
+      "codigo": "F-2540135",
+      "nombre": "VENDA COBAN VET RAP 7.6CM X 4.5M"
+    },
+    {
+      "codigo": "F-2540136",
+      "nombre": "VENDA ACRILICA SCOTCHCAST"
+    },
+    {
+      "codigo": "F-2540137",
+      "nombre": "BUTAFENIL SOBRES 3GR."
+    },
+    {
+      "codigo": "F-2550001",
+      "nombre": "VASO DE PRECIPITADO 1/2"
+    },
+    {
+      "codigo": "F-2550002",
+      "nombre": "VASO PRECIPITADO 1 LTO"
+    },
+    {
+      "codigo": "F-2550003",
+      "nombre": "ASA BACTERIOLOGICA BANDA NEGRA 1/100"
+    },
+    {
+      "codigo": "F-2550004",
+      "nombre": "ASA BACTERIOLOGICA BANDA ROJA 1/100"
+    },
+    {
+      "codigo": "TF-2540054",
+      "nombre": "TERMOMETRO AMBIENTAL"
+    },
+    {
+      "codigo": "TF-2540055",
+      "nombre": "TERMOMETRO FLEXIBLE"
+    },
+    {
+      "codigo": "TF-2540056",
+      "nombre": "TERMOMETRO ORAL"
+    }
+  ],
+  "Nutrición": [
+    {
+      "codigo": "2220001",
+      "nombre": "ACELGAS"
+    },
+    {
+      "codigo": "2220002",
+      "nombre": "ALFALFA VERDE"
+    },
+    {
+      "codigo": "2220003",
+      "nombre": "APIO"
+    },
+    {
+      "codigo": "2220004",
+      "nombre": "BROCOLI"
+    },
+    {
+      "codigo": "2220005",
+      "nombre": "CACAHUATE"
+    },
+    {
+      "codigo": "2220006",
+      "nombre": "CALABAZA"
+    },
+    {
+      "codigo": "2220007",
+      "nombre": "CAMOTE"
+    },
+    {
+      "codigo": "2220008",
+      "nombre": "CEBOLLA"
+    },
+    {
+      "codigo": "2220009",
+      "nombre": "CHAYOTE"
+    },
+    {
+      "codigo": "2220010",
+      "nombre": "CILANTRO"
+    },
+    {
+      "codigo": "2220011",
+      "nombre": "COLIFLOR"
+    },
+    {
+      "codigo": "2220012",
+      "nombre": "ELOTE"
+    },
+    {
+      "codigo": "2220013",
+      "nombre": "ESPINACA"
+    },
+    {
+      "codigo": "2220014",
+      "nombre": "GUAYABA"
+    },
+    {
+      "codigo": "2220015",
+      "nombre": "HUEVO"
+    },
+    {
+      "codigo": "2220016",
+      "nombre": "LECHUGA"
+    },
+    {
+      "codigo": "2220017",
+      "nombre": "MANZANA"
+    },
+    {
+      "codigo": "2220018",
+      "nombre": "MELON"
+    },
+    {
+      "codigo": "2220019",
+      "nombre": "NARANJA"
+    },
+    {
+      "codigo": "2220020",
+      "nombre": "NOPAL"
+    },
+    {
+      "codigo": "2220021",
+      "nombre": "PAPAYA"
+    },
+    {
+      "codigo": "2220022",
+      "nombre": "PASAS"
+    },
+    {
+      "codigo": "2220023",
+      "nombre": "PEREJIL"
+    },
+    {
+      "codigo": "2220024",
+      "nombre": "PLATANO"
+    },
+    {
+      "codigo": "2220025",
+      "nombre": "SANDIA"
+    },
+    {
+      "codigo": "2220026",
+      "nombre": "TOMATE"
+    },
+    {
+      "codigo": "2220027",
+      "nombre": "UVA"
+    },
+    {
+      "codigo": "2220028",
+      "nombre": "ZANAHORIA"
+    },
+    {
+      "codigo": "2220030",
+      "nombre": "ARROZ KG"
+    },
+    {
+      "codigo": "2220032",
+      "nombre": "NESTUM 4 CEREALES 300GR"
+    },
+    {
+      "codigo": "2220033",
+      "nombre": "PAN INTEGRAL 720GR BIMBO"
+    },
+    {
+      "codigo": "2220034",
+      "nombre": "PAN BIMBO TOSTADO 210GR"
+    },
+    {
+      "codigo": "2220035",
+      "nombre": "YOGURT NATURAL LALA 1KG"
+    },
+    {
+      "codigo": "2220037",
+      "nombre": "MIEL"
+    },
+    {
+      "codigo": "2220042",
+      "nombre": "CANAL DE RES"
+    },
+    {
+      "codigo": "2220043",
+      "nombre": "POLLO ENTERO"
+    },
+    {
+      "codigo": "2220044",
+      "nombre": "ALFALFA ACHICALADA"
+    },
+    {
+      "codigo": "2220045",
+      "nombre": "ZACATE"
+    },
+    {
+      "codigo": "2220046",
+      "nombre": "AVENA ROLADA 40KG"
+    },
+    {
+      "codigo": "2220047",
+      "nombre": "CONEJINA 40KG"
+    },
+    {
+      "codigo": "2220048",
+      "nombre": "ENGORDA DE CERDO 40KG"
+    },
+    {
+      "codigo": "2220049",
+      "nombre": "ENGORDINA DE POLLO DE 40KG"
+    },
+    {
+      "codigo": "2220050",
+      "nombre": "CAMPEON CROQUETAS (SILVERT)"
+    },
+    {
+      "codigo": "2220051",
+      "nombre": "MAZURI P/MONO NVO MUNDO"
+    },
+    {
+      "codigo": "2220052",
+      "nombre": "INSECTIVORE DIET MAZURI"
+    },
+    {
+      "codigo": "2220053",
+      "nombre": "ZULIFE SOFT-BILL DIET MAZURI"
+    },
+    {
+      "codigo": "2220054",
+      "nombre": "SALVADO 25 KG."
+    },
+    {
+      "codigo": "2220055",
+      "nombre": "NUTRI-PEC 25KG (alimento para peces)"
+    },
+    {
+      "codigo": "2220056",
+      "nombre": "OMOLIN 40KG (equino)"
+    },
+    {
+      "codigo": "2220057",
+      "nombre": "PURIMAS CARNE 40KG (bovino)"
+    },
+    {
+      "codigo": "2220058",
+      "nombre": "REVOLTURA DE 40KG"
+    },
+    {
+      "codigo": "2220059",
+      "nombre": "SEMILLA DE GIRASOL"
+    },
+    {
+      "codigo": "2220060",
+      "nombre": "MIXTURA PARA AVES"
+    },
+    {
+      "codigo": "2220061",
+      "nombre": "MAZURI KANGAROO"
+    },
+    {
+      "codigo": "2220062",
+      "nombre": "MAZURI CARNIVORE"
+    },
+    {
+      "codigo": "2220063",
+      "nombre": "MAZURI PRIMATE DIETS"
+    },
+    {
+      "codigo": "2220064",
+      "nombre": "MAZURI PARROTS MAINT"
+    },
+    {
+      "codigo": "2220065",
+      "nombre": "SUPER CRIA MASCOTA"
+    },
+    {
+      "codigo": "2220066",
+      "nombre": "CENTRUM VITAMINAS Y MINERALES"
+    },
+    {
+      "codigo": "2220067",
+      "nombre": "NUTRI-PLUS GEL"
+    },
+    {
+      "codigo": "2220068",
+      "nombre": "CASEC"
+    },
+    {
+      "codigo": "2220069",
+      "nombre": "SINUBERASE"
+    },
+    {
+      "codigo": "2220070",
+      "nombre": "COMPLEJO B"
+    },
+    {
+      "codigo": "2220071",
+      "nombre": "SIMIFLEX"
+    },
+    {
+      "codigo": "2220072",
+      "nombre": "CALTRATE"
+    },
+    {
+      "codigo": "2220073",
+      "nombre": "OMEGA 3,6,9 TRIPLEX C/60 CAP."
+    },
+    {
+      "codigo": "2220074",
+      "nombre": "POLI-VI-SOL PEDIATRICO (FCO/GOTERO) 50 ML"
+    },
+    {
+      "codigo": "2220075",
+      "nombre": "OVINA ENGORDA 40KG"
+    },
+    {
+      "codigo": "2220076",
+      "nombre": "GROWLAC® PET FORMULA LACTEA PAQ c/12"
+    },
+    {
+      "codigo": "2220077",
+      "nombre": "REDOXON INFANTIL"
+    },
+    {
+      "codigo": "2220078",
+      "nombre": "STARTER MOISSE ROYAL CANIN"
+    },
+    {
+      "codigo": "2220079",
+      "nombre": "GELCAPS VIT E-400 FCO CON 90 CAPS"
+    },
+    {
+      "codigo": "2220080",
+      "nombre": "VINAGRE"
+    },
+    {
+      "codigo": "2220081",
+      "nombre": "FERVINAC 4.5 KG"
+    },
+    {
+      "codigo": "2220082",
+      "nombre": "MAZURI FERRET"
+    },
+    {
+      "codigo": "2220083",
+      "nombre": "POLLO PIERNA Y MUSLO"
+    },
+    {
+      "codigo": "2220084",
+      "nombre": "SUPER CRIS KITTENS"
+    },
+    {
+      "codigo": "2220085",
+      "nombre": "ALPISTE"
+    },
+    {
+      "codigo": "2220086",
+      "nombre": "MANTEQUILLA"
+    },
+    {
+      "codigo": "2220087",
+      "nombre": "SAL MINERAL"
+    },
+    {
+      "codigo": "2220088",
+      "nombre": "SAL DE GRANO"
+    },
+    {
+      "codigo": "2220089",
+      "nombre": "CALAMAR"
+    },
+    {
+      "codigo": "2220090",
+      "nombre": "CAMARON"
+    },
+    {
+      "codigo": "2220091",
+      "nombre": "FILETE DE LISA"
+    },
+    {
+      "codigo": "2220092",
+      "nombre": "LECHE NIDO"
+    },
+    {
+      "codigo": "2220093",
+      "nombre": "LECHE ESBILAC"
+    },
+    {
+      "codigo": "2220094",
+      "nombre": "BLOCK MINERALES"
+    },
+    {
+      "codigo": "2220131",
+      "nombre": "MANGO"
+    },
+    {
+      "codigo": "2220132",
+      "nombre": "SALVADILLO"
+    },
+    {
+      "codigo": "2220133",
+      "nombre": "ROYAL CANIN"
+    },
+    {
+      "codigo": "2220134",
+      "nombre": "BABY CAT MILK"
+    },
+    {
+      "codigo": "2220135",
+      "nombre": "EMULSION SCOTT"
+    },
+    {
+      "codigo": "2220136",
+      "nombre": "FERVINAC 500 GR."
+    },
+    {
+      "codigo": "2220137",
+      "nombre": "ENGORDINA DE POLLO DE 25 KG"
+    },
+    {
+      "codigo": "2220138",
+      "nombre": "AVENA ROLADA 25 KG"
+    },
+    {
+      "codigo": "2220139",
+      "nombre": "CONEJINA 25 KG"
+    },
+    {
+      "codigo": "2220140",
+      "nombre": "ENGORDA DE CERDO 25 KG"
+    },
+    {
+      "codigo": "2220141",
+      "nombre": "OMOLIN 25 KG"
+    },
+    {
+      "codigo": "2220142",
+      "nombre": "OVINA ENGORDA 25 KG"
+    },
+    {
+      "codigo": "2220143",
+      "nombre": "PURIMAS CARNE 25 KG"
+    },
+    {
+      "codigo": "2220144",
+      "nombre": "LECHE PARA PERRO/GATO 450 ML."
+    },
+    {
+      "codigo": "2220145",
+      "nombre": "SUPLEMENTO DE CALCIO PARA REPTILES EN REPAASHY SUPER CAL HYD BOTE C/6 OZ"
+    },
+    {
+      "codigo": "2220146",
+      "nombre": "SUPLEMENTO VITAMINICOEN SPRAY PARA REPTILES ZILLA BOTE C/ 236 ML."
+    },
+    {
+      "codigo": "2220147",
+      "nombre": "PAPILLA GERBER 100 GR."
+    },
+    {
+      "codigo": "2220148",
+      "nombre": "ALIMENTO CONCENTRADO VENADO 20KG"
+    },
+    {
+      "codigo": "2220149",
+      "nombre": "ALIMENTO PARA GALLINA PONEDORA 25KG"
+    },
+    {
+      "codigo": "2220150",
+      "nombre": "CARBONATO DE CALCIO"
+    },
+    {
+      "codigo": "2220151",
+      "nombre": "MAIZ ENTERO"
+    }
+  ],
+  "Mantenimiento": [
+    {
+      "codigo": "2461",
+      "nombre": "CABLE USO RUDO 2X12"
+    },
+    {
+      "codigo": "2471",
+      "nombre": "MULTIMALLA GALVANIZADA 1 X 20 M 5 X 10 CM GENERICA"
+    },
+    {
+      "codigo": "2561",
+      "nombre": "TAPA PVC SANITARIA 4\""
+    },
+    {
+      "codigo": "M-2150001",
+      "nombre": "VINIL ADHESIVO"
+    },
+    {
+      "codigo": "M-2160001",
+      "nombre": "ACEITE AH-80"
+    },
+    {
+      "codigo": "M-2160002",
+      "nombre": "ACEITE DE PISOS"
+    },
+    {
+      "codigo": "M-2160003",
+      "nombre": "ARMOR ALL"
+    },
+    {
+      "codigo": "M-2160004",
+      "nombre": "AROMATIZANTE AMBIENTAL GLADE 400ML"
+    },
+    {
+      "codigo": "M-2160005",
+      "nombre": "ATOMIZADOR"
+    },
+    {
+      "codigo": "M-2160006",
+      "nombre": "ATOMIZADOR COMPLETO"
+    },
+    {
+      "codigo": "M-2160007",
+      "nombre": "BIO PAPEL SANITARIO"
+    },
+    {
+      "codigo": "M-2160008",
+      "nombre": "BIO PINOL"
+    },
+    {
+      "codigo": "M-2160009",
+      "nombre": "BIOFABULOSO LAVANDA"
+    },
+    {
+      "codigo": "M-2160010",
+      "nombre": "BOLSA EN ROLLO 1.02*1.22 C/10"
+    },
+    {
+      "codigo": "M-2160011",
+      "nombre": "BOLSA EN ROLLO 76*94 CA/20"
+    },
+    {
+      "codigo": "M-2160012",
+      "nombre": "BOLSA NEGRA 50 x 70"
+    },
+    {
+      "codigo": "M-2160013",
+      "nombre": "BOLSA NEGRA 70 X 90"
+    },
+    {
+      "codigo": "M-2160014",
+      "nombre": "BOLSA NEGRA 90 X 1.20"
+    },
+    {
+      "codigo": "M-2160015",
+      "nombre": "BOMBA DESTAPACANOS"
+    },
+    {
+      "codigo": "M-2160016",
+      "nombre": "CEPILLO CERDA SUAVE 35CM"
+    },
+    {
+      "codigo": "M-2160017",
+      "nombre": "CEPILLO DE 24\""
+    },
+    {
+      "codigo": "M-2160018",
+      "nombre": "CEPILLO DE 30 CM"
+    },
+    {
+      "codigo": "M-2160019",
+      "nombre": "CEPILLO DE ALAMBRE"
+    },
+    {
+      "codigo": "M-2160020",
+      "nombre": "CEPILLO PARA WC"
+    },
+    {
+      "codigo": "M-2160021",
+      "nombre": "CREOLINA"
+    },
+    {
+      "codigo": "M-2160022",
+      "nombre": "DESENGRASANTE SWIPE CUBETA"
+    },
+    {
+      "codigo": "M-2160023",
+      "nombre": "DESINFECTANTE SWIPO CUBETA"
+    },
+    {
+      "codigo": "M-2160024",
+      "nombre": "DESPACHADOR DE BIOPAPEL"
+    },
+    {
+      "codigo": "M-2160025",
+      "nombre": "DESPACHADOR DE JABON"
+    },
+    {
+      "codigo": "M-2160026",
+      "nombre": "DESPACHADOR DE TOALLA ROLLO"
+    },
+    {
+      "codigo": "M-2160027",
+      "nombre": "DETERGENTE EN POLVO"
+    },
+    {
+      "codigo": "M-2160028",
+      "nombre": "DON LIMPIO"
+    },
+    {
+      "codigo": "M-2160029",
+      "nombre": "ESCOBA DE ESPIGA MEDIANA MANGO VERDE"
+    },
+    {
+      "codigo": "M-2160030",
+      "nombre": "ESCOBA DE PLASTICO MEDIANA MANGO DE MADERA"
+    },
+    {
+      "codigo": "M-2160031",
+      "nombre": "ESCOBA PLASTICO TIPO ABANICO"
+    },
+    {
+      "codigo": "M-2160032",
+      "nombre": "ESCOBA TIPO CEPILLO ECONOMICO"
+    },
+    {
+      "codigo": "M-2160033",
+      "nombre": "FIBRA DE METAL"
+    },
+    {
+      "codigo": "M-2160034",
+      "nombre": "FIBRA MIXTA"
+    },
+    {
+      "codigo": "M-2160035",
+      "nombre": "FIBRA VERDE DE USO GENERAL"
+    },
+    {
+      "codigo": "M-2160036",
+      "nombre": "FOAM CLEANER"
+    },
+    {
+      "codigo": "M-2160037",
+      "nombre": "FRANELA GRIS"
+    },
+    {
+      "codigo": "M-2160038",
+      "nombre": "GUANTE DE LATEX 9 (USO TOXICO)"
+    },
+    {
+      "codigo": "M-2160039",
+      "nombre": "INSECTICIDA RAID MAX"
+    },
+    {
+      "codigo": "M-2160040",
+      "nombre": "INSECTICIDA RAID Y CASA JARDIN"
+    },
+    {
+      "codigo": "M-2160041",
+      "nombre": "JABON LIQUIDO PARA TRASTES"
+    },
+    {
+      "codigo": "M-2160042",
+      "nombre": "JALADOR DE AGUA 30 CMS"
+    },
+    {
+      "codigo": "M-2160043",
+      "nombre": "KIT ANALIZADOR DE AGUA"
+    },
+    {
+      "codigo": "M-2160044",
+      "nombre": "LIMONOL"
+    },
+    {
+      "codigo": "M-2160045",
+      "nombre": "LIMPIA VIDRIOS LIQUIDO"
+    },
+    {
+      "codigo": "M-2160046",
+      "nombre": "LIMPIADOR AEROSOL PARA MADERA"
+    },
+    {
+      "codigo": "M-2160047",
+      "nombre": "LIMPIADOR DE VIDRIO DE 20 CM"
+    },
+    {
+      "codigo": "M-2160048",
+      "nombre": "LYSOL ANTIBACTERIAL"
+    },
+    {
+      "codigo": "M-2160049",
+      "nombre": "LYSOL CITRUS"
+    },
+    {
+      "codigo": "M-2160050",
+      "nombre": "PAPEL HIGIENICO PAQ."
+    },
+    {
+      "codigo": "M-2160051",
+      "nombre": "PASTILLA PARA WC CON CANASTILLA"
+    },
+    {
+      "codigo": "M-2160052",
+      "nombre": "PLUMERO 60CM"
+    },
+    {
+      "codigo": "M-2160053",
+      "nombre": "PLUMERO LARGO"
+    },
+    {
+      "codigo": "M-2160054",
+      "nombre": "QUITACOCHAMBRE"
+    },
+    {
+      "codigo": "M-2160055",
+      "nombre": "RECOGEDOR DE LAMINA REFORZADO"
+    },
+    {
+      "codigo": "M-2160056",
+      "nombre": "RECOGEDOR MEDIA LATA"
+    },
+    {
+      "codigo": "M-2160057",
+      "nombre": "RED DE BOLSA PARA ALBERCA"
+    },
+    {
+      "codigo": "M-2160058",
+      "nombre": "REPUESTO PARA MOP"
+    },
+    {
+      "codigo": "M-2160059",
+      "nombre": "SANITIZANTE GEL MANOS"
+    },
+    {
+      "codigo": "M-2160060",
+      "nombre": "SHAMPOO PARA AUTOS"
+    },
+    {
+      "codigo": "M-2160061",
+      "nombre": "SHAMPOO PARA MANOS"
+    },
+    {
+      "codigo": "M-2160062",
+      "nombre": "SUAVITEL"
+    },
+    {
+      "codigo": "M-2160063",
+      "nombre": "TAPETE PARA MINGITORIO CON PASTILLA"
+    },
+    {
+      "codigo": "M-2160064",
+      "nombre": "TOALLA AZUL MULTIUSOS (ROLLO)"
+    },
+    {
+      "codigo": "M-2160065",
+      "nombre": "TOALLA DESINFECTANTE MEMBER"
+    },
+    {
+      "codigo": "M-2160066",
+      "nombre": "TOALLA INTERDOBLADA"
+    },
+    {
+      "codigo": "M-2160067",
+      "nombre": "TOALLA ROLLO P/MANO CAJA CON 6"
+    },
+    {
+      "codigo": "M-2160068",
+      "nombre": "TRAPEADOR DE PABILO MANGO DE MADERA"
+    },
+    {
+      "codigo": "M-2160069",
+      "nombre": "VITROLIMPIADOR SARRICIDA"
+    },
+    {
+      "codigo": "M-2160070",
+      "nombre": "WINDEX C/ATOMIZADOR 500ML"
+    },
+    {
+      "codigo": "M-2160071",
+      "nombre": "CEPILLO NAYLON METAL MANGO 18\""
+    },
+    {
+      "codigo": "M-2160072",
+      "nombre": "TRAPEADOR PLANO ATRAPA POLVO MECHON"
+    },
+    {
+      "codigo": "M-2160073",
+      "nombre": "ABRILLANTADOR PARA VINIL, LUBRICANTE L"
+    },
+    {
+      "codigo": "M-2160074",
+      "nombre": "BOLSA EN ROLLO DE .94 X 1.50"
+    },
+    {
+      "codigo": "M-2160075",
+      "nombre": "SANITIZANTE LIQUIDO"
+    },
+    {
+      "codigo": "M-2160076",
+      "nombre": "LIMPIADOR AROMA LIMON"
+    },
+    {
+      "codigo": "M-2160077",
+      "nombre": "CUBETA DE PLASTICO DE 20 LTS"
+    },
+    {
+      "codigo": "M-2160078",
+      "nombre": "DETERGENTE BIOLOGICO QUALITY D 5 KG"
+    },
+    {
+      "codigo": "M-2160079",
+      "nombre": "BOLSA NEGRA 94 x 1.50"
+    },
+    {
+      "codigo": "M-2160080",
+      "nombre": "DETERGENTE POLVO ARCOIRIS 9KG"
+    },
+    {
+      "codigo": "M-2160081",
+      "nombre": "LAVASTRATATES LIQ."
+    },
+    {
+      "codigo": "M-2160082",
+      "nombre": "TAPETE MINGITORIO LISO"
+    },
+    {
+      "codigo": "M-2160083",
+      "nombre": "TOALLA AZUL MULTIUSOS (JERGA)"
+    },
+    {
+      "codigo": "M-2160084",
+      "nombre": "BOLSA ROLLO 90 x 1.50"
+    },
+    {
+      "codigo": "M-2160086",
+      "nombre": "DESPACHADOR DE PAPEL JUMBO"
+    },
+    {
+      "codigo": "M-2160087",
+      "nombre": "ESCOBA CERDA SUAVE 35 CM"
+    },
+    {
+      "codigo": "M-2160088",
+      "nombre": "BOLSA DE ROLLO 48 X 48"
+    },
+    {
+      "codigo": "M-2160089",
+      "nombre": "CEPILLO CERDA SUAVE 30 CM"
+    },
+    {
+      "codigo": "M-2160090",
+      "nombre": "AROMA LIQUIDO AMBIENTAL AROMA CANELA"
+    },
+    {
+      "codigo": "M-2160091",
+      "nombre": "CUBETA DE PLASTICO DE 18 LTS"
+    },
+    {
+      "codigo": "M-2160092",
+      "nombre": "JALADOR DE AGUA PARA PISO DE 40\""
+    },
+    {
+      "codigo": "M-2160093",
+      "nombre": "PASTILLAS PARA TANQUE DE BAÑO"
+    },
+    {
+      "codigo": "M-2160094",
+      "nombre": "SOSA CAUSTICA"
+    },
+    {
+      "codigo": "M-2160095",
+      "nombre": "PAR DE GUANTES PARA BAÑO USO RUDO MANGA AL CODO #8"
+    },
+    {
+      "codigo": "M-2160096",
+      "nombre": "ROLLO BOLSA NEGRA 90 X 1.20"
+    },
+    {
+      "codigo": "M-2160097",
+      "nombre": "REPELENTE SPRAY"
+    },
+    {
+      "codigo": "M-2160099",
+      "nombre": "JALADOR DE AGUA PARA PISO DE 30\""
+    },
+    {
+      "codigo": "M-2160100",
+      "nombre": "LIMPIADOR Y TRATAMIENTO PARA MINGITORIO LIQUIDO"
+    },
+    {
+      "codigo": "M-2160101",
+      "nombre": "TAPETE DE HULE PARA USO RUDO DE BAÑO 60CM X 40CM"
+    },
+    {
+      "codigo": "M-2160102",
+      "nombre": "SACUDIDOR FLEXIBLE REYNERA"
+    },
+    {
+      "codigo": "M-2160103",
+      "nombre": "VALVULA ESFERA SOLDABLE DE 1/2"
+    },
+    {
+      "codigo": "M-2160104",
+      "nombre": "FOAM CLEANER 20 LITROS PORRON ECOLOGICO"
+    },
+    {
+      "codigo": "M-2160105",
+      "nombre": "BOLSA 70X90 NEGRA ROLLO"
+    },
+    {
+      "codigo": "M-2160106",
+      "nombre": "BOLSA 90X1.20 NEGRA ROLLO"
+    },
+    {
+      "codigo": "M-2160107",
+      "nombre": "CEPILLO DE PLASTICO TIPO PLANCHA DE 15 CM."
+    },
+    {
+      "codigo": "M-2160108",
+      "nombre": "ABRILLANTADOR DE MADERA 750ML"
+    },
+    {
+      "codigo": "M-2160109",
+      "nombre": "ACEITE RENOVADOR DE MUEBLES"
+    },
+    {
+      "codigo": "M-2160110",
+      "nombre": "CUBETA DE PLASTICO CHICA 10LTS"
+    },
+    {
+      "codigo": "M-2160111",
+      "nombre": "CUBETA DE PLASTICO 19 LITROS ASA METALICA"
+    },
+    {
+      "codigo": "M-2160112",
+      "nombre": "ESCOBA DE ESPIGA MEDIANA 7 HILOS"
+    },
+    {
+      "codigo": "M-2160113",
+      "nombre": "ESCOBA DE PLASTICO MEDIANA 6 HILOS"
+    },
+    {
+      "codigo": "M-2160114",
+      "nombre": "GUANTES DE LATEX DESECHABLE C/100 PIEZAS"
+    },
+    {
+      "codigo": "M-2160115",
+      "nombre": "JALADOR BASE DE ACERO 50CM"
+    },
+    {
+      "codigo": "M-2160116",
+      "nombre": "LUSTRADOR DE PISOS"
+    },
+    {
+      "codigo": "M-2160117",
+      "nombre": "MECHUDO PARA PISO #40"
+    },
+    {
+      "codigo": "M-2160118",
+      "nombre": "PAR DE GUANTES DE NITRILO (MANEJO LIQUIDOS TOXICOS)"
+    },
+    {
+      "codigo": "M-2160119",
+      "nombre": "REPUESTO DE MECHUDO PARA PISOS #40"
+    },
+    {
+      "codigo": "M-2160120",
+      "nombre": "TAPETE PARA MINGITORIO CON MICROTUBOS"
+    },
+    {
+      "codigo": "M-2160121",
+      "nombre": "AROMA LIQUIDO AMBIENTAL AROMA LIMON"
+    },
+    {
+      "codigo": "M-2160122",
+      "nombre": "LIMPIADOR DE CARBURADOR DE 470 ML."
+    },
+    {
+      "codigo": "M-2390001",
+      "nombre": "CATALIZADOR P/RESINA 40 ML"
+    },
+    {
+      "codigo": "M-2390002",
+      "nombre": "ARENA SILICA DE 20/40 DE 50 KILOS"
+    },
+    {
+      "codigo": "M-2390003",
+      "nombre": "COLOR PARA CEMENTO (ROJO OXIDO)"
+    },
+    {
+      "codigo": "M-2390004",
+      "nombre": "DESMOLDANTE EN POLVO PARA CONCRETO"
+    },
+    {
+      "codigo": "M-2410001",
+      "nombre": "MINGITORIO BOCANA VITR"
+    },
+    {
+      "codigo": "M-2410002",
+      "nombre": "PISO DIAMOND WHITE 33X"
+    },
+    {
+      "codigo": "M-2410003",
+      "nombre": "TAZA APOLO FLUX REGULA"
+    },
+    {
+      "codigo": "M-2410004",
+      "nombre": "GRAVA TRITURADA CAMION 7 METROS"
+    },
+    {
+      "codigo": "M-2410005",
+      "nombre": "ARENA CAMION DE 7 METROS"
+    },
+    {
+      "codigo": "M-2410006",
+      "nombre": "LADRILLO"
+    },
+    {
+      "codigo": "M-2410007",
+      "nombre": "ARENA TRITURADA M3"
+    },
+    {
+      "codigo": "M-2410008",
+      "nombre": "GRAVA TRITURADA M3"
+    },
+    {
+      "codigo": "M-2410009",
+      "nombre": "TIERRA NEGRA NUTRIGARDEN"
+    },
+    {
+      "codigo": "M-2420001",
+      "nombre": "BLOCK TIPO MTY 10*20*40"
+    },
+    {
+      "codigo": "M-2420003",
+      "nombre": "CEMENTO GRIS 50 KGS"
+    },
+    {
+      "codigo": "M-2420004",
+      "nombre": "BLOCK 15 REGULAR (PESADO)"
+    },
+    {
+      "codigo": "M-2420005",
+      "nombre": "CEMENTO BLANCO X KILO"
+    },
+    {
+      "codigo": "M-2420006",
+      "nombre": "ADHESIVO CREST 40KG"
+    },
+    {
+      "codigo": "M-2420007",
+      "nombre": "BLOCK 15 X 20 X 40 PESADO"
+    },
+    {
+      "codigo": "M-2420008",
+      "nombre": "DUROCK MEDIDA 4 PIES X 8 PIES"
+    },
+    {
+      "codigo": "M-2420009",
+      "nombre": "CEMENTO GRIS 25 KG"
+    },
+    {
+      "codigo": "M-2430001",
+      "nombre": "PLAFON 60 X 60"
+    },
+    {
+      "codigo": "M-2430002",
+      "nombre": "CAL HIDRATADA DE 25 KG"
+    },
+    {
+      "codigo": "M-2430003",
+      "nombre": "YESO"
+    },
+    {
+      "codigo": "M-2440001",
+      "nombre": "HOJA DE CAOBILLA 3MM"
+    },
+    {
+      "codigo": "M-2440002",
+      "nombre": "HOJA DE TRIPLAY DE PINO 12MM"
+    },
+    {
+      "codigo": "M-2440003",
+      "nombre": "TABLON DE PINO DE 2\" X 1\" X 10\""
+    },
+    {
+      "codigo": "M-2440004",
+      "nombre": "MADERA 1 X 10 X 8 CHILENA"
+    },
+    {
+      "codigo": "M-2440005",
+      "nombre": "TABLA DE 1\" DE ESPESOR 30CM"
+    },
+    {
+      "codigo": "M-2440006",
+      "nombre": "TABLA DE 4\" X1\"X10 PIES"
+    },
+    {
+      "codigo": "M-2440007",
+      "nombre": "MADERA DE PINO 3\" ANCHO X 1 1/2\" GROSOR X 3 M DE LARGO"
+    },
+    {
+      "codigo": "M-2440008",
+      "nombre": "MADERA DE PINO 4\" ANCHO X 1 1/2\" GROSOR X 3 M DE LARGO"
+    },
+    {
+      "codigo": "M-2440009",
+      "nombre": "MADERA DE PINO 5\" ANCHO X 1 1/2\" GROSOR X 3 M DE LARGO"
+    },
+    {
+      "codigo": "M-2440010",
+      "nombre": "MADERA DE PINO DE 1X4X10"
+    },
+    {
+      "codigo": "M-2440011",
+      "nombre": "HOJA DE TRIPLAY 19MM"
+    },
+    {
+      "codigo": "M-2440012",
+      "nombre": "BARROTE 1 1/2 X 4X10 CEPILLADO"
+    },
+    {
+      "codigo": "M-2440013",
+      "nombre": "BARROTE 8X8X3 CEPILLADO"
+    },
+    {
+      "codigo": "M-2440014",
+      "nombre": "TABLA 1X12X10 CEPILLADO"
+    },
+    {
+      "codigo": "M-2440015",
+      "nombre": "TABLON DE MADERA REGIONAL 2\" X 6\" X 8\""
+    },
+    {
+      "codigo": "M-2440016",
+      "nombre": "HOJA DE TRIPLAY DE CAOBILLA 4 X 8 X 6MM"
+    },
+    {
+      "codigo": "M-2440017",
+      "nombre": "BARROTE PARA CIMBRA 243X8.6X3.2"
+    },
+    {
+      "codigo": "M-2440018",
+      "nombre": "MADERA BIDIMENSIONADA 1X2X244"
+    },
+    {
+      "codigo": "M-2460001",
+      "nombre": "PORTA LAMPARA DE PORCELANA CUADRADA"
+    },
+    {
+      "codigo": "M-2460002",
+      "nombre": "AISLADOR PARA POSTE DE METAL"
+    },
+    {
+      "codigo": "M-2460003",
+      "nombre": "APAGADOR COLA DE RATA"
+    },
+    {
+      "codigo": "M-2460004",
+      "nombre": "ARRANCADOR 3 POLOS 705 HP"
+    },
+    {
+      "codigo": "M-2460005",
+      "nombre": "BALASTRO 13W LUMICON"
+    },
+    {
+      "codigo": "M-2460006",
+      "nombre": "BALASTRO 2*39 W"
+    },
+    {
+      "codigo": "M-2460007",
+      "nombre": "BALASTRO 4*32W"
+    },
+    {
+      "codigo": "M-2460008",
+      "nombre": "BALASTRO ELECTRONICO 3X14"
+    },
+    {
+      "codigo": "M-2460009",
+      "nombre": "BARRA CURVALUM 32W"
+    },
+    {
+      "codigo": "M-2460010",
+      "nombre": "BARRA DE 13W"
+    },
+    {
+      "codigo": "M-2460011",
+      "nombre": "BARRA DE 15W"
+    },
+    {
+      "codigo": "M-2460012",
+      "nombre": "BARRA DE 20W2 PIN"
+    },
+    {
+      "codigo": "M-2460013",
+      "nombre": "BARRA TECNOLITE F20T8A"
+    },
+    {
+      "codigo": "M-2460014",
+      "nombre": "BLOCK SOCKET CAT 134"
+    },
+    {
+      "codigo": "M-2460015",
+      "nombre": "CABLE CAL. 12"
+    },
+    {
+      "codigo": "M-2460016",
+      "nombre": "CABLE CAL. 2"
+    },
+    {
+      "codigo": "M-2460017",
+      "nombre": "CAPACITOR DE MARCHA 35+5MFD"
+    },
+    {
+      "codigo": "M-2460018",
+      "nombre": "CAPACITOR DE MARCHA 55 MFD"
+    },
+    {
+      "codigo": "M-2460019",
+      "nombre": "CAPACITOR DE MARCHA 5MF 450V"
+    },
+    {
+      "codigo": "M-2460020",
+      "nombre": "CARBÓN PARA CORTADORA MAKITA GM-59 GIMEX"
+    },
+    {
+      "codigo": "M-2460021",
+      "nombre": "CARGADOR LESTER 48W"
+    },
+    {
+      "codigo": "M-2460022",
+      "nombre": "CAPACITOR DE MARCHA 50MFD 370-450 VAC RED"
+    },
+    {
+      "codigo": "M-2460023",
+      "nombre": "CERCHA DE TENSION DE 2M"
+    },
+    {
+      "codigo": "M-2460024",
+      "nombre": "CLAVIJA 120/240 50A TR"
+    },
+    {
+      "codigo": "M-2460025",
+      "nombre": "CONECTOR TAPA DUPLEX"
+    },
+    {
+      "codigo": "M-2460026",
+      "nombre": "CORTACORRIENTE"
+    },
+    {
+      "codigo": "M-2460027",
+      "nombre": "ELECTRONIVEL"
+    },
+    {
+      "codigo": "M-2460029",
+      "nombre": "FOCO SPOT"
+    },
+    {
+      "codigo": "M-2460030",
+      "nombre": "FUSIBLE 60A"
+    },
+    {
+      "codigo": "M-2460031",
+      "nombre": "FUSIBLE DE 100A"
+    },
+    {
+      "codigo": "M-2460032",
+      "nombre": "HILO PARA CERCO ELECTRICO"
+    },
+    {
+      "codigo": "M-2460034",
+      "nombre": "PLACA MODUS 1 SALIDA"
+    },
+    {
+      "codigo": "M-2460035",
+      "nombre": "PLACA MODUS 2 SALIDAS"
+    },
+    {
+      "codigo": "M-2460036",
+      "nombre": "PLACA MODUS 3 SALIDAS"
+    },
+    {
+      "codigo": "M-2460037",
+      "nombre": "PROTECTOR TERMICO"
+    },
+    {
+      "codigo": "M-2460038",
+      "nombre": "REFLECTOR LED DE 20W"
+    },
+    {
+      "codigo": "M-2460039",
+      "nombre": "SOLDADURA VERSAT 1/8"
+    },
+    {
+      "codigo": "M-2460040",
+      "nombre": "SWITCH TECLA 1 PASO"
+    },
+    {
+      "codigo": "M-2460041",
+      "nombre": "SWITCH TECLA DOS PASOS 6 TORNILLOS"
+    },
+    {
+      "codigo": "M-2460042",
+      "nombre": "TAPA DE CENTRO DE CARGA 16 ESPACIOS"
+    },
+    {
+      "codigo": "M-2460043",
+      "nombre": "TAPA DE CENTRO DE CARGA DE 12 ESPACIOS"
+    },
+    {
+      "codigo": "M-2460044",
+      "nombre": "FOCO LED"
+    },
+    {
+      "codigo": "M-2460045",
+      "nombre": "FOCO 14 WATTS LED"
+    },
+    {
+      "codigo": "M-2460046",
+      "nombre": "BARRA LED 60 WATTS"
+    },
+    {
+      "codigo": "M-2460047",
+      "nombre": "LUMINARIA LED 60 WATTS"
+    },
+    {
+      "codigo": "M-2460048",
+      "nombre": "TUBO LED 18W T8 CLEAR 6500K LUMIANCE"
+    },
+    {
+      "codigo": "M-2460049",
+      "nombre": "FOCO LED 60 WATTS (CAJA C/4 PIEZAS)"
+    },
+    {
+      "codigo": "M-2460050",
+      "nombre": "CONDUCTOR FLEXIBLE"
+    },
+    {
+      "codigo": "M-2460051",
+      "nombre": "CABLE DUPLEX FLEXIBLE CAL. 12 (METRO)"
+    },
+    {
+      "codigo": "M-2460052",
+      "nombre": "CANALETE DE 12X20 C/ADHESIVO 2 CM ANCHO"
+    },
+    {
+      "codigo": "M-2460053",
+      "nombre": "CONTACTO DUPLEX"
+    },
+    {
+      "codigo": "M-2460054",
+      "nombre": "PLACA PARA CONTACTO DUPLEX PARA INTERPERIE"
+    },
+    {
+      "codigo": "M-2460055",
+      "nombre": "APAGADOR SENCILLO BLANCO MODUS PRO"
+    },
+    {
+      "codigo": "M-2460056",
+      "nombre": "PORTA LAMPARA DE PLASTICO SLIM C/2"
+    },
+    {
+      "codigo": "M-2460057",
+      "nombre": "CAJA OCTAGONAL 4\""
+    },
+    {
+      "codigo": "M-2460058",
+      "nombre": "CAPACITOR NEGRO 2.5 MFD 450VAC"
+    },
+    {
+      "codigo": "M-2460059",
+      "nombre": "PLAFON RED SELLADO STOP DE 4\""
+    },
+    {
+      "codigo": "M-2460060",
+      "nombre": "PLAFON REDONDO SELLADO 2\""
+    },
+    {
+      "codigo": "M-2460061",
+      "nombre": "CONECTOR PARA PLAFON SELLADO"
+    },
+    {
+      "codigo": "M-2460062",
+      "nombre": "TUBO PVC CONDUITDE 1/2 X 3M"
+    },
+    {
+      "codigo": "M-2460063",
+      "nombre": "CONECTOR CONDUIT PVC 1/2"
+    },
+    {
+      "codigo": "M-2460064",
+      "nombre": "TAPA PARA CONTACTO DE 2 SALIDAS"
+    },
+    {
+      "codigo": "M-2460065",
+      "nombre": "FOCO TRANSPARENTE DE 12V"
+    },
+    {
+      "codigo": "M-2460066",
+      "nombre": "EXT.REFLECTOR LED30W100"
+    },
+    {
+      "codigo": "M-2460067",
+      "nombre": "CONTACTO INDUSTRIAL ,PLASTICO,2 POLOS,3 HILO,15A,125V"
+    },
+    {
+      "codigo": "M-2460068",
+      "nombre": "CLAVIJA BLINDADA S/TIERRA"
+    },
+    {
+      "codigo": "M-2460069",
+      "nombre": "CLAVIJA DE NYLON 15A 125V NEGRA"
+    },
+    {
+      "codigo": "M-2460070",
+      "nombre": "CONTACTOR 2 P 30 A 24V"
+    },
+    {
+      "codigo": "M-2460071",
+      "nombre": "INTERRUPTOR TERMOMAGNETICO 2/40A BTICINO BTN2/40"
+    },
+    {
+      "codigo": "M-2460072",
+      "nombre": "TRANSFORMADOR 24 VOLTS 3 AMP. C/TAP CENTRAL"
+    },
+    {
+      "codigo": "M-2460073",
+      "nombre": "PASTILLA BTICINO 1*15"
+    },
+    {
+      "codigo": "M-2460074",
+      "nombre": "INT. TERMOMAG. 1*5A QO115 SQD"
+    },
+    {
+      "codigo": "M-2460075",
+      "nombre": "CONT DUP TIERRA C/PLACA BL SCH MAR"
+    },
+    {
+      "codigo": "M-2460076",
+      "nombre": "TERMINAL HEMBRA AMARILLA .250 CAL.12-10"
+    },
+    {
+      "codigo": "M-2460077",
+      "nombre": "TERMOSTATO PROG. 7 DIAS MODO AUTO"
+    },
+    {
+      "codigo": "M-2460081",
+      "nombre": "FUSIBLE (PARA CALENTADOR)"
+    },
+    {
+      "codigo": "M-2460082",
+      "nombre": "SWITCH 1 PASO AVION LUZ LED AZ TAPA TRAN"
+    },
+    {
+      "codigo": "M-2460083",
+      "nombre": "SWITCH MAKITA"
+    },
+    {
+      "codigo": "M-2460084",
+      "nombre": "TRANSFORMADOR 24 VOLTS 2 AMP C/TAP CENTRAL"
+    },
+    {
+      "codigo": "M-2460085",
+      "nombre": "MICRO SWITCH WHIRLPOOL CORTO"
+    },
+    {
+      "codigo": "M-2460086",
+      "nombre": "CABLE USO RUDO 2X10"
+    },
+    {
+      "codigo": "M-2460087",
+      "nombre": "TERMICO DE 2X20 VOLTEN"
+    },
+    {
+      "codigo": "M-2460088",
+      "nombre": "TERMOMAGNETICA 2X20"
+    },
+    {
+      "codigo": "M-2460089",
+      "nombre": "TERMOMAGNETICO QO110"
+    },
+    {
+      "codigo": "M-2460090",
+      "nombre": "CENTRO DE CARGA IGESA"
+    },
+    {
+      "codigo": "M-2460091",
+      "nombre": "INTERRUPTOR PRESION 20-40 PSI HEMBRA"
+    },
+    {
+      "codigo": "M-2460092",
+      "nombre": "INTERRUPTOR TERMOMAGNETICO GOETICO 1P20A Q0120 SQD"
+    },
+    {
+      "codigo": "M-2460093",
+      "nombre": "FOCO LED 8.5 V"
+    },
+    {
+      "codigo": "M-2460094",
+      "nombre": "FOCO LED 23 W"
+    },
+    {
+      "codigo": "M-2460095",
+      "nombre": "CONTACTOR 4 2 POLOS 24 VOLTS"
+    },
+    {
+      "codigo": "M-2460096",
+      "nombre": "REFLECTOR VOLTECK REF-401L 20W 28 LEDS"
+    },
+    {
+      "codigo": "M-2460097",
+      "nombre": "FOCO ROJO TERAPEUTICO PARA MANTENER CALOR ATENUABLE"
+    },
+    {
+      "codigo": "M-2460098",
+      "nombre": "FOCO DE CERAMICA PARA REPTILES 100W"
+    },
+    {
+      "codigo": "M-2460099",
+      "nombre": "FOCO INFRAROJO 100W ACUARIO REPTILES LUZ NOCTURNA"
+    },
+    {
+      "codigo": "M-2460100",
+      "nombre": "FOCO INFRAROJO 75W ACUARIO REPTILES LUZ NOCTURNA"
+    },
+    {
+      "codigo": "M-2460101",
+      "nombre": "FOCO PARA REPTILES Y ANFIBIOS DAY LIGTH 100W"
+    },
+    {
+      "codigo": "M-2460102",
+      "nombre": "FOCO UVB 100 13W REPTI GLO 5.0 REPTILES TROPICALES"
+    },
+    {
+      "codigo": "M-2460103",
+      "nombre": "FOCO UVB 100 26W REPTI GLO 5.0 REPTILES TROPICALES"
+    },
+    {
+      "codigo": "M-2460104",
+      "nombre": "FOCO EXO TERRA REPTI GLO 10.0 26W 150UVB"
+    },
+    {
+      "codigo": "M-2460105",
+      "nombre": "PLACA TAPETE TERMICO PARA TERRARIO REPTILES 36X26CM"
+    },
+    {
+      "codigo": "M-2460106",
+      "nombre": "PLACA TAPETE TERMICO PARA TERRARIO REPTILES 8X14CM"
+    },
+    {
+      "codigo": "M-2460107",
+      "nombre": "PLACA TERMICA PARA REPTILES 18X26CM"
+    },
+    {
+      "codigo": "M-2460108",
+      "nombre": "PASTILLA TERMICA 1*30"
+    },
+    {
+      "codigo": "M-2460109",
+      "nombre": "LUMINARIO LED REFLECTOR BLACK TORY V 30W 6500K"
+    },
+    {
+      "codigo": "M-2460110",
+      "nombre": "CLAVIJA 20A 125V L520"
+    },
+    {
+      "codigo": "M-2460111",
+      "nombre": "CABLE DE COBRE INDIANA THW-LS AWG8 600V 19H ROJO"
+    },
+    {
+      "codigo": "M-2460112",
+      "nombre": "CABLE DE COBRE INDIANA THW-LS AWG8 600V 19H BLANCO"
+    },
+    {
+      "codigo": "M-2460113",
+      "nombre": "CINTA ELECTRICA VULCANIZABLE ARGOS"
+    },
+    {
+      "codigo": "M-2460114",
+      "nombre": "THER 3-8 THERMOFIL"
+    },
+    {
+      "codigo": "M-2460115",
+      "nombre": "CBL 014 CABLE C METROS"
+    },
+    {
+      "codigo": "M-2460116",
+      "nombre": "ARNE T 6526 27 US ARNESES"
+    },
+    {
+      "codigo": "M-2460117",
+      "nombre": "FOCO HALOGENO 72W"
+    },
+    {
+      "codigo": "M-2460118",
+      "nombre": "TOMA CORRIENTE DUPLEX 2P +T 15 A 127V"
+    },
+    {
+      "codigo": "M-2460119",
+      "nombre": "CLAVIJA INDUSTRIAL"
+    },
+    {
+      "codigo": "M-2460120",
+      "nombre": "PILAS AAA"
+    },
+    {
+      "codigo": "M-2460121",
+      "nombre": "CAJA METALICA TIPO CHALUPA 2 X 5 AMERICANA REFORZADA"
+    },
+    {
+      "codigo": "M-2460122",
+      "nombre": "PILAS ALCALINAS TIPO AA 1.5V"
+    },
+    {
+      "codigo": "M-2460123",
+      "nombre": "TERMOSTATO FRIO/CALIENTE"
+    },
+    {
+      "codigo": "M-2460124",
+      "nombre": "VINIL ADHESIVO"
+    },
+    {
+      "codigo": "M-2460125",
+      "nombre": "CLAVIJA 2 P+T GIRATORIA 360"
+    },
+    {
+      "codigo": "M-2460126",
+      "nombre": "LAMPARA LED-250 30W EQ.250W ALTA POTENCIA"
+    },
+    {
+      "codigo": "M-2460127",
+      "nombre": "CAPACITOR DE TRABAJO 15 MDF 370V"
+    },
+    {
+      "codigo": "M-2460128",
+      "nombre": "INTERRUPTOR DE PRESION 40-60 PSI HEMBRA"
+    },
+    {
+      "codigo": "M-2460129",
+      "nombre": "FOCO LED DE ALTA POTENCIA 20W"
+    },
+    {
+      "codigo": "M-2460130",
+      "nombre": "CABLE USO RUDO 2X12"
+    },
+    {
+      "codigo": "M-2460131",
+      "nombre": "CINTA DE AISLAR No.33 18M NEGRA"
+    },
+    {
+      "codigo": "M-2460132",
+      "nombre": "PORTALAMPARA DE PORCELANA 4 1/2 ROCETAS"
+    },
+    {
+      "codigo": "M-2460133",
+      "nombre": "TAPA OCTAGONAL 4X40"
+    },
+    {
+      "codigo": "M-2460134",
+      "nombre": "TAPA PARA CAJA CUADRADA REFORZADA DE 8\""
+    },
+    {
+      "codigo": "M-2460135",
+      "nombre": "TUBO CONDUIT 1\" GALVANIZADO TRAMO 3 METROS"
+    },
+    {
+      "codigo": "M-2460136",
+      "nombre": "ABRAZADERA TIPO UÑA 1\" P/TUBO"
+    },
+    {
+      "codigo": "M-2460137",
+      "nombre": "CABLE CAL 10"
+    },
+    {
+      "codigo": "M-2460138",
+      "nombre": "CAJA CUADRADA REFORZADA DE 8\""
+    },
+    {
+      "codigo": "M-2460139",
+      "nombre": "CENTRO DE CARGA SOBREPONER 2P 50A 240/120V DOMES"
+    },
+    {
+      "codigo": "M-2460140",
+      "nombre": "CONDULET 1\" CONEXIÓN TIPO LB"
+    },
+    {
+      "codigo": "M-2460141",
+      "nombre": "CONECTOR PARED DELGADA 1\""
+    },
+    {
+      "codigo": "M-2460142",
+      "nombre": "COPLE CONDUIT GALV P.D. 1\" (25MM)"
+    },
+    {
+      "codigo": "M-2460143",
+      "nombre": "INTERRUPTOR TERMOMAGNETICO 1X15A SQUARE D"
+    },
+    {
+      "codigo": "M-2460144",
+      "nombre": "INTERRUPTOR TERMOMAGNETICO 2X20 AQUARE D"
+    },
+    {
+      "codigo": "M-2460145",
+      "nombre": "INTERRUPTOR TERMOMAGNETICO 3P 50A ATORNILLABLE 10KA 120/240V"
+    },
+    {
+      "codigo": "M-2460146",
+      "nombre": "LAMPARA FLUORESCENTE ESPIRALES 23W"
+    },
+    {
+      "codigo": "M-2460147",
+      "nombre": "LAMPARA FLUORESCENTE LINEAL 14W"
+    },
+    {
+      "codigo": "M-2460148",
+      "nombre": "LAMPARA INTERIOR PLAFONES LED 18W"
+    },
+    {
+      "codigo": "M-2460149",
+      "nombre": "LUMINARIO MR16 4W 6500K GU5.3 100/240V"
+    },
+    {
+      "codigo": "M-2460150",
+      "nombre": "CINTA DE AISLAR TEMFLEX 3/4X18M"
+    },
+    {
+      "codigo": "M-2470001",
+      "nombre": "ABRAZADERA 16-27 DE SIN FIN 3/4"
+    },
+    {
+      "codigo": "M-2470002",
+      "nombre": "ADAPTADOR CESPOL LAVAB"
+    },
+    {
+      "codigo": "M-2470004",
+      "nombre": "CENTRO DE CARGA 2 POLOS DE 16 CIRCUITOS"
+    },
+    {
+      "codigo": "M-2470005",
+      "nombre": "CLAVO DE ACERO 1 1/2\""
+    },
+    {
+      "codigo": "M-2470006",
+      "nombre": "CLAVO DE ACERO DE 2\""
+    },
+    {
+      "codigo": "M-2470007",
+      "nombre": "CLAVO DE ACERO DE 2 1/2\""
+    },
+    {
+      "codigo": "M-2470008",
+      "nombre": "CLAVO PARA MADERA DE 1 1/2"
+    },
+    {
+      "codigo": "M-2470009",
+      "nombre": "CLAVO PARA MADERA DE 2\""
+    },
+    {
+      "codigo": "M-2470010",
+      "nombre": "CLAVO PARA MADERA DE 2 1/2\""
+    },
+    {
+      "codigo": "M-2470011",
+      "nombre": "CLAVO PARA MADERA DE 4\""
+    },
+    {
+      "codigo": "M-2470012",
+      "nombre": "CLAVOS P/CLAVADORA 1\" CAJA CON 5000"
+    },
+    {
+      "codigo": "M-2470013",
+      "nombre": "CLAVOS P/CLAVADORA 2 1/2\" CAJA CON 5000"
+    },
+    {
+      "codigo": "M-2470014",
+      "nombre": "CODO CONDUIT PVC DE 1/2 LIGERO"
+    },
+    {
+      "codigo": "M-2470015",
+      "nombre": "CODO DE COBRE DE 1/2\" x 90°"
+    },
+    {
+      "codigo": "M-2470016",
+      "nombre": "CODO DE COBRE DE 1/2\" x 45°"
+    },
+    {
+      "codigo": "M-2470017",
+      "nombre": "CODO DE COBRE DE 3/4 x 90°"
+    },
+    {
+      "codigo": "M-2470018",
+      "nombre": "CODO GALVANIZADO 2\" x 90°"
+    },
+    {
+      "codigo": "M-2470019",
+      "nombre": "CODO GALVANIZADO DE 1\""
+    },
+    {
+      "codigo": "M-2470020",
+      "nombre": "CODO GALVANIZADO DE 2\""
+    },
+    {
+      "codigo": "M-2470021",
+      "nombre": "CONECTOR COBRE HEMBRA 1/2\""
+    },
+    {
+      "codigo": "M-2470022",
+      "nombre": "CONECTOR COBRE HEMBRA 3/4\""
+    },
+    {
+      "codigo": "M-2470023",
+      "nombre": "CONECTOR COBRE MACHO 3/4\""
+    },
+    {
+      "codigo": "M-2470024",
+      "nombre": "CONECTOR DE COBRE MACHO 1/2\""
+    },
+    {
+      "codigo": "M-2470025",
+      "nombre": "CENTRO DE CARGA TRIF 24 ESPACIOS (20 ESPACIOS)"
+    },
+    {
+      "codigo": "M-2470026",
+      "nombre": "CONECTOR GALVANIZADO 3/4\""
+    },
+    {
+      "codigo": "M-2470027",
+      "nombre": "CONEXIÓN 3/4 ROSCA MANGUERA"
+    },
+    {
+      "codigo": "M-2470028",
+      "nombre": "COPLE CONDUIT GALV. 3/4"
+    },
+    {
+      "codigo": "M-2470029",
+      "nombre": "COPLE DE COBRE DE 3/4\""
+    },
+    {
+      "codigo": "M-2470030",
+      "nombre": "COPLE GALVANIZADO HID DE 1/2\""
+    },
+    {
+      "codigo": "M-2470031",
+      "nombre": "CORREDERA PARA GUIA 1400"
+    },
+    {
+      "codigo": "M-2470032",
+      "nombre": "CORREDERA PARA GUIA 1500"
+    },
+    {
+      "codigo": "M-2470033",
+      "nombre": "MALLA CICLONICA C10.5 2M"
+    },
+    {
+      "codigo": "M-2470034",
+      "nombre": "NIPLE GALV. 1/2 X 12"
+    },
+    {
+      "codigo": "M-2470035",
+      "nombre": "NIPLE GALVANIAZDO DE 1/2 X 2"
+    },
+    {
+      "codigo": "M-2470036",
+      "nombre": "NIPLE GALVANIZADO DE 2\""
+    },
+    {
+      "codigo": "M-2470037",
+      "nombre": "NIPLE GALVANIZADO DE 2 X 4"
+    },
+    {
+      "codigo": "M-2470038",
+      "nombre": "NUDO 3/16"
+    },
+    {
+      "codigo": "M-2470039",
+      "nombre": "NUDO 5/16 (PAR)"
+    },
+    {
+      "codigo": "M-2470040",
+      "nombre": "PIJA HEXAGONAL PUNTA DE BROCA DE 1 1/2"
+    },
+    {
+      "codigo": "M-2470041",
+      "nombre": "PIJA DE BROCA (PIBR-1R) (PIJA CABEZA HEXAGONAL)"
+    },
+    {
+      "codigo": "M-2470042",
+      "nombre": "PIJA PARA TABLAROCA 8*25MM 8X1"
+    },
+    {
+      "codigo": "M-2470043",
+      "nombre": "PIJA PARA TABLAROCA 2 8X50MM 8X2"
+    },
+    {
+      "codigo": "M-2470044",
+      "nombre": "PIJA PARA TABLAROCA DE 1/2"
+    },
+    {
+      "codigo": "M-2470045",
+      "nombre": "PIJA PARA TABLAROCA DE 1/4"
+    },
+    {
+      "codigo": "M-2470046",
+      "nombre": "PTR GALVANIZADO DE 2\""
+    },
+    {
+      "codigo": "M-2470047",
+      "nombre": "PUERTA MULTIPANEL"
+    },
+    {
+      "codigo": "M-2470048",
+      "nombre": "REDUCCION GALV. 1 1/4"
+    },
+    {
+      "codigo": "M-2470049",
+      "nombre": "RONDANA 3/16"
+    },
+    {
+      "codigo": "M-2470050",
+      "nombre": "RONDANA PLANA 5/8 15.9MM"
+    },
+    {
+      "codigo": "M-2470051",
+      "nombre": "RUEDA METALICA DE 6\""
+    },
+    {
+      "codigo": "M-2470052",
+      "nombre": "SOLDADURA DE ESTAÑO 50-50"
+    },
+    {
+      "codigo": "M-2470053",
+      "nombre": "T DE COBRE DE 1/2"
+    },
+    {
+      "codigo": "M-2470054",
+      "nombre": "T DE COBRE DE 3/4"
+    },
+    {
+      "codigo": "M-2470055",
+      "nombre": "TAPON GALVANIZADO 3/4"
+    },
+    {
+      "codigo": "M-2470056",
+      "nombre": "TAQUETE EXPANSIVO 3/8\""
+    },
+    {
+      "codigo": "M-2470057",
+      "nombre": "TORNILLO 3/16 X 3/4"
+    },
+    {
+      "codigo": "M-2470058",
+      "nombre": "TORNILLO CABEZA HEXAGONAL 3/8"
+    },
+    {
+      "codigo": "M-2470059",
+      "nombre": "TORNILLO CABEZA HEXAGONAL 5/16"
+    },
+    {
+      "codigo": "M-2470060",
+      "nombre": "TORNILLO MAQUINA 5/8*3 1/2"
+    },
+    {
+      "codigo": "M-2470061",
+      "nombre": "TUERCA 3/16"
+    },
+    {
+      "codigo": "M-2470062",
+      "nombre": "TUERCA STD 5/8"
+    },
+    {
+      "codigo": "M-2470063",
+      "nombre": "TUERCA UNION DE COBRE 2\""
+    },
+    {
+      "codigo": "M-2470064",
+      "nombre": "VALVULA 1/4 V ROSCABLES DE 1/2"
+    },
+    {
+      "codigo": "M-2470065",
+      "nombre": "VALVULA 1/4 V SOLDABLE DE 1/2"
+    },
+    {
+      "codigo": "M-2470066",
+      "nombre": "VALVULA ROSCABLE 1/4 V 3/4\""
+    },
+    {
+      "codigo": "M-2470067",
+      "nombre": "VARILLA A TIERRA FISICA 3/8\""
+    },
+    {
+      "codigo": "M-2470068",
+      "nombre": "PIJA TABLAROCA 6X50MM 6X2"
+    },
+    {
+      "codigo": "M-2470069",
+      "nombre": "COPLE DE COBRE DE 1\""
+    },
+    {
+      "codigo": "M-2470070",
+      "nombre": "COPLE DE COBRE DE 1/2\""
+    },
+    {
+      "codigo": "M-2470071",
+      "nombre": "TEE DE COBRE 1\""
+    },
+    {
+      "codigo": "M-2470072",
+      "nombre": "CODO COBRE 1\""
+    },
+    {
+      "codigo": "M-2470073",
+      "nombre": "TUBO DE COBRE DE 1/2\" DE 3M"
+    },
+    {
+      "codigo": "M-2470074",
+      "nombre": "TUBO DE COBRE DE 3/4\" DE 3M"
+    },
+    {
+      "codigo": "M-2470075",
+      "nombre": "VALVULA DE ESFERA DE COBRE 1\" SOLDABLE"
+    },
+    {
+      "codigo": "M-2470076",
+      "nombre": "VALVULA DE ESFERA DE COBRE 3/4\" SOLDABLE"
+    },
+    {
+      "codigo": "M-2470077",
+      "nombre": "TUBULAR RECTANGULAR 4\" X 2\" CAL. 14"
+    },
+    {
+      "codigo": "M-2470078",
+      "nombre": "TUBULAR RECTANGULAR 1 1/2\" X 3\" CAL. 14"
+    },
+    {
+      "codigo": "M-2470079",
+      "nombre": "ESCUADRA ESQUINERA DE FIERRO"
+    },
+    {
+      "codigo": "M-2470080",
+      "nombre": "ARMEX DALA 15X20"
+    },
+    {
+      "codigo": "M-2470081",
+      "nombre": "ARMEX CASTILLO 15X5"
+    },
+    {
+      "codigo": "M-2470082",
+      "nombre": "CONECTOR GALVANIZADO 1\""
+    },
+    {
+      "codigo": "M-2470083",
+      "nombre": "ABRAZADERA OMEGA 1/2"
+    },
+    {
+      "codigo": "M-2470084",
+      "nombre": "TUBO DE COBRE RIGIDO 1/2\" X 6 MTS (TRAMO)"
+    },
+    {
+      "codigo": "M-2470085",
+      "nombre": "TUERCA IZQUIERDA PARA PIGTEL (AGAS) 7/8"
+    },
+    {
+      "codigo": "M-2470086",
+      "nombre": "TORNILLO MAQUINA 1/4\" X 1 1/2\""
+    },
+    {
+      "codigo": "M-2470087",
+      "nombre": "LAMINA GALVANIZADA RECT. C26 10 PIES"
+    },
+    {
+      "codigo": "M-2470088",
+      "nombre": "PTR DE 1 1/2\" CAL. 14"
+    },
+    {
+      "codigo": "M-2470089",
+      "nombre": "PIJA PARA LAMINA PUNTA DE BROCA DE 1\""
+    },
+    {
+      "codigo": "M-2470090",
+      "nombre": "TAQUETE EXPENSIVO 1/2\" X 3 1/2 12MM"
+    },
+    {
+      "codigo": "M-2470091",
+      "nombre": "SOLDADURA 6013 1/8 (electrodo e613)"
+    },
+    {
+      "codigo": "M-2470092",
+      "nombre": "POLIN 4X2 CAL. 14"
+    },
+    {
+      "codigo": "M-2470093",
+      "nombre": "PIJA NEGRA 10X2 1/1"
+    },
+    {
+      "codigo": "M-2470094",
+      "nombre": "TAQUETE ABIERTO DE 1/4"
+    },
+    {
+      "codigo": "M-2470095",
+      "nombre": "POLIN 4\"X1 1/2\" C14"
+    },
+    {
+      "codigo": "M-2470096",
+      "nombre": "ABRAZADERA DE SIN FIN 1/2"
+    },
+    {
+      "codigo": "M-2470097",
+      "nombre": "ALAMBRE DE PUAS SENCILLO C/300 MTS"
+    },
+    {
+      "codigo": "M-2470098",
+      "nombre": "ALAMBRE GALVANIZADO C-16 (35MXXK6)"
+    },
+    {
+      "codigo": "M-2470099",
+      "nombre": "ALAMBRE GALV.C-12.5 (23MXKG)"
+    },
+    {
+      "codigo": "M-2470100",
+      "nombre": "ALAMBRE RECOCIDO CAL.15"
+    },
+    {
+      "codigo": "M-2470101",
+      "nombre": "GRAPA 3/8 ET21"
+    },
+    {
+      "codigo": "M-2470102",
+      "nombre": "ABRAZADERA 3\" X 1\" IPS ROSCA NPT"
+    },
+    {
+      "codigo": "M-2470103",
+      "nombre": "PIJA 8 X 1/2 EXTRAPLANA"
+    },
+    {
+      "codigo": "M-2470104",
+      "nombre": "PTR DE 1\" CAL.14"
+    },
+    {
+      "codigo": "M-2470105",
+      "nombre": "ROLLO DE MALLA REFORZADA 1.10 X 100MTS PARA IMPERMEALIZAR"
+    },
+    {
+      "codigo": "M-2470106",
+      "nombre": "VARILLA CORRUGADA 3/8"
+    },
+    {
+      "codigo": "M-2470107",
+      "nombre": "GRAPA ET-50-3/8"
+    },
+    {
+      "codigo": "M-2470108",
+      "nombre": "PIJA PARA PANEL 6*1 RF (PARA LAMINA)"
+    },
+    {
+      "codigo": "M-2470109",
+      "nombre": "SEMIFLECHA 1/4\"*6 MTS (1.60KG)"
+    },
+    {
+      "codigo": "M-2470110",
+      "nombre": "TRAMO DE TUBO DE COBRE TIPO M 1/2"
+    },
+    {
+      "codigo": "M-2470111",
+      "nombre": "MOSQUIRED C26 X 1.22 MTS GALV"
+    },
+    {
+      "codigo": "M-2470112",
+      "nombre": "MALLA CICLONICA CAL.13 (15*20)ABERTURA 69*69MM"
+    },
+    {
+      "codigo": "M-2470113",
+      "nombre": "MALLA PAJARERA X METRO"
+    },
+    {
+      "codigo": "M-2470114",
+      "nombre": "VALVULA ESFERA ROSCA DE 3/4 ESRO-3/4"
+    },
+    {
+      "codigo": "M-2470115",
+      "nombre": "NIPLE GALVANIZADO 3/4 X 12 CG-426"
+    },
+    {
+      "codigo": "M-2470116",
+      "nombre": "NIPLE GALVANIZADO 3/4 X 4 CG-413"
+    },
+    {
+      "codigo": "M-2470117",
+      "nombre": "NIPLE GALVANIZADO 3/4 X 8 CG-415"
+    },
+    {
+      "codigo": "M-2470118",
+      "nombre": "NIPLE GALVANIZADO 3/4 X 3 CG-412"
+    },
+    {
+      "codigo": "M-2470119",
+      "nombre": "BOQUILLA PARA FUENTE ROSCABLE DE 3/4"
+    },
+    {
+      "codigo": "M-2470120",
+      "nombre": "TEE G/R HID. DE 3/4 CG-702"
+    },
+    {
+      "codigo": "M-2470121",
+      "nombre": "TEE HID CEM 2\" PVC-766"
+    },
+    {
+      "codigo": "M-2470122",
+      "nombre": "CODO GAL. HID DE 2 X 90 CG-506"
+    },
+    {
+      "codigo": "M-2470123",
+      "nombre": "NIPLE GALV. DE 2 X 8 CG-446"
+    },
+    {
+      "codigo": "M-2470124",
+      "nombre": "PTR 1\" CAL.14"
+    },
+    {
+      "codigo": "M-2470125",
+      "nombre": "TAQUETE Z 3/8"
+    },
+    {
+      "codigo": "M-2470126",
+      "nombre": "TORNILLO CABEZA HEXAGONAL 3/8X 2\" R/C"
+    },
+    {
+      "codigo": "M-2470127",
+      "nombre": "TUBO DE 17 GRS/DE SOLDADURA ALEA"
+    },
+    {
+      "codigo": "M-2470128",
+      "nombre": "ABRAZADERA DE TENSION 1 1/2 CON TORNILLO Y TUERCA"
+    },
+    {
+      "codigo": "M-2470129",
+      "nombre": "TAPON DE PASO MARCO 1 1/2"
+    },
+    {
+      "codigo": "M-2470130",
+      "nombre": "CERCHA DE TENSION GALVANIZADA DE 3/4X1/8X3M"
+    },
+    {
+      "codigo": "M-2470131",
+      "nombre": "ABRAZADERA CON COPLE PARA MALLA CICLONICA"
+    },
+    {
+      "codigo": "M-2470132",
+      "nombre": "TUBO GALVANIZADO CALIBRE 16 * 1 1/2"
+    },
+    {
+      "codigo": "M-2470133",
+      "nombre": "ALAMBRE REQUEMADO"
+    },
+    {
+      "codigo": "M-2470134",
+      "nombre": "TORNILLO HEXAGONAL 6\" 5/16"
+    },
+    {
+      "codigo": "M-2470135",
+      "nombre": "TORNILLO, RONDANA PLANA Y DE PRESION Y TUERCA DE 7/16"
+    },
+    {
+      "codigo": "M-2470136",
+      "nombre": "ALAMBRE RECOCIDO CALIBRE 16"
+    },
+    {
+      "codigo": "M-2470137",
+      "nombre": "ALAMBRON DE 1/4"
+    },
+    {
+      "codigo": "M-2470138",
+      "nombre": "LAMINA NEGRA 4 X 8 CALIBRE 14"
+    },
+    {
+      "codigo": "M-2470139",
+      "nombre": "MALLA ELECTROSOLDADA 6, 6, 6, CALIBRE 12"
+    },
+    {
+      "codigo": "M-2470140",
+      "nombre": "PIJA P/ TABLAROCA 8 X 1 1/2"
+    },
+    {
+      "codigo": "M-2470141",
+      "nombre": "PIJA PARA PANEL 8 X 2 PULGADAS NEGRAS"
+    },
+    {
+      "codigo": "M-2470142",
+      "nombre": "PIJA PARA PANEL 8 X 2 1/2 PULGADAS NEGRAS"
+    },
+    {
+      "codigo": "M-2470143",
+      "nombre": "PIJA PARA TABLAROCA CAL 10 C/100 PIEZAS"
+    },
+    {
+      "codigo": "M-2470144",
+      "nombre": "PTR CALIBRE 12 DE PRIMERA TRAMO DE 6 MTS"
+    },
+    {
+      "codigo": "M-2470145",
+      "nombre": "TRAMO DE GUIA 1500 CALIBRE 12"
+    },
+    {
+      "codigo": "M-2470146",
+      "nombre": "TUBO 2\" CALIBRE 40 DE PRIMERA DE 6.40 MTS"
+    },
+    {
+      "codigo": "M-2470147",
+      "nombre": "CABLE ACERADO DE 3/4\""
+    },
+    {
+      "codigo": "M-2470148",
+      "nombre": "CABLE DE ACERO 7X7 3/32\"X152M STK"
+    },
+    {
+      "codigo": "M-2470149",
+      "nombre": "CABLE DE ACERO 7X19 1/4\"X76M STK"
+    },
+    {
+      "codigo": "M-2470150",
+      "nombre": "PTR 1 1/4\" C14 1ERA 10.53KG"
+    },
+    {
+      "codigo": "M-2470151",
+      "nombre": "PIJA PUNTA DE BROCA 8X3/4 (PIBR-3/4C)"
+    },
+    {
+      "codigo": "M-2470152",
+      "nombre": "TUBULAR DE CUADRADO 2\" X 4\" CALIBRE 14"
+    },
+    {
+      "codigo": "M-2470153",
+      "nombre": "TRAMO DE TUBO REDONDO NEGRO DE 2\" CED. 40"
+    },
+    {
+      "codigo": "M-2470154",
+      "nombre": "JUEGO DE HERRAJE PARA GUIA 1500"
+    },
+    {
+      "codigo": "M-2470155",
+      "nombre": "ARMELLA CERRADA 25X150"
+    },
+    {
+      "codigo": "M-2470156",
+      "nombre": "LAMINA NEGRA LISA 13X10"
+    },
+    {
+      "codigo": "M-2470157",
+      "nombre": "TUERCA DE UNION DE COBRE 1/2"
+    },
+    {
+      "codigo": "M-2470158",
+      "nombre": "TUERCA UNION GALVANIZADO DE 3/4"
+    },
+    {
+      "codigo": "M-2470159",
+      "nombre": "NIPLE GALVANIZADO 3/4 X2 G-411"
+    },
+    {
+      "codigo": "M-2470160",
+      "nombre": "ABRAZADERA UÑA CONDUIT DE13MM"
+    },
+    {
+      "codigo": "M-2470161",
+      "nombre": "PIJA HEXAGONAL PUNTA BROCA #14 X 1 1/4"
+    },
+    {
+      "codigo": "M-2470162",
+      "nombre": "PIJA PLANA 10X2 GALV CAJA CON 100 PZA"
+    },
+    {
+      "codigo": "M-2470163",
+      "nombre": "RIEL 3\" BRONCE OBSCURO"
+    },
+    {
+      "codigo": "M-2470164",
+      "nombre": "PIJA PUNTA BROCA CAB CRUZ 1 1/4"
+    },
+    {
+      "codigo": "M-2470165",
+      "nombre": "PIJA TABLAROCA 8 X 1 1/4\""
+    },
+    {
+      "codigo": "M-2470166",
+      "nombre": "TAQUETE EXPANSOR TIPO Z 1/4\" X 1 3/4\" CON TORNILLO Y RONDANA ANCLO"
+    },
+    {
+      "codigo": "M-2470167",
+      "nombre": "BROCA PARA FIERRO DE 1/8"
+    },
+    {
+      "codigo": "M-2470168",
+      "nombre": "REMACHE C/ESPIGA 1/8X1/4M50 PZS R-44B"
+    },
+    {
+      "codigo": "M-2470169",
+      "nombre": "TUERCA HEXAGONAL 5/8 15.9MM"
+    },
+    {
+      "codigo": "M-2470170",
+      "nombre": "TUERCA HEXAGONAL 1/2 GALV"
+    },
+    {
+      "codigo": "M-2470171",
+      "nombre": "TORNILLO ESTÁNDAR 5/8 X 3"
+    },
+    {
+      "codigo": "M-2470172",
+      "nombre": "RONDANA PRESION 5/8"
+    },
+    {
+      "codigo": "M-2470173",
+      "nombre": "TUERCA UNION GALV DE 3\""
+    },
+    {
+      "codigo": "M-2470174",
+      "nombre": "TORNILLO HEXAGONAL 7/8 X4"
+    },
+    {
+      "codigo": "M-2470175",
+      "nombre": "TUERCA PARA TORNILLO DE 7/8"
+    },
+    {
+      "codigo": "M-2470176",
+      "nombre": "RONDANA PARA TORNILLO DE 7/8"
+    },
+    {
+      "codigo": "M-2470177",
+      "nombre": "MALLA CRIBA RF 5 X 5 DE 91 CM"
+    },
+    {
+      "codigo": "M-2470178",
+      "nombre": "REDUCCION DE 4 A 2 PULGADAS DE FOFO"
+    },
+    {
+      "codigo": "M-2470179",
+      "nombre": "TUERCA UNION DE 1 1/4 DE PULGADA"
+    },
+    {
+      "codigo": "M-2470180",
+      "nombre": "TORNILLO 7/8 POR 4 PULGADAS CON TUERCA"
+    },
+    {
+      "codigo": "M-2470181",
+      "nombre": "PIJA PARA TABLAROCA DE 2 PULGADAS"
+    },
+    {
+      "codigo": "M-2470182",
+      "nombre": "PIJA PUNTA DE BROCA 1 1/4 DE PULGADA"
+    },
+    {
+      "codigo": "M-2470183",
+      "nombre": "NIPLE DE 1/2\" GALVANIZADO DE 1/2\""
+    },
+    {
+      "codigo": "M-2470184",
+      "nombre": "VASTAGO Y TUERCA K-ACE-STD-T"
+    },
+    {
+      "codigo": "M-2470185",
+      "nombre": "REMACHE C ESPIGA 3/16 X 1/2"
+    },
+    {
+      "codigo": "M-2470186",
+      "nombre": "TAQUETE TX 5/16"
+    },
+    {
+      "codigo": "M-2470187",
+      "nombre": "RESORTE PARA REGULADOR DE ALTA"
+    },
+    {
+      "codigo": "M-2470188",
+      "nombre": "ALAMBRE GALVANIZADO CALIBRE 14"
+    },
+    {
+      "codigo": "M-2470189",
+      "nombre": "TAPON PARA POSTE DE 1 1/2 PULGADA"
+    },
+    {
+      "codigo": "M-2470190",
+      "nombre": "ALAMBRE GALVANIZADO CALIBRE 12"
+    },
+    {
+      "codigo": "M-2470191",
+      "nombre": "CERCHA TENSORA DE 3/4 PULGADA X 1/8 PULGADA X 3M DE FIERRO"
+    },
+    {
+      "codigo": "M-2470192",
+      "nombre": "TUBO CONDUIT DE 25 MM (1\")"
+    },
+    {
+      "codigo": "M-2470193",
+      "nombre": "TUBO CONDUIT DE 13 MM (1/2\")"
+    },
+    {
+      "codigo": "M-2470194",
+      "nombre": "TUBO ALUMINIO DE 1\" X 3 MTS"
+    },
+    {
+      "codigo": "M-2470195",
+      "nombre": "COPLE UNIVERSAL 11/2 38MM"
+    },
+    {
+      "codigo": "M-2470196",
+      "nombre": "ABRAZADERA DE ARRANQUE 1 5/8 C18 42MM"
+    },
+    {
+      "codigo": "M-2470197",
+      "nombre": "TORNILLO CABEZA DE COCHE 5/16X1 1/4 GALVANIZADO"
+    },
+    {
+      "codigo": "M-2470198",
+      "nombre": "TUERCA HEXAGONAL GALV 5/16"
+    },
+    {
+      "codigo": "M-2470199",
+      "nombre": "PIJA PARA TABLAROCA 6X1\""
+    },
+    {
+      "codigo": "M-2470200",
+      "nombre": "CONEXIÓN P/MANGUERA MACH/HEMB 1/2"
+    },
+    {
+      "codigo": "M-2470201",
+      "nombre": "TORNILLO HEXAGONAL RS 5/8 X 4\""
+    },
+    {
+      "codigo": "M-2470202",
+      "nombre": "LTIULIVIN 7/8 (TUERCA 7/8)"
+    },
+    {
+      "codigo": "M-2470203",
+      "nombre": "ANGULO 1/8 X 1/2"
+    },
+    {
+      "codigo": "M-2470204",
+      "nombre": "VARILLA REDONDA 5/8\" X 6M"
+    },
+    {
+      "codigo": "M-2470205",
+      "nombre": "RONDANA PLANA GALVANIZADA 1/2"
+    },
+    {
+      "codigo": "M-2470206",
+      "nombre": "TUBO 1/2\" C30 1ERA DE 6 METROS BLANCO"
+    },
+    {
+      "codigo": "M-2470207",
+      "nombre": "TUBO 3/4\" C30 1ERA DE 6 METROS AMARILLO"
+    },
+    {
+      "codigo": "M-2470208",
+      "nombre": "LAMINA NEGRA LISA 1A C18 3C10 FT BLANCA"
+    },
+    {
+      "codigo": "M-2470209",
+      "nombre": "VARILLA ROSCADA 1/2\" X 1M GALVANIZADA"
+    },
+    {
+      "codigo": "M-2470210",
+      "nombre": "ALAMBRE DE ALUMINIO PARA CERCO ELECTRICO CALIBRE 16, 500 METROS"
+    },
+    {
+      "codigo": "M-2470211",
+      "nombre": "BROCA FIERRO 7/64"
+    },
+    {
+      "codigo": "M-2470212",
+      "nombre": "NIPLE ROSCA CORRIDA 1- 1/14\""
+    },
+    {
+      "codigo": "M-2470213",
+      "nombre": "REDUCCION BUSHING 1/2 X 3/8"
+    },
+    {
+      "codigo": "M-2470214",
+      "nombre": "REDUCCION BUSHING 2X1 1/4"
+    },
+    {
+      "codigo": "M-2470215",
+      "nombre": "MINI SOLDADURA 95/5 PARA TUBERIA DE GAS 48G DE 1 M"
+    },
+    {
+      "codigo": "M-2470216",
+      "nombre": "NIPLE TERMINAL 3/8 X 1/2"
+    },
+    {
+      "codigo": "M-2470217",
+      "nombre": "SOLDADURA VERSAT 6013 3/32"
+    },
+    {
+      "codigo": "M-2470219",
+      "nombre": "PERFIL CAJA 2 C-20"
+    },
+    {
+      "codigo": "M-2470220",
+      "nombre": "LAMINA NEGRA CAL. 8 DE 4\" X 10\""
+    },
+    {
+      "codigo": "M-2470221",
+      "nombre": "ANGULO 3/16\" X 2- 1/2\" X 6 MTS."
+    },
+    {
+      "codigo": "M-2470222",
+      "nombre": "GUIA 1400, CALIBRE 18, DE 6 MTS."
+    },
+    {
+      "codigo": "M-2470223",
+      "nombre": "DISCO DE CORTE PARA METAL DE 14\""
+    },
+    {
+      "codigo": "M-2470224",
+      "nombre": "DISCO DE DESBASTE DE 7\" GROSOR 1/4\" Y EJE DE 7/8"
+    },
+    {
+      "codigo": "M-2470225",
+      "nombre": "DISCO ABRASIVO DE CORTE PARA METAL DE 4 1/2\""
+    },
+    {
+      "codigo": "M-2470226",
+      "nombre": "TUBO 3\" CEDULA 40 TRAMO DE 6 MTS."
+    },
+    {
+      "codigo": "M-2470227",
+      "nombre": "PIJA PARA TABLAROCA DE 1 1/4\""
+    },
+    {
+      "codigo": "M-2470228",
+      "nombre": "MALLA GALLINERA LARGO 45M, CALIBRE 22, 25MM X 1 MTO. DE ALTO"
+    },
+    {
+      "codigo": "M-2470229",
+      "nombre": "PTR DE 2\" X \"2\" CED 60"
+    },
+    {
+      "codigo": "M-2470230",
+      "nombre": "CONECTOR PVC HEMBRA HCO CEM C-40 DE 1/2"
+    },
+    {
+      "codigo": "M-2470231",
+      "nombre": "SOLDADURA P/ COBRE 50 X 0.95CM"
+    },
+    {
+      "codigo": "M-2470232",
+      "nombre": "COPLE DE COBRE DE 1/2\" SIN TOPE"
+    },
+    {
+      "codigo": "M-2470233",
+      "nombre": "NIPLE GALVANIZADO 3/8X3"
+    },
+    {
+      "codigo": "M-2470234",
+      "nombre": "NIPLE GALVANIZAO 11/4 RC CG-474"
+    },
+    {
+      "codigo": "M-2470235",
+      "nombre": "NIPLE MEDIDOR 1/2X41MM"
+    },
+    {
+      "codigo": "M-2470236",
+      "nombre": "SOLERA SLITER 1/8 X 3/4 6M"
+    },
+    {
+      "codigo": "M-2470237",
+      "nombre": "TEES PVC HCO CEM C-40 4\""
+    },
+    {
+      "codigo": "M-2470240",
+      "nombre": "CABLE DE ACERO SIN CUBIERTA CALIBRE 3/8"
+    },
+    {
+      "codigo": "M-2470241",
+      "nombre": "COLD ROLLED REDONDO 1/2\""
+    },
+    {
+      "codigo": "M-2470242",
+      "nombre": "TAPON DE COBRE 1/2"
+    },
+    {
+      "codigo": "M-2470243",
+      "nombre": "MULTIMALLA GALVANIZADA 1 X 20 M 5 X 10 CM GENERICA"
+    },
+    {
+      "codigo": "M-2470244",
+      "nombre": "CONECTOR DE COBRE RE DE 1/2 CC-611"
+    },
+    {
+      "codigo": "M-2470245",
+      "nombre": "LAMINA GALVANIZADA C16 DE 1.22M X 3M"
+    },
+    {
+      "codigo": "M-2470246",
+      "nombre": "PIJA GALVANIZADA DE 1\"X10"
+    },
+    {
+      "codigo": "M-2470247",
+      "nombre": "RUEDA DE USO RUDO 2\" MOD 9392 NEGRO"
+    },
+    {
+      "codigo": "M-2470248",
+      "nombre": "MALLA CRIBA 10 M 2X2, .91M ALTO"
+    },
+    {
+      "codigo": "M-2470249",
+      "nombre": "PIJA PARA TABLAROCA 3 PULGADAS 500 PIEZAS"
+    },
+    {
+      "codigo": "M-2470250",
+      "nombre": "VARILLAS ROSCADAS DE 5/16\" X 1M"
+    },
+    {
+      "codigo": "M-2470251",
+      "nombre": "CERCHA DE 1/8\" X 1 X6M"
+    },
+    {
+      "codigo": "M-2470252",
+      "nombre": "ROLLOS DE TELA PALOMERA .90"
+    },
+    {
+      "codigo": "M-2480001",
+      "nombre": "DUELA LAMINADA DURAPISO 15.24 X 91.44 CM CAJA CON 3.34 M2"
+    },
+    {
+      "codigo": "M-2490001",
+      "nombre": "CEMENTO PVC OATEY 946ML"
+    },
+    {
+      "codigo": "M-2490002",
+      "nombre": "CINTA PARA AISLAR"
+    },
+    {
+      "codigo": "M-2490003",
+      "nombre": "CINTA TEFLON"
+    },
+    {
+      "codigo": "M-2490004",
+      "nombre": "LIJA LONA GRUESA"
+    },
+    {
+      "codigo": "M-2490005",
+      "nombre": "LIJA LONA MEDIANA"
+    },
+    {
+      "codigo": "M-2490006",
+      "nombre": "LIJA PARA MADERA FINA"
+    },
+    {
+      "codigo": "M-2490007",
+      "nombre": "PINTURA VINILICA 7846N EL DORADO"
+    },
+    {
+      "codigo": "M-2490008",
+      "nombre": "PINTURA VINILICA BERELEX 303 NT"
+    },
+    {
+      "codigo": "M-2490009",
+      "nombre": "PINTURA VINILICA BERELEX 4-3"
+    },
+    {
+      "codigo": "M-2490010",
+      "nombre": "PINTURA VINILICA BERELEXM 4-"
+    },
+    {
+      "codigo": "M-2490011",
+      "nombre": "PINTURA VINILICA NEGRO BEREL"
+    },
+    {
+      "codigo": "M-2490012",
+      "nombre": "PINTURA VINILICA GRIS FRANCES 815C (VER)"
+    },
+    {
+      "codigo": "M-2490013",
+      "nombre": "RESISTOL 828"
+    },
+    {
+      "codigo": "M-2490014",
+      "nombre": "SILICON AUTOMOTRIZ"
+    },
+    {
+      "codigo": "M-2490015",
+      "nombre": "SILICON CARTUCHO TRANSPARENTE"
+    },
+    {
+      "codigo": "M-2490016",
+      "nombre": "THINNER 1RA"
+    },
+    {
+      "codigo": "M-2490017",
+      "nombre": "SELLADOR GALON"
+    },
+    {
+      "codigo": "M-2490018",
+      "nombre": "CEMENTO PVC AZUL 1/8 OATEY"
+    },
+    {
+      "codigo": "M-2490019",
+      "nombre": "MALLA REFORZADA MTO."
+    },
+    {
+      "codigo": "M-2490020",
+      "nombre": "PINTURA VINILICA CAFÉ 19 LTS."
+    },
+    {
+      "codigo": "M-2490021",
+      "nombre": "ESTOPA BLANCA"
+    },
+    {
+      "codigo": "M-2490022",
+      "nombre": "CINTA MONIA PARA MINISPLIT"
+    },
+    {
+      "codigo": "M-2490023",
+      "nombre": "PINTURA ESMALTE BLANCO 19 LTS"
+    },
+    {
+      "codigo": "M-2490024",
+      "nombre": "PEGAMENTO SUPER MIL LITRO"
+    },
+    {
+      "codigo": "M-2490025",
+      "nombre": "THINNER ACRILICO CUBETA"
+    },
+    {
+      "codigo": "M-2490026",
+      "nombre": "PINTURA VINILICA VERDE INTENSO BERELITE"
+    },
+    {
+      "codigo": "M-2490027",
+      "nombre": "PINTURA VINILICA BLANCO BERELITE"
+    },
+    {
+      "codigo": "M-2490028",
+      "nombre": "PINTURA VINILICA ROJO SULTANA BERELITE"
+    },
+    {
+      "codigo": "M-2490029",
+      "nombre": "SELLADOR VINILICO 19 LTS"
+    },
+    {
+      "codigo": "M-2490030",
+      "nombre": "BOQUILLA CON ARENA NEGRA 10KG BEXEL"
+    },
+    {
+      "codigo": "M-2490031",
+      "nombre": "PEGAMENTO DE CONTACTO AFIX"
+    },
+    {
+      "codigo": "M-2490032",
+      "nombre": "PINTURA ESMALTE BLANCA GALON"
+    },
+    {
+      "codigo": "M-2490033",
+      "nombre": "PINTURA ESMALTE NEGRA GALON"
+    },
+    {
+      "codigo": "M-2490034",
+      "nombre": "PINTURA NEGRA S/R 4L"
+    },
+    {
+      "codigo": "M-2490035",
+      "nombre": "PINTURA VINILICA NARANJA BERELITE"
+    },
+    {
+      "codigo": "M-2490036",
+      "nombre": "PINTURA VINILICA AMARILLO INTENSO BERELITE"
+    },
+    {
+      "codigo": "M-2490037",
+      "nombre": "PINTURA VINILICA MORADO BERILITE (PINTURA VINIL BERELINTE 7 RANGO 1 CUBETA 19 LITROS PANTONE 7449 (MORADA)"
+    },
+    {
+      "codigo": "M-2490038",
+      "nombre": "CINTA PARA DUCTOS"
+    },
+    {
+      "codigo": "M-2490039",
+      "nombre": "CINTA PARA DUCTO CHICA"
+    },
+    {
+      "codigo": "M-2490040",
+      "nombre": "PEGAMENTO DE CONTACTO"
+    },
+    {
+      "codigo": "M-2490041",
+      "nombre": "CINTA DE MONTAJE 3/4"
+    },
+    {
+      "codigo": "M-2490042",
+      "nombre": "BROCHA 1\""
+    },
+    {
+      "codigo": "M-2490043",
+      "nombre": "BROCHA 1/2\""
+    },
+    {
+      "codigo": "M-2490044",
+      "nombre": "PINTURA BLANCA DE 19 LTS"
+    },
+    {
+      "codigo": "M-2490045",
+      "nombre": "CEMENTO BLANCO CEMEX 2 KG"
+    },
+    {
+      "codigo": "M-2490046",
+      "nombre": "PINTURA VINILICA NEGRO BERELITE"
+    },
+    {
+      "codigo": "M-2490047",
+      "nombre": "LIJA PARA AGUA G-120"
+    },
+    {
+      "codigo": "M-2490048",
+      "nombre": "LIJA PARA AGUA G-80"
+    },
+    {
+      "codigo": "M-2490049",
+      "nombre": "LIJA PARA FIERRO G-36"
+    },
+    {
+      "codigo": "M-2490050",
+      "nombre": "THINNER GALON"
+    },
+    {
+      "codigo": "M-2490051",
+      "nombre": "SELLAC CABEZA DE INDIO"
+    },
+    {
+      "codigo": "M-2490052",
+      "nombre": "THINNER ACRILICO GALON"
+    },
+    {
+      "codigo": "M-2490053",
+      "nombre": "PINTURA VINILICA AMARILLO DE CUBETA 19 LITROS"
+    },
+    {
+      "codigo": "M-2490054",
+      "nombre": "ROLLO CINTA PARA TABLAROCA 5.3 CM X 76.25 MTS"
+    },
+    {
+      "codigo": "M-2490055",
+      "nombre": "PINTURA VINILICA NEGRO CUBETA DE 19 LITROS"
+    },
+    {
+      "codigo": "M-2490056",
+      "nombre": "SELLADOR PARA PROTEGER MADERA INTERPERIE CHOCOLATE"
+    },
+    {
+      "codigo": "M-2490057",
+      "nombre": "COMPUESTO MULTIUSO PARA JUNTAS DE TABLAROCA 28 KG"
+    },
+    {
+      "codigo": "M-2490058",
+      "nombre": "PINTURA G2"
+    },
+    {
+      "codigo": "M-2490059",
+      "nombre": "MATERIAL DE PINTURA AUTOMOTRIZ"
+    },
+    {
+      "codigo": "M-2490060",
+      "nombre": "LIJA P/PLOM 1 1/2X45, 72M LIPL-120-1-1/2X"
+    },
+    {
+      "codigo": "M-2490061",
+      "nombre": "CINTA MASKING"
+    },
+    {
+      "codigo": "M-2490062",
+      "nombre": "PINTURA ESMALTE BASE"
+    },
+    {
+      "codigo": "M-2490063",
+      "nombre": "PEGAMENTO PVC WET BLUE"
+    },
+    {
+      "codigo": "M-2490064",
+      "nombre": "PINTURA ESMALTE CELESTE PARA ALBERCA"
+    },
+    {
+      "codigo": "M-2490065",
+      "nombre": "REDUCTOR"
+    },
+    {
+      "codigo": "M-2490066",
+      "nombre": "ESM SUMMA OCRE 4 LITROS"
+    },
+    {
+      "codigo": "M-2490067",
+      "nombre": "FUNDENTE PARA PLATA 1/4 LBS"
+    },
+    {
+      "codigo": "M-2490068",
+      "nombre": "SOLDADURA DE PLATA TABLEADA HARRIS"
+    },
+    {
+      "codigo": "M-2490069",
+      "nombre": "REDUCTOR BEREL 1090"
+    },
+    {
+      "codigo": "M-2490070",
+      "nombre": "CINTA CANELA"
+    },
+    {
+      "codigo": "M-2490071",
+      "nombre": "PINTURA VERDE BANDERA VINILICA"
+    },
+    {
+      "codigo": "M-2490072",
+      "nombre": "PINTURA VINILICA ACRILICA MAGICOLOR NARANJA INTENSO"
+    },
+    {
+      "codigo": "M-2490073",
+      "nombre": "PINTURA VINILICA BLANCO"
+    },
+    {
+      "codigo": "M-2490074",
+      "nombre": "THINNER B/PLASTICO 960 ML"
+    },
+    {
+      "codigo": "M-2490075",
+      "nombre": "RESINA POLISTRER"
+    },
+    {
+      "codigo": "M-2490076",
+      "nombre": "FIBRA DE VIDRIO M3"
+    },
+    {
+      "codigo": "M-2490077",
+      "nombre": "BONDO DE GALON"
+    },
+    {
+      "codigo": "M-2490078",
+      "nombre": "MASILLA EPOXICA"
+    },
+    {
+      "codigo": "M-2490079",
+      "nombre": "PRIMER EN AEROSOL COLOR GRIS"
+    },
+    {
+      "codigo": "M-2490080",
+      "nombre": "RESISTOL 911 SUPER GEL 3 GRS"
+    },
+    {
+      "codigo": "M-2490081",
+      "nombre": "PINTURA VERDE MENTA VOLLER MAX 700 GALON 4 LITROS DEEP"
+    },
+    {
+      "codigo": "M-2490082",
+      "nombre": "PINTURA BERELINTE 19 LITROS COLOR CLARO (COLOR NARANJA)"
+    },
+    {
+      "codigo": "M-2490083",
+      "nombre": "PINTURA BERELINTE 19 LITROS COLOR OBSCURO (COLOR LADRILLO)"
+    },
+    {
+      "codigo": "M-2490084",
+      "nombre": "CINTA DE AISLAR 19MM X 9M"
+    },
+    {
+      "codigo": "M-2490085",
+      "nombre": "CERA EN PASTA"
+    },
+    {
+      "codigo": "M-2490086",
+      "nombre": "SELLADOR VINILICO"
+    },
+    {
+      "codigo": "M-2490087",
+      "nombre": "PINTURA VINILICA ROSA"
+    },
+    {
+      "codigo": "M-2490088",
+      "nombre": "PINTURA VINILICA GRIS"
+    },
+    {
+      "codigo": "M-2490089",
+      "nombre": "PINTURA VINILICA CAFÉ"
+    },
+    {
+      "codigo": "M-2490090",
+      "nombre": "PINTURA VINILICA AZUL CELESTE"
+    },
+    {
+      "codigo": "M-2490091",
+      "nombre": "PINTURA VINILICA AZUL REY"
+    },
+    {
+      "codigo": "M-2490092",
+      "nombre": "PINTURA VINILICA MORADA"
+    },
+    {
+      "codigo": "M-2490093",
+      "nombre": "PINTURA VINILICA NARANJA"
+    },
+    {
+      "codigo": "M-2490094",
+      "nombre": "PINTURA VINILICA AMARILLO"
+    },
+    {
+      "codigo": "M-2490095",
+      "nombre": "BARNIZ ACRILICO BRILLANTE TRANSPARENTE"
+    },
+    {
+      "codigo": "M-2490096",
+      "nombre": "BROCHA M/MADERA 100 MM"
+    },
+    {
+      "codigo": "M-2490097",
+      "nombre": "BROCHA M/MADERA 50 MM"
+    },
+    {
+      "codigo": "M-2490098",
+      "nombre": "PEGAMENTO SAYER"
+    },
+    {
+      "codigo": "M-2490099",
+      "nombre": "PASTA PARA SOLDAR 100GR PASO-100"
+    },
+    {
+      "codigo": "M-2490100",
+      "nombre": "PINTURA AMARILLO FLUORESCENTE"
+    },
+    {
+      "codigo": "M-2490101",
+      "nombre": "PINTURA NARANJA FLUORESCENTE"
+    },
+    {
+      "codigo": "M-2490102",
+      "nombre": "PINTURA AEROSOL AMARILLO FLUORESCENTE"
+    },
+    {
+      "codigo": "M-2490103",
+      "nombre": "PINTURA AEROSOL NARANJA FLUORESCENTE"
+    },
+    {
+      "codigo": "M-2490104",
+      "nombre": "PINTURA AEROSOL VERDE FLUORESCENTE"
+    },
+    {
+      "codigo": "M-2490105",
+      "nombre": "PINTURA AEROSOL BLANCO FLUORESCENTE"
+    },
+    {
+      "codigo": "M-2490106",
+      "nombre": "PINTURA VINIL PANTONE 187C ROJO MORENA"
+    },
+    {
+      "codigo": "M-2490107",
+      "nombre": "PINTURA VINIL COLOR GRIS, NO. PANTONE 425C"
+    },
+    {
+      "codigo": "M-2490108",
+      "nombre": "PINTURA VINIL COLOR BEIGE, NO. PANTONE 15-1225"
+    },
+    {
+      "codigo": "M-2490109",
+      "nombre": "PINTURA VNIL, NO. PANTONE 7503"
+    },
+    {
+      "codigo": "M-2490110",
+      "nombre": "PINTURA ACRILICA OSEL ORO PANTONE 7416U 19 LTS. COLOR CORAL"
+    },
+    {
+      "codigo": "M-2490111",
+      "nombre": "PINTURA VINIL BERELINTE 7 RANGO 1 CUBETA 19 LTS. PANTONE 468C"
+    },
+    {
+      "codigo": "M-2490112",
+      "nombre": "PINTURA VINIL BERELINTE 843 BLANCO OSTION DE 19 LTS."
+    },
+    {
+      "codigo": "M-2490113",
+      "nombre": "PINTURA VINILICA BLANCO 19 LITROS"
+    },
+    {
+      "codigo": "M-2490118",
+      "nombre": "SELLADOR TRANSLUCIDO"
+    },
+    {
+      "codigo": "M-2490119",
+      "nombre": "PINTURA ROSA FLUORESCENTE"
+    },
+    {
+      "codigo": "M-2490120",
+      "nombre": "THINNER ACRILICO"
+    },
+    {
+      "codigo": "M-2490121",
+      "nombre": "IMPERMEABILIZANTE 19 LTS."
+    },
+    {
+      "codigo": "M-2490122",
+      "nombre": "REPUESTO DE FELPA PARA RODILLO 23CM"
+    },
+    {
+      "codigo": "M-2490123",
+      "nombre": "CHAROLA DE PLASTICO NEGRA RECTANGULAR 68X49X12 CM"
+    },
+    {
+      "codigo": "M-2490124",
+      "nombre": "PINTURA ESMALTE SAYER X-TRONG AMARILLO EX0700.30"
+    },
+    {
+      "codigo": "M-2490125",
+      "nombre": "PINTURA ESMALTE SAYER X-TRONG AZUL EX0300.30"
+    },
+    {
+      "codigo": "M-2490126",
+      "nombre": "PINTURA ESMALTE SAYER X-TRONG NEGRO EX0100.30"
+    },
+    {
+      "codigo": "M-2490127",
+      "nombre": "PINTURA ESMALTE SAYER X-TRONG NEGRO EX0100.40"
+    },
+    {
+      "codigo": "M-2490128",
+      "nombre": "PINTURA ESMALTE SAYER X-TRONG OCRE EX0775.30"
+    },
+    {
+      "codigo": "M-2490129",
+      "nombre": "PINTURA ESMALTE SAYER X-TRONG ROJO EX0500.30"
+    },
+    {
+      "codigo": "M-2490130",
+      "nombre": "PINTURA ESMALTE SAYERX-TRONG BLANCO EX0200.40"
+    },
+    {
+      "codigo": "M-2490131",
+      "nombre": "FONDO ANTICORROSIVO COLOR ROJO OXIDO BEREL"
+    },
+    {
+      "codigo": "M-2510001",
+      "nombre": "REFRIGERANTE R-134A"
+    },
+    {
+      "codigo": "M-2510002",
+      "nombre": "REFRIGERANTE R-22"
+    },
+    {
+      "codigo": "M-2510003",
+      "nombre": "AGENTE 141B"
+    },
+    {
+      "codigo": "M-2510004",
+      "nombre": "OXIGENO INDUSTRIAL 6 MTS."
+    },
+    {
+      "codigo": "M-2520001",
+      "nombre": "VENENO PARA HORMIGAS"
+    },
+    {
+      "codigo": "M-2520002",
+      "nombre": "RAT KILL TRAMPA CON PEGAMENTO"
+    },
+    {
+      "codigo": "M-2560001",
+      "nombre": "BRIDA PVC CEM 6\""
+    },
+    {
+      "codigo": "M-2560002",
+      "nombre": "CEMENTO PVC AZUL 237ML"
+    },
+    {
+      "codigo": "M-2560003",
+      "nombre": "CINCHO DE PLASTICO (20CM)"
+    },
+    {
+      "codigo": "M-2560004",
+      "nombre": "CINTA PLASTICA DE PRIV"
+    },
+    {
+      "codigo": "M-2560005",
+      "nombre": "CODO PVC 1/2\" x 45°"
+    },
+    {
+      "codigo": "M-2560006",
+      "nombre": "CODO PVC HCO 1\" x 90°"
+    },
+    {
+      "codigo": "M-2560007",
+      "nombre": "CODO PVC HCO 1/2\" x 90°"
+    },
+    {
+      "codigo": "M-2560008",
+      "nombre": "CODO PVC HCO 2\" x 45°"
+    },
+    {
+      "codigo": "M-2560009",
+      "nombre": "CODO SANITARIO 4\" x 90°"
+    },
+    {
+      "codigo": "M-2560010",
+      "nombre": "CONECTOR HEMBRA PVC HC 1 1/2\""
+    },
+    {
+      "codigo": "M-2560011",
+      "nombre": "CONECTOR HEMBRA PVC HC 1\""
+    },
+    {
+      "codigo": "M-2560012",
+      "nombre": "CONECTOR HEMBRA PVC HC 2\""
+    },
+    {
+      "codigo": "M-2560013",
+      "nombre": "CONECTOR MACHO PVC 1/2\""
+    },
+    {
+      "codigo": "M-2560014",
+      "nombre": "CONECTOR MACHO PVC HC 2\""
+    },
+    {
+      "codigo": "M-2560015",
+      "nombre": "CONECTOR MACHO PVC HCO 1 1/2\""
+    },
+    {
+      "codigo": "M-2560016",
+      "nombre": "CONECTOR MACHO PVC HCO 1\""
+    },
+    {
+      "codigo": "M-2560017",
+      "nombre": "COPLE DE REPARACION PVC DE 1\""
+    },
+    {
+      "codigo": "M-2560018",
+      "nombre": "COPLE PVC 1/2\""
+    },
+    {
+      "codigo": "M-2560019",
+      "nombre": "COPLE PVC HCO 1\""
+    },
+    {
+      "codigo": "M-2560020",
+      "nombre": "COPLE PVC HCO 1 1/2\""
+    },
+    {
+      "codigo": "M-2560021",
+      "nombre": "COPLE PVC HCO 3/4\""
+    },
+    {
+      "codigo": "M-2560024",
+      "nombre": "REDUCCION PVC 1 x 1 1/2"
+    },
+    {
+      "codigo": "M-2560025",
+      "nombre": "REDUCCION PVC 2 x 1"
+    },
+    {
+      "codigo": "M-2560026",
+      "nombre": "REDUCCION PVC HCO 1 X 4"
+    },
+    {
+      "codigo": "M-2560027",
+      "nombre": "RESINA GALON"
+    },
+    {
+      "codigo": "M-2560028",
+      "nombre": "T PVC HCO 1 1/2"
+    },
+    {
+      "codigo": "M-2560029",
+      "nombre": "T PVC HCO 2"
+    },
+    {
+      "codigo": "M-2560030",
+      "nombre": "T PVC HCO 3/4"
+    },
+    {
+      "codigo": "M-2560031",
+      "nombre": "TAQUETE DE PLASTICO DE 1/4"
+    },
+    {
+      "codigo": "M-2560032",
+      "nombre": "TUBO PVC SANIT.4\""
+    },
+    {
+      "codigo": "M-2560033",
+      "nombre": "TUERCA UNION PVC 2\""
+    },
+    {
+      "codigo": "M-2560034",
+      "nombre": "TUERCA UNION PVC HIDRAULICA"
+    },
+    {
+      "codigo": "M-2560035",
+      "nombre": "VALVULA GARRAFON MACHO"
+    },
+    {
+      "codigo": "M-2560036",
+      "nombre": "VALVULA PVC 2\""
+    },
+    {
+      "codigo": "M-2560037",
+      "nombre": "CODO PVC 2\"-90° SANITARIO"
+    },
+    {
+      "codigo": "M-2560038",
+      "nombre": "REDUCCION BUSHING PVC HIDR 1X 1/2"
+    },
+    {
+      "codigo": "M-2560039",
+      "nombre": "TAPON CACHUCHA HIDR.CEM.51MM2 2\" FOSET PVC -366"
+    },
+    {
+      "codigo": "M-2560040",
+      "nombre": "ROLLO DE POLIETILENO NEGRO 6\" X 100"
+    },
+    {
+      "codigo": "M-2560041",
+      "nombre": "CODO PVC HCO 2\" x 90°"
+    },
+    {
+      "codigo": "M-2560042",
+      "nombre": "TUBO PVC HID DE 1/2 CEDULA 40"
+    },
+    {
+      "codigo": "M-2560043",
+      "nombre": "ADAPTADOR HEMBRA DE 2\" PVC-606"
+    },
+    {
+      "codigo": "M-2560044",
+      "nombre": "ADAPTADOR MACHO DE 3/4 PVC-612"
+    },
+    {
+      "codigo": "M-2560045",
+      "nombre": "CEMENTO PVC DE 1/2 LT AZUL"
+    },
+    {
+      "codigo": "M-2560046",
+      "nombre": "CODO HID CEM 9090 x 2\" PVC-566"
+    },
+    {
+      "codigo": "M-2560047",
+      "nombre": "CODO PVC 1\" x 45°"
+    },
+    {
+      "codigo": "M-2560048",
+      "nombre": "CODO PVC 1\" x 90°"
+    },
+    {
+      "codigo": "M-2560049",
+      "nombre": "CONECTOR HEMBRA PVC HCO. CEM-40 3/4"
+    },
+    {
+      "codigo": "M-2560050",
+      "nombre": "CONECTOR MACHO PVC HCO. CEM-40 3/4"
+    },
+    {
+      "codigo": "M-2560051",
+      "nombre": "COPLE PVC 1\""
+    },
+    {
+      "codigo": "M-2560052",
+      "nombre": "TELA MOSQUITERO PLASTICO 1.50 MTO.TEMO-15PG"
+    },
+    {
+      "codigo": "M-2560053",
+      "nombre": "TUBO PVC 1\" TRAMO DE 6M"
+    },
+    {
+      "codigo": "M-2560054",
+      "nombre": "ESPUMA EXPANSIVA 500 ML."
+    },
+    {
+      "codigo": "M-2560055",
+      "nombre": "CONECTOR ROSCA EXT. TUBO PVC 1 1/2"
+    },
+    {
+      "codigo": "M-2560056",
+      "nombre": "VALVULA CHECK PVC 11/4"
+    },
+    {
+      "codigo": "M-2560057",
+      "nombre": "COPLE COMPRESION DE 1 1/2\" PVC 615343"
+    },
+    {
+      "codigo": "M-2560058",
+      "nombre": "COPLE COMPRESION DE 2\" PVC 615344"
+    },
+    {
+      "codigo": "M-2560059",
+      "nombre": "COPLE HID CEMENTAR DE 2\" PVC"
+    },
+    {
+      "codigo": "M-2560060",
+      "nombre": "TRAMO DE TUBO PVC 2\" DE 3 METROS"
+    },
+    {
+      "codigo": "M-2560061",
+      "nombre": "CONECTOR DE 2\" PVC"
+    },
+    {
+      "codigo": "M-2560062",
+      "nombre": "COPLE DE COMPRESION REPARA CPVC 1\" C40"
+    },
+    {
+      "codigo": "M-2560063",
+      "nombre": "CINTA LEYENDA ROJA PELIGRO"
+    },
+    {
+      "codigo": "M-2560064",
+      "nombre": "VALVULA ESFERA CEMENTAR PVC 1\" PVC-ES-1"
+    },
+    {
+      "codigo": "M-2560065",
+      "nombre": "TUBO PVC HID DE 3/4 CEDULA 40"
+    },
+    {
+      "codigo": "M-2560066",
+      "nombre": "COPLE HID CEMENTAR 4\""
+    },
+    {
+      "codigo": "M-2560067",
+      "nombre": "ADAPTADOR PVC 1/2"
+    },
+    {
+      "codigo": "M-2560068",
+      "nombre": "T DE PVC 1\""
+    },
+    {
+      "codigo": "M-2560069",
+      "nombre": "EMPAQUE HULE PARA MANGUERA"
+    },
+    {
+      "codigo": "M-2560070",
+      "nombre": "TAQUETE DE PLASTICO ANKER 3/8\" 10MM"
+    },
+    {
+      "codigo": "M-2560071",
+      "nombre": "COPLE DE REPARACION 4\""
+    },
+    {
+      "codigo": "M-2560072",
+      "nombre": "TAQUETE ABIERTO DE 1/4"
+    },
+    {
+      "codigo": "M-2560073",
+      "nombre": "EMPAQUE CHUPON PARA LAVABO"
+    },
+    {
+      "codigo": "M-2560074",
+      "nombre": "TRAMO TUBO PVC HCO CEMENT 2\" CED-40 6 METROS"
+    },
+    {
+      "codigo": "M-2560075",
+      "nombre": "CODO DE 4 \" X 90 FOFO"
+    },
+    {
+      "codigo": "M-2560076",
+      "nombre": "TRAMO TUBO PVC HCO CEMENT 4\" 6 METROS"
+    },
+    {
+      "codigo": "M-2560077",
+      "nombre": "COPLE PVC HCO 2\""
+    },
+    {
+      "codigo": "M-2560078",
+      "nombre": "ROLLO DE PLASTICO NEGRO CALIBRE 600 DE 3 M X 45 M"
+    },
+    {
+      "codigo": "M-2560079",
+      "nombre": "TEE DE 4 PULGADAS DE FOFO"
+    },
+    {
+      "codigo": "M-2560080",
+      "nombre": "TUBO HIDRAULICO DE PVC DE 4 PULGADAS CEDULA 40"
+    },
+    {
+      "codigo": "M-2560081",
+      "nombre": "BRIDA DE 2 PULGADAS PVC HIDRAULICO"
+    },
+    {
+      "codigo": "M-2560082",
+      "nombre": "EMPAQUE PARA BRIDA DE 2 PULGADAS DE NEOPRENO"
+    },
+    {
+      "codigo": "M-2560083",
+      "nombre": "EMPAQUE PARA BRIDA DE 2 PULGADAS DE PLOMO"
+    },
+    {
+      "codigo": "M-2560084",
+      "nombre": "BRIDA PARA PVC DE 4 PULGADAS PARA CEMENTAR"
+    },
+    {
+      "codigo": "M-2560085",
+      "nombre": "CINCHO DE PLASTICO 25X3.5CM"
+    },
+    {
+      "codigo": "M-2560086",
+      "nombre": "CINCHO DE PLASTICO 30X4.5CM"
+    },
+    {
+      "codigo": "M-2560087",
+      "nombre": "EMPAQUE DE NEOPRENO PARA MEDIDOR 3\""
+    },
+    {
+      "codigo": "M-2560088",
+      "nombre": "CINCHO NEGRO 4.6 X 280MM"
+    },
+    {
+      "codigo": "M-2560089",
+      "nombre": "TEE PVC 1 HIDRAULICO"
+    },
+    {
+      "codigo": "M-2560090",
+      "nombre": "RED PVC 1 A 3/4 HIDRAULICO"
+    },
+    {
+      "codigo": "M-2560091",
+      "nombre": "CINTA PVC TEMPLEX .019 X 18 MTS"
+    },
+    {
+      "codigo": "M-2560092",
+      "nombre": "TEE PVC HCO ROSCAR C-80 1/2"
+    },
+    {
+      "codigo": "M-2560093",
+      "nombre": "CRE PVC 3/4 HIDRAULICO (CONECTOR ROSCA EXTERIOR)"
+    },
+    {
+      "codigo": "M-2560095",
+      "nombre": "FOC-HE1141 FOCO"
+    },
+    {
+      "codigo": "M-2560096",
+      "nombre": "FOC-HE1157 FOCO"
+    },
+    {
+      "codigo": "M-2560098",
+      "nombre": "CRI PVC 3/4 HIDRAULICO (C0NECTOR ROSCA INTERIOR)"
+    },
+    {
+      "codigo": "M-2560099",
+      "nombre": "RONDANA VILCANIZADA S21"
+    },
+    {
+      "codigo": "M-2560100",
+      "nombre": "GOMA LLANTITA VULCANIZADA"
+    },
+    {
+      "codigo": "M-2560102",
+      "nombre": "TRAMPA CESPOL C/CONTRA P/LAVABO"
+    },
+    {
+      "codigo": "M-2560103",
+      "nombre": "CODO SANIT. 87 X 100MM CEM"
+    },
+    {
+      "codigo": "M-2560104",
+      "nombre": "ADAPTADOR MACHO 50MM C40 PVC-616"
+    },
+    {
+      "codigo": "M-2560106",
+      "nombre": "CODO SANIT 45 X 100MM CEM"
+    },
+    {
+      "codigo": "M-2560107",
+      "nombre": "CODO SANIT 87 50 MM CEM"
+    },
+    {
+      "codigo": "M-2560108",
+      "nombre": "COPLE PVC REPAR C/CAMP SI 4\""
+    },
+    {
+      "codigo": "M-2560109",
+      "nombre": "COPLE SANITARIO CEM 100MM"
+    },
+    {
+      "codigo": "M-2560110",
+      "nombre": "CODO HID CEM 45 X 2 PVC-866"
+    },
+    {
+      "codigo": "M-2560111",
+      "nombre": "ADAPTADOR MACHO DE 4\""
+    },
+    {
+      "codigo": "M-2560112",
+      "nombre": "TAPON MACHO PVC 1 1/4 CON ROSCA"
+    },
+    {
+      "codigo": "M-2560113",
+      "nombre": "HILO REDONDO 224 M 2.7MM"
+    },
+    {
+      "codigo": "M-2560115",
+      "nombre": "COPLE DE REPARACION DE 4\""
+    },
+    {
+      "codigo": "M-2560116",
+      "nombre": "LONA MARCA PRETUL LP-23 2 X3 MTS."
+    },
+    {
+      "codigo": "M-2560117",
+      "nombre": "RAFIA FIERO GS BLANCA"
+    },
+    {
+      "codigo": "M-2560118",
+      "nombre": "CODO PVC HCO 4\" x 90°"
+    },
+    {
+      "codigo": "M-2560119",
+      "nombre": "TAPA PVC HC4 ROSCAR C-40 DE 1/2"
+    },
+    {
+      "codigo": "M-2560120",
+      "nombre": "TAPA PVC SANITARIA 4\""
+    },
+    {
+      "codigo": "M-2560121",
+      "nombre": "CONECTOR CESPOL HULE 32MM (2X1-1/4\")"
+    },
+    {
+      "codigo": "M-2590001",
+      "nombre": "AGUA PARA BATERIA"
+    },
+    {
+      "codigo": "M-2590002",
+      "nombre": "CLORO LIQUIDO"
+    },
+    {
+      "codigo": "M-2590003",
+      "nombre": "TRICLORO GRANULADO, POLVO"
+    },
+    {
+      "codigo": "M-2590004",
+      "nombre": "TRICLORO TABLETAS"
+    },
+    {
+      "codigo": "M-2590005",
+      "nombre": "ACIDO CLORIHIDRICO AL 30-32% LTS"
+    },
+    {
+      "codigo": "M-2590006",
+      "nombre": "INSECTICIDA CONTROL 24E 1 LITRO"
+    },
+    {
+      "codigo": "M-2590007",
+      "nombre": "BIOMMA PENTABIOCARE 4L. ACONDICIONADOR MULTIFUNCIONAL"
+    },
+    {
+      "codigo": "M-2590008",
+      "nombre": "CLARIFICANTE TRATAMIENTO COLORANTE AZUL GALON"
+    },
+    {
+      "codigo": "M-2590009",
+      "nombre": "HIPOCLIRITO DE SODIO"
+    },
+    {
+      "codigo": "M-2590010",
+      "nombre": "ALGUICIDA"
+    },
+    {
+      "codigo": "M-2610001",
+      "nombre": "ACEITE AUTOMOTRIZ SAE 40"
+    },
+    {
+      "codigo": "M-2610002",
+      "nombre": "ACEITE PARA MOTORES A DOS TIEMPOS"
+    },
+    {
+      "codigo": "M-2610003",
+      "nombre": "ACEITE PARA TRANS. AUT"
+    },
+    {
+      "codigo": "M-2610004",
+      "nombre": "ACEITE SINTETICO HFC50"
+    },
+    {
+      "codigo": "M-2610005",
+      "nombre": "LUBRICANTE MULTIUSOS WA-40"
+    },
+    {
+      "codigo": "M-2610006",
+      "nombre": "GRASA PARA BALEROS SKF"
+    },
+    {
+      "codigo": "M-2610007",
+      "nombre": "LIQUIDO PARA FRENOS TRES TIEMPOS"
+    },
+    {
+      "codigo": "M-2610008",
+      "nombre": "ACEITE QUAKER"
+    },
+    {
+      "codigo": "M-2610009",
+      "nombre": "ACEITES PARA MOTOR SAE 10W-30"
+    },
+    {
+      "codigo": "M-2610010",
+      "nombre": "LIMPIADOR DE CARBURADOR 430 ML"
+    },
+    {
+      "codigo": "M-2610011",
+      "nombre": "ANTICONGELANTE QUAKER STATE VERDE 3.8"
+    },
+    {
+      "codigo": "M-2610012",
+      "nombre": "LIQUIDO PARA PARABRISAS"
+    },
+    {
+      "codigo": "M-2610013",
+      "nombre": "ARRANCADOR"
+    },
+    {
+      "codigo": "M-2610014",
+      "nombre": "ACEITE STHIL 2T 400ML"
+    },
+    {
+      "codigo": "M-2610015",
+      "nombre": "ACONDICIONADOR PARA BANDA EN AEROSOL"
+    },
+    {
+      "codigo": "M-2710001",
+      "nombre": "CHALECO DE MALLA NARANJA CON REFLEJANTE"
+    },
+    {
+      "codigo": "M-2720001",
+      "nombre": "BOTA BLANCA #6"
+    },
+    {
+      "codigo": "M-2720002",
+      "nombre": "BOTA BLANCA #5"
+    },
+    {
+      "codigo": "M-2720003",
+      "nombre": "BOTAS BLANCA #7"
+    },
+    {
+      "codigo": "M-2720009",
+      "nombre": "FAJA TERCER CINTURON XG"
+    },
+    {
+      "codigo": "M-2720010",
+      "nombre": "GUANTES LATEX"
+    },
+    {
+      "codigo": "M-2720011",
+      "nombre": "IMPERMEABLE MEDIANO"
+    },
+    {
+      "codigo": "M-2720013",
+      "nombre": "RESPIRADOR PROFESIONAL"
+    },
+    {
+      "codigo": "M-2720014",
+      "nombre": "GUANTES DE CARNAZA"
+    },
+    {
+      "codigo": "M-2720015",
+      "nombre": "GUANTE NEGRO INDUSTRIAL GRANDE"
+    },
+    {
+      "codigo": "M-2720017",
+      "nombre": "BOTA DE HULE"
+    },
+    {
+      "codigo": "M-2720018",
+      "nombre": "FAJA SOPORTE DE ESPALDA CON TIRANTE AJUSTABLE"
+    },
+    {
+      "codigo": "M-2740001",
+      "nombre": "BOLA DE MECAHILO DE 2 CABOS"
+    },
+    {
+      "codigo": "M-2740002",
+      "nombre": "HILO PARA ALBAÑIL DE 165 MTS."
+    },
+    {
+      "codigo": "M-2740003",
+      "nombre": "HILO DE ALBAÑIL TORCIDO DE NYLON"
+    },
+    {
+      "codigo": "M-2910000",
+      "nombre": "TERMOMETRO ANALOGO IMAN"
+    },
+    {
+      "codigo": "M-2910011",
+      "nombre": "BROCA PARA FIERRO 09 3/16"
+    },
+    {
+      "codigo": "M-2910055",
+      "nombre": "DISCO DE CORTE 14\" X 7/64 X 1"
+    },
+    {
+      "codigo": "M-2910056",
+      "nombre": "DISCO DE CORTE DE 4 1/2\" X 1.2MM X 7/8"
+    },
+    {
+      "codigo": "M-2910057",
+      "nombre": "DISCO DE DESBASTE METAL 4 1/2 X 1/4 X 7/8 MAKITA"
+    },
+    {
+      "codigo": "M-2910058",
+      "nombre": "DISCO DE DESVASTE 7 MAKITA"
+    },
+    {
+      "codigo": "M-2910059",
+      "nombre": "DISCO PARA CONCRETO DE 4\""
+    },
+    {
+      "codigo": "M-2910079",
+      "nombre": "FELPA 3/4"
+    },
+    {
+      "codigo": "M-2910088",
+      "nombre": "LIMA PARA MOTOSIERRA"
+    },
+    {
+      "codigo": "M-2910089",
+      "nombre": "LIMA TRIANGULO PESADO 8\""
+    },
+    {
+      "codigo": "M-2910112",
+      "nombre": "LLAVE NARIZ DE 1/2\""
+    },
+    {
+      "codigo": "M-2910125",
+      "nombre": "MANERAL DE JAULA"
+    },
+    {
+      "codigo": "M-2910152",
+      "nombre": "PISTOLA DE AIRE SIFLON"
+    },
+    {
+      "codigo": "M-2910160",
+      "nombre": "REPUESTO DE GAS DESECHABLE"
+    },
+    {
+      "codigo": "M-2910169",
+      "nombre": "SEGUETA DIENTE FINO"
+    },
+    {
+      "codigo": "M-2910170",
+      "nombre": "SEGUETA DIENTE GRUESO"
+    },
+    {
+      "codigo": "M-2910182",
+      "nombre": "RODILLO COMPLETO"
+    },
+    {
+      "codigo": "M-2910183",
+      "nombre": "BROCHA 4\""
+    },
+    {
+      "codigo": "M-2910188",
+      "nombre": "BROCHA 5\""
+    },
+    {
+      "codigo": "M-2910189",
+      "nombre": "CUCHILLA CARBURO PARA CEPILLO ELECTRICO"
+    },
+    {
+      "codigo": "M-2910191",
+      "nombre": "MANERAL DE ALUMINIO 2.4 M CON RED BOLSA"
+    },
+    {
+      "codigo": "M-2910192",
+      "nombre": "MANGUERA 25\" CORRUGADA PARA ASPIRADORA 7.5 MTS"
+    },
+    {
+      "codigo": "M-2910193",
+      "nombre": "CLIP PARA MANERAL DE CEPILO DE ALBERCA"
+    },
+    {
+      "codigo": "M-2910194",
+      "nombre": "BROCHA 2\""
+    },
+    {
+      "codigo": "M-2910195",
+      "nombre": "CEPILLO TRUPER D/ALAMB. COPA CO-512MX"
+    },
+    {
+      "codigo": "M-2910196",
+      "nombre": "BROCA SDS TRUPER 02 BS-1/4*4 P/CONCRETO"
+    },
+    {
+      "codigo": "M-2910197",
+      "nombre": "BROCA SDS TRUPER 11 BS-1/2*6 C/CONCRETO"
+    },
+    {
+      "codigo": "M-2910198",
+      "nombre": "BROCA SDS TRUPER 01 BS-3/16*4 P/CONCRETO"
+    },
+    {
+      "codigo": "M-2910199",
+      "nombre": "BROCA SDS TRUPER 06 BS-5/16*6 P/CONCRETO"
+    },
+    {
+      "codigo": "M-2910200",
+      "nombre": "BROCA SDS TRUPER 10 BS-7/16*6 P/CONCRETO"
+    },
+    {
+      "codigo": "M-2910201",
+      "nombre": "BROCA SDS TRUPER 14 BS-9/16*6 P/CONCRETO"
+    },
+    {
+      "codigo": "M-2910202",
+      "nombre": "BROCA SDS TRUPER 08 BS-3/8*8 P/CONCRETO"
+    },
+    {
+      "codigo": "M-2910203",
+      "nombre": "PINZA PARA TIERRA PRONOSA 500 AMP.1"
+    },
+    {
+      "codigo": "M-2910213",
+      "nombre": "BROCHA 3\""
+    },
+    {
+      "codigo": "M-2910223",
+      "nombre": "DISCO DE LIJA VELCRO G-120"
+    },
+    {
+      "codigo": "M-2910224",
+      "nombre": "SIERRA CIRCULAR PARA MADERA"
+    },
+    {
+      "codigo": "M-2910225",
+      "nombre": "RESPALDOS PARA DISCOS AUTOADHERIBLES"
+    },
+    {
+      "codigo": "M-2910226",
+      "nombre": "LIJA DISCO ABRASIVO LONA GRUESA"
+    },
+    {
+      "codigo": "M-2910227",
+      "nombre": "SEGUETA PARA SIERRA SABLE"
+    },
+    {
+      "codigo": "M-2910230",
+      "nombre": "NAVAJA MULTIUSOS DE ALUMINIO AKSI"
+    },
+    {
+      "codigo": "M-2910231",
+      "nombre": "ADAPTADOR PARA PIJA 3/8"
+    },
+    {
+      "codigo": "M-2910232",
+      "nombre": "MANGO DE REPUESTO PARA MARTILLO DE UNA MA-16 1/2 PUL"
+    },
+    {
+      "codigo": "M-2910234",
+      "nombre": "RODILLO DE 1 \""
+    },
+    {
+      "codigo": "M-2910235",
+      "nombre": "BROCA PARA FIERRO 5/16\" STK"
+    },
+    {
+      "codigo": "M-2910236",
+      "nombre": "BROCA PARA FIERRO 1/4 STK"
+    },
+    {
+      "codigo": "M-2910237",
+      "nombre": "BROCA PARA FIERRO 3/16 STK"
+    },
+    {
+      "codigo": "M-2910238",
+      "nombre": "BROCA P/FIERRO 7/16"
+    },
+    {
+      "codigo": "M-2910239",
+      "nombre": "MANERAL TELESCOPIO PANDA 5-15 PIES"
+    },
+    {
+      "codigo": "M-2910250",
+      "nombre": "RODILLO EXTRA RUGOSO 9 X 1 1/4"
+    },
+    {
+      "codigo": "M-2910251",
+      "nombre": "BROCHA MANGO DE PLASTICO 4\""
+    },
+    {
+      "codigo": "M-2910252",
+      "nombre": "BROCHA MANGO DE PLASTICO 2\""
+    },
+    {
+      "codigo": "M-2910253",
+      "nombre": "BROCHA MANGO DE PLASTICO 1 1/2\""
+    },
+    {
+      "codigo": "M-2910254",
+      "nombre": "BROCHA MANGO DE PLASTICO 6\""
+    },
+    {
+      "codigo": "M-2910255",
+      "nombre": "EXTENSION PARA RODILLO 3.60 MTS."
+    },
+    {
+      "codigo": "M-2910256",
+      "nombre": "PINTURA ESMALTE SUMMA COLOR NEGRO"
+    },
+    {
+      "codigo": "M-2910257",
+      "nombre": "LIJA P/AGUA GRANO 100"
+    },
+    {
+      "codigo": "M-2910258",
+      "nombre": "ESPATULA 6\""
+    },
+    {
+      "codigo": "M-2910259",
+      "nombre": "EXTENSION PARA RODILLO FIBRA 5.4 M"
+    },
+    {
+      "codigo": "M-2910260",
+      "nombre": "EXTENSION PARA RODILLO METALICA 3 M"
+    },
+    {
+      "codigo": "M-2910261",
+      "nombre": "ESCOBA METALICA PARA JARDIN 15 DIENTES"
+    },
+    {
+      "codigo": "M-2910262",
+      "nombre": "ESCOBA METALICA PARA JARDIN 22 DIENTES"
+    },
+    {
+      "codigo": "M-2910264",
+      "nombre": "BROCA DE 5/16X6\" PARA METAL"
+    },
+    {
+      "codigo": "M-2920001",
+      "nombre": "BISAGRA TUBULAR 1\""
+    },
+    {
+      "codigo": "M-2920002",
+      "nombre": "BISAGRA TUBULAR 3/8"
+    },
+    {
+      "codigo": "M-2920003",
+      "nombre": "CANDADO PHILIPS MOD 13"
+    },
+    {
+      "codigo": "M-2920004",
+      "nombre": "CHAPA FANAL DERECHA"
+    },
+    {
+      "codigo": "M-2920005",
+      "nombre": "CHAPA FANAL IZQUIERDA"
+    },
+    {
+      "codigo": "M-2920006",
+      "nombre": "FIJA PUERTAS"
+    },
+    {
+      "codigo": "M-2920007",
+      "nombre": "CANDADO DE LATON 45MM GANCHO LARGO"
+    },
+    {
+      "codigo": "M-2920008",
+      "nombre": "PASADOR MOUSER REFORZADO 5/8"
+    },
+    {
+      "codigo": "M-2920009",
+      "nombre": "PIVOTE DESCENTRADO HEX PARA PUERTA DE ALUMNIO"
+    },
+    {
+      "codigo": "M-2920010",
+      "nombre": "CERRADURA PHILIPS MOD"
+    },
+    {
+      "codigo": "M-2920011",
+      "nombre": "PASADOR MAUSER GALVANIZADO #5 R-15"
+    },
+    {
+      "codigo": "M-2920012",
+      "nombre": "CANDADO ACERO 40MM GANCHO LARGO"
+    },
+    {
+      "codigo": "M-2920013",
+      "nombre": "CANDADO DE HIERRO"
+    },
+    {
+      "codigo": "M-2920014",
+      "nombre": "CANDADO HERMEX 50MM"
+    },
+    {
+      "codigo": "M-2920015",
+      "nombre": "POMO ARCADIA RECAMARA NS"
+    },
+    {
+      "codigo": "M-2920016",
+      "nombre": "PASADOR MAUSER REFORZADO #5"
+    },
+    {
+      "codigo": "M-2920017",
+      "nombre": "BISAGRA PARA PUERTAS 73MMX48MM (JUEGO)"
+    },
+    {
+      "codigo": "M-2920018",
+      "nombre": "2866 DATMX SEGURO PARA M"
+    },
+    {
+      "codigo": "M-2920019",
+      "nombre": "CERRADURA TUBULAR REC GAMMA PHILIPS"
+    },
+    {
+      "codigo": "M-2920020",
+      "nombre": "CHAPA DOBLE MANIJA CONALUM"
+    },
+    {
+      "codigo": "M-2920021",
+      "nombre": "BISAGRA INDUSTRIAL PARA TUBO DE 1 1/2 PULGADA"
+    },
+    {
+      "codigo": "M-2920022",
+      "nombre": "MAUSER REFORZADO #8 PASADOR MAUSER REFORZADO #8 YA ESXISTE ESTE CODIGO DEL APSADO)"
+    },
+    {
+      "codigo": "M-2920023",
+      "nombre": "POMO TULIP RECAMARA (CHAPA)"
+    },
+    {
+      "codigo": "M-2920024",
+      "nombre": "BISAGRA CUADRADA 2-1/2\""
+    },
+    {
+      "codigo": "M-2920025",
+      "nombre": "BISAGRA DE LIBRO 3 GRUESA"
+    },
+    {
+      "codigo": "M-2920026",
+      "nombre": "CHAPA PARA PUERTA DE ALUMINIO"
+    },
+    {
+      "codigo": "M-2920028",
+      "nombre": "MANGUERA MAXIFLEX LAV F-25 RUGO 1/2 X 1/2 X 40"
+    },
+    {
+      "codigo": "M-2920029",
+      "nombre": "MANGUERA PARA GAS VINIL 010X010 3/8X 3/8"
+    },
+    {
+      "codigo": "M-2920030",
+      "nombre": "LLAVE CONTRA ROSCAR F-251"
+    },
+    {
+      "codigo": "M-2920031",
+      "nombre": "MANGUERA ALIMENTADORA PARA FREGADERO"
+    },
+    {
+      "codigo": "M-2960002",
+      "nombre": "BUJIAS"
+    },
+    {
+      "codigo": "M-2960003",
+      "nombre": "FILTRO P/ACEITE"
+    },
+    {
+      "codigo": "M-2960004",
+      "nombre": "FILTRO P/AIRE"
+    },
+    {
+      "codigo": "M-2960005",
+      "nombre": "HULES POLARIS 5434548"
+    },
+    {
+      "codigo": "M-2960006",
+      "nombre": "LLANTA 18 X 8.5 -8"
+    },
+    {
+      "codigo": "M-2960007",
+      "nombre": "LLANTA 20.5 X 8.0 - 10"
+    },
+    {
+      "codigo": "M-2960010",
+      "nombre": "RETEN FUNDA DE TRANSMISIÓN"
+    },
+    {
+      "codigo": "M-2960011",
+      "nombre": "PORTA CARBONES DE MARCHA"
+    },
+    {
+      "codigo": "M-2960012",
+      "nombre": "RETEN INTERIO DE MAZA 16747N"
+    },
+    {
+      "codigo": "M-2960013",
+      "nombre": "BALERO EUR"
+    },
+    {
+      "codigo": "M-2960015",
+      "nombre": "3719 LIMPIAPARABRISAS"
+    },
+    {
+      "codigo": "M-2960016",
+      "nombre": "3721 LIMPIAPARABRISAS"
+    },
+    {
+      "codigo": "M-2960017",
+      "nombre": "3722 LIMPIAPARABRISAS"
+    },
+    {
+      "codigo": "M-2960018",
+      "nombre": "3722 LIMPIAPARABRISAS"
+    },
+    {
+      "codigo": "M-2960019",
+      "nombre": "114 LIMPIAPARABRISAS"
+    },
+    {
+      "codigo": "M-2960020",
+      "nombre": "TERMINAL OJO 3/8"
+    },
+    {
+      "codigo": "M-2960021",
+      "nombre": "CABLE ACUMULADOR 08 ROJO"
+    },
+    {
+      "codigo": "M-2960022",
+      "nombre": "TERMINALES PARA BATERIA"
+    },
+    {
+      "codigo": "M-2960023",
+      "nombre": "BALERO TIMKEN"
+    },
+    {
+      "codigo": "M-2960024",
+      "nombre": "BALERO L68141/11 TIMKET"
+    },
+    {
+      "codigo": "M-2960025",
+      "nombre": "BALATAS PARA FRENO"
+    },
+    {
+      "codigo": "M-2960026",
+      "nombre": "BOMBA DE AGUA NISSAN"
+    },
+    {
+      "codigo": "M-2960027",
+      "nombre": "BANDA LAMINADA NP 300 2.4 L 8/12"
+    },
+    {
+      "codigo": "M-2960028",
+      "nombre": "BANDA LAMINADA"
+    },
+    {
+      "codigo": "M-2960029",
+      "nombre": "BANDA LAMINADA CHASIS 4CIL 2.4"
+    },
+    {
+      "codigo": "M-2960030",
+      "nombre": "BALATA DE TAMBOR"
+    },
+    {
+      "codigo": "M-2960031",
+      "nombre": "BALATA FRENO DISCO NISSAN"
+    },
+    {
+      "codigo": "M-2960032",
+      "nombre": "TORNILLOS AUTOMOTRIZ"
+    },
+    {
+      "codigo": "M-2960033",
+      "nombre": "TERMINALES ELECTRICAS"
+    },
+    {
+      "codigo": "M-2960034",
+      "nombre": "ARMADURA MARCHA PARA VEHICULO"
+    },
+    {
+      "codigo": "M-2960035",
+      "nombre": "NGK POWER SPARK P"
+    },
+    {
+      "codigo": "M-2960039",
+      "nombre": "CILINDRO DE RUEDA"
+    },
+    {
+      "codigo": "M-2960040",
+      "nombre": "FILTRO DE AIRE FS-55"
+    },
+    {
+      "codigo": "M-2960041",
+      "nombre": "KIT DE CLUTCH"
+    },
+    {
+      "codigo": "M-2960042",
+      "nombre": "BOMBA DE CLUTCH"
+    },
+    {
+      "codigo": "M-2980001",
+      "nombre": "HILO P/DESBROZADORA 2.4MM X 12 MTS"
+    },
+    {
+      "codigo": "M-2980002",
+      "nombre": "PIOLA DE ARRANQUE P/PODADORAS"
+    },
+    {
+      "codigo": "M-2980003",
+      "nombre": "PORTA CARBON PARA TALADRO MAQUITA (DEWALT)"
+    },
+    {
+      "codigo": "M-2980004",
+      "nombre": "CARBON PARA TALADRO MAKITA"
+    },
+    {
+      "codigo": "M-2980005",
+      "nombre": "HILO P/DESBROZADORA 2.4MM X 78 MTS"
+    },
+    {
+      "codigo": "M-2980006",
+      "nombre": "FILTRO DE AIRE-40161505"
+    },
+    {
+      "codigo": "M-2980007",
+      "nombre": "TERMOSTATO"
+    },
+    {
+      "codigo": "M-2980008",
+      "nombre": "CADENA STHIL PMM 16\" 3/8*043 19/01"
+    },
+    {
+      "codigo": "M-2980009",
+      "nombre": "LLANTA P/CARRETILLA C/CAMA TRUPERA"
+    },
+    {
+      "codigo": "M-2980010",
+      "nombre": "ARMADURA PARA CORTADORA 2414NB, MAKITA (510239-2)"
+    },
+    {
+      "codigo": "M-2980011",
+      "nombre": "PUNTA ESTRELLA PH 2X1-15/16\" URR"
+    },
+    {
+      "codigo": "M-2980012",
+      "nombre": "RESORTES"
+    },
+    {
+      "codigo": "M-2980013",
+      "nombre": "BUJIAS WSR6F (DESBROZADORA)"
+    },
+    {
+      "codigo": "M-2980014",
+      "nombre": "FILTRO DE AIRE MS 361"
+    },
+    {
+      "codigo": "M-2980015",
+      "nombre": "TRAMO MANGUERA 1.50"
+    },
+    {
+      "codigo": "M-2980016",
+      "nombre": "CARBON PARA PULIDOR DWALT"
+    },
+    {
+      "codigo": "M-2980017",
+      "nombre": "LLANTA PARA DIABLO 7\" C/2 BALERO"
+    },
+    {
+      "codigo": "M-2980018",
+      "nombre": "BANDA AUTOMOTRIZ"
+    },
+    {
+      "codigo": "M-2980019",
+      "nombre": "PEDALES (BUJES)"
+    },
+    {
+      "codigo": "M-2980020",
+      "nombre": "MANGUERA CORRUGADA PARA ASPIRADORA PISCINAS DE 1 12"
+    },
+    {
+      "codigo": "M-2980021",
+      "nombre": "CANASTILLA SP4000"
+    },
+    {
+      "codigo": "M-2980022",
+      "nombre": "AISLADOR ESQUINERO PARA CERCO ELECTRICO"
+    },
+    {
+      "codigo": "M-2980023",
+      "nombre": "HILO TIPO CRUCETA 262 M 2.4 MM"
+    },
+    {
+      "codigo": "M-2990001",
+      "nombre": "BALERO 6203"
+    },
+    {
+      "codigo": "M-2990002",
+      "nombre": "BALERO 6205"
+    },
+    {
+      "codigo": "M-2990003",
+      "nombre": "BALERO AXIAL"
+    },
+    {
+      "codigo": "M-2990004",
+      "nombre": "BALERO PARA CARRETILLA"
+    },
+    {
+      "codigo": "M-2990005",
+      "nombre": "BRIDA FLEXIBLE 4\""
+    },
+    {
+      "codigo": "M-2990006",
+      "nombre": "CADENA 25\" 3/8 MOTOSIERRA"
+    },
+    {
+      "codigo": "M-2990007",
+      "nombre": "CANASTILLA SP1600M"
+    },
+    {
+      "codigo": "M-2990008",
+      "nombre": "CONTRA CANASTA PARA FREGADERO"
+    },
+    {
+      "codigo": "M-2990009",
+      "nombre": "CONTRA REJILLA P/LAVABO Y EXTENCION"
+    },
+    {
+      "codigo": "M-2990010",
+      "nombre": "CONTRA SPUD PARA MIGITORIO"
+    },
+    {
+      "codigo": "M-2990011",
+      "nombre": "DIFUSOR PARA FILTRO"
+    },
+    {
+      "codigo": "M-2990012",
+      "nombre": "EMPAQUE ARAÑA"
+    },
+    {
+      "codigo": "M-2990013",
+      "nombre": "FILTRO 20-20-20"
+    },
+    {
+      "codigo": "M-2990014",
+      "nombre": "FILTRO DESHIDRATADOR"
+    },
+    {
+      "codigo": "M-2990015",
+      "nombre": "FLOTADOR ROTOPLAS"
+    },
+    {
+      "codigo": "M-2990016",
+      "nombre": "KIT MANIJA Y PEDAL DE FLUX SF-056"
+    },
+    {
+      "codigo": "M-2990017",
+      "nombre": "KIT RONDANA SPUD 19 SF-057"
+    },
+    {
+      "codigo": "M-2990018",
+      "nombre": "KIT RONDANA SPUD 38 SF-059"
+    },
+    {
+      "codigo": "M-2990019",
+      "nombre": "MANGUERA ALIMENTADORA FREGADERO (LAVABO)"
+    },
+    {
+      "codigo": "M-2990020",
+      "nombre": "MANGUERA ALIMENTADORA SANITARIO"
+    },
+    {
+      "codigo": "M-2990021",
+      "nombre": "MANOMETROS"
+    },
+    {
+      "codigo": "M-2990022",
+      "nombre": "RED BUSHING PVC DE 2 X 1 1/2"
+    },
+    {
+      "codigo": "M-2990023",
+      "nombre": "REDUCCION BUSHING 3/4"
+    },
+    {
+      "codigo": "M-2990024",
+      "nombre": "SELLO MECANICO 3/4"
+    },
+    {
+      "codigo": "M-2990025",
+      "nombre": "VALVULA DE PIE PICHANCHA 2\""
+    },
+    {
+      "codigo": "M-2990026",
+      "nombre": "VALVULA ESFERA PVC 2\""
+    },
+    {
+      "codigo": "M-2990027",
+      "nombre": "VALVULA FLOTADOR"
+    },
+    {
+      "codigo": "M-2990028",
+      "nombre": "VALVULA Y FLOTADOR DE LLENADO PARA TINACO 1/2"
+    },
+    {
+      "codigo": "M-2990029",
+      "nombre": "MEZCLADORA PARA FREGADERO"
+    },
+    {
+      "codigo": "M-2990030",
+      "nombre": "MEZCLADORA PARA LAVADO"
+    },
+    {
+      "codigo": "M-2990031",
+      "nombre": "KIT PARA LLAVE ECONOMIZADORA"
+    },
+    {
+      "codigo": "M-2990032",
+      "nombre": "ESTOPERO ARMADO REPUESTO MANIJA FLUXOMETRO (SF-106)"
+    },
+    {
+      "codigo": "M-2990033",
+      "nombre": "REPUESTO DE FLUXOMETRO (kit embolo flux sf-054)"
+    },
+    {
+      "codigo": "M-2990034",
+      "nombre": "LLAVE ANGULAR 1/2 X 1/2, 1/4 DE VUELTA"
+    },
+    {
+      "codigo": "M-2990035",
+      "nombre": "LLAVE ESTOPERO SIN PULIR"
+    },
+    {
+      "codigo": "M-2990036",
+      "nombre": "REDUCCION BUSHING 1 - 1/2\" COBRE"
+    },
+    {
+      "codigo": "M-2990037",
+      "nombre": "MANGUERA PARA JARDIN VERDE REFORZADA 3/4 100 MTS"
+    },
+    {
+      "codigo": "M-2990038",
+      "nombre": "ASPERSOR ESTACA MET. DOBLE CHORRO"
+    },
+    {
+      "codigo": "M-2990040",
+      "nombre": "JGO. DE HERRAJES Y REDUCCION PVC"
+    },
+    {
+      "codigo": "M-2990041",
+      "nombre": "BOMBA SUMERGIBLE PARA ESTANQUE 2000 A 3000 L/H"
+    },
+    {
+      "codigo": "M-2990042",
+      "nombre": "CALENTADOR PARA ACUARIO 300W"
+    },
+    {
+      "codigo": "M-2990043",
+      "nombre": "CALENTADOR ACUARIO 150W"
+    },
+    {
+      "codigo": "M-2990044",
+      "nombre": "FILTRO DE CASCADA PARA PESERA 2002´570 LT/HR"
+    },
+    {
+      "codigo": "M-2990045",
+      "nombre": "CABEZA DE PODER PARA ACUARIO SP/400"
+    },
+    {
+      "codigo": "M-2990046",
+      "nombre": "BOMBA SUMERGIBLE PARA ACUARIO 2500 L/H"
+    },
+    {
+      "codigo": "M-2990047",
+      "nombre": "BOMBA SUMERGIBLE PARA ACUARIO 1000 L/H"
+    },
+    {
+      "codigo": "M-2990048",
+      "nombre": "BOMBA SUMERGIBLE PARA ACUARIO 500 LT-HR"
+    },
+    {
+      "codigo": "M-2990049",
+      "nombre": "ESTOPERO ARMADO FLUXOMETRO (6 lts 14-sf-124)"
+    },
+    {
+      "codigo": "M-2990050",
+      "nombre": "ESTOPERO ARMADO CON CUERDA FUXOMETRO 14-SF-110"
+    },
+    {
+      "codigo": "M-2990051",
+      "nombre": "CONTRA SPUD PARA WC DE 1/2 RUGO 10-713B"
+    },
+    {
+      "codigo": "M-2990052",
+      "nombre": "RAIN VIR 5504 PC ASPERSOR ROTAR RECTIR 4\" ARCO AJUSTABLE"
+    },
+    {
+      "codigo": "M-2990053",
+      "nombre": "RAIN VIR 3504 PC ASPERSOR ROTAR RECTIR 4\""
+    },
+    {
+      "codigo": "M-2990054",
+      "nombre": "ASPERSOR UNI SPRAY RAIN BIRD"
+    },
+    {
+      "codigo": "M-2990055",
+      "nombre": "BOQUILLA PARA DIFUSOR ROSIADOR ARCO AJUSTABLE 10209"
+    },
+    {
+      "codigo": "M-2990056",
+      "nombre": "LLAVE PARA BEBEDERO 09-16BB"
+    },
+    {
+      "codigo": "M-2990059",
+      "nombre": "ALIMENTADOR COFLEX PARA WC"
+    },
+    {
+      "codigo": "M-2990060",
+      "nombre": "BRIDA PARA WC COFLEX CORTA"
+    },
+    {
+      "codigo": "M-2990061",
+      "nombre": "MANGUERA PARA JARDIN 20 MTS"
+    },
+    {
+      "codigo": "M-2990062",
+      "nombre": "EMBOLO ARMADO FLUXOMETRO 3 LTS 14-SF100"
+    },
+    {
+      "codigo": "M-2990063",
+      "nombre": "EMBOLO FLUXOMETRO DE 6 LTS 14-SF-124"
+    },
+    {
+      "codigo": "M-2990064",
+      "nombre": "MANIJA ARMADA PAR AFLUXOMETRO 14-SF106"
+    },
+    {
+      "codigo": "M-2990065",
+      "nombre": "VALVULA BOLA CON DOBLE TUERCA UNION 2\""
+    },
+    {
+      "codigo": "M-2990066",
+      "nombre": "MANGUERA INDUSTRIAL 5/8 SUTEK"
+    },
+    {
+      "codigo": "M-2990067",
+      "nombre": "LLAVE DE CONTROL RECTA"
+    },
+    {
+      "codigo": "M-2990068",
+      "nombre": "REDUCCION GALVANIZADA 1\" A 1/2\""
+    },
+    {
+      "codigo": "M-2990069",
+      "nombre": "CHIFLON DE BRONCE TRUPER"
+    },
+    {
+      "codigo": "M-2990070",
+      "nombre": "VALVULA TIPO ESFERA PARA CEMENTAR DE 2\""
+    },
+    {
+      "codigo": "M-2990071",
+      "nombre": "MANGUERA INDUSTRIAL 1/2 1MT SURTEK"
+    },
+    {
+      "codigo": "M-2990072",
+      "nombre": "MANGUERA DE USO RUDO 4 CAPAS 20 METROS"
+    },
+    {
+      "codigo": "M-2990073",
+      "nombre": "TRAMPA FLEXIBLE PARA LAVABO DE 1/4\""
+    },
+    {
+      "codigo": "M-2990074",
+      "nombre": "LLAVE ESTOPERO PARA LAVABO 1/2\""
+    },
+    {
+      "codigo": "M-2990075",
+      "nombre": "RED BUSHING 4X2 C40"
+    },
+    {
+      "codigo": "M-2990076",
+      "nombre": "RED BUSHING 2X1"
+    },
+    {
+      "codigo": "M-2990077",
+      "nombre": "MINGITORIO CERAMICO ECOLOGICO SECO COLOR BLANCO"
+    },
+    {
+      "codigo": "M-2990078",
+      "nombre": "TUERCA UNION CEMENTAR 1\""
+    },
+    {
+      "codigo": "M-2990079",
+      "nombre": "VALVULA PVC CHECK DE COLUMPIO"
+    },
+    {
+      "codigo": "M-2990080",
+      "nombre": "VALVULA RESILENTE DUCTIL VAST INOX 4 PULGADAS"
+    },
+    {
+      "codigo": "M-2990081",
+      "nombre": "EMPAQUE NEOPRENO DE 4\" PARA BRIDA"
+    },
+    {
+      "codigo": "M-2990082",
+      "nombre": "EMPAQUE DE PLOMO DE 4\""
+    },
+    {
+      "codigo": "M-2990083",
+      "nombre": "VALVULA ESFERA CEMENTAR PVC 2\""
+    },
+    {
+      "codigo": "M-2990084",
+      "nombre": "REDUCCION BUSHING PVC HCO 2 X1 1/2"
+    },
+    {
+      "codigo": "M-2990085",
+      "nombre": "VALVULA DE COMPUERTA LATON DE 3 PULGADAS"
+    },
+    {
+      "codigo": "M-2990086",
+      "nombre": "CILINDRO DE GAS PROPANO DE 400 G AZUL GAS-400A"
+    },
+    {
+      "codigo": "M-2990087",
+      "nombre": "VALVULA GRE GLOBO 74 1/12 PUL G SOLDABLE"
+    },
+    {
+      "codigo": "M-2990088",
+      "nombre": "VALVULA DE COMPUERTA DE 4 PULGADAS DE FOFO"
+    },
+    {
+      "codigo": "M-2990089",
+      "nombre": "VALVULA DE 1 1/4 DE PULGADA"
+    },
+    {
+      "codigo": "M-2990090",
+      "nombre": "VALVULA CHECK DE RESORTE 1\" PICHA-1X"
+    },
+    {
+      "codigo": "M-2990091",
+      "nombre": "VALVULA ESFERA CEMENTAR PVC 1\" PVC-ES-1"
+    },
+    {
+      "codigo": "M-2990092",
+      "nombre": "VALVULA DE 3/4 ROSCADA DE TIPO ESFERA EN BRONCE"
+    },
+    {
+      "codigo": "M-2990093",
+      "nombre": "LLAVE DE NARIZ DE 1/2"
+    },
+    {
+      "codigo": "M-2990094",
+      "nombre": "VALVULA ESFERA ROSCAR PVC 1\""
+    },
+    {
+      "codigo": "M-2990095",
+      "nombre": "SELLO MECANICO 22MM (5/8)"
+    },
+    {
+      "codigo": "M-2990096",
+      "nombre": "CONEXIÓN D/LATON P/MANGUERA 19MM 3/4"
+    },
+    {
+      "codigo": "M-2990097",
+      "nombre": "TARJA SENCILLA ESCURRIDOR IZQUIERDO 80CM X 50CM"
+    },
+    {
+      "codigo": "M-2990098",
+      "nombre": "REDUCCION BUSHING 1/2 A 1/4 PLATA"
+    },
+    {
+      "codigo": "M-2990099",
+      "nombre": "SEGUETA #6 CALADORA"
+    },
+    {
+      "codigo": "M-2990100",
+      "nombre": "REGULADOR PARA TANQUE DE ACETILENO GENERICO"
+    },
+    {
+      "codigo": "M-2990101",
+      "nombre": "SEGUETA #13 CALADORA"
+    },
+    {
+      "codigo": "M-2990102",
+      "nombre": "FLOTADOR DE POLIUTERANO N5 CON VARILLA"
+    },
+    {
+      "codigo": "M-2990103",
+      "nombre": "REGULADOR DE GAS PARA TANQUE TIPO DOMESTICO"
+    },
+    {
+      "codigo": "M-2990104",
+      "nombre": "RED EXCENTRICA SANITARIA 4\"x2"
+    },
+    {
+      "codigo": "M-2990105",
+      "nombre": "QUEMADOR PARA ESTUFA"
+    },
+    {
+      "codigo": "M-2990106",
+      "nombre": "RED PVC BUSH CEM C-40 4X3"
+    },
+    {
+      "codigo": "M-2990107",
+      "nombre": "VALVULA DE POM 3/4 PULGADAS PARA FLOTADOR"
+    },
+    {
+      "codigo": "M-2990108",
+      "nombre": "MOTOR DE CONDENSADOR DE 1/2 HP PAR AIRE CARRIER (5kcp39pg motor) RPM 1080"
+    },
+    {
+      "codigo": "M-2990109",
+      "nombre": "CONTRA PARA LAVABO C/REBOSADERO, POLIPROPILENO 1-1/4\""
+    },
+    {
+      "codigo": "M-2990110",
+      "nombre": "MANGUERA USO RUDO 3/4\" (4 CAPAS) CON REFUERZO DE TEJIDO RADIAL, ALTA RESISTENCIA A LA PRESION Y TECNOLOGIA ANTITORCEDURAS DE 100 MTS."
+    },
+    {
+      "codigo": "M-3120001",
+      "nombre": "GENETRON R-22"
+    },
+    {
+      "codigo": "M-3120002",
+      "nombre": "GAS BUTANO 275 GR"
+    }
+  ]
+};

@@ -1,0 +1,849 @@
+{
+  "fuentes": [
+    {
+      "area": "Snack",
+      "mes": "Enero",
+      "archivo": "01.ENERO.2026 INVENTARIO.FINAL.SNACK...xlsx",
+      "con_codigo": 163,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Snack",
+      "mes": "Febrero",
+      "archivo": "02.FEBRERO.2026 INVENTARIO DE SNACK (1).xlsx",
+      "con_codigo": 160,
+      "sin_codigo": 3
+    },
+    {
+      "area": "Snack",
+      "mes": "Marzo",
+      "archivo": "03.MARZO.2026 INVENTARIO DE SNACK (3).xlsx",
+      "con_codigo": 160,
+      "sin_codigo": 3
+    },
+    {
+      "area": "Snack",
+      "mes": "Abril",
+      "archivo": "04.ABRIL.2026.INVENTARIO.SNACK.FINAL.xlsx",
+      "con_codigo": 163,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Tienda",
+      "mes": "Enero",
+      "archivo": "01.ENERO.2026 INVENTARIO.FINAL.TIENDA RECUERDOS..xlsx",
+      "con_codigo": 85,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Tienda",
+      "mes": "Febrero",
+      "archivo": "02.FEBRERO.2026 INVENTARIO DE TIENDA (1).xlsx",
+      "con_codigo": 84,
+      "sin_codigo": 1
+    },
+    {
+      "area": "Tienda",
+      "mes": "Marzo",
+      "archivo": "03.MARZO.2026.INVENTARIO.TIENDARECUERDOS.FINAL. (2).xlsx",
+      "con_codigo": 85,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Tienda",
+      "mes": "Abril",
+      "archivo": "04.ABRIL.2026.INVENTARIO.TIENDARECUERDOS.FINAL.xlsx",
+      "con_codigo": 85,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Farmacia",
+      "mes": "Enero",
+      "archivo": "01.ENERO.2026 INVENTARIO.FINAL.FARMACIA..xlsx",
+      "con_codigo": 298,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Farmacia",
+      "mes": "Febrero",
+      "archivo": "02.FEBRERO.2026 INVENTARIO DE FARMACIA.xlsx",
+      "con_codigo": 298,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Farmacia",
+      "mes": "Marzo",
+      "archivo": "03.MARZO.2026.INVENTARIO.FARMACIA.FINAL.17-04-2026.xlsx",
+      "con_codigo": 298,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Farmacia",
+      "mes": "Abril",
+      "archivo": "04.ABRIL.2026.INVENTARIO.FARMACIA.FINAL.xlsx",
+      "con_codigo": 298,
+      "sin_codigo": 13
+    },
+    {
+      "area": "Nutrición",
+      "mes": "Enero",
+      "archivo": "01.ENERO.2026 INVENTARIO.FINAL.NUTRICION...xlsx",
+      "con_codigo": 104,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Nutrición",
+      "mes": "Febrero",
+      "archivo": "02.FEBRERO.2026 INVENTARIO NUTRICION (2).xlsx",
+      "con_codigo": 103,
+      "sin_codigo": 5
+    },
+    {
+      "area": "Nutrición",
+      "mes": "Marzo",
+      "archivo": "03.MARZO.2026.INVENTARIO.NUTRICION.FINAL.xlsx",
+      "con_codigo": 104,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Nutrición",
+      "mes": "Abril",
+      "archivo": "04.ABRIL.2026.INVENTARIO.NUTRICION.FINAL+CIE (2).xlsx",
+      "con_codigo": 108,
+      "sin_codigo": 0
+    },
+    {
+      "area": "Mantenimiento",
+      "mes": "Enero",
+      "archivo": "01.ENERO.2026 INVENTARIO.FINAL.MANTENIMIENTO.xlsx",
+      "con_codigo": 977,
+      "sin_codigo": 49
+    },
+    {
+      "area": "Mantenimiento",
+      "mes": "Febrero",
+      "archivo": "02.FEBRERO.2026 INVENTARIO MANTENIMIENTO.JULIA (3).xlsx",
+      "con_codigo": 977,
+      "sin_codigo": 54
+    },
+    {
+      "area": "Mantenimiento",
+      "mes": "Marzo",
+      "archivo": "03.MARZO.2026 INVENTARIO MANTENIMIENTO FINAL ZOOLOGICO(CRISTY) (2).xlsx",
+      "con_codigo": 1022,
+      "sin_codigo": 28
+    },
+    {
+      "area": "Mantenimiento",
+      "mes": "Abril",
+      "archivo": "04.ABRIL.2026.MANTENIMIENTO.FINAL.xlsx",
+      "con_codigo": 1103,
+      "sin_codigo": 0
+    }
+  ],
+  "areas": {
+    "Snack": {
+      "prefijo_esperado": "S-",
+      "articulos_unicos": 163,
+      "conflicto_nombre_por_codigo": {
+        "total": 0,
+        "detalle": {}
+      },
+      "conflicto_codigo_por_nombre": {
+        "total": 0,
+        "detalle": {}
+      },
+      "sin_codigo": {
+        "total": 3,
+        "detalle": [
+          "PAPAS BARCEL ADOBADAS",
+          "PAPAS BARCEL TOREADAS",
+          "SABRITAS HABANERAS"
+        ]
+      },
+      "fuera_de_prefijo": {
+        "total": 0,
+        "detalle": []
+      }
+    },
+    "Tienda": {
+      "prefijo_esperado": "T-",
+      "articulos_unicos": 85,
+      "conflicto_nombre_por_codigo": {
+        "total": 0,
+        "detalle": {}
+      },
+      "conflicto_codigo_por_nombre": {
+        "total": 0,
+        "detalle": {}
+      },
+      "sin_codigo": {
+        "total": 1,
+        "detalle": [
+          "VIBORA DE PELUCHE"
+        ]
+      },
+      "fuera_de_prefijo": {
+        "total": 0,
+        "detalle": []
+      }
+    },
+    "Farmacia": {
+      "prefijo_esperado": "F-",
+      "articulos_unicos": 298,
+      "conflicto_nombre_por_codigo": {
+        "total": 26,
+        "detalle": {
+          "F-2520003": {
+            "nombres_vistos": [
+              "BIOTHRINE FLOW",
+              "BIOTHRINE FLOW 1 LTO."
+            ],
+            "nombre_canonico_abril": "BIOTHRINE FLOW 1 LTO."
+          },
+          "F-2530002": {
+            "nombres_vistos": [
+              "BOVITRAZ LITRO",
+              "BOVITRAZ LITRO AL 12.5%"
+            ],
+            "nombre_canonico_abril": "BOVITRAZ LITRO AL 12.5%"
+          },
+          "F-2530003": {
+            "nombres_vistos": [
+              "YODO SOL",
+              "YODO SOL 3.5 LTS."
+            ],
+            "nombre_canonico_abril": "YODO SOL 3.5 LTS."
+          },
+          "F-2530007": {
+            "nombres_vistos": [
+              "ANESKET (KETAMINA-PET)",
+              "ANESKET (KETAMINA-PET) 10 ML"
+            ],
+            "nombre_canonico_abril": "ANESKET (KETAMINA-PET) 10 ML"
+          },
+          "F-2530012": {
+            "nombres_vistos": [
+              "BICARNAT",
+              "BICARNAT 10 ML."
+            ],
+            "nombre_canonico_abril": "BICARNAT 10 ML."
+          },
+          "F-2530028": {
+            "nombres_vistos": [
+              "DMSO GEL",
+              "DMSO GEL 454 GR."
+            ],
+            "nombre_canonico_abril": "DMSO GEL 454 GR."
+          },
+          "F-2530030": {
+            "nombres_vistos": [
+              "FINADYNE",
+              "FINADYNE DE 250 ML."
+            ],
+            "nombre_canonico_abril": "FINADYNE DE 250 ML."
+          },
+          "F-2530044": {
+            "nombres_vistos": [
+              "RANULIN VET FCO 50ML",
+              "RANULIN VET FCO 50ML SOL.INYECTABLE"
+            ],
+            "nombre_canonico_abril": "RANULIN VET FCO 50ML SOL.INYECTABLE"
+          },
+          "F-2530052": {
+            "nombres_vistos": [
+              "RYMADIL 60",
+              "RYMADIL TAB 10MG"
+            ],
+            "nombre_canonico_abril": "RYMADIL TAB 10MG"
+          },
+          "F-2530053": {
+            "nombres_vistos": [
+              "SE-VE",
+              "SUFREXAL"
+            ],
+            "nombre_canonico_abril": "SE-VE"
+          },
+          "F-2530058": {
+            "nombres_vistos": [
+              "ULCODERMA",
+              "ULCODERMA 15 GR."
+            ],
+            "nombre_canonico_abril": "ULCODERMA 15 GR."
+          },
+          "F-2530060": {
+            "nombres_vistos": [
+              "BAYTRIL TAB. 150 MG",
+              "BAYTRIL TAB. 150 MG C/10 TABS"
+            ],
+            "nombre_canonico_abril": "BAYTRIL TAB. 150 MG C/10 TABS"
+          },
+          "F-2530066": {
+            "nombres_vistos": [
+              "NIC-TON SOL.",
+              "NIC-TON SOL. 950 ML."
+            ],
+            "nombre_canonico_abril": "NIC-TON SOL. 950 ML."
+          },
+          "F-2530075": {
+            "nombres_vistos": [
+              "METIL PREDNISOLONA (DEPOMEDROL) ACETATO DE METILPREDNISOLONA",
+              "METIL PREDNISOLONA (DEPOMEDROL) ACETATO DE METILPREDNISOLONA de 2 ml."
+            ],
+            "nombre_canonico_abril": "METIL PREDNISOLONA (DEPOMEDROL) ACETATO DE METILPREDNISOLONA de 2 ml."
+          },
+          "F-2530088": {
+            "nombres_vistos": [
+              "FENILBUTAZONA (BUTAFENIL POLVO ORAL)",
+              "FENILBUTAZONA (BUTAFENIL POLVO ORAL) DE3 GR."
+            ],
+            "nombre_canonico_abril": "FENILBUTAZONA (BUTAFENIL POLVO ORAL) DE3 GR."
+          },
+          "F-2530097": {
+            "nombres_vistos": [
+              "CERVICINE 10 ML",
+              "DOXAPRAM FRASCO DE 20 ML (DOXOPRAM 20 ML)"
+            ],
+            "nombre_canonico_abril": "CERVICINE 10 ML"
+          },
+          "F-2530123": {
+            "nombres_vistos": [
+              "CEFTIOFUR 100ML",
+              "CEFTIOFUR 100ML AL 5%"
+            ],
+            "nombre_canonico_abril": "CEFTIOFUR 100ML AL 5%"
+          },
+          "F-2530130": {
+            "nombres_vistos": [
+              "MICONAZOL CREMA",
+              "MICONAZOL CREMA 20 gr."
+            ],
+            "nombre_canonico_abril": "MICONAZOL CREMA 20 gr."
+          },
+          "F-2530131": {
+            "nombres_vistos": [
+              "ITRACONAZOL",
+              "ITRACONAZOL 125 MG."
+            ],
+            "nombre_canonico_abril": "ITRACONAZOL 125 MG."
+          },
+          "F-2540022": {
+            "nombres_vistos": [
+              "BOLFO TALCO",
+              "BOLFO TALCO 100 GR."
+            ],
+            "nombre_canonico_abril": "BOLFO TALCO 100 GR."
+          },
+          "F-2540028": {
+            "nombres_vistos": [
+              "FORMOL 37%",
+              "FORMOL 37% 935 ML."
+            ],
+            "nombre_canonico_abril": "FORMOL 37% 935 ML."
+          },
+          "F-2540034": {
+            "nombres_vistos": [
+              "GUANTE EXP. NO EST. M",
+              "GUANTE EXP. NO EST. M PIEZA"
+            ],
+            "nombre_canonico_abril": "GUANTE EXP. NO EST. M"
+          },
+          "F-2540035": {
+            "nombres_vistos": [
+              "HOJA P/BISTURI NO. 24",
+              "HOJA P/BISTURI NO. 24 10 ML."
+            ],
+            "nombre_canonico_abril": "HOJA P/BISTURI NO. 24 10 ML."
+          },
+          "F-2540039": {
+            "nombres_vistos": [
+              "JERINGA 5ML VERDE",
+              "JERINGA 5ML VERDE PIEZA"
+            ],
+            "nombre_canonico_abril": "JERINGA 5ML VERDE"
+          },
+          "F-2540120": {
+            "nombres_vistos": [
+              "BALMEN 456ML",
+              "BALMEN 456ML (agua oxigenada)"
+            ],
+            "nombre_canonico_abril": "BALMEN 456ML"
+          },
+          "F-2540136": {
+            "nombres_vistos": [
+              "VENDA ACRILICA SCOTCHCAST",
+              "VENDA ACRILICA SCOTCHCAST 3M"
+            ],
+            "nombre_canonico_abril": "VENDA ACRILICA SCOTCHCAST"
+          }
+        }
+      },
+      "conflicto_codigo_por_nombre": {
+        "total": 2,
+        "detalle": {
+          "SUFREXAL": [
+            "F-2530053",
+            "F-2530054"
+          ],
+          "DOXAPRAM FRASCO DE 20 ML (DOXOPRAM 20 ML)": [
+            "F-2530097",
+            "F-2530156"
+          ]
+        }
+      },
+      "sin_codigo": {
+        "total": 13,
+        "detalle": [
+          "AMOXIPET PLUS 500 C/14 TABS.",
+          "CAPROTEC 100 C/30 TABLETAS",
+          "DECTIVER PASTA ORAL",
+          "DEPOMEDROL 1ML",
+          "GABAPENTIN NRV DE 100MG. TABLETAS",
+          "MELODEX DE 10ML. SOL. INY.",
+          "MELODEX GOTAS DE 10ML.",
+          "MELOXI PETS NRV C/30 TAB 5MG.",
+          "PIDASOL 50 MG. SOL. INY.",
+          "PROCINA 40MG/ML FRASCO 20ML",
+          "RIMADYL INYECTABLE 50MG.",
+          "TOBRA PET´S DEXA OFTÁLMICO NRV",
+          "TOLAZONIL 30ML."
+        ]
+      },
+      "fuera_de_prefijo": {
+        "total": 3,
+        "detalle": [
+          {
+            "codigo": "TF-2540054",
+            "nombre": "TERMOMETRO AMBIENTAL"
+          },
+          {
+            "codigo": "TF-2540055",
+            "nombre": "TERMOMETRO FLEXIBLE"
+          },
+          {
+            "codigo": "TF-2540056",
+            "nombre": "TERMOMETRO ORAL"
+          }
+        ]
+      }
+    },
+    "Nutrición": {
+      "prefijo_esperado": "2220",
+      "articulos_unicos": 108,
+      "conflicto_nombre_por_codigo": {
+        "total": 0,
+        "detalle": {}
+      },
+      "conflicto_codigo_por_nombre": {
+        "total": 0,
+        "detalle": {}
+      },
+      "sin_codigo": {
+        "total": 5,
+        "detalle": [
+          "ALIMENTO CONCENTRADO PARA VENADO DE 20 KG",
+          "ALIMENTO PARA GALLINA PONEDORA",
+          "CARBONATO DE CALCIO",
+          "MAIZ",
+          "SALVADO 25 KG."
+        ]
+      },
+      "fuera_de_prefijo": {
+        "total": 0,
+        "detalle": []
+      }
+    },
+    "Mantenimiento": {
+      "prefijo_esperado": "M-",
+      "articulos_unicos": 1106,
+      "conflicto_nombre_por_codigo": {
+        "total": 21,
+        "detalle": {
+          "M-2460001": {
+            "nombres_vistos": [
+              "AISLADOR PARA POSTE DE MADERA",
+              "PORTA LAMPARA DE PORCELANA CUADRADA"
+            ],
+            "nombre_canonico_abril": "PORTA LAMPARA DE PORCELANA CUADRADA"
+          },
+          "M-2470203": {
+            "nombres_vistos": [
+              "ANGULO 1/8 X 1/2",
+              "SOLDADURA VERSAT 6013 3/32"
+            ],
+            "nombre_canonico_abril": "ANGULO 1/8 X 1/2"
+          },
+          "M-2410007": {
+            "nombres_vistos": [
+              "AREA TRITURADA M3",
+              "ARENA TRITURADA M3"
+            ],
+            "nombre_canonico_abril": "ARENA TRITURADA M3"
+          },
+          "M-2490018": {
+            "nombres_vistos": [
+              "CEMENTO PVC AZUL 1/8 OATEY",
+              "IMPERMEABILIZANTE 19 LTS."
+            ],
+            "nombre_canonico_abril": "CEMENTO PVC AZUL 1/8 OATEY"
+          },
+          "M-2490085": {
+            "nombres_vistos": [
+              "CERA EN PASTA",
+              "THINNER ACRILICO"
+            ],
+            "nombre_canonico_abril": "CERA EN PASTA"
+          },
+          "M-2560085": {
+            "nombres_vistos": [
+              "CINCHO DE PLASTICO 25X3.5CM",
+              "RAFIA FIERO GS BLANCA"
+            ],
+            "nombre_canonico_abril": "CINCHO DE PLASTICO 25X3.5CM"
+          },
+          "M-2560091": {
+            "nombres_vistos": [
+              "CINTA PVC TEMPLEX .019 X 18 MTS",
+              "COPLE DE REPARACION DE 4\""
+            ],
+            "nombre_canonico_abril": "CINTA PVC TEMPLEX .019 X 18 MTS"
+          },
+          "M-2560098": {
+            "nombres_vistos": [
+              "ADAPTADOR MACHO DE 4\"",
+              "CRI PVC 3/4 HIDRAULICO (C0NECTOR ROSCA INTERIOR)",
+              "RONDANA VILCANIZADA S21",
+              "TAPON MACHO PVC 1 1/4 CON ROSCA",
+              "TRAMPA CESPOL C/CONTRA P/LAVABO"
+            ],
+            "nombre_canonico_abril": "CRI PVC 3/4 HIDRAULICO (C0NECTOR ROSCA INTERIOR)"
+          },
+          "M-2560095": {
+            "nombres_vistos": [
+              "FOC-HE1141 FOCO",
+              "HILO REDONDO 224 M 2.7MM"
+            ],
+            "nombre_canonico_abril": "FOC-HE1141 FOCO"
+          },
+          "M-2470230": {
+            "nombres_vistos": [
+              "CONECTOR PVC HEMBRA HCO CEM C-40 DE 1/2",
+              "MALLA GALLINERA LARGO 45M, CALIBRE 22, 25MM X 1 MTO. DE ALTO",
+              "PTR DE 2\" X \"2\" CED 60",
+              "VALVULA ESFERA SOLDABLE DE 1/2"
+            ],
+            "nombre_canonico_abril": "CONECTOR PVC HEMBRA HCO CEM C-40 DE 1/2"
+          },
+          "M-2490099": {
+            "nombres_vistos": [
+              "PASTA PARA SOLDAR 100GR PASO-100",
+              "PINTURA ROSA FLUORESCENTE"
+            ],
+            "nombre_canonico_abril": "PASTA PARA SOLDAR 100GR PASO-100"
+          },
+          "M-2490106": {
+            "nombres_vistos": [
+              "PINTURA VINIL PANTONE 187C ROJO MORENA",
+              "SELLADOR TRANSLUCIDO"
+            ],
+            "nombre_canonico_abril": "PINTURA VINIL PANTONE 187C ROJO MORENA"
+          },
+          "M-2490037": {
+            "nombres_vistos": [
+              "PINTURA VINILICA MORADO BERILITE",
+              "PINTURA VINILICA MORADO BERILITE (PINTURA VINIL BERELINTE 7 RANGO 1 CUBETA 19 LITROS PANTONE 7449 (MORADA)"
+            ],
+            "nombre_canonico_abril": "PINTURA VINILICA MORADO BERILITE (PINTURA VINIL BERELINTE 7 RANGO 1 CUBETA 19 LITROS PANTONE 7449 (MORADA)"
+          },
+          "M-2990104": {
+            "nombres_vistos": [
+              "RED EXCENTRICA SANITARIA 4\"x2",
+              "REGULADOR DE GAS PARA TANQUE TIPO DOMESTICO"
+            ],
+            "nombre_canonico_abril": "RED EXCENTRICA SANITARIA 4\"x2"
+          },
+          "M-2990103": {
+            "nombres_vistos": [
+              "REGULADOR DE GAS PARA TANQUE TIPO DOMESTICO",
+              "SEGUETA #13 CALADORA"
+            ],
+            "nombre_canonico_abril": "REGULADOR DE GAS PARA TANQUE TIPO DOMESTICO"
+          },
+          "M-2990102": {
+            "nombres_vistos": [
+              "FLOTADOR DE POLIUTERANO N5 CON VARILLA",
+              "REGULADOR PARA TANQUE DE ACETILENO GENERICO",
+              "SEGUETA #6 CALADORA"
+            ],
+            "nombre_canonico_abril": "FLOTADOR DE POLIUTERANO N5 CON VARILLA"
+          },
+          "M-2610014": {
+            "nombres_vistos": [
+              "ACEITE STHIL 2T 400ML",
+              "REGULADOR PARA TANQUE DE ACETILENO GENERICO"
+            ],
+            "nombre_canonico_abril": "ACEITE STHIL 2T 400ML"
+          },
+          "M-2160103": {
+            "nombres_vistos": [
+              "FOAM CLEANER 20 LITROS PORRON ECOLOGICO",
+              "VALVULA ESFERA SOLDABLE DE 1/2"
+            ],
+            "nombre_canonico_abril": "VALVULA ESFERA SOLDABLE DE 1/2"
+          },
+          "M-2460124": {
+            "nombres_vistos": [
+              "FOCO LED DE ALTA POTENCIA 20W",
+              "VINIL ADHESIVO"
+            ],
+            "nombre_canonico_abril": "VINIL ADHESIVO"
+          },
+          "M-2560099": {
+            "nombres_vistos": [
+              "CODO SANIT. 87 X 100MM CEM",
+              "GOMA LLANTITA VULCANIZADA",
+              "RONDANA VILCANIZADA S21"
+            ],
+            "nombre_canonico_abril": "RONDANA VILCANIZADA S21"
+          },
+          "2561": {
+            "nombres_vistos": [
+              "TAPA PVC HC4 ROSCAR C-40 DE 1/2",
+              "TAPA PVC SANITARIA 4\""
+            ],
+            "nombre_canonico_abril": "TAPA PVC SANITARIA 4\""
+          }
+        }
+      },
+      "conflicto_codigo_por_nombre": {
+        "total": 31,
+        "detalle": {
+          "3722 LIMPIAPARABRISAS": [
+            "M-2960017",
+            "M-2960018"
+          ],
+          "COPLE DE REPARACION DE 4\"": [
+            "M-2560091",
+            "M-2560115"
+          ],
+          "HILO REDONDO 224 M 2.7MM": [
+            "M-2560095",
+            "M-2560113"
+          ],
+          "IMPERMEABILIZANTE 19 LTS.": [
+            "M-2490018",
+            "M-2490121"
+          ],
+          "MALLA GALLINERA LARGO 45M, CALIBRE 22, 25MM X 1 MTO. DE ALTO": [
+            "M-2470228",
+            "M-2470230"
+          ],
+          "PINTURA ROSA FLUORESCENTE": [
+            "M-2490099",
+            "M-2490119"
+          ],
+          "RAFIA FIERO GS BLANCA": [
+            "M-2560085",
+            "M-2560117"
+          ],
+          "REGULADOR DE GAS PARA TANQUE TIPO DOMESTICO": [
+            "M-2990103",
+            "M-2990104"
+          ],
+          "SEGUETA #13 CALADORA": [
+            "M-2990101",
+            "M-2990103"
+          ],
+          "SEGUETA #6 CALADORA": [
+            "M-2990099",
+            "M-2990102"
+          ],
+          "SELLADOR TRANSLUCIDO": [
+            "M-2490106",
+            "M-2490118"
+          ],
+          "SOLDADURA VERSAT 6013 3/32": [
+            "M-2470203",
+            "M-2470217"
+          ],
+          "TAPON MACHO PVC 1 1/4 CON ROSCA": [
+            "M-2560098",
+            "M-2560112"
+          ],
+          "TAQUETE ABIERTO DE 1/4": [
+            "M-2470094",
+            "M-2560072"
+          ],
+          "THINNER ACRILICO": [
+            "M-2490085",
+            "M-2490120"
+          ],
+          "VALVULA ESFERA CEMENTAR PVC 1\" PVC-ES-1": [
+            "M-2560064",
+            "M-2990091"
+          ],
+          "ADAPTADOR MACHO DE 4\"": [
+            "M-2560098",
+            "M-2560111"
+          ],
+          "PTR DE 2\" X \"2\" CED 60": [
+            "M-2470229",
+            "M-2470230"
+          ],
+          "REGULADOR PARA TANQUE DE ACETILENO GENERICO": [
+            "M-2610014",
+            "M-2990100",
+            "M-2990102"
+          ],
+          "VALVULA ESFERA SOLDABLE DE 1/2": [
+            "M-2160103",
+            "M-2470230"
+          ],
+          "VINIL ADHESIVO": [
+            "M-2150001",
+            "M-2460124"
+          ],
+          "RONDANA VILCANIZADA S21": [
+            "M-2560098",
+            "M-2560099"
+          ],
+          "GOMA LLANTITA VULCANIZADA": [
+            "M-2560099",
+            "M-2560100"
+          ],
+          "FOAM CLEANER 20 LITROS PORRON ECOLOGICO": [
+            "M-2160103",
+            "M-2160104"
+          ],
+          "FOCO LED DE ALTA POTENCIA 20W": [
+            "M-2460124",
+            "M-2460129"
+          ],
+          "TRAMPA CESPOL C/CONTRA P/LAVABO": [
+            "M-2560098",
+            "M-2560102"
+          ],
+          "CODO SANIT. 87 X 100MM CEM": [
+            "M-2560099",
+            "M-2560103"
+          ],
+          "CABLE USO RUDO 2X12": [
+            "2461",
+            "M-2460130"
+          ],
+          "MULTIMALLA GALVANIZADA 1 X 20 M 5 X 10 CM GENERICA": [
+            "2471",
+            "M-2470243"
+          ],
+          "TAPA PVC HC4 ROSCAR C-40 DE 1/2": [
+            "2561",
+            "M-2560119"
+          ],
+          "TAPA PVC SANITARIA 4\"": [
+            "2561",
+            "M-2560120"
+          ]
+        }
+      },
+      "sin_codigo": {
+        "total": 77,
+        "detalle": [
+          "ACEITE STHIL 2T 400ML",
+          "ADAPTADOR MACHO 50MM C40 PVC-616",
+          "ALIM FLEX DINASTY P/FREGADERO 13X13X55 AC/INOX",
+          "ALIM FLEX DINASTY P/LAVABO 15X13X40 AC/INOX",
+          "ARMADURA MARCHA PARA VEHICULO",
+          "BARROTE PARA CIMBRA 243X8.6X3.2",
+          "BOLSA 70X90 NEGRA ROLLO",
+          "BOLSA 90X1.20 NEGRA ROLLO",
+          "BOMBA SUMERGIBLE DE POZO PROFUNDO 3 HP 230V/60HZ 35 GPM DESCARGA DE 2\"",
+          "BROCA DE 5/16X6\" PARA METAL",
+          "CABLE DE ACERO SIN CUBIERTA CALIBRE 3/8",
+          "CAJA METALICA TIPO CHALUPA 2 X 5 AMERICANA REFORZADA",
+          "CAPACITOR DE TRABAJO 15 MDF 370V",
+          "CERCHA DE 1/8\" X 1 X6M",
+          "CHAROLA TERMICA 855 C/PIEZA",
+          "CINTA DE AISLAR No.33 18M NEGRA",
+          "CLAVIJA 2 P+T GIRATORIA 360",
+          "CODO HID CEM 45 X 2 PVC-866",
+          "CODO PVC HCO 4\" x 90°",
+          "CODO SANIT 45 X 100MM CEM",
+          "CODO SANIT 87 50 MM CEM",
+          "CODO SANIT. 87 X 100MM CEM",
+          "COLD ROLLED REDONDO 1/2\"",
+          "CONECTOR DE COBRE RE DE 1/2 CC-611",
+          "CONECTOR PVC HEMBRA HCO CEM C-40 DE 1/2",
+          "COPLE PVC REPAR C/CAMP SI 4\"",
+          "COPLE SANITARIO CEM 100MM",
+          "ESPATULA 6\"",
+          "FLOTADOR DE POLIUTERANO N5 CON VARILLA",
+          "FOCO LED DE ALTA POTENCIA 20W",
+          "HILO TIPO CRUCETA 262 M 2.4 MM",
+          "INSECTICIDA CONTROL 24E 1 LITRO",
+          "INTERRUPTOR DE PRESION 40-60 PSI HEMBRA",
+          "LAMINA GALVANIZADA C16 DE 1.22M X 3M",
+          "LLAVE CONTRA ROSCAR F-251",
+          "MADERA BIDIMENSIONADA 1X2X244",
+          "MANGUERA ALIMENTADORA PARA FREGADERO",
+          "MANGUERA PARA GAS VINIL 010X010 3/8X 3/8",
+          "MINI SOLDADURA 95/5 PARA TUBERIA DE GAS 48G DE 1 M",
+          "MOTOBOMBA MULTI ETAPAS DE 2HP 35 N",
+          "MOTOBOMBA PARA ALBERCA AUTOCEBANTE DE 2HP DE 35 GPM",
+          "MOTOBOMBA PARA ALBERCA AUTOCEBANTE DE 3HP DE 35 GPM",
+          "MOTOR DE CONDENSADOR DE 1/2 HP PAR AIRE CARRIER (5kcp39pg motor) RPM 1080",
+          "MULTIMALLA GALVANIZADA 1X2M 5X10CM",
+          "MULTIMETRO CON RETENCION DE DATOS",
+          "NGK POWER SPARK P",
+          "NIPLE GALVANIZADO 3/8X3",
+          "NIPLE GALVANIZAO 11/4 RC CG-474",
+          "NIPLE MEDIDOR 1/2X41MM",
+          "NIPLE TERMINAL 3/8 X 1/2",
+          "PALILLOS DELGADOS 45 CM",
+          "PENTABIOCARE 4L. ACONDICIONADOR MULTIFUNCIONAL",
+          "PILAS ALCALINAS TIPO AA 1.5V",
+          "PINTURA ACRILICA OSEL ORO PANTONE 7416U 19 LTS. COLOR CORAL",
+          "PINTURA ESMALTE SUMMA BEREL 624 CUBETA 19 LITROS COLOR NEGRO",
+          "PINTURA VINIL BERELINTE 7 RANGO 1 CUBETA 19 LITROS PANTONE 15-1225 TCX (CREMA)",
+          "PINTURA VINIL BERELINTE 7 RANGO 1 CUBETA 19 LTS. PANTONE 468C",
+          "PINTURA VINIL BERELINTE 843 BLANCO OSTION DE 19 LTS.",
+          "PINTURA VINILICA BLANCO 19 LITROS",
+          "PORTA LAMPARA DE PORCELANA CUADRADA",
+          "PTR DE 2\" X \"2\" CED 60",
+          "RED EXCENTRICA SANITARIA 4\"x2",
+          "RED PVC BUSH CEM C-40 4X3",
+          "REPUESTO DE FELPA PARA RODILLO 23CM",
+          "ROLLOS DE TELA PALOMERA .90",
+          "SEGUETA BIMETALICA 18 DPP",
+          "SEGUETA BIMETALICA 24DPP",
+          "SOLERA SLITER 1/8 X 3/4 6M",
+          "TAPA PVC HC4 ROSCAR C-40 DE 1/2",
+          "TAPON DE COBRE 1/2",
+          "TARJA SENCILLA ESCURRIDOR IZQUIERDO 80CM X 50CM",
+          "TEES PVC HCO CEM C-40 4\"",
+          "TERMOMETRO ANALOGO IMAN",
+          "TIERRA NEGRA NUTRIGARDEN",
+          "TRAMPA CESPOL C/CONTRA P/LAVABO",
+          "VALVULA DE POM 3/4 PULGADAS PARA FLOTADOR",
+          "VARILLAS ROSCADAS DE 5/16 X 1M"
+        ]
+      },
+      "fuera_de_prefijo": {
+        "total": 3,
+        "detalle": [
+          {
+            "codigo": "2461",
+            "nombre": "CABLE USO RUDO 2X12"
+          },
+          {
+            "codigo": "2471",
+            "nombre": "MULTIMALLA GALVANIZADA 1 X 20 M 5 X 10 CM GENERICA"
+          },
+          {
+            "codigo": "2561",
+            "nombre": "TAPA PVC SANITARIA 4\""
+          }
+        ]
+      }
+    }
+  }
+}
