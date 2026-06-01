@@ -12,3 +12,6 @@ venv/
 # Sistema
 Thumbs.db
 .DS_Store
+
+# Reportes PDF generados (reproducibles con su script .py)
+informe_tecnico_evolucion_zoo_tamatan_v3.pdf
