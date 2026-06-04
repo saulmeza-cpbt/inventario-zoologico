@@ -863,6 +863,7 @@
 
 <!-- CATÁLOGO DE INVENTARIO BASE (Abril 2026) -->
 <script src="inventarios/catalogo_articulos.js"></script>
+<script src="data/catalogos/catalogo_articulos_por_area.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -1175,6 +1176,7 @@ const APP = (() => {
         )?.value || '';
 
         const mapa = {};
+        const codigosVistos = new Set();
 
         // 1) Catálogo base oficial del inventario (Abril 2026), filtrado por área
         const catBase = window.CATALOGO_INVENTARIO || {};
@@ -1184,7 +1186,31 @@ const APP = (() => {
             const key = art.n.toLowerCase().trim();
             if (!mapa[key]) {
               mapa[key] = { nombre: art.n, codigo: art.c || '', unitario: art.p || 0, unidad: art.u || 'PZA', veces: 0, base: true };
+              if (art.c) codigosVistos.add(art.c);
             }
+          });
+        });
+
+        // 1b) Catálogo maestro Enero-Abril: amplía la cobertura del autocomplete
+        //     (sobre todo Nutrición, que el base no surte). Dedup POR CÓDIGO contra
+        //     el base — no por nombre — porque hay nombres que solo difieren en
+        //     espacios y por nombre se duplicarían. Backfill de precio/unidad
+        //     buscando el código en un índice plano de TODAS las áreas del base.
+        const catMaestro = window.CATALOGO_ARTICULOS_POR_AREA || {};
+        const idxBase = {};
+        Object.values(catBase).forEach(arr => (arr || []).forEach(art => {
+          if (art.c) idxBase[art.c] = { p: art.p || 0, u: art.u || 'PZA' };
+        }));
+        const areasMaestro = areaActual ? [areaActual] : Object.keys(catMaestro);
+        areasMaestro.forEach(area => {
+          (catMaestro[area] || []).forEach(art => {
+            const cod = art.codigo || '';
+            if (cod && codigosVistos.has(cod)) return;     // ya vino del base
+            const key = (art.nombre || '').toLowerCase().trim();
+            if (!key || mapa[key]) return;                 // sin nombre o ya presente
+            const bf = cod && idxBase[cod] ? idxBase[cod] : null;
+            mapa[key] = { nombre: art.nombre, codigo: cod, unitario: bf ? bf.p : 0, unidad: bf ? bf.u : 'PZA', veces: 0, base: false };
+            if (cod) codigosVistos.add(cod);
           });
         });
 
@@ -1732,11 +1758,27 @@ const APP = (() => {
         const area = document.getElementById('sal-area')?.value || '';
         const catBase = window.CATALOGO_INVENTARIO || {};
         const mapa = {};
+        const codigosVistos = new Set();
         const areasBase = area ? [area] : Object.keys(catBase);
         areasBase.forEach(a => {
           (catBase[a] || []).forEach(art => {
             const key = art.n.toLowerCase().trim();
-            if (!mapa[key]) mapa[key] = { nombre: art.n, codigo: art.c||'', unidad: art.u||'PZA' };
+            if (!mapa[key]) { mapa[key] = { nombre: art.n, codigo: art.c||'', unidad: art.u||'PZA' }; if (art.c) codigosVistos.add(art.c); }
+          });
+        });
+        // Capa maestro Enero-Abril (dedup por código, backfill de unidad por código).
+        const catMaestro = window.CATALOGO_ARTICULOS_POR_AREA || {};
+        const idxUnidad = {};
+        Object.values(catBase).forEach(arr => (arr||[]).forEach(art => { if (art.c) idxUnidad[art.c] = art.u || 'PZA'; }));
+        const areasMaestro = area ? [area] : Object.keys(catMaestro);
+        areasMaestro.forEach(a => {
+          (catMaestro[a] || []).forEach(art => {
+            const cod = art.codigo || '';
+            if (cod && codigosVistos.has(cod)) return;
+            const key = (art.nombre||'').toLowerCase().trim();
+            if (!key || mapa[key]) return;
+            mapa[key] = { nombre: art.nombre, codigo: cod, unidad: (cod && idxUnidad[cod]) || 'PZA' };
+            if (cod) codigosVistos.add(cod);
           });
         });
         const coincidencias = Object.values(mapa).filter(a =>
