@@ -1196,11 +1196,6 @@ const APP = (() => {
         //     el base — no por nombre — porque hay nombres que solo difieren en
         //     espacios y por nombre se duplicarían. Backfill de precio/unidad
         //     buscando el código en un índice plano de TODAS las áreas del base.
-        //     NOTA CONOCIDA (pendiente de fix aparte): el base usa la clave de área
-        //     "Nutricion" (sin acento) y el <select>/maestro usan "Nutrición" (con
-        //     acento). El autocomplete de Nutrición funciona igual porque el backfill
-        //     es por código, no por clave de área; pero el Dashboard sigue valuando
-        //     Nutrición en $0 hasta que se normalicen las claves de área.
         const catMaestro = window.CATALOGO_ARTICULOS_POR_AREA || {};
         const idxBase = {};
         Object.values(catBase).forEach(arr => (arr || []).forEach(art => {
@@ -1772,8 +1767,6 @@ const APP = (() => {
           });
         });
         // Capa maestro Enero-Abril (dedup por código, backfill de unidad por código).
-        // Misma nota de Nutrición que en Entradas: el base usa la clave "Nutricion"
-        // (sin acento); el autocomplete funciona por código, el Dashboard no (fix aparte).
         const catMaestro = window.CATALOGO_ARTICULOS_POR_AREA || {};
         const idxUnidad = {};
         Object.values(catBase).forEach(arr => (arr||[]).forEach(art => { if (art.c) idxUnidad[art.c] = art.u || 'PZA'; }));
