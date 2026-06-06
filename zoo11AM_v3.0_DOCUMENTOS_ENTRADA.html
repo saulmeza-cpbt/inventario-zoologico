@@ -1773,7 +1773,7 @@ const APP = (() => {
   };
 
   // ── MÓDULO SALIDAS (extraído a js/modSalidas.js) ──────────────────
-  const modSalidas = window.createModSalidas({ ui, logger });
+  const modSalidas = window.createModSalidas({ ui, logger, calcularStockTeorico });
 
   // ── MÓDULO SOLICITUDES DE PEDIDO ─────────────────────────────────────────
   const modSolicitudes = (() => {
