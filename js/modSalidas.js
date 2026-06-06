@@ -10,12 +10,27 @@
 // Dependencias globales (NO se inyectan): window.CATALOGO_INVENTARIO,
 // window.CATALOGO_ARTICULOS_POR_AREA, los elementos #sal-* del HTML y la
 // API pública APP.modSalidas.
-window.createModSalidas = ({ ui, logger }) => {
+window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
     const KEY = 'zoo_tamatán_salidas_v1';
     let artsTemp = [];
 
     const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
     const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
+
+    // Stock disponible por artículo en un área, con la MISMA fórmula que el módulo
+    // Stock: base (existencia del catálogo) + entradas - salidas. Reutiliza
+    // calcularStockTeorico (movimientos) y la base de window.CATALOGO_INVENTARIO.
+    const stockDisponible = (area) => {
+      const mov = calcularStockTeorico(area);
+      const out = {};
+      (window.CATALOGO_INVENTARIO?.[area] || []).forEach(art => {
+        out[art.n.toLowerCase().trim()] = (art.e || 0);
+      });
+      Object.entries(mov).forEach(([k, m]) => {
+        out[k] = (out[k] || 0) + (m.entradas || 0) - (m.salidas || 0);
+      });
+      return out;
+    };
 
     const renderArts = () => {
       const tbody = document.getElementById('sal-arts-body');
@@ -133,6 +148,32 @@ window.createModSalidas = ({ ui, logger }) => {
         if (!area)   { ui.toast('❌ Selecciona el área origen', 'err'); return; }
         if (!motivo) { ui.toast('❌ El motivo es obligatorio', 'err'); return; }
         if (!artsTemp.length) { ui.toast('❌ Agrega al menos un artículo', 'err'); return; }
+
+        // Bloqueo suave de stock: ninguna salida debe dejar el stock en negativo.
+        // Si excede, se advierte y se pide confirmación; al aceptar, se registra y
+        // se deja evidencia en bitácora (override por stock insuficiente).
+        const disp = stockDisponible(area);
+        const solicitado = {};
+        artsTemp.forEach(a => {
+          const k = a.descripcion.toLowerCase().trim();
+          solicitado[k] = (solicitado[k] || 0) + (parseFloat(a.cantidad) || 0);
+        });
+        const conflictos = [];
+        Object.entries(solicitado).forEach(([k, cant]) => {
+          const d = disp[k] || 0;
+          if (cant > d) {
+            const art = artsTemp.find(a => a.descripcion.toLowerCase().trim() === k);
+            conflictos.push({ desc: art ? art.descripcion : k, disp: d, cant });
+          }
+        });
+        if (conflictos.length) {
+          const detalle = conflictos
+            .map(c => `• ${c.desc}: disponible ${c.disp}, solicitas ${c.cant}`)
+            .join('\n');
+          const ok = confirm(`⚠️ Esta salida dejaría el stock en NEGATIVO:\n\n${detalle}\n\n¿Registrar de todas formas?`);
+          if (!ok) return;
+          logger.warn(`Salida con stock insuficiente (override) — Área: ${area} — ${conflictos.length} artículo(s) sobre stock`, area, 'Salida sobre stock');
+        }
         const datos = {
           id: 'sal-' + Date.now(), area, motivo,
           responsable: document.getElementById('sal-responsable')?.value?.trim() || '',
