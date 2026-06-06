@@ -876,7 +876,21 @@
   <div id="reportes" class="sec">
     <h2 style="margin-bottom: 12px; font-size: 16px;">📈 Reportes</h2>
     <div class="panel">
-      <p style="color: var(--gray);">📝 Módulo de Reportes - En desarrollo</p>
+      <h3 style="font-size:14px; margin-bottom:6px;">💾 Respaldo y migración de datos</h3>
+      <p style="font-size:12px; color:#718096; margin-bottom:12px;">
+        Exporta todos los datos capturados (entradas, salidas, solicitudes, levantamientos y bitácora)
+        a un archivo JSON, o impórtalos en otro navegador u origen. Útil para mover datos entre
+        <code>http://localhost</code> y GitHub Pages, que usan almacenamientos separados por origen.
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-p" onclick="APP.modRespaldo.exportar()">⬇️ Exportar respaldo JSON</button>
+        <button class="btn btn-s" onclick="document.getElementById('respaldo-file').click()">⬆️ Importar respaldo JSON</button>
+      </div>
+      <input type="file" id="respaldo-file" accept="application/json,.json" style="display:none"
+             onchange="APP.modRespaldo.importar(this.files[0]); this.value='';">
+      <p style="font-size:11px; color:#a0aec0; margin-top:10px;">
+        Al importar se reemplazan los datos actuales; antes se descarga un respaldo de seguridad automático.
+      </p>
     </div>
   </div>
 
@@ -905,6 +919,7 @@
 <script src="data/catalogos/catalogo_articulos_por_area.js"></script>
 <script src="js/modStock.js"></script>
 <script src="js/modSalidas.js"></script>
+<script src="js/modRespaldo.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -2099,6 +2114,21 @@ const APP = (() => {
   // ── MÓDULO STOCK (extraído a js/modStock.js) ──────────────────────────────
   const modStock = window.createModStock({ calcularStockTeorico, AREAS_INV });
 
+  // ── MÓDULO RESPALDO Y MIGRACIÓN (js/modRespaldo.js) ───────────────────────
+  // refrescarTodo: recarga Entradas a memoria (cargar) y re-renderiza las vistas
+  // que dependen de localStorage tras una importación.
+  const refrescarTodo = () => {
+    cargar();
+    updateDashboard();
+    renderHistorialEntradas();
+    modSalidas.render();
+    modSolicitudes.render();
+    modLevantamientos.render();
+    modStock.render();
+    renderBitacora();
+  };
+  const modRespaldo = window.createModRespaldo({ ui, logger, refrescarTodo });
+
   // Public API
   return {
     config: CONFIG,
@@ -2112,6 +2142,7 @@ const APP = (() => {
     modSolicitudes,
     modLevantamientos,
     modStock,
+    modRespaldo,
     verInventarioArea,
     filtrarInventarioArea,
     renderBitacora,
