@@ -876,6 +876,36 @@
   <div id="reportes" class="sec">
     <h2 style="margin-bottom: 12px; font-size: 16px;">📈 Reportes</h2>
     <div class="panel">
+      <h3 style="font-size:14px; margin-bottom:6px;">📊 Reportes en CSV</h3>
+      <p style="font-size:12px; color:#718096; margin-bottom:12px;">
+        Exporta los movimientos a CSV (UTF-8) para abrir en Excel. Filtra por área y mes;
+        deja los filtros vacíos para incluir todo. Se genera una fila por artículo y la
+        fecha corresponde a la <b>fecha de registro</b> en el sistema.
+      </p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:flex-end; margin-bottom:12px;">
+        <label style="font-size:12px; color:#4a5568;">Área
+          <select id="rep-area" style="display:block; margin-top:4px; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px; min-width:170px;">
+            <option value="">— Todas —</option>
+            <option value="Snack">Snack</option>
+            <option value="Tienda">Tienda</option>
+            <option value="Farmacia">Farmacia</option>
+            <option value="Nutrición">Nutrición</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+          </select>
+        </label>
+        <label style="font-size:12px; color:#4a5568;">Mes de registro
+          <input type="month" id="rep-mes" style="display:block; margin-top:4px; padding:6px 8px; border:1px solid #cbd5e0; border-radius:4px; background:#fff; font-size:13px;">
+        </label>
+      </div>
+      <p style="font-size:11px; color:#a0aec0; margin-bottom:12px;">
+        Los reportes se filtran por la fecha en que el movimiento fue capturado en el sistema.
+      </p>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-p" onclick="APP.modReportes.exportarEntradas()">⬇️ Exportar Entradas CSV</button>
+        <button class="btn btn-s" onclick="APP.modReportes.exportarSalidas()">⬇️ Exportar Salidas CSV</button>
+      </div>
+    </div>
+    <div class="panel">
       <h3 style="font-size:14px; margin-bottom:6px;">💾 Respaldo y migración de datos</h3>
       <p style="font-size:12px; color:#718096; margin-bottom:12px;">
         Exporta todos los datos capturados (entradas, salidas, solicitudes, levantamientos y bitácora)
@@ -920,6 +950,7 @@
 <script src="js/modStock.js"></script>
 <script src="js/modSalidas.js"></script>
 <script src="js/modRespaldo.js"></script>
+<script src="js/modReportes.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -2129,6 +2160,16 @@ const APP = (() => {
   };
   const modRespaldo = window.createModRespaldo({ ui, logger, refrescarTodo });
 
+  // ── MÓDULO REPORTES CSV (js/modReportes.js) ───────────────────────────────
+  // Solo lectura: Entradas desde la caché estado.documentos; Salidas desde
+  // localStorage (misma clave que usa calcularStockTeorico). No muta nada.
+  const modReportes = window.createModReportes({
+    getEntradas: () => estado.documentos,
+    getSalidas:  () => { try { return JSON.parse(localStorage.getItem('zoo_tamatán_salidas_v1') || '[]'); } catch { return []; } },
+    TIPOS_DOC:   CONFIG.TIPOS_DOC,
+    ui, logger,
+  });
+
   // Public API
   return {
     config: CONFIG,
@@ -2143,6 +2184,7 @@ const APP = (() => {
     modLevantamientos,
     modStock,
     modRespaldo,
+    modReportes,
     verInventarioArea,
     filtrarInventarioArea,
     renderBitacora,
