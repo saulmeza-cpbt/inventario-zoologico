@@ -142,19 +142,22 @@ window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
 
       removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
 
-      guardar: () => {
-        const area    = document.getElementById('sal-area')?.value;
-        const motivo  = document.getElementById('sal-motivo')?.value?.trim();
-        if (!area)   { ui.toast('❌ Selecciona el área origen', 'err'); return; }
-        if (!motivo) { ui.toast('❌ El motivo es obligatorio', 'err'); return; }
-        if (!artsTemp.length) { ui.toast('❌ Agrega al menos un artículo', 'err'); return; }
+      // Lógica COMPARTIDA de registro de salida: validación + bloqueo suave de
+      // stock (confirm + warn en bitácora si hay override) + persistencia +
+      // logger + toast. NO toca el DOM ni re-renderiza (eso queda en cada
+      // llamador). Devuelve true si registró, false si falló validación o se
+      // canceló el override. La usan guardar() (formulario) y modScanner.
+      registrarSalida: ({ area, motivo, responsable = '', articulos = [] }) => {
+        if (!area)   { ui.toast('❌ Selecciona el área origen', 'err'); return false; }
+        if (!motivo) { ui.toast('❌ El motivo es obligatorio', 'err'); return false; }
+        if (!articulos.length) { ui.toast('❌ Agrega al menos un artículo', 'err'); return false; }
 
         // Bloqueo suave de stock: ninguna salida debe dejar el stock en negativo.
         // Si excede, se advierte y se pide confirmación; al aceptar, se registra y
         // se deja evidencia en bitácora (override por stock insuficiente).
         const disp = stockDisponible(area);
         const solicitado = {};
-        artsTemp.forEach(a => {
+        articulos.forEach(a => {
           const k = a.descripcion.toLowerCase().trim();
           solicitado[k] = (solicitado[k] || 0) + (parseFloat(a.cantidad) || 0);
         });
@@ -162,7 +165,7 @@ window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
         Object.entries(solicitado).forEach(([k, cant]) => {
           const d = disp[k] || 0;
           if (cant > d) {
-            const art = artsTemp.find(a => a.descripcion.toLowerCase().trim() === k);
+            const art = articulos.find(a => a.descripcion.toLowerCase().trim() === k);
             conflictos.push({ desc: art ? art.descripcion : k, disp: d, cant });
           }
         });
@@ -171,24 +174,37 @@ window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
             .map(c => `• ${c.desc}: disponible ${c.disp}, solicitas ${c.cant}`)
             .join('\n');
           const ok = confirm(`⚠️ Esta salida dejaría el stock en NEGATIVO:\n\n${detalle}\n\n¿Registrar de todas formas?`);
-          if (!ok) return;
+          if (!ok) return false;
           logger.warn(`Salida con stock insuficiente (override) — Área: ${area} — ${conflictos.length} artículo(s) sobre stock`, area, 'Salida sobre stock');
         }
         const datos = {
           id: 'sal-' + Date.now(), area, motivo,
-          responsable: document.getElementById('sal-responsable')?.value?.trim() || '',
-          articulos:   [...artsTemp],
+          responsable: responsable || '',
+          articulos:   [...articulos],
           fecha:       new Date().toLocaleDateString('es-MX'),
           ts:          Date.now()
         };
         const lista = cargar();
         lista.unshift(datos);
         guardarLS(lista);
+        logger.info(`Salida registrada — Área: ${area} — ${datos.articulos.length} artículo(s)`, area, 'Registrar salida');
+        ui.toast(`✓ Salida registrada correctamente`, 'ok');
+        return true;
+      },
+
+      guardar: () => {
+        // Lee el formulario y delega en la lógica compartida; conserva el
+        // comportamiento previo (reset del form + re-render del historial).
+        const ok = api.registrarSalida({
+          area:        document.getElementById('sal-area')?.value,
+          motivo:      document.getElementById('sal-motivo')?.value?.trim(),
+          responsable: document.getElementById('sal-responsable')?.value?.trim() || '',
+          articulos:   artsTemp,
+        });
+        if (!ok) return;
         artsTemp = [];
         api.limpiar();
         api.render();
-        logger.info(`Salida registrada — Área: ${area} — ${datos.articulos.length} artículo(s)`, area, 'Registrar salida');
-        ui.toast(`✓ Salida registrada correctamente`, 'ok');
       },
 
       limpiar: () => {
