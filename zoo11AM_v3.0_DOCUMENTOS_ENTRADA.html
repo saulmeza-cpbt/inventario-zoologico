@@ -464,6 +464,7 @@
   <div class="tab active" onclick="APP.ui.showSec('dashboard')">📊 Dashboard</div>
   <div class="tab" onclick="APP.ui.showSec('entradas')">📥 Entradas</div>
   <div class="tab" onclick="APP.ui.showSec('salidas'); APP.modSalidas.render();">📤 Salidas</div>
+  <div class="tab" onclick="APP.ui.showSec('scanner'); APP.modScanner.onShow();">⚡ Salida rápida</div>
   <div class="tab" onclick="APP.ui.showSec('stock'); APP.modStock.render();">📦 Stock</div>
   <div class="tab" onclick="APP.ui.showSec('solicitudes'); APP.modSolicitudes.render();">📝 Solicitudes</div>
   <div class="tab" onclick="APP.ui.showSec('levantamientos'); APP.modLevantamientos.render();">📦 Levantamientos</div>
@@ -924,6 +925,51 @@
     </div>
   </div>
 
+  <!-- SALIDA RÁPIDA (SCANNER) -->
+  <div id="scanner" class="sec">
+    <h2 style="margin-bottom:4px; font-size:16px;">⚡ Salida rápida</h2>
+    <p style="font-size:12px; color:#718096; margin-bottom:12px;">
+      Registra salidas rápidas de <b>Snack</b> y <b>Tienda de recuerdos</b>: escribe o escanea el
+      código del artículo, captura la cantidad y registra. El motivo se fija como
+      “Salida rápida por escaneo” y se valida contra el stock disponible.
+    </p>
+    <div class="panel" style="max-width:520px;">
+      <label style="display:block; font-size:13px; color:#4a5568; margin-bottom:12px;">Área
+        <select id="scan-area" onchange="APP.modScanner.onAreaChange()"
+          style="display:block; width:100%; margin-top:4px; padding:12px; border:1px solid #cbd5e0; border-radius:8px; background:#fff; font-size:16px;">
+          <option value="">— Selecciona Snack o Tienda —</option>
+          <option value="Snack">Snack</option>
+          <option value="Tienda">Tienda</option>
+        </select>
+      </label>
+
+      <label style="display:block; font-size:13px; color:#4a5568; margin-bottom:8px;">Código del artículo
+        <input id="scan-codigo" type="text" inputmode="text" autocomplete="off" placeholder="Ej. S-001"
+          oninput="APP.modScanner.onCodigoInput()"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();APP.modScanner.buscar();}"
+          style="display:block; width:100%; margin-top:4px; padding:12px; border:1px solid #cbd5e0; border-radius:8px; font-size:18px; font-family:monospace;">
+      </label>
+
+      <button class="btn btn-s" onclick="APP.modScanner.buscar()"
+        style="width:100%; padding:12px; font-size:15px; margin-bottom:12px;">🔎 Buscar artículo</button>
+
+      <div id="scan-resultado" style="margin-bottom:12px;"></div>
+
+      <label style="display:block; font-size:13px; color:#4a5568; margin-bottom:12px;">Cantidad
+        <input id="scan-cant" type="number" min="1" step="1" value="1" inputmode="numeric"
+          style="display:block; width:100%; margin-top:4px; padding:12px; border:1px solid #cbd5e0; border-radius:8px; font-size:18px;">
+      </label>
+
+      <label style="display:block; font-size:13px; color:#4a5568; margin-bottom:16px;">Responsable (opcional)
+        <input id="scan-responsable" type="text" autocomplete="off" placeholder="Nombre de quien retira"
+          style="display:block; width:100%; margin-top:4px; padding:12px; border:1px solid #cbd5e0; border-radius:8px; font-size:16px;">
+      </label>
+
+      <button id="scan-registrar" class="btn btn-p" onclick="APP.modScanner.registrar()" disabled
+        style="width:100%; padding:14px; font-size:16px;">✅ Registrar salida</button>
+    </div>
+  </div>
+
   <!-- BITÁCORA -->
   <div id="bitacora" class="sec">
     <h2 style="margin-bottom:4px; font-size:16px;">📋 Bitácora Institucional</h2>
@@ -951,6 +997,7 @@
 <script src="js/modSalidas.js"></script>
 <script src="js/modRespaldo.js"></script>
 <script src="js/modReportes.js"></script>
+<script src="js/modScanner.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -2170,6 +2217,16 @@ const APP = (() => {
     ui, logger,
   });
 
+  // ── MÓDULO SALIDA RÁPIDA / SCANNER (js/modScanner.js) ─────────────────────
+  // Reutiliza la lógica de Salidas vía registrarSalida; tras un registro OK
+  // refresca Stock + historial de Salidas (solo APIs públicas, no edita esos
+  // módulos).
+  const modScanner = window.createModScanner({
+    ui,
+    registrarSalida: modSalidas.registrarSalida,
+    onRegistrado: () => { modStock.render(); modSalidas.render(); },
+  });
+
   // Public API
   return {
     config: CONFIG,
@@ -2185,6 +2242,7 @@ const APP = (() => {
     modStock,
     modRespaldo,
     modReportes,
+    modScanner,
     verInventarioArea,
     filtrarInventarioArea,
     renderBitacora,
