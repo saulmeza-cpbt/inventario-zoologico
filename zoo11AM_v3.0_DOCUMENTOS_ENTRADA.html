@@ -464,7 +464,7 @@
   <div class="tab active" onclick="APP.ui.showSec('dashboard')">📊 Dashboard</div>
   <div class="tab" onclick="APP.ui.showSec('entradas')">📥 Entradas</div>
   <div class="tab" onclick="APP.ui.showSec('salidas'); APP.modSalidas.render();">📤 Salidas</div>
-  <div class="tab" onclick="APP.ui.showSec('scanner'); APP.modScanner.onShow();">⚡ Salida rápida</div>
+  <div class="tab" onclick="APP.ui.showSec('scanner'); APP.modScanner.onShow();">⚡ Movimiento rápido</div>
   <div class="tab" onclick="APP.ui.showSec('stock'); APP.modStock.render();">📦 Stock</div>
   <div class="tab" onclick="APP.ui.showSec('solicitudes'); APP.modSolicitudes.render();">📝 Solicitudes</div>
   <div class="tab" onclick="APP.ui.showSec('levantamientos'); APP.modLevantamientos.render();">📦 Levantamientos</div>
@@ -925,15 +925,23 @@
     </div>
   </div>
 
-  <!-- SALIDA RÁPIDA (SCANNER) -->
+  <!-- MOVIMIENTO RÁPIDO (SCANNER) -->
   <div id="scanner" class="sec">
-    <h2 style="margin-bottom:4px; font-size:16px;">⚡ Salida rápida</h2>
+    <h2 style="margin-bottom:4px; font-size:16px;">⚡ Movimiento rápido</h2>
     <p style="font-size:12px; color:#718096; margin-bottom:12px;">
-      Registra salidas rápidas de <b>Snack</b> y <b>Tienda de recuerdos</b>: escribe o escanea el
-      código del artículo, captura la cantidad y registra. El motivo se fija como
-      “Salida rápida por escaneo” y se valida contra el stock disponible.
+      Registra <b>entradas y salidas</b> rápidas de <b>Snack</b> y <b>Tienda de recuerdos</b>:
+      elige el tipo de movimiento, escribe o escanea el código del artículo (código interno o
+      de barras), captura la cantidad y registra. Las salidas se validan contra el stock disponible.
     </p>
     <div class="panel" style="max-width:520px;">
+      <label style="display:block; font-size:13px; color:#4a5568; margin-bottom:12px;">Tipo de movimiento
+        <select id="scan-tipo" onchange="APP.modScanner.onTipoChange()"
+          style="display:block; width:100%; margin-top:4px; padding:12px; border:1px solid #cbd5e0; border-radius:8px; background:#fff; font-size:16px;">
+          <option value="salida">📤 Salida</option>
+          <option value="entrada">📥 Entrada</option>
+        </select>
+      </label>
+
       <label style="display:block; font-size:13px; color:#4a5568; margin-bottom:12px;">Área
         <select id="scan-area" onchange="APP.modScanner.onAreaChange()"
           style="display:block; width:100%; margin-top:4px; padding:12px; border:1px solid #cbd5e0; border-radius:8px; background:#fff; font-size:16px;">
@@ -966,7 +974,7 @@
       </label>
 
       <button id="scan-registrar" class="btn btn-p" onclick="APP.modScanner.registrar()" disabled
-        style="width:100%; padding:14px; font-size:16px;">✅ Registrar salida</button>
+        style="width:100%; padding:14px; font-size:16px;">📤 Registrar salida</button>
     </div>
   </div>
 
@@ -993,6 +1001,7 @@
 <!-- CATÁLOGO DE INVENTARIO BASE (Abril 2026) -->
 <script src="inventarios/catalogo_articulos.js"></script>
 <script src="data/catalogos/catalogo_articulos_por_area.js"></script>
+<script src="data/catalogos/catalogo_codigos_barras.js"></script>
 <script src="js/modStock.js"></script>
 <script src="js/modSalidas.js"></script>
 <script src="js/modRespaldo.js"></script>
@@ -1024,6 +1033,14 @@ const APP = (() => {
         nombre: 'Acta de Entrega (Contrato/Fallo)',
         icono: '📑',
         campos: ['folioDocumento', 'nombreProveedor', 'fechaEntrega', 'numeroContrato', 'areaDestino', 'responsable', 'motivo']
+      },
+      // Entrada rápida por código (Movimiento rápido). No usa el formulario de
+      // Entradas: se registra desde modScanner vía registrarEntradaRapida. Se
+      // declara aquí para que historial, dashboard y reportes lo reconozcan.
+      entrada_rapida: {
+        nombre: 'Entrada rápida por escaneo',
+        icono: '⚡',
+        campos: ['areaDestino', 'responsable', 'motivo']
       }
     }
   };
@@ -1549,6 +1566,45 @@ const APP = (() => {
         updateDashboard();
       },
 
+      // Entrada rápida por código (Movimiento rápido). NO usa el formulario:
+      // recibe el artículo ya resuelto desde modScanner y crea un documento
+      // tipo 'entrada_rapida' (motivo fijo). Comparte el "after-save" con
+      // guardarDocumento (push + guardar + historial + dashboard) para que el
+      // Stock suba con la MISMA lógica (calcularStockTeorico llavea por nombre).
+      // Devuelve true/false igual que modSalidas.registrarSalida.
+      registrarEntradaRapida: ({ area, responsable = '', articulos = [] }) => {
+        if (!area) { ui.toast('❌ Selecciona el área', 'err'); return false; }
+        if (!articulos.length) { ui.toast('❌ Agrega al menos un artículo', 'err'); return false; }
+        const doc = {
+          id: 'ent-' + Date.now(),
+          folio: generarFolio('entrada_rapida'),
+          tipo: 'entrada_rapida',
+          articulos: articulos.map(a => ({
+            nombre:   a.descripcion,
+            codigo:   a.codigo || '',
+            cantidad: parseFloat(a.cantidad) || 0,
+            unitario: parseFloat(a.precio) || 0,   // precio del catálogo si lo trae; si no, 0
+          })),
+          datos: {
+            areaDestino: area,
+            motivo:      'Entrada rápida por escaneo',
+            responsable: responsable || '',
+          },
+          ts: Date.now(),
+        };
+        estado.documentos.push(doc);
+        guardar();
+        renderHistorialEntradas();
+        updateDashboard();
+        logger.info(
+          `Entrada rápida ${doc.folio} registrada — Área: ${area} — ${doc.articulos.length} artículo(s)`,
+          doc.folio,
+          'Entrada rápida'
+        );
+        ui.toast(`✓ Entrada ${doc.folio} registrada correctamente`, 'ok');
+        return true;
+      },
+
       limpiarFormulario: () => {
         estado.tipoDocSeleccionado = null;
         estado.docActual = null;
@@ -1570,6 +1626,7 @@ const APP = (() => {
       factura: 'FAC',
       acta_entrega: 'ACT',
       caja_chica: 'CAJA',
+      entrada_rapida: 'ERAP',
       solicitud: 'SOL',
       fallo: 'FALLO'
     };
@@ -2224,6 +2281,7 @@ const APP = (() => {
   const modScanner = window.createModScanner({
     ui,
     registrarSalida: modSalidas.registrarSalida,
+    registrarEntrada: modEntradas.registrarEntradaRapida,
     onRegistrado: () => { modStock.render(); modSalidas.render(); },
   });
 
