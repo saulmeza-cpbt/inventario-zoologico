@@ -1007,6 +1007,7 @@
 <script src="js/modRespaldo.js"></script>
 <script src="js/modReportes.js"></script>
 <script src="js/modScanner.js"></script>
+<script src="js/data/LocalStore.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -1910,13 +1911,15 @@ const APP = (() => {
   // ── MÓDULO SALIDAS (extraído a js/modSalidas.js) ──────────────────
   const modSalidas = window.createModSalidas({ ui, logger, calcularStockTeorico });
 
+  // ── CAPA DE PERSISTENCIA (Fase 2): repositorio de datos async ─────────────
+  // Hoy lo implementa LocalStore (localStorage); mañana ApiStore, sin tocar los
+  // módulos. PILOTO: solo modSolicitudes lo consume; el resto sigue con su acceso
+  // propio a localStorage y conviven sobre la misma clave sin inconsistencia.
+  const repo = window.createLocalStore();
+
   // ── MÓDULO SOLICITUDES DE PEDIDO ─────────────────────────────────────────
   const modSolicitudes = (() => {
-    const KEY = 'zoo_tamatán_solicitudes_v1';
     let artsTemp = [];
-
-    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
-    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
 
     const ESTADO_ESTILOS = {
       'Pendiente':  { bg:'#fffbeb', color:'#92400e', icono:'⏳' },
@@ -1951,7 +1954,7 @@ const APP = (() => {
         renderArts();
       },
       removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
-      guardar: () => {
+      guardar: async () => {
         const folio = document.getElementById('sp-folio')?.value?.trim();
         const area  = document.getElementById('sp-area')?.value;
         if (!folio || !area) { ui.toast('❌ Folio y Área son obligatorios', 'err'); return; }
@@ -1969,14 +1972,19 @@ const APP = (() => {
           articulos: [...artsTemp],
           ts: Date.now()
         };
-        const lista = cargar();
-        lista.unshift(datos);
-        guardarLS(lista);
-        artsTemp = [];
-        modSolicitudes.limpiar();
-        modSolicitudes.render();
-        logger.info(`Solicitud SP-${folio} registrada — Área: ${area}`, `SP-${folio}`, 'Registrar solicitud');
-        ui.toast(`✓ Solicitud ${folio} registrada`, 'ok');
+        try {
+          const lista = await repo.getSolicitudes();
+          lista.unshift(datos);
+          await repo.saveSolicitudes(lista);
+          artsTemp = [];
+          modSolicitudes.limpiar();
+          await modSolicitudes.render();
+          logger.info(`Solicitud SP-${folio} registrada — Área: ${area}`, `SP-${folio}`, 'Registrar solicitud');
+          ui.toast(`✓ Solicitud ${folio} registrada`, 'ok');
+        } catch (e) {
+          logger.error('Error al guardar solicitud: ' + (e?.message || e), `SP-${folio}`, 'Registrar solicitud');
+          ui.toast('❌ No se pudo guardar la solicitud', 'err');
+        }
       },
       limpiar: () => {
         ['sp-folio','sp-dia','sp-mes','sp-anio','sp-proyecto','sp-presupuestal','sp-solicitante','sp-justificacion']
@@ -1986,17 +1994,28 @@ const APP = (() => {
         artsTemp = [];
         renderArts();
       },
-      cambiarEstado: (id, nuevoEstado) => {
-        const lista = cargar();
-        const sp = lista.find(s => s.id === id);
-        if (sp) { sp.estado = nuevoEstado; guardarLS(lista); modSolicitudes.render(); }
+      cambiarEstado: async (id, nuevoEstado) => {
+        try {
+          const lista = await repo.getSolicitudes();
+          const sp = lista.find(s => s.id === id);
+          if (sp) { sp.estado = nuevoEstado; await repo.saveSolicitudes(lista); await modSolicitudes.render(); }
+        } catch (e) {
+          logger.error('Error al cambiar estado de solicitud: ' + (e?.message || e), id, 'Cambiar estado');
+          ui.toast('❌ No se pudo cambiar el estado', 'err');
+        }
       },
-      render: () => {
+      render: async () => {
         const container = document.getElementById('sp-concentrado');
         if (!container) return;
+        let lista;
+        try {
+          lista = await repo.getSolicitudes();
+        } catch (e) {
+          logger.error('Error al leer solicitudes: ' + (e?.message || e), 'Solicitudes', 'Render');
+          return;
+        }
         const filtroArea = document.getElementById('sp-filtro-area')?.value || '';
         const filtroEst  = document.getElementById('sp-filtro-estado')?.value || '';
-        let lista = cargar();
         if (filtroArea) lista = lista.filter(s => s.area === filtroArea);
         if (filtroEst)  lista = lista.filter(s => s.estado === filtroEst);
         if (!lista.length) { container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin solicitudes registradas</div>'; return; }
