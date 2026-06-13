@@ -2050,11 +2050,9 @@ const APP = (() => {
 
   // ── MÓDULO LEVANTAMIENTOS FÍSICOS ─────────────────────────────────────────
   const modLevantamientos = (() => {
-    const KEY = 'zoo_tamatán_levantamientos_v1';
+    // Persistencia vía repo async (Fase 2). Misma clave física que antes
+    // (zoo_tamatán_levantamientos_v1), ahora servida por LocalStore.
     let artsTemp = [];
-
-    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
-    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
 
     const renderArts = () => {
       const tbody = document.getElementById('lev-arts-body');
@@ -2151,7 +2149,7 @@ const APP = (() => {
 
       removeArt: (i) => { artsTemp.splice(i, 1); renderArts(); },
 
-      guardar: () => {
+      guardar: async () => {
         const semana = document.getElementById('lev-semana')?.value;
         const area   = document.getElementById('lev-area')?.value;
         if (!semana || !area) { ui.toast('❌ Semana y Área son obligatorias', 'err'); return; }
@@ -2173,14 +2171,19 @@ const APP = (() => {
           },
           ts: Date.now()
         };
-        const lista = cargar();
-        lista.unshift(datos);
-        guardarLS(lista);
-        artsTemp = [];
-        modLevantamientos.limpiar();
-        modLevantamientos.render();
-        logger.info(`Levantamiento físico ${semana} — ${area} — ${datos.articulos.length} artículos`, semana, 'Levantamiento físico');
-        ui.toast(`✓ Levantamiento ${semana} registrado`, 'ok');
+        try {
+          const lista = await repo.getLevantamientos();
+          lista.unshift(datos);
+          await repo.saveLevantamientos(lista);
+          artsTemp = [];
+          modLevantamientos.limpiar();
+          await modLevantamientos.render();
+          logger.info(`Levantamiento físico ${semana} — ${area} — ${datos.articulos.length} artículos`, semana, 'Levantamiento físico');
+          ui.toast(`✓ Levantamiento ${semana} registrado`, 'ok');
+        } catch (e) {
+          logger.error('Error al guardar levantamiento: ' + (e?.message || e), semana, 'Levantamiento físico');
+          ui.toast('❌ No se pudo guardar el levantamiento', 'err');
+        }
       },
 
       limpiar: () => {
@@ -2191,11 +2194,17 @@ const APP = (() => {
         renderArts();
       },
 
-      render: () => {
+      render: async () => {
         const container = document.getElementById('lev-historial');
         if (!container) return;
+        let lista;
+        try {
+          lista = await repo.getLevantamientos();
+        } catch (e) {
+          logger.error('Error al leer levantamientos: ' + (e?.message || e), 'Levantamientos', 'Render');
+          return;
+        }
         const filtroArea = document.getElementById('lev-filtro-area')?.value || '';
-        let lista = cargar();
         if (filtroArea) lista = lista.filter(l => l.area === filtroArea);
         if (!lista.length) {
           container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin levantamientos registrados</div>';
