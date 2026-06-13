@@ -1082,10 +1082,16 @@ const APP = (() => {
     }, CONFIG.SAVE_DEBOUNCE);
   };
 
+  // ── CAPA DE PERSISTENCIA (Fase 2): repositorio de datos async ─────────────
+  // Declarado aquí (antes del logger) para que logger.registrar pueda delegar la
+  // ESCRITURA de bitácora en repo.registrarBitacora(ev). Lo consumen Solicitudes,
+  // Levantamientos y la escritura de Bitácora; coexisten sobre la MISMA clave
+  // física sin inconsistencia. Hoy lo implementa LocalStore; mañana ApiStore.
+  const repo = window.createLocalStore();
+
   // Logger institucional
   const logger = (() => {
     const KEY_BITACORA = 'zoo_tamatán_bitacora_v3';
-    const MAX_LOGS = 200;
 
     const cargarLogs = () => {
       try { return JSON.parse(localStorage.getItem(KEY_BITACORA) || '[]'); } catch { return []; }
@@ -1095,7 +1101,6 @@ const APP = (() => {
     };
 
     const registrar = (nivel, msg, entidad = '', accion = '') => {
-      const logs = cargarLogs();
       const entrada = {
         nivel,
         msg,
@@ -1104,9 +1109,7 @@ const APP = (() => {
         ts: new Date().toLocaleString('es-MX'),
         tsISO: new Date().toISOString()
       };
-      logs.unshift(entrada); // más reciente primero
-      if (logs.length > MAX_LOGS) logs.pop();
-      guardarLogs(logs);
+      repo.registrarBitacora(entrada); // append + cap 200 LIFO en LocalStore (fuente única); fire-and-forget
       console[nivel === 'ERROR' ? 'error' : nivel === 'WARN' ? 'warn' : 'log'](`[${nivel}]`, msg);
     };
 
@@ -1910,12 +1913,6 @@ const APP = (() => {
 
   // ── MÓDULO SALIDAS (extraído a js/modSalidas.js) ──────────────────
   const modSalidas = window.createModSalidas({ ui, logger, calcularStockTeorico });
-
-  // ── CAPA DE PERSISTENCIA (Fase 2): repositorio de datos async ─────────────
-  // Hoy lo implementa LocalStore (localStorage); mañana ApiStore, sin tocar los
-  // módulos. PILOTO: solo modSolicitudes lo consume; el resto sigue con su acceso
-  // propio a localStorage y conviven sobre la misma clave sin inconsistencia.
-  const repo = window.createLocalStore();
 
   // ── MÓDULO SOLICITUDES DE PEDIDO ─────────────────────────────────────────
   const modSolicitudes = (() => {
