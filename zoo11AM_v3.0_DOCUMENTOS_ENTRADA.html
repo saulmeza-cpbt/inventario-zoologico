@@ -1091,15 +1091,6 @@ const APP = (() => {
 
   // Logger institucional
   const logger = (() => {
-    const KEY_BITACORA = 'zoo_tamatán_bitacora_v3';
-
-    const cargarLogs = () => {
-      try { return JSON.parse(localStorage.getItem(KEY_BITACORA) || '[]'); } catch { return []; }
-    };
-    const guardarLogs = (logs) => {
-      try { localStorage.setItem(KEY_BITACORA, JSON.stringify(logs)); } catch {}
-    };
-
     const registrar = (nivel, msg, entidad = '', accion = '') => {
       const entrada = {
         nivel,
@@ -1117,8 +1108,10 @@ const APP = (() => {
       info:  (msg, entidad = '', accion = '') => registrar('INFO',  msg, entidad, accion),
       warn:  (msg, entidad = '', accion = '') => registrar('WARN',  msg, entidad, accion),
       error: (msg, entidad = '', accion = '') => registrar('ERROR', msg, entidad, accion),
-      getLogs: () => cargarLogs(),
-      limpiar: () => { guardarLogs([]); }
+      // Lectura/limpieza migradas a LocalStore async (Paso 2): delegan en el repo
+      // (fuente única) y devuelven Promise, igual que el resto del contrato DataStore.
+      getLogs: () => repo.getBitacora(),
+      limpiar: () => repo.saveBitacora([])
     };
   })();
 
@@ -2247,10 +2240,10 @@ const APP = (() => {
     };
   })();
 
-  const renderBitacora = () => {
+  const renderBitacora = async () => {
     const container = document.getElementById('bitacora-container');
     if (!container) return;
-    const logs = logger.getLogs();
+    const logs = await logger.getLogs();
     if (!logs.length) {
       container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin eventos registrados aún</div>';
       return;
@@ -2329,10 +2322,10 @@ const APP = (() => {
     verInventarioArea,
     filtrarInventarioArea,
     renderBitacora,
-    limpiarBitacora: () => {
+    limpiarBitacora: async () => {
       if (confirm('⚠️ ¿Limpiar toda la bitácora? Esta acción no se puede deshacer.')) {
-        logger.limpiar();
-        renderBitacora();
+        await logger.limpiar();
+        await renderBitacora();
         ui.toast('✓ Bitácora limpiada', 'ok');
       }
     },
