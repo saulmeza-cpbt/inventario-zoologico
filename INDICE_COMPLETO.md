@@ -400,7 +400,7 @@ Nivel 1 (Usuario):
 
 Nivel 2 (Administrador):
   → Consultar ESPECIFICACION_DOCUMENTOS_ENTRADA_V3.md
-  → Abrir Consola (F12) y usar APP.logger.getLogs()
+  → Abrir Consola (F12) y usar await APP.logger.getLogs()
   → Revisar código fuente
 
 Nivel 3 (Desarrollo):

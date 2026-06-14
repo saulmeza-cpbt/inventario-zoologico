@@ -140,8 +140,8 @@ Si encuentras un problema:
 1. Abre la Consola (F12 → Consola)
 2. Busca mensajes de error
 3. Copia el error completo
-4. En Consola, escribe: APP.logger.getLogs()
-5. Copia el resultado
+4. En Consola, escribe: await APP.logger.getLogs()
+5. Copia el resultado (getLogs() devuelve una Promise; usar con await o .then())
 
 Eso te ayudará a debuggear rápidamente.
 
