@@ -1905,7 +1905,7 @@ const APP = (() => {
   };
 
   // ── MÓDULO SALIDAS (extraído a js/modSalidas.js) ──────────────────
-  const modSalidas = window.createModSalidas({ ui, logger, calcularStockTeorico });
+  const modSalidas = window.createModSalidas({ ui, logger, calcularStockTeorico, repo });
 
   // ── MÓDULO SOLICITUDES DE PEDIDO ─────────────────────────────────────────
   const modSolicitudes = (() => {
@@ -2287,7 +2287,7 @@ const APP = (() => {
   // localStorage (misma clave que usa calcularStockTeorico). No muta nada.
   const modReportes = window.createModReportes({
     getEntradas: () => estado.documentos,
-    getSalidas:  () => { try { return JSON.parse(localStorage.getItem('zoo_tamatán_salidas_v1') || '[]'); } catch { return []; } },
+    getSalidas:  async () => repo.getSalidas(),
     TIPOS_DOC:   CONFIG.TIPOS_DOC,
     ui, logger,
   });
@@ -2300,7 +2300,7 @@ const APP = (() => {
     ui,
     registrarSalida: modSalidas.registrarSalida,
     registrarEntrada: modEntradas.registrarEntradaRapida,
-    onRegistrado: () => { modStock.render(); modSalidas.render(); },
+    onRegistrado: async () => { modStock.render(); await modSalidas.render(); },
   });
 
   // Public API
