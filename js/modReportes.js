@@ -112,11 +112,11 @@ window.createModReportes = ({ getEntradas, getSalidas, TIPOS_DOC, ui, logger }) 
 
     // ── SALIDAS ───────────────────────────────────────────────
     // Una fila por artículo. Filtra por área (sal.area) y por mes (ts).
-    const filasSalidas = (filtros) => {
+    const filasSalidas = async (filtros) => {
       const HEADERS = ['Fecha registro', 'Área', 'Folio/ID', 'Responsable',
         'Motivo', 'Código', 'Artículo', 'Cantidad', 'Unidad'];
       const filas = [];
-      (getSalidas() || []).forEach(sal => {
+      (await getSalidas() || []).forEach(sal => {
         if (!coincideArea(sal.area || '', filtros.area)) return;
         if (!coincideMes(sal.ts, filtros.mes)) return;
         const fecha = fechaRegistro(sal.ts);
@@ -145,9 +145,9 @@ window.createModReportes = ({ getEntradas, getSalidas, TIPOS_DOC, ui, logger }) 
         ui.toast(`✓ Entradas exportadas (${filas.length} fila(s))`, 'ok');
       },
 
-      exportarSalidas: () => {
+      exportarSalidas: async () => {
         const filtros = leerFiltros();
-        const { HEADERS, filas } = filasSalidas(filtros);
+        const { HEADERS, filas } = await filasSalidas(filtros);
         if (!filas.length) {
           ui.toast('📭 No hay salidas para ese filtro', 'err');
           return;

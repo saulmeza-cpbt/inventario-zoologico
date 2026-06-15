@@ -21,7 +21,7 @@
 //
 // Patrón factory con inyección de dependencias:
 //   - ui:               { toast(msg, tipo) }
-//   - registrarSalida({ area, motivo, responsable, articulos }) -> boolean
+//   - registrarSalida({ area, motivo, responsable, articulos }) -> Promise<boolean>
 //   - registrarEntrada({ area, responsable, articulos })        -> boolean
 //   - onRegistrado(): callback tras un registro OK (refresca Stock + Salidas)
 // Dependencias globales (NO se inyectan): window.CATALOGO_INVENTARIO,
@@ -142,7 +142,7 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
         }
       },
 
-      registrar: () => {
+      registrar: async () => {
         const area = $('scan-area')?.value || '';
         if (!AREAS_OK.includes(area)) { ui.toast('❌ Selecciona Snack o Tienda', 'err'); return; }
         if (!artActual) { ui.toast('❌ Primero busca un artículo por código', 'err'); return; }
@@ -166,7 +166,7 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
           ok = registrarEntrada({ area, responsable, articulos: [articulo] });
         } else {
           // Salida rápida: reutiliza la validación/bloqueo suave de stock.
-          ok = registrarSalida({ area, motivo: MOTIVO_SALIDA, responsable, articulos: [articulo] });
+          ok = await registrarSalida({ area, motivo: MOTIVO_SALIDA, responsable, articulos: [articulo] });
         }
         if (!ok) return;   // validación falló o se canceló el override de stock
 

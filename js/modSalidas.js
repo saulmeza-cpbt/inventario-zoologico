@@ -1,21 +1,18 @@
 // ── MÓDULO SALIDAS ──────────────────────────────────────────
 // Registro de salidas de inventario por área (motivo obligatorio).
-// Persiste en localStorage 'zoo_tamatán_salidas_v1' (cargar/guardarLS propios).
+// Persiste vía repo.getSalidas() / repo.saveSalidas() (DataStore async, Fase 2).
 //
 // Segundo módulo extraído del HTML (roadmap-PR12: modularización).
 // Patrón: factory con inyección de dependencias. Se invoca desde el IIFE
 // principal con las dependencias del closure que necesita:
 //   - ui: { toast(msg, tipo) } para notificaciones
 //   - logger: { info(msg, entidad, accion) } para la bitácora
+//   - repo: { getSalidas(), saveSalidas(arr) } contrato DataStore
 // Dependencias globales (NO se inyectan): window.CATALOGO_INVENTARIO,
 // window.CATALOGO_ARTICULOS_POR_AREA, los elementos #sal-* del HTML y la
 // API pública APP.modSalidas.
-window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
-    const KEY = 'zoo_tamatán_salidas_v1';
+window.createModSalidas = ({ ui, logger, calcularStockTeorico, repo }) => {
     let artsTemp = [];
-
-    const cargar = () => { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; } };
-    const guardarLS = (d) => { try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
 
     // Stock disponible por artículo en un área, con la MISMA fórmula que el módulo
     // Stock: base (existencia del catálogo) + entradas - salidas. Reutiliza
@@ -147,7 +144,7 @@ window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
       // logger + toast. NO toca el DOM ni re-renderiza (eso queda en cada
       // llamador). Devuelve true si registró, false si falló validación o se
       // canceló el override. La usan guardar() (formulario) y modScanner.
-      registrarSalida: ({ area, motivo, responsable = '', articulos = [] }) => {
+      registrarSalida: async ({ area, motivo, responsable = '', articulos = [] }) => {
         if (!area)   { ui.toast('❌ Selecciona el área origen', 'err'); return false; }
         if (!motivo) { ui.toast('❌ El motivo es obligatorio', 'err'); return false; }
         if (!articulos.length) { ui.toast('❌ Agrega al menos un artículo', 'err'); return false; }
@@ -184,18 +181,18 @@ window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
           fecha:       new Date().toLocaleDateString('es-MX'),
           ts:          Date.now()
         };
-        const lista = cargar();
+        const lista = await repo.getSalidas();
         lista.unshift(datos);
-        guardarLS(lista);
+        await repo.saveSalidas(lista);
         logger.info(`Salida registrada — Área: ${area} — ${datos.articulos.length} artículo(s)`, area, 'Registrar salida');
         ui.toast(`✓ Salida registrada correctamente`, 'ok');
         return true;
       },
 
-      guardar: () => {
+      guardar: async () => {
         // Lee el formulario y delega en la lógica compartida; conserva el
         // comportamiento previo (reset del form + re-render del historial).
-        const ok = api.registrarSalida({
+        const ok = await api.registrarSalida({
           area:        document.getElementById('sal-area')?.value,
           motivo:      document.getElementById('sal-motivo')?.value?.trim(),
           responsable: document.getElementById('sal-responsable')?.value?.trim() || '',
@@ -204,7 +201,7 @@ window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
         if (!ok) return;
         artsTemp = [];
         api.limpiar();
-        api.render();
+        await api.render();
       },
 
       limpiar: () => {
@@ -219,11 +216,11 @@ window.createModSalidas = ({ ui, logger, calcularStockTeorico }) => {
         renderArts();
       },
 
-      render: () => {
+      render: async () => {
         const container = document.getElementById('sal-historial');
         if (!container) return;
         const filtroArea = document.getElementById('sal-filtro-area')?.value || '';
-        let lista = cargar();
+        let lista = await repo.getSalidas();
         if (filtroArea) lista = lista.filter(s => s.area === filtroArea);
         if (!lista.length) {
           container.innerHTML = '<div class="empty" style="padding:24px;">📭 Sin salidas registradas</div>';
