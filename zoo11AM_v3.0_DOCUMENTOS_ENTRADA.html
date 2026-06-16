@@ -1088,6 +1088,11 @@ const APP = (() => {
   // Levantamientos y la escritura de Bitácora; coexisten sobre la MISMA clave
   // física sin inconsistencia. Hoy lo implementa LocalStore; mañana ApiStore.
   const repo = window.createLocalStore();
+  // Aliases de códigos de barras: el archivo estático (catalogo_codigos_barras.js) es la base;
+  // los aliases guardados en runtime lo extienden y, en colisión, GANAN. resolverCodigo
+  // (modScanner) lee window.CATALOGO_CODIGOS_BARRAS ya combinado.
+  window.CATALOGO_CODIGOS_BARRAS = window.CATALOGO_CODIGOS_BARRAS || {};
+  repo.getCodigosBarras().then(rt => { Object.assign(window.CATALOGO_CODIGOS_BARRAS, rt); });
 
   // Logger institucional
   const logger = (() => {

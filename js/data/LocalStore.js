@@ -10,6 +10,7 @@
 //   getLevantamientos()      -> Promise<Levantamiento[]>  saveLevantamientos(arr)  -> Promise<void>
 //   getBitacora()            -> Promise<Evento[]>         saveBitacora(arr)        -> Promise<void>
 //   registrarBitacora(ev)    -> Promise<void>   // añade 1 evento (unshift + cap 200), NO reemplaza
+//   getCodigosBarras()       -> Promise<{[barcode]:alias}>  saveCodigosBarras(obj) -> Promise<void>  // alias barcode→interno (MAPA objeto)
 //
 // IMPORTANTE: este store es ASÍNCRONO desde el día 1 (devuelve promesas) aunque
 // hoy resuelva al instante sobre localStorage. Así, al migrar a ApiStore, la
@@ -33,12 +34,15 @@ window.createLocalStore = () => {
     solicitudes:    'zoo_tamatán_solicitudes_v1',
     levantamientos: 'zoo_tamatán_levantamientos_v1',
     bitacora:       'zoo_tamatán_bitacora_v3',
+    codigosBarras:  'zoo_tamatán_codigos_barras_v1',
   };
 
   const MAX_BITACORA = 200;
 
   const leer  = (k)    => { try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch { return []; } };
   const grabar = (k, d) => { try { localStorage.setItem(k, JSON.stringify(d)); } catch {} };
+  // Lectura para colecciones tipo MAPA (objeto), p. ej. aliases de códigos de barras.
+  const leerMapa = (k) => { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch { return {}; } };
 
   return {
     // ── Entradas ──────────────────────────────────────────────
@@ -67,5 +71,9 @@ window.createLocalStore = () => {
       if (logs.length > MAX_BITACORA) logs.pop();
       grabar(KEYS.bitacora, logs);
     },
+
+    // ── Códigos de barras (alias barcode→interno; MAPA objeto, no array) ──
+    getCodigosBarras:  async ()    => leerMapa(KEYS.codigosBarras),
+    saveCodigosBarras: async (obj) => grabar(KEYS.codigosBarras, obj),
   };
 };
