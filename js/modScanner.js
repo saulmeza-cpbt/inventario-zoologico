@@ -27,12 +27,21 @@
 // Dependencias globales (NO se inyectan): window.CATALOGO_INVENTARIO,
 // window.CATALOGO_ARTICULOS_POR_AREA, window.CATALOGO_CODIGOS_BARRAS, los
 // elementos #scan-* del HTML y la API pública APP.modScanner.
-window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado }) => {
+window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado, guardarAlias }) => {
     const MOTIVO_SALIDA = 'Salida rápida por escaneo';
     const AREAS_OK = ['Snack', 'Tienda'];
     let artActual = null;   // { descripcion, codigo, unidad, precio, barcode } resuelto
+    let vincBarcode = '';   // código físico no reconocido, pendiente de vincular (String crudo)
+    let vincSel     = null; // { codigo, descripcion } destino elegido en el autocompletar
+    let vincLista   = [];   // sugerencias actuales del autocompletar
 
     const $ = (id) => document.getElementById(id);
+
+    // Escapa texto antes de interpolarlo en innerHTML (protege el markup y los
+    // onclick generados). No altera el dato persistido: solo la salida visual.
+    const escapeHtml = (str) => String(str ?? '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
     const tipoMov = () => ($('scan-tipo')?.value || 'salida');
 
@@ -49,6 +58,20 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
       const hm = maestro.find(a => (a.codigo || '').trim().toLowerCase() === norm);
       if (hm) return { descripcion: hm.nombre, codigo: hm.codigo, unidad: 'PZA', precio: 0 };
       return null;
+    };
+
+    // Lista de artículos del área (código interno + descripción) para el
+    // autocompletar de vinculación. Mismas fuentes que buscarPorCodigoInterno,
+    // sin duplicar por código interno (base abril gana sobre maestro ene-abr).
+    const listarArticulosArea = (area) => {
+      const out = [], vistos = new Set();
+      const push = (codigo, descripcion) => {
+        const k = (codigo || '').trim();
+        if (k && !vistos.has(k.toLowerCase())) { vistos.add(k.toLowerCase()); out.push({ codigo: k, descripcion }); }
+      };
+      (window.CATALOGO_INVENTARIO?.[area] || []).forEach(a => push(a.c, a.n));
+      (window.CATALOGO_ARTICULOS_POR_AREA?.[area] || []).forEach(a => push(a.codigo, a.nombre));
+      return out;
     };
 
     // Resuelve el código escrito/escaneado siguiendo el orden:
@@ -82,29 +105,45 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
 
     const limpiarResultado = () => {
       artActual = null;
+      vincBarcode = ''; vincSel = null; vincLista = [];
       const box = $('scan-resultado');
       if (box) box.innerHTML = '';
       setRegistrarHabilitado(false);
     };
 
+    // Form de vinculación cuando el código no se reconoce: deja al usuario
+    // asociar el código físico escaneado a un artículo interno del área.
+    const renderVincForm = (barcode) => `<div style="padding:10px 12px;border:1px solid #fbd38d;background:#fffaf0;border-radius:8px;">
+        <div style="font-size:13px;color:#975a16;margin-bottom:8px;">⚠️ Código <b style="font-family:monospace;">${escapeHtml(barcode)}</b> no reconocido. Vincúlalo a un artículo del área:</div>
+        <input id="scan-vinc-q" type="text" autocomplete="off" placeholder="Nombre o código interno…"
+          oninput="APP.modScanner.onVincInput()"
+          style="display:block;width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:14px;margin-bottom:6px;">
+        <div id="scan-vinc-sug"></div>
+        <button id="scan-vinc-btn" class="btn btn-p" onclick="APP.modScanner.vincular()" disabled
+          style="width:100%;padding:10px;font-size:14px;margin-top:6px;">🔗 Vincular código</button>
+      </div>`;
+
     const renderResultado = (art) => {
       const box = $('scan-resultado');
       if (!box) return;
+      vincSel = null; vincLista = [];
       if (!art) {
-        box.innerHTML = `<div style="padding:10px 12px;border:1px solid #fed7d7;background:#fff5f5;border-radius:8px;color:#9b2c2c;font-size:13px;">
-          ❌ No se encontró ningún artículo con ese código en el área seleccionada.</div>`;
+        vincBarcode = ($('scan-codigo')?.value || '').trim();
+        box.innerHTML = renderVincForm(vincBarcode);
         return;
       }
+      vincBarcode = '';
       if (art._mismatch) {
         box.innerHTML = `<div style="padding:10px 12px;border:1px solid #fbd38d;background:#fffaf0;border-radius:8px;color:#975a16;font-size:13px;">
-          ⚠️ Ese código de barras pertenece al área <b>${art._mismatch}</b>. Cambia el área seleccionada.</div>`;
+          ⚠️ Ese código de barras pertenece al área <b>${escapeHtml(art._mismatch)}</b>. Cambia el área seleccionada.</div>`;
         return;
       }
       box.innerHTML = `<div style="padding:10px 12px;border:1px solid #9ae6b4;background:#f0fff4;border-radius:8px;">
-        <div style="font-size:11px;color:#718096;font-family:monospace;">${art.codigo || '—'}</div>
-        <div style="font-size:15px;font-weight:700;color:#22543d;">${art.descripcion}</div>
-        <div style="font-size:12px;color:#718096;">Unidad: ${art.unidad}</div>
-        ${art.barcode ? `<div style="font-size:11px;color:#718096;font-family:monospace;">Código de barras: ${art.barcode}</div>` : ''}
+        <div style="font-size:11px;color:#718096;font-family:monospace;">${escapeHtml(art.codigo || '—')}</div>
+        <div style="font-size:15px;font-weight:700;color:#22543d;">${escapeHtml(art.descripcion)}</div>
+        <div style="font-size:12px;color:#718096;">Unidad: ${escapeHtml(art.unidad)}</div>
+        ${art.barcode ? `<div style="font-size:11px;color:#718096;font-family:monospace;">Código de barras: ${escapeHtml(art.barcode)}</div>
+        <button class="btn btn-s" onclick="APP.modScanner.cambiarVinculo()" style="margin-top:8px;padding:6px 10px;font-size:12px;">🔁 Cambiar vínculo</button>` : ''}
       </div>`;
     };
 
@@ -123,7 +162,7 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
 
       // Al cambiar el texto del código se invalida el resultado previo, para no
       // registrar un artículo que ya no corresponde a lo escrito.
-      onCodigoInput: () => { if (artActual) limpiarResultado(); },
+      onCodigoInput: () => { if (artActual || vincBarcode) limpiarResultado(); },
 
       buscar: () => {
         const area   = $('scan-area')?.value || '';
@@ -140,6 +179,71 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
           artActual = null;
           setRegistrarHabilitado(false);
         }
+      },
+
+      // Autocompletar destino: filtra los artículos del área por nombre o código
+      // interno y pinta hasta 8 sugerencias (texto escapado).
+      onVincInput: () => {
+        const area = $('scan-area')?.value || '';
+        const q = ($('scan-vinc-q')?.value || '').trim().toLowerCase();
+        const sug = $('scan-vinc-sug');
+        vincSel = null;
+        if ($('scan-vinc-btn')) $('scan-vinc-btn').disabled = true;
+        if (!sug) return;
+        if (!q) { sug.innerHTML = ''; vincLista = []; return; }
+        vincLista = listarArticulosArea(area)
+          .filter(a => a.descripcion.toLowerCase().includes(q) || a.codigo.toLowerCase().includes(q))
+          .slice(0, 8);
+        sug.innerHTML = vincLista.length
+          ? vincLista.map((a, i) => `<div onclick="APP.modScanner.seleccionarVinc(${i})"
+              style="padding:6px 8px;border:1px solid #e2e8f0;border-radius:6px;margin-bottom:4px;cursor:pointer;font-size:13px;">
+              <span style="font-family:monospace;color:#718096;">${escapeHtml(a.codigo)}</span> — ${escapeHtml(a.descripcion)}</div>`).join('')
+          : `<div style="font-size:12px;color:#a0aec0;padding:4px;">Sin coincidencias</div>`;
+      },
+
+      // Fija el artículo destino elegido y habilita el botón Vincular.
+      seleccionarVinc: (idx) => {
+        vincSel = vincLista[idx] || null;
+        if (!vincSel) return;
+        if ($('scan-vinc-q')) $('scan-vinc-q').value = `${vincSel.codigo} — ${vincSel.descripcion}`;
+        if ($('scan-vinc-sug')) $('scan-vinc-sug').innerHTML = '';
+        if ($('scan-vinc-btn')) $('scan-vinc-btn').disabled = false;
+      },
+
+      // Reabre el mini-formulario para RE-vincular un código ya asociado (corrección
+      // de captura). Reutiliza el mismo barcode y el flujo vincular()/guardarAlias
+      // (sobrescritura con confirm() + WARN). Solo aplica a resultados por alias.
+      cambiarVinculo: () => {
+        if (!artActual || !artActual.barcode) return;
+        vincBarcode = artActual.barcode;   // mismo código físico ya escaneado
+        vincSel = null; vincLista = [];
+        artActual = null;                  // sale de modo "registrar" hasta re-resolver
+        setRegistrarHabilitado(false);
+        const box = $('scan-resultado');
+        if (box) box.innerHTML = renderVincForm(vincBarcode);
+        $('scan-vinc-q')?.focus();
+      },
+
+      // Persiste el alias (vía guardarAlias inyectado), valida el destino y
+      // re-resuelve para mostrar la tarjeta del artículo ya vinculado.
+      vincular: async () => {
+        const area = $('scan-area')?.value || '';
+        if (!AREAS_OK.includes(area)) { ui.toast('❌ Selecciona Snack o Tienda', 'err'); return; }
+        if (!vincBarcode) { ui.toast('❌ No hay código por vincular', 'err'); return; }
+        if (!vincSel)     { ui.toast('❌ Elige el artículo destino', 'err'); return; }
+        if (typeof guardarAlias !== 'function') { ui.toast('❌ Vinculación no disponible', 'err'); return; }
+        // El destino debe seguir siendo un código interno válido del área.
+        if (!buscarPorCodigoInterno(area, vincSel.codigo)) { ui.toast('❌ El artículo destino no existe en el área', 'err'); return; }
+        const reVinculo = !!window.CATALOGO_CODIGOS_BARRAS?.[vincBarcode];  // ya tenía alias → es actualización
+        const ok = await guardarAlias({ barcode: vincBarcode, area, codigo: vincSel.codigo });
+        if (!ok) {                                   // colisión cancelada: nada cambia
+          if ($('scan-codigo')) $('scan-codigo').value = vincBarcode;
+          api.buscar();                              // re-resuelve y restaura la tarjeta vigente
+          return;
+        }
+        ui.toast(reVinculo ? '🔁 Vínculo actualizado' : '🔗 Código vinculado', 'ok');
+        if ($('scan-codigo')) $('scan-codigo').value = vincBarcode;
+        api.buscar();      // re-resuelve: ahora cae por alias y muestra la tarjeta verde
       },
 
       registrar: async () => {
