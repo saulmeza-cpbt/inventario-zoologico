@@ -241,7 +241,7 @@ Reviso historial: 1 línea clara
 1. Estructura de datos mejorada
 2. Validaciones por tipo
 3. Sistema de almacenamiento y recuperación
-4. Logger para debugging (`APP.logger.getLogs()`)
+4. Logger para debugging (`await APP.logger.getLogs()` — devuelve Promise)
 5. Roadmap V3.1-V4.0
 6. Backup y recuperación de datos
 

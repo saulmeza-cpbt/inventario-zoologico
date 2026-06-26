@@ -531,7 +531,7 @@ Si tienes dudas o encuentras bugs:
 1. Abre la **Consola** (F12)
 2. Ve a **Consola** y busca el mensaje de error
 3. Copia el error y comunícalo
-4. Usa `APP.logger.getLogs()` para ver el historial
+4. Usa `await APP.logger.getLogs()` para ver el historial (devuelve una Promise)
 
 ---
 
