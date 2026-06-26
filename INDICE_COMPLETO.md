@@ -7,6 +7,17 @@
 
 ---
 
+## 📐 ARQUITECTURA Y ROADMAP (Fase 2 — Códigos & Nutrición)
+
+Documentos estratégicos y de diagnóstico (25 de junio de 2026):
+
+- [docs/estado/estatus-ejecutivo-tecnico.md](docs/estado/estatus-ejecutivo-tecnico.md) — Documento maestro: estado verificado + diagnóstico PR C + NUT-A.
+- [docs/estado/estatus-ejecutivo-tecnico.pdf](docs/estado/estatus-ejecutivo-tecnico.pdf) — Versión PDF sobria del documento maestro.
+- [docs/nutricion/diagnostico-nutricion-light.md](docs/nutricion/diagnostico-nutricion-light.md) — Diagnóstico NUT-A (Nutrición Light, inventario operativo de alimentos).
+- [docs/roadmap/roadmap-codigos-y-nutricion.md](docs/roadmap/roadmap-codigos-y-nutricion.md) — Roadmap PR C-1/C-2/C-3 y NUT-A…NUT-F.
+
+---
+
 ## 📁 ARCHIVOS ENTREGABLES
 
 ### 1️⃣ APLICACIÓN (El software)
