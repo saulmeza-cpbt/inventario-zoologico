@@ -1610,6 +1610,7 @@ const APP = (() => {
             codigo:   a.codigo || '',
             cantidad: parseFloat(a.cantidad) || 0,
             unitario: parseFloat(a.precio) || 0,   // precio del catálogo si lo trae; si no, 0
+            codigoBarrasLeido: a.codigoBarrasLeido || '',   // C-1: cierra el Drop B (la whitelist del map descartaba el campo)
           })),
           datos: {
             areaDestino: area,
