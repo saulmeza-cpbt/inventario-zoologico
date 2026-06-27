@@ -261,6 +261,10 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
           unidad:      artActual.unidad || 'PZA',
           precio:      parseFloat(artActual.precio) || 0,
           cantidad,
+          // C-1 (persist-only): trazabilidad del código físico escaneado. Trae el
+          // barcode cuando el artículo se resolvió por alias; '' si se tecleó el
+          // código interno directo. NO altera cantidad, stock ni la lógica previa.
+          codigoBarrasLeido: artActual.barcode || '',
         };
 
         let ok;
