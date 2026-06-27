@@ -88,7 +88,8 @@ window.createModReportes = ({ getEntradas, getSalidas, TIPOS_DOC, ui, logger }) 
     // con fallback areaRequirente) y por mes (ts de registro).
     const filasEntradas = (filtros) => {
       const HEADERS = ['Fecha registro', 'Área', 'Tipo documento', 'Folio documento',
-        'Responsable', 'Motivo', 'Código', 'Artículo', 'Cantidad', 'Precio unitario', 'Importe'];
+        'Responsable', 'Motivo', 'Código', 'Artículo', 'Cantidad', 'Precio unitario', 'Importe',
+        'Código de barras leído'];   // C-1b: última columna, no desplaza las existentes
       const filas = [];
       (getEntradas() || []).forEach(doc => {
         const area = doc.datos?.areaDestino || doc.datos?.areaRequirente || '';
@@ -104,7 +105,8 @@ window.createModReportes = ({ getEntradas, getSalidas, TIPOS_DOC, ui, logger }) 
           const unitario = parseFloat(art.unitario) || 0;
           const importe  = Math.round(cantidad * unitario * 100) / 100;
           filas.push([fecha, area, tipoNombre, folioDoc, responsable, motivo,
-            art.codigo || '', art.nombre || '', cantidad, unitario, importe]);
+            art.codigo || '', art.nombre || '', cantidad, unitario, importe,
+            art.codigoBarrasLeido || '']);   // C-1b: '' en docs formales/manuales (campo ausente)
         });
       });
       return { HEADERS, filas };
@@ -114,7 +116,8 @@ window.createModReportes = ({ getEntradas, getSalidas, TIPOS_DOC, ui, logger }) 
     // Una fila por artículo. Filtra por área (sal.area) y por mes (ts).
     const filasSalidas = async (filtros) => {
       const HEADERS = ['Fecha registro', 'Área', 'Folio/ID', 'Responsable',
-        'Motivo', 'Código', 'Artículo', 'Cantidad', 'Unidad'];
+        'Motivo', 'Código', 'Artículo', 'Cantidad', 'Unidad',
+        'Código de barras leído'];   // C-1b: última columna, no desplaza las existentes
       const filas = [];
       (await getSalidas() || []).forEach(sal => {
         if (!coincideArea(sal.area || '', filtros.area)) return;
@@ -123,7 +126,8 @@ window.createModReportes = ({ getEntradas, getSalidas, TIPOS_DOC, ui, logger }) 
         (sal.articulos || []).forEach(art => {
           const cantidad = parseFloat(art.cantidad) || 0;
           filas.push([fecha, sal.area || '', sal.id || '', sal.responsable || '',
-            sal.motivo || '', art.codigo || '', art.descripcion || '', cantidad, art.unidad || '']);
+            sal.motivo || '', art.codigo || '', art.descripcion || '', cantidad, art.unidad || '',
+            art.codigoBarrasLeido || '']);   // C-1b: nivel artículo, '' si no vino de escáner por alias
         });
       });
       return { HEADERS, filas };
