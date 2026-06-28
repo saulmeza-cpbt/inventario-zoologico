@@ -1093,6 +1093,11 @@ const APP = (() => {
   // (modScanner) lee window.CATALOGO_CODIGOS_BARRAS ya combinado.
   window.CATALOGO_CODIGOS_BARRAS = window.CATALOGO_CODIGOS_BARRAS || {};
   repo.getCodigosBarras().then(rt => { Object.assign(window.CATALOGO_CODIGOS_BARRAS, rt); });
+  // Factores de presentación (PR C-2): store SEPARADO del alias (barcode→{factor,unidadEmpaque}).
+  // Arranca {} (sin base estática) y se hidrata del repo; runtime gana en colisión. INFORMATIVO:
+  // el factor SOLO se persiste/captura; NO convierte cantidades ni afecta stock todavía (eso es C-3).
+  window.CATALOGO_FACTORES_CAJAS = window.CATALOGO_FACTORES_CAJAS || {};
+  repo.getFactoresCajas().then(rt => { Object.assign(window.CATALOGO_FACTORES_CAJAS, rt); });
 
   // Logger institucional
   const logger = (() => {
@@ -1141,6 +1146,36 @@ const APP = (() => {
     Object.assign(window.CATALOGO_CODIGOS_BARRAS, { [bc]: { area, codigo } });
     if (sobrescribe) logger.warn(`Código de barras ${bc} re-vinculado a ${codigo} (${area})`, codigo, 'Vincular código');
     else             logger.info(`Código de barras ${bc} vinculado a ${codigo} (${area})`, codigo, 'Vincular código');
+    return true;
+  };
+
+  // ── CAPTURA DE FACTOR DE PRESENTACIÓN (PR C-2) ───────────────────────────
+  // Persiste el factor barcode→{factor,unidadEmpaque} en su PROPIA clave del repo
+  // (zoo_tamatán_factor_cajas_v1, store SEPARADO del alias) con read-merge-save y lo
+  // refleja en vivo en window.CATALOGO_FACTORES_CAJAS. En colisión (el barcode ya tiene
+  // un factor distinto) pide confirmación. INFORMATIVO: el factor NO se aplica a
+  // movimientos ni a stock en C-2; sólo queda persistido para que C-3 lo consuma.
+  // Se inyecta en createModScanner; es una acción SEPARADA de guardarAlias (no fusiona
+  // estructuras: el alias sigue siendo {area,codigo} simple). Acepta coma decimal.
+  const guardarFactor = async ({ barcode, factor, unidadEmpaque }) => {
+    const bc = String(barcode ?? '').trim();
+    if (!bc) { ui.toast('❌ No hay código por capturar', 'err'); return false; }
+    const f = parseFloat(String(factor ?? '').replace(',', '.'));
+    if (!Number.isFinite(f) || f <= 0) { ui.toast('❌ El factor debe ser un número mayor a 0', 'err'); return false; }
+    const u = String(unidadEmpaque ?? '').trim();
+    if (!u) { ui.toast('❌ Indica la unidad de empaque (caja, paquete…)', 'err'); return false; }
+    const mapa = await repo.getFactoresCajas();
+    const prev = mapa[bc];
+    const sobrescribe = !!prev && (prev.factor !== f || prev.unidadEmpaque !== u);
+    if (sobrescribe && !confirm(
+        `El código ${bc} ya tiene factor ${prev.factor} (${prev.unidadEmpaque}).\n¿Reemplazar por ${f} (${u})?`)) {
+      return false;
+    }
+    mapa[bc] = { factor: f, unidadEmpaque: u };
+    await repo.saveFactoresCajas(mapa);
+    Object.assign(window.CATALOGO_FACTORES_CAJAS, { [bc]: { factor: f, unidadEmpaque: u } });
+    if (sobrescribe) logger.warn(`Factor de presentación de ${bc} actualizado a ${f} (${u})`, bc, 'Capturar factor');
+    else             logger.info(`Factor de presentación de ${bc} capturado: ${f} (${u})`, bc, 'Capturar factor');
     return true;
   };
 
@@ -2336,6 +2371,7 @@ const APP = (() => {
     registrarSalida: modSalidas.registrarSalida,
     registrarEntrada: modEntradas.registrarEntradaRapida,
     guardarAlias,
+    guardarFactor,
     onRegistrado: async () => { modStock.render(); await modSalidas.render(); },
   });
 

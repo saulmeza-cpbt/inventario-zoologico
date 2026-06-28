@@ -23,6 +23,9 @@ window.createModRespaldo = ({ ui, logger, refrescarTodo }) => {
     // Aliases de códigos de barras: su valor es un OBJETO mapa (barcode→{codigo,area,...}),
     // NO un array → se respalda aparte del loop de CLAVES.
     const CLAVE_CODIGOS_BARRAS = 'zoo_tamatán_codigos_barras_v1';
+    // Factores de presentación (C-2): OBJETO mapa (barcode→{factor,unidadEmpaque}), store
+    // SEPARADO del alias → se respalda APARTE del loop de CLAVES, igual que los aliases.
+    const CLAVE_FACTOR_CAJAS = 'zoo_tamatán_factor_cajas_v1';
 
     const leerClave = (k) => {
       try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch { return []; }
@@ -50,6 +53,10 @@ window.createModRespaldo = ({ ui, logger, refrescarTodo }) => {
       const aliases = leerMapa(CLAVE_CODIGOS_BARRAS);
       datos[CLAVE_CODIGOS_BARRAS] = aliases;
       conteos.codigosBarras = Object.keys(aliases).length;
+      // Factores de presentación (objeto-mapa, no array). Store separado (C-2).
+      const factores = leerMapa(CLAVE_FACTOR_CAJAS);
+      datos[CLAVE_FACTOR_CAJAS] = factores;
+      conteos.factoresCajas = Object.keys(factores).length;
       return {
         _meta: {
           app: 'zoo-tamatan-inventario',
@@ -115,8 +122,14 @@ window.createModRespaldo = ({ ui, logger, refrescarTodo }) => {
           const aliasObj = obj.datos[CLAVE_CODIGOS_BARRAS];
           const hayAlias = aliasObj && typeof aliasObj === 'object' && !Array.isArray(aliasObj);
           if (hayAlias) resumen.push(`  • códigos de barras: ${Object.keys(aliasObj).length}`);
+          // Factores de presentación (C-2): objeto plano (no array, no null). Store aparte.
+          // Sólo se considera si el respaldo TRAE el mapa; un respaldo viejo sin la clave
+          // deja hayFactores=false y NO se toca el store local (no se borra).
+          const factObj = obj.datos[CLAVE_FACTOR_CAJAS];
+          const hayFactores = factObj && typeof factObj === 'object' && !Array.isArray(factObj);
+          if (hayFactores) resumen.push(`  • factores de presentación: ${Object.keys(factObj).length}`);
 
-          if (!Object.keys(aImportar).length && !hayAlias) {
+          if (!Object.keys(aImportar).length && !hayAlias && !hayFactores) {
             ui.toast('❌ El respaldo no contiene datos reconocibles', 'err');
             return;
           }
@@ -142,6 +155,14 @@ window.createModRespaldo = ({ ui, logger, refrescarTodo }) => {
           if (hayAlias) {
             try { localStorage.setItem(CLAVE_CODIGOS_BARRAS, JSON.stringify(aliasObj)); } catch {}
             window.CATALOGO_CODIGOS_BARRAS = Object.assign(window.CATALOGO_CODIGOS_BARRAS || {}, aliasObj);
+          }
+          // Factores de presentación (objeto-mapa): mismo trato que aliases. SOLO si el
+          // respaldo trae el mapa (hayFactores). Un respaldo viejo sin la clave NO entra
+          // aquí, por lo que los factores locales quedan INTACTOS (no se borran). Reflejo
+          // en vivo en el global para que queden activos sin recargar (C-2).
+          if (hayFactores) {
+            try { localStorage.setItem(CLAVE_FACTOR_CAJAS, JSON.stringify(factObj)); } catch {}
+            window.CATALOGO_FACTORES_CAJAS = Object.assign(window.CATALOGO_FACTORES_CAJAS || {}, factObj);
           }
 
           logger.info(`Datos importados desde respaldo (origen: ${origen})`, 'Respaldo', 'Importar JSON');
