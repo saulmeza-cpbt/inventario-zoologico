@@ -11,6 +11,7 @@
 //   getBitacora()            -> Promise<Evento[]>         saveBitacora(arr)        -> Promise<void>
 //   registrarBitacora(ev)    -> Promise<void>   // añade 1 evento (unshift + cap 200), NO reemplaza
 //   getCodigosBarras()       -> Promise<{[barcode]:alias}>  saveCodigosBarras(obj) -> Promise<void>  // alias barcode→interno (MAPA objeto)
+//   getFactoresCajas()       -> Promise<{[barcode]:{factor,unidadEmpaque}}>  saveFactoresCajas(obj) -> Promise<void>  // factor de presentación (MAPA objeto)
 //
 // IMPORTANTE: este store es ASÍNCRONO desde el día 1 (devuelve promesas) aunque
 // hoy resuelva al instante sobre localStorage. Así, al migrar a ApiStore, la
@@ -35,6 +36,7 @@ window.createLocalStore = () => {
     levantamientos: 'zoo_tamatán_levantamientos_v1',
     bitacora:       'zoo_tamatán_bitacora_v3',
     codigosBarras:  'zoo_tamatán_codigos_barras_v1',
+    factorCajas:    'zoo_tamatán_factor_cajas_v1',
   };
 
   const MAX_BITACORA = 200;
@@ -75,5 +77,11 @@ window.createLocalStore = () => {
     // ── Códigos de barras (alias barcode→interno; MAPA objeto, no array) ──
     getCodigosBarras:  async ()    => leerMapa(KEYS.codigosBarras),
     saveCodigosBarras: async (obj) => grabar(KEYS.codigosBarras, obj),
+
+    // ── Factores de presentación (barcode→{factor,unidadEmpaque}; MAPA objeto) ──
+    // C-2 (persist + captura): cuántas unidades base contiene 1 empaque escaneado.
+    // SOLO se persiste/lee aquí; NO se aplica a movimientos ni a stock (eso es C-3).
+    getFactoresCajas:  async ()    => leerMapa(KEYS.factorCajas),
+    saveFactoresCajas: async (obj) => grabar(KEYS.factorCajas, obj),
   };
 };

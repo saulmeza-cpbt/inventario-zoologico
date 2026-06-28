@@ -27,7 +27,7 @@
 // Dependencias globales (NO se inyectan): window.CATALOGO_INVENTARIO,
 // window.CATALOGO_ARTICULOS_POR_AREA, window.CATALOGO_CODIGOS_BARRAS, los
 // elementos #scan-* del HTML y la API pública APP.modScanner.
-window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado, guardarAlias }) => {
+window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado, guardarAlias, guardarFactor }) => {
     const MOTIVO_SALIDA = 'Salida rápida por escaneo';
     const AREAS_OK = ['Snack', 'Tienda'];
     let artActual = null;   // { descripcion, codigo, unidad, precio, barcode } resuelto
@@ -113,15 +113,36 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
 
     // Form de vinculación cuando el código no se reconoce: deja al usuario
     // asociar el código físico escaneado a un artículo interno del área.
-    const renderVincForm = (barcode) => `<div style="padding:10px 12px;border:1px solid #fbd38d;background:#fffaf0;border-radius:8px;">
+    // C-2: incluye captura OPCIONAL del factor de presentación (factor + unidadEmpaque).
+    // Si el barcode ya tiene factor guardado, se PRE-RELLENA (permite editarlo al
+    // re-vincular). Vacío ⇒ no se escribe nada en el store de factores. El factor es
+    // INFORMATIVO: no convierte cantidades ni afecta stock en C-2.
+    const renderVincForm = (barcode) => {
+      const facPrev = window.CATALOGO_FACTORES_CAJAS?.[barcode] || null;
+      const facVal  = facPrev ? escapeHtml(facPrev.factor) : '';
+      const uniVal  = facPrev ? escapeHtml(facPrev.unidadEmpaque) : '';
+      return `<div style="padding:10px 12px;border:1px solid #fbd38d;background:#fffaf0;border-radius:8px;">
         <div style="font-size:13px;color:#975a16;margin-bottom:8px;">⚠️ Código <b style="font-family:monospace;">${escapeHtml(barcode)}</b> no reconocido. Vincúlalo a un artículo del área:</div>
         <input id="scan-vinc-q" type="text" autocomplete="off" placeholder="Nombre o código interno…"
           oninput="APP.modScanner.onVincInput()"
           style="display:block;width:100%;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:14px;margin-bottom:6px;">
         <div id="scan-vinc-sug"></div>
+        <div style="margin-top:8px;padding-top:8px;border-top:1px dashed #fbd38d;">
+          <div style="font-size:12px;color:#975a16;margin-bottom:4px;">Factor de presentación <span style="color:#a0aec0;font-weight:400;">(opcional)</span></div>
+          <div style="display:flex;gap:6px;">
+            <input id="scan-vinc-factor" type="number" min="0" step="any" inputmode="decimal" autocomplete="off"
+              placeholder="Factor (ej. 24)" value="${facVal}"
+              style="flex:1;min-width:0;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:14px;">
+            <input id="scan-vinc-unidad" type="text" autocomplete="off"
+              placeholder="Empaque (ej. caja)" value="${uniVal}"
+              style="flex:1;min-width:0;padding:8px;border:1px solid #cbd5e0;border-radius:6px;font-size:14px;">
+          </div>
+          <div style="font-size:11px;color:#a0aec0;margin-top:4px;">Informativo por ahora; aún no convierte cantidades ni afecta stock.</div>
+        </div>
         <button id="scan-vinc-btn" class="btn btn-p" onclick="APP.modScanner.vincular()" disabled
           style="width:100%;padding:10px;font-size:14px;margin-top:6px;">🔗 Vincular código</button>
       </div>`;
+    };
 
     const renderResultado = (art) => {
       const box = $('scan-resultado');
@@ -242,6 +263,15 @@ window.createModScanner = ({ ui, registrarSalida, registrarEntrada, onRegistrado
           return;
         }
         ui.toast(reVinculo ? '🔁 Vínculo actualizado' : '🔗 Código vinculado', 'ok');
+        // C-2: captura OPCIONAL del factor de presentación. Acción SEPARADA de guardarAlias
+        // (store aparte). Sólo si el operador escribió un factor; vacío ⇒ no se escribe nada.
+        // Se leen los inputs ANTES de api.buscar() (que reemplaza el form). NO toca artActual,
+        // ni el objeto articulo, ni cantidad, ni stock: el factor es informativo en C-2.
+        const facRaw = ($('scan-vinc-factor')?.value || '').trim();
+        const uniRaw = ($('scan-vinc-unidad')?.value || '').trim();
+        if (facRaw && typeof guardarFactor === 'function') {
+          await guardarFactor({ barcode: vincBarcode, factor: facRaw, unidadEmpaque: uniRaw });
+        }
         if ($('scan-codigo')) $('scan-codigo').value = vincBarcode;
         api.buscar();      // re-resuelve: ahora cae por alias y muestra la tarjeta verde
       },
